@@ -16,7 +16,7 @@ export default function Forum() {
               className="p-6 bg-white rounded-xl shadow hover:shadow-lg transition"
             >
               <p className="italic text-gray-700 mb-4">
-                "Sample motivational quote {post}..."
+                &quot;Sample motivational quote {post}...&quot;
               </p>
               <div className="flex justify-between text-sm text-gray-500">
                 <span>❤️ 12</span>

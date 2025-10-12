@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import {
   Phone,
   Mail,
@@ -144,9 +145,11 @@ export default function Navbar() {
           {/* Bottom Bar - Logo & Navigation */}
           <div className="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
             <div className="flex items-center">
-              <img
-                src="tq-logo.png"
+              <Image
+                src="/tq-logo.png"
                 alt="Total Quality Logo"
+                width={120}
+                height={40}
                 className={`h-8 sm:h-10 w-auto transition-all duration-700 ease-in-out ${
                   scrolled ? "" : "brightness-0 invert"
                 }`}
@@ -295,11 +298,14 @@ export default function Navbar() {
         <div className="flex flex-col h-full">
           {/* Sidebar Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
-            <img
+            <Image
               src="/tq-logo.png"
               alt="Total Quality Logo"
+              width={120}
+              height={40}
               className="h-8 w-auto"
             />
+
             <button
               onClick={() => setSidebarOpen(false)}
               className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300 text-gray-700"

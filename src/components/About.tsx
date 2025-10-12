@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function About() {
   return (
     <section
@@ -43,10 +45,10 @@ export default function About() {
               <div className="group p-6 bg-white rounded-2xl border border-gray-100 hover:border-[#2B5589]/30 hover:shadow-xl transition-all duration-300">
                 <div className="flex items-start gap-4">
                   <p className="text-base text-gray-700 leading-relaxed">
-                    We are Southeast Asia's premier human resources consulting
-                    and corporate motivator company, dedicated to empowering
-                    organizations through strategic HR solutions and inspiring
-                    transformative change.
+                    We are Southeast Asia&apos;s premier human resources
+                    consulting and corporate motivator company, dedicated to
+                    empowering organizations through strategic HR solutions and
+                    inspiring transformative change.
                   </p>
                 </div>
               </div>
@@ -54,7 +56,7 @@ export default function About() {
               <div className="group p-6 bg-white rounded-2xl border border-gray-100 hover:border-[#FACC01]/40 hover:shadow-xl transition-all duration-300">
                 <div className="flex items-start gap-4">
                   <p className="text-base text-gray-700 leading-relaxed">
-                    With over a decade of expertise, we've partnered with
+                    With over a decade of expertise, we&apos;ve partnered with
                     hundreds of organizations across the region, unlocking team
                     potential and driving sustainable growth through innovative
                     leadership development and organizational excellence.
@@ -112,12 +114,13 @@ export default function About() {
               <div className="relative bg-white rounded-[2rem] shadow-2xl overflow-hidden group hover:shadow-[0_20px_70px_rgba(43,85,137,0.3)] transition-all duration-500">
                 {/* Image Container */}
                 <div className="relative aspect-[3/4] overflow-hidden">
-                  <img
+                  <Image
                     src="/johan.png"
                     alt="Founder"
+                    width={400}
+                    height={500}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-
                   {/* Gradient Overlay with Modern Touch */}
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent" />
 
@@ -145,7 +148,7 @@ export default function About() {
                     {/* Quote Card */}
                     <div className="relative p-5 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
                       <div className="absolute -top-2 -left-2 text-4xl text-[#FACC01] opacity-50">
-                        "
+                        &quot;
                       </div>
                       <p className="text-white/95 text-sm sm:text-base leading-relaxed italic">
                         Dengan bermalas-malas takkan tercapai apa yang
