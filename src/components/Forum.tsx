@@ -73,7 +73,7 @@ export default function Forum() {
                 <div className="space-y-6">
                   {/* Quote Text */}
                   <blockquote className="text-[#364153] leading-relaxed text-lg font-light min-h-[140px]">
-                    "{post.quote}"
+                    &quot;{post.quote}&quot;
                   </blockquote>
 
                   {/* Author Info */}

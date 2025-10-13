@@ -22,13 +22,6 @@ export default function Career() {
     },
   ];
 
-  const values = [
-    { label: "Innovation", color: "bg-[#2B5589]" },
-    { label: "Excellence", color: "bg-[#FACC01]" },
-    { label: "Collaboration", color: "bg-[#2B5589]" },
-    { label: "Integrity", color: "bg-[#FACC01]" },
-  ];
-
   return (
     <section
       id="career"

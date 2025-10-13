@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Events() {
   const events = [
     {
@@ -86,10 +88,12 @@ export default function Events() {
 
                 {/* Header Image */}
                 <div className="absolute inset-0">
-                  <img
+                  <Image
                     src={event.image}
                     alt={event.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-white/40" />
                 </div>
