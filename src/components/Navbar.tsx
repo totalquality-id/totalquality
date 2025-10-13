@@ -39,6 +39,23 @@ export default function Navbar() {
     setSidebarOpen(false);
   };
 
+  const handleSmoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string
+  ) => {
+    e.preventDefault();
+    setSidebarOpen(false);
+
+    const target = document.querySelector(targetId);
+    if (target) {
+      const yOffset = -80;
+      const y =
+        target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <header
@@ -165,8 +182,8 @@ export default function Navbar() {
               >
                 <li>
                   <a
-                    href="#about"
-                    className="hover:text-[#FACC01] transition-colors duration-300 relative group"
+                    onClick={(e) => handleSmoothScroll(e, "#about")}
+                    className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
                   >
                     About Us
                     <span
@@ -178,8 +195,8 @@ export default function Navbar() {
                 </li>
                 <li>
                   <a
-                    href="#services"
-                    className="hover:text-[#FACC01] transition-colors duration-300 relative group"
+                    onClick={(e) => handleSmoothScroll(e, "#services")}
+                    className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
                   >
                     Services
                     <span
@@ -191,8 +208,8 @@ export default function Navbar() {
                 </li>
                 <li>
                   <a
-                    href="#events"
-                    className="hover:text-[#FACC01] transition-colors duration-300 relative group"
+                    onClick={(e) => handleSmoothScroll(e, "#events")}
+                    className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
                   >
                     Events
                     <span
@@ -204,8 +221,8 @@ export default function Navbar() {
                 </li>
                 <li>
                   <a
-                    href="#news"
-                    className="hover:text-[#FACC01] transition-colors duration-300 relative group"
+                    onClick={(e) => handleSmoothScroll(e, "#news")}
+                    className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
                   >
                     News
                     <span
@@ -217,8 +234,8 @@ export default function Navbar() {
                 </li>
                 <li>
                   <a
-                    href="#career"
-                    className="hover:text-[#FACC01] transition-colors duration-300 relative group"
+                    onClick={(e) => handleSmoothScroll(e, "#career")}
+                    className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
                   >
                     Career
                     <span
@@ -230,8 +247,8 @@ export default function Navbar() {
                 </li>
                 <li>
                   <a
-                    href="#forum"
-                    className="hover:text-[#FACC01] transition-colors duration-300 relative group"
+                    onClick={(e) => handleSmoothScroll(e, "#forum")}
+                    className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
                   >
                     Forum
                     <span
@@ -244,15 +261,15 @@ export default function Navbar() {
                 <li>
                   {scrolled ? (
                     <a
-                      href="#self-assessment"
-                      className="px-4 xl:px-6 py-2 xl:py-2.5 rounded-lg font-semibold transition-all duration-700 ease-in-out shadow-md hover:shadow-lg bg-[#2B5589] text-white hover:bg-[#FACC01] hover:text-[#2B5589]"
+                      onClick={(e) => handleSmoothScroll(e, "#self-assessment")}
+                      className="px-4 xl:px-6 py-2 xl:py-2.5 rounded-lg font-semibold cursor-pointer transition-all duration-700 ease-in-out shadow-md hover:shadow-lg bg-[#2B5589] text-white hover:bg-[#FACC01] hover:text-[#2B5589]"
                     >
                       Self Assessment
                     </a>
                   ) : (
                     <a
-                      href="#assessment"
-                      className="relative group px-4 xl:px-6 py-2 xl:py-2.5 rounded-lg font-semibold transition-all duration-700 ease-in-out"
+                      onClick={(e) => handleSmoothScroll(e, "#selg-assessment")}
+                      className="relative group px-4 xl:px-6 py-2 xl:py-2.5 rounded-lg font-semibold cursor-pointer transition-all duration-700 ease-in-out"
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 rounded-lg blur-md group-hover:blur-lg transition-all duration-300" />
                       <div className="absolute inset-0 bg-white/20 backdrop-blur-xl rounded-lg border border-white/30 group-hover:bg-white/30 transition-all duration-300" />
