@@ -1,28 +1,30 @@
+import { Users, Settings, TrendingUp } from "lucide-react";
+
 export default function Services() {
   const services = [
     {
-      title: "HR Consulting",
+      title: "Quality Empowerment System",
       description:
-        "Strategic human resource solutions tailored to elevate your organization's potential and drive sustainable growth.",
-      emoji: "💼",
+        "A structured mentoring program designed to enhance productivity and efficiency through motivation, team building, productive work culture development, and the creation of Agents of Change.",
+      icon: <Users className="w-8 h-8 text-[#2B5589]" />,
       gradient: "from-[#2B5589]/10 to-[#3A6BA5]/5",
       accentColor: "bg-[#2B5589]",
       hoverBorder: "hover:border-[#2B5589]/30",
     },
     {
-      title: "Corporate Motivation",
+      title: "Quality Management System",
       description:
-        "Inspiring transformative change through powerful motivational programs that energize and align your teams.",
-      emoji: "🚀",
+        "A structured, hands-on mentoring program to establish and implement an effective management system. Daily on-site guidance ensures smooth execution and leads to internationally recognized certification.",
+      icon: <Settings className="w-8 h-8 text-[#FACC01]" />,
       gradient: "from-[#FACC01]/10 to-[#FDD835]/5",
       accentColor: "bg-[#FACC01]",
       hoverBorder: "hover:border-[#FACC01]/40",
     },
     {
-      title: "Leadership Training",
+      title: "Quality Improvement System",
       description:
-        "Developing exceptional leaders who drive innovation, foster collaboration, and create lasting organizational impact.",
-      emoji: "⭐",
+        "A structured and continuous mentoring program to build a positive corporate culture through Agents of Change. Daily on-site assistance supports implementation, system alignment, and monitoring to improve overall effectiveness and productivity.",
+      icon: <TrendingUp className="w-8 h-8 text-[#2B5589]" />,
       gradient: "from-[#2B5589]/10 to-[#FACC01]/5",
       accentColor: "bg-gradient-to-r from-[#2B5589] to-[#FACC01]",
       hoverBorder: "hover:border-[#2B5589]/30",
@@ -66,7 +68,8 @@ export default function Services() {
           </h2>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light">
-            Transforming organizations through innovative solutions
+            We provide total services
+            {/* Transforming organizations through innovative solutions */}
           </p>
         </div>
 
@@ -85,7 +88,7 @@ export default function Services() {
                 {/* Icon & Badge */}
                 <div className="flex items-start justify-between">
                   <div className="w-16 h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                    <span className="text-3xl">{service.emoji}</span>
+                    <span className="text-3xl">{service.icon}</span>
                   </div>
 
                   <div
