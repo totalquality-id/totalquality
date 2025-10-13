@@ -32,12 +32,6 @@ export default function Forum() {
     },
   ];
 
-  const communityStats = [
-    { icon: "👥", number: "2.5K+", label: "Active Members" },
-    { icon: "💬", number: "5K+", label: "Conversations" },
-    { icon: "💡", number: "10K+", label: "Shared Ideas" },
-  ];
-
   return (
     <section
       id="forum"
@@ -108,7 +102,7 @@ export default function Forum() {
             >
               {/* Quote Icon */}
               <div className="absolute top-6 right-6 w-12 h-12 bg-white/80 rounded-xl flex items-center justify-center shadow-sm">
-                <span className="text-2xl text-[#2B5589]">"</span>
+                <span className="text-2xl text-[#2B5589]">&quot;</span>
               </div>
 
               {/* Content */}
@@ -116,7 +110,7 @@ export default function Forum() {
                 {/* Quote Text */}
                 <div className="relative">
                   <p className="text-gray-800 italic leading-relaxed text-base font-medium">
-                    "{post.quote}"
+                    &quot;{post.quote}&quot;
                   </p>
                 </div>
 

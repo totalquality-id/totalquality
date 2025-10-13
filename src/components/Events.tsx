@@ -54,7 +54,7 @@ export default function Events() {
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-[#2B5589]/20 rounded-full shadow-sm">
             <div className="w-2 h-2 bg-[#FACC01] rounded-full animate-pulse" />
             <span className="text-xs font-bold tracking-wider text-[#2B5589] uppercase">
-              Don't Miss Out
+              Don&apos;t Miss Out{" "}
             </span>
           </div>
 
