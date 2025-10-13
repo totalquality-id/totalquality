@@ -59,7 +59,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed w-full top-0 z-50 transition-all duration-700 ease-in-out ${
+        className={`fixed w-full top-0 z-50 transition-all duration-400 ease-in-out ${
           scrolled ? "bg-white shadow-lg" : "bg-transparent"
         }`}
         style={{ fontFamily: "Inter, system-ui, sans-serif" }}
@@ -75,14 +75,14 @@ export default function Navbar() {
           >
             <div className="flex items-center gap-4 lg:gap-6">
               <div className="flex items-center gap-2 hover:text-[#FACC01] transition-colors duration-300 cursor-pointer">
-                <Phone className="w-4 h-4 transition-all duration-700" />
-                <span className="transition-all duration-700 hidden xl:inline">
+                <Phone className="w-4 h-4 transition-all duration-500" />
+                <span className="transition-all duration-500 hidden xl:inline">
                   +62 31 848 4690/95
                 </span>
               </div>
               <div className="flex items-center gap-2 hover:text-[#FACC01] transition-colors duration-300 cursor-pointer">
-                <Mail className="w-4 h-4 transition-all duration-700" />
-                <span className="transition-all duration-700 hidden xl:inline">
+                <Mail className="w-4 h-4 transition-all duration-500" />
+                <span className="transition-all duration-500 hidden xl:inline">
                   info@tqpartner.com
                 </span>
               </div>
@@ -424,28 +424,44 @@ export default function Navbar() {
               <a
                 href="https://www.facebook.com/totalquality.id/"
                 aria-label="Facebook"
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 hover:bg-[#2B5589] text-gray-600 hover:text-white transition-all duration-300"
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-500 ${
+                  scrolled
+                    ? "bg-gray-100 text-gray-600 hover:bg-[#2B5589] hover:text-white"
+                    : "bg-white/20 text-white hover:bg-white/40"
+                }`}
               >
                 <Facebook className="w-4 h-4" />
               </a>
               <a
                 href="https://www.linkedin.com/company/pt-total-quality-indonesia/"
                 aria-label="LinkedIn"
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 hover:bg-[#2B5589] text-gray-600 hover:text-white transition-all duration-300"
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-500 ${
+                  scrolled
+                    ? "bg-gray-100 text-gray-600 hover:bg-[#2B5589] hover:text-white"
+                    : "bg-white/20 text-white hover:bg-white/40"
+                }`}
               >
                 <Linkedin className="w-4 h-4" />
               </a>
               <a
                 href="https://www.instagram.com/totalquality.id/"
                 aria-label="Instagram"
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 hover:bg-[#2B5589] text-gray-600 hover:text-white transition-all duration-300"
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-500 ${
+                  scrolled
+                    ? "bg-gray-100 text-gray-600 hover:bg-[#2B5589] hover:text-white"
+                    : "bg-white/20 text-white hover:bg-white/40"
+                }`}
               >
                 <Instagram className="w-4 h-4" />
               </a>
               <a
                 href="https://www.twitter.com/totalquality_id"
                 aria-label="Twitter"
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 hover:bg-[#2B5589] text-gray-600 hover:text-white transition-all duration-300"
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-500 ${
+                  scrolled
+                    ? "bg-gray-100 text-gray-600 hover:bg-[#2B5589] hover:text-white"
+                    : "bg-white/20 text-white hover:bg-white/40"
+                }`}
               >
                 <Twitter className="w-4 h-4" />
               </a>
