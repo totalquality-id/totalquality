@@ -183,7 +183,8 @@ export default function SelfAssessment() {
                 </h3>
                 <p className="text-xl text-white/90 font-light leading-relaxed max-w-2xl mx-auto">
                   Take our quick assessment and receive personalized
-                  recommendations tailored to your organization's unique needs.
+                  recommendations tailored to your organization&apos;s unique
+                  needs.
                 </p>
               </div>
 
