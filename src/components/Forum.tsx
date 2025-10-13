@@ -1,34 +1,24 @@
+import Image from "next/image";
+
 export default function Forum() {
   const forumPosts = [
     {
       quote:
-        "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-      author: "Sarah Chen",
-      role: "HR Manager",
+        "Kemauan dari diri sendiri untuk berubah menjadi lebih baik adalah inti dari perubahan yang positif sesungguhnya.",
+      author: "Johan Yan",
       likes: 124,
-      comments: 18,
-      gradient: "from-[#2B5589]/10 to-[#3A6BA5]/5",
-      avatar: "👩‍💼",
     },
     {
       quote:
-        "The only way to do great work is to love what you do. If you haven't found it yet, keep looking.",
-      author: "Michael Tan",
-      role: "CEO",
-      likes: 89,
-      comments: 12,
-      gradient: "from-[#FACC01]/10 to-[#FDD835]/5",
-      avatar: "👨‍💼",
+        "Rejeki besar akan datang pada orang yang bermimpi besar, bergerak besar, berkorban besar dan berkontribusi besar!",
+      author: "Yusuf Adi Pura",
+      likes: 109,
     },
     {
       quote:
-        "Leadership is not about being in charge. It's about taking care of those in your charge.",
-      author: "Diana Wong",
-      role: "Team Leader",
-      likes: 156,
-      comments: 24,
-      gradient: "from-[#2B5589]/10 to-[#FACC01]/5",
-      avatar: "👩‍🏫",
+        "Dengan bermalas-malas takkan tercapai apa yang diidamkan; dengan bekerja keras orang mendapat kekayaan.",
+      author: "Johan Yan",
+      likes: 120,
     },
   ];
 
@@ -72,83 +62,46 @@ export default function Forum() {
             Share and interact with motivational quotes from us
           </p>
         </div>
-        {/* Community Stats */}
-        {/* <div className="max-w-5xl mx-auto mb-16">
-          <div className="grid grid-cols-3 gap-6">
-            {communityStats.map((stat, index) => (
-              <div
-                key={index}
-                className="group relative p-6 bg-white rounded-2xl border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-300 text-center hover:-translate-y-1"
-              >
-                <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">
-                  {stat.icon}
-                </div>
-                <div className="text-3xl font-black text-[#2B5589] mb-1">
-                  {stat.number}
-                </div>
-                <div className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div> */}
+
         {/* Forum Posts Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
           {forumPosts.map((post, index) => (
-            <article
-              key={index}
-              className={`group relative p-8 bg-gradient-to-br ${post.gradient} rounded-3xl border border-gray-200 hover:border-gray-300 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2`}
-            >
-              {/* Quote Icon */}
-              <div className="absolute top-6 right-6 w-12 h-12 bg-white/80 rounded-xl flex items-center justify-center shadow-sm">
-                <span className="text-2xl text-[#2B5589]">&quot;</span>
-              </div>
+            <article key={index} className="group relative">
+              {/* Card Content */}
+              <div className="p-8 bg-white rounded-[20px] border-[1.5px] border-[#d9d9d9] hover:border-gray-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                {/* Content */}
+                <div className="space-y-6">
+                  {/* Quote Text */}
+                  <blockquote className="text-[#364153] leading-relaxed text-lg font-light min-h-[140px]">
+                    "{post.quote}"
+                  </blockquote>
 
-              {/* Content */}
-              <div className="space-y-6">
-                {/* Quote Text */}
-                <div className="relative">
-                  <p className="text-gray-800 italic leading-relaxed text-base font-medium">
-                    &quot;{post.quote}&quot;
-                  </p>
-                </div>
-
-                {/* Author Info */}
-                <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#2B5589] to-[#3A6BA5] rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-2xl">{post.avatar}</span>
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-bold text-gray-900 text-sm">
-                      {post.author}
-                    </div>
-                    <div className="text-xs text-gray-600 font-semibold">
-                      {post.role}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Engagement Stats */}
-                <div className="flex items-center gap-6 pt-4">
-                  <button className="group/like flex items-center gap-2 text-gray-600 hover:text-[#2B5589] transition-colors duration-300">
-                    <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm group-hover/like:scale-110 transition-transform duration-300">
-                      <span className="text-lg">❤️</span>
-                    </div>
-                    <span className="text-sm font-bold">{post.likes}</span>
-                  </button>
-
-                  <button className="group/comment flex items-center gap-2 text-gray-600 hover:text-[#2B5589] transition-colors duration-300">
-                    <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm group-hover/comment:scale-110 transition-transform duration-300">
-                      <span className="text-lg">💬</span>
-                    </div>
-                    <span className="text-sm font-bold">{post.comments}</span>
-                  </button>
+                  {/* Author Info */}
+                  <cite className="block font-bold text-[#364153] text-base not-italic">
+                    {post.author}
+                  </cite>
                 </div>
               </div>
 
-              {/* Corner Accent */}
-              <div className="absolute bottom-4 right-4 w-8 h-8 border-2 border-gray-300 rounded-lg rotate-12 opacity-0 group-hover:opacity-100 group-hover:rotate-45 transition-all duration-300" />
+              {/* Likes Badge - Outside card, bottom right corner */}
+              <div className="absolute -bottom-4 right-2 z-10">
+                <button
+                  className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full shadow-[0px_4px_10px_-3px_rgba(0,0,0,0.25),inset_0px_4px_10px_-3px_rgba(0,0,0,0.1)] border-[0.5px] border-[#d9d9d9] cursor-pointer transition-transform hover:scale-105 active:scale-95"
+                  aria-label={`Like quote by ${post.author}. Currently ${post.likes} likes`}
+                  type="button"
+                >
+                  <Image
+                    src="/like.png"
+                    alt="Like"
+                    width={18}
+                    height={18}
+                    className="w-[18px] h-[18px] object-cover"
+                  />
+                  <span className="text-black text-base font-semibold">
+                    {post.likes}
+                  </span>
+                </button>
+              </div>
             </article>
           ))}
         </div>

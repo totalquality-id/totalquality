@@ -99,41 +99,6 @@ export default function Career() {
             ))}
           </div>
 
-          {/* Values Section */}
-          <div className="relative p-10 sm:p-12 bg-gradient-to-br from-[#2B5589]/5 via-white to-[#FACC01]/5 rounded-[3rem] border border-gray-200 overflow-hidden">
-            {/* Background Decoration */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#FACC01]/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#2B5589]/10 rounded-full blur-3xl" />
-
-            <div className="relative space-y-8">
-              {/* Title */}
-              <div className="text-center space-y-3">
-                <h3 className="text-3xl sm:text-4xl font-black text-gray-900">
-                  Our Core Values
-                </h3>
-                <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                  The principles that guide everything we do
-                </p>
-              </div>
-
-              {/* Values Pills */}
-              <div className="flex flex-wrap justify-center gap-4">
-                {values.map((value, index) => (
-                  <div key={index} className="group relative">
-                    <div className="flex items-center gap-3 px-6 py-4 bg-white rounded-full border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                      <div
-                        className={`w-3 h-3 ${value.color} rounded-full group-hover:scale-150 transition-transform duration-300`}
-                      />
-                      <span className="text-base font-bold text-gray-900">
-                        {value.label}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
           {/* CTA Section */}
           <div className="relative p-12 sm:p-16 bg-gradient-to-br from-[#2B5589] to-[#3A6BA5] rounded-[3rem] text-white overflow-hidden">
             {/* Background Elements */}

@@ -93,7 +93,7 @@ export default function Footer() {
                   href="mailto:info@totalquality.com"
                   className="text-sm text-white/80 hover:text-[#FACC01] transition-colors duration-300"
                 >
-                  info@totalquality.com
+                  info@tqpartner.com
                 </a>
               </div>
             </div>
