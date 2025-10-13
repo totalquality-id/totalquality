@@ -4,9 +4,9 @@ export default function Events() {
       title: "Legacy Training Camp",
       description:
         "Join industry leaders for an inspiring day of insights, networking, and transformative leadership strategies.",
-      date: "January 9-11, 2025",
+      date: "January 9-11, 2026",
       location: "Lembah Indah, Malang",
-      emoji: "🎯",
+      image: "/images/events/legacy.jpg",
       badge: "Register Now",
       badgeColor: "bg-[#2B5589] text-white",
     },
@@ -16,7 +16,7 @@ export default function Events() {
         "Discover cutting-edge HR practices and tools that will revolutionize your talent management approach.",
       date: "April 22, 2025",
       location: "Surabaya Business Park",
-      emoji: "💡",
+      image: "/images/events/legacy.jpg",
       badge: "Upcoming",
       badgeColor: "bg-[#FACC01] text-[#2B5589]",
     },
@@ -26,7 +26,7 @@ export default function Events() {
         "Energize your team with powerful motivational techniques and real-world success stories from top executives.",
       date: "May 10, 2025",
       location: "Bali International Hub",
-      emoji: "⚡",
+      image: "/images/events/legacy.jpg",
       badge: "Limited Seats",
       badgeColor: "bg-gradient-to-r from-[#FACC01] to-[#FDD835] text-[#2B5589]",
     },
@@ -81,12 +81,17 @@ export default function Events() {
               className="group relative bg-white rounded-3xl border border-gray-200 hover:border-gray-300 hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-2"
             >
               {/* Gradient Header */}
-              <div className="relative h-32 bg-gradient-to-br from-[#2B5589]/10 via-[#FACC01]/5 to-[#2B5589]/5 overflow-hidden">
+              <div className="relative h-40 overflow-hidden rounded-t-3xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent to-white/50" />
 
-                {/* Floating Emoji */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-                  <span className="text-4xl">{event.emoji}</span>
+                {/* Header Image */}
+                <div className="absolute inset-0">
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-white/40" />
                 </div>
 
                 {/* Badge */}
