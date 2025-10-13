@@ -20,6 +20,13 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative">
         {/* Section Header - Centered & Punchy */}
         <div className="text-center mb-24 space-y-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-[#2B5589]/20 rounded-full shadow-sm">
+            <div className="w-2 h-2 bg-[#FACC01] rounded-full animate-pulse" />
+            <span className="text-xs font-bold tracking-wider text-[#2B5589] uppercase">
+              About Us
+            </span>
+          </div>
+
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black text-gray-900 tracking-tight leading-[1.05]">
             Leading Change in
             <br />
@@ -44,6 +51,9 @@ export default function About() {
             <div className="space-y-5">
               <div className="group p-6 bg-white rounded-2xl border border-gray-100 hover:border-[#2B5589]/30 hover:shadow-xl transition-all duration-300">
                 <div className="flex items-start gap-4">
+                  {/* <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#2B5589] to-[#3A6BA5] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-white font-bold text-lg">💼</span>
+                  </div> */}
                   <p className="text-base text-gray-700 leading-relaxed">
                     We are Southeast Asia&apos;s premier human resources
                     consulting and corporate motivator company, dedicated to
@@ -55,6 +65,9 @@ export default function About() {
 
               <div className="group p-6 bg-white rounded-2xl border border-gray-100 hover:border-[#FACC01]/40 hover:shadow-xl transition-all duration-300">
                 <div className="flex items-start gap-4">
+                  {/* <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#FACC01] to-[#FDD835] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-[#2B5589] font-bold text-lg">⚡</span>
+                  </div> */}
                   <p className="text-base text-gray-700 leading-relaxed">
                     With over a decade of expertise, we&apos;ve partnered with
                     hundreds of organizations across the region, unlocking team
@@ -66,6 +79,9 @@ export default function About() {
 
               <div className="group p-6 bg-gradient-to-br from-[#2B5589]/5 to-[#FACC01]/5 rounded-2xl border border-gray-100 hover:border-[#2B5589]/30 hover:shadow-xl transition-all duration-300">
                 <div className="flex items-start gap-4">
+                  {/* <div className="flex-shrink-0 w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-2xl">🎯</span>
+                  </div> */}
                   <p className="text-base text-gray-700 leading-relaxed font-medium">
                     Our mission is to create lasting impact by fostering
                     cultures of continuous improvement, empowerment, and
@@ -121,6 +137,7 @@ export default function About() {
                     height={500}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
+
                   {/* Gradient Overlay with Modern Touch */}
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent" />
 
