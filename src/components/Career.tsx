@@ -1,22 +1,24 @@
+import { TrendingUp, Award, Sparkles, Scale } from "lucide-react";
+
 export default function Career() {
   const benefits = [
     {
-      icon: "🚀",
+      icon: TrendingUp,
       title: "Growth Opportunities",
       description: "Continuous learning and career development programs",
     },
     {
-      icon: "💼",
+      icon: Award,
       title: "Competitive Benefits",
       description: "Comprehensive compensation and healthcare packages",
     },
     {
-      icon: "🌟",
+      icon: Sparkles,
       title: "Innovative Culture",
       description: "Work with passionate teams on impactful projects",
     },
     {
-      icon: "🎯",
+      icon: Scale,
       title: "Work-Life Balance",
       description: "Flexible schedules and remote work options",
     },
@@ -70,26 +72,29 @@ export default function Career() {
         <div className="max-w-7xl mx-auto space-y-16">
           {/* Benefits Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="group relative p-6 bg-white rounded-2xl border border-gray-200 hover:border-gray-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="space-y-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-[#2B5589]/10 to-[#FACC01]/10 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                    <span className="text-3xl">{benefit.icon}</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-black text-gray-900 mb-2">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {benefit.description}
-                    </p>
+            {benefits.map((benefit, index) => {
+              const IconComponent = benefit.icon;
+              return (
+                <div
+                  key={index}
+                  className="group relative p-6 bg-white rounded-2xl border border-gray-200 hover:border-gray-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="space-y-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-[#2B5589]/10 to-[#FACC01]/10 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                      <IconComponent className="w-7 h-7 text-[#2B5589]" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-black text-gray-900 mb-2">
+                        {benefit.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {benefit.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* CTA Section */}
@@ -99,11 +104,6 @@ export default function Career() {
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#FACC01]/20 rounded-full blur-3xl" />
 
             <div className="relative max-w-3xl mx-auto text-center space-y-8">
-              {/* Icon */}
-              <div className="inline-flex w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl items-center justify-center">
-                <span className="text-5xl">✨</span>
-              </div>
-
               {/* Content */}
               <div className="space-y-4">
                 <h3 className="text-3xl sm:text-4xl font-black">
@@ -119,7 +119,7 @@ export default function Career() {
               <div className="grid grid-cols-3 gap-6 py-8">
                 {[
                   { number: "20+", label: "Years Experience" },
-                  { number: "300+", label: "Projects Delivered" },
+                  { number: "300+", label: "Corporate Partner" },
                   { number: "100+", label: "Agent of Change" },
                 ].map((stat, index) => (
                   <div key={index} className="space-y-2">

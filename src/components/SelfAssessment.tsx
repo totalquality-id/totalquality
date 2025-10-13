@@ -1,17 +1,26 @@
+import {
+  Zap,
+  Target,
+  BarChart3,
+  ClipboardList,
+  Search,
+  Gift,
+} from "lucide-react";
+
 export default function SelfAssessment() {
   const assessmentFeatures = [
     {
-      icon: "⚡",
+      icon: Zap,
       title: "Quick & Easy",
       description: "Complete in just 5 minutes",
     },
     {
-      icon: "🎯",
+      icon: Target,
       title: "Personalized Results",
       description: "Get tailored recommendations",
     },
     {
-      icon: "📊",
+      icon: BarChart3,
       title: "Instant Insights",
       description: "Understand your needs immediately",
     },
@@ -22,19 +31,19 @@ export default function SelfAssessment() {
       number: "01",
       title: "Answer Questions",
       description: "Simple multiple-choice questions about your organization",
-      emoji: "📝",
+      icon: ClipboardList,
     },
     {
       number: "02",
       title: "Get Analysis",
       description: "AI-powered analysis of your needs and challenges",
-      emoji: "🔍",
+      icon: Search,
     },
     {
       number: "03",
       title: "Receive Recommendations",
       description: "Customized service recommendations for your goals",
-      emoji: "🎁",
+      icon: Gift,
     },
   ];
 
@@ -84,26 +93,29 @@ export default function SelfAssessment() {
         <div className="max-w-7xl mx-auto space-y-16">
           {/* Features Cards */}
           <div className="grid md:grid-cols-3 gap-6">
-            {assessmentFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="group relative p-8 bg-white rounded-3xl border border-gray-200 hover:border-gray-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="text-center space-y-4">
-                  <div className="inline-flex w-16 h-16 bg-gradient-to-br from-[#2B5589]/10 to-[#FACC01]/10 rounded-2xl items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 mx-auto">
-                    <span className="text-4xl">{feature.icon}</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-black text-gray-900 mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {feature.description}
-                    </p>
+            {assessmentFeatures.map((feature, index) => {
+              const IconComponent = feature.icon;
+              return (
+                <div
+                  key={index}
+                  className="group relative p-8 bg-white rounded-3xl border border-gray-200 hover:border-gray-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="text-center space-y-4">
+                    <div className="inline-flex w-16 h-16 bg-gradient-to-br from-[#2B5589]/10 to-[#FACC01]/10 rounded-2xl items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 mx-auto">
+                      <IconComponent className="w-8 h-8 text-[#2B5589]" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-black text-gray-900 mb-2">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* How It Works Section */}
@@ -125,39 +137,42 @@ export default function SelfAssessment() {
 
               {/* Steps Grid */}
               <div className="grid md:grid-cols-3 gap-8">
-                {steps.map((step, index) => (
-                  <div key={index} className="group relative">
-                    {/* Connector Line (hidden on last item) */}
-                    {index < steps.length - 1 && (
-                      <div className="hidden md:block absolute top-20 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-[#2B5589]/30 to-transparent" />
-                    )}
+                {steps.map((step, index) => {
+                  const IconComponent = step.icon;
+                  return (
+                    <div key={index} className="group relative">
+                      {/* Connector Line (hidden on last item) */}
+                      {index < steps.length - 1 && (
+                        <div className="hidden md:block absolute top-20 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-[#2B5589]/30 to-transparent" />
+                      )}
 
-                    <div className="relative space-y-4">
-                      {/* Number Badge */}
-                      <div className="relative inline-flex">
-                        <div className="w-16 h-16 bg-gradient-to-br from-[#2B5589] to-[#3A6BA5] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
-                          <span className="text-white font-black text-xl">
-                            {step.number}
-                          </span>
+                      <div className="relative space-y-4">
+                        {/* Number Badge */}
+                        <div className="relative inline-flex">
+                          <div className="w-16 h-16 bg-gradient-to-br from-[#2B5589] to-[#3A6BA5] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
+                            <span className="text-white font-black text-xl">
+                              {step.number}
+                            </span>
+                          </div>
+                          {/* Icon Badge */}
+                          <div className="absolute -top-2 -right-2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-gray-100">
+                            <IconComponent className="w-5 h-5 text-[#2B5589]" />
+                          </div>
                         </div>
-                        {/* Emoji Badge */}
-                        <div className="absolute -top-2 -right-2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-gray-100">
-                          <span className="text-xl">{step.emoji}</span>
-                        </div>
-                      </div>
 
-                      {/* Content */}
-                      <div className="space-y-2">
-                        <h4 className="text-xl font-black text-gray-900">
-                          {step.title}
-                        </h4>
-                        <p className="text-gray-600 leading-relaxed">
-                          {step.description}
-                        </p>
+                        {/* Content */}
+                        <div className="space-y-2">
+                          <h4 className="text-xl font-black text-gray-900">
+                            {step.title}
+                          </h4>
+                          <p className="text-gray-600 leading-relaxed">
+                            {step.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>

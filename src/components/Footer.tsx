@@ -1,4 +1,12 @@
-import { Facebook, Linkedin, Instagram, Twitter } from "lucide-react";
+import {
+  Facebook,
+  Linkedin,
+  Instagram,
+  Twitter,
+  MapPin,
+  Mail,
+  ArrowRight,
+} from "lucide-react";
 
 export default function Footer() {
   const footerLinks = {
@@ -75,7 +83,7 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-start gap-3">
                 <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-sm">📍</span>
+                  <MapPin className="w-4 h-4 text-[#FACC01]" />
                 </div>
                 <div className="text-sm text-white/80">
                   <p className="font-semibold text-white">
@@ -87,7 +95,7 @@ export default function Footer() {
 
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <span className="text-sm">📧</span>
+                  <Mail className="w-4 h-4 text-[#FACC01]" />
                 </div>
                 <a
                   href="mailto:info@totalquality.com"
@@ -178,7 +186,7 @@ export default function Footer() {
                   className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 text-sm focus:outline-none focus:border-[#FACC01] focus:bg-white/15 transition-all duration-300"
                 />
                 <button className="px-6 py-3 bg-[#FACC01] hover:bg-[#FDD835] text-[#2B5589] font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg">
-                  <span className="text-lg">→</span>
+                  <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
               <p className="text-xs text-white/60">

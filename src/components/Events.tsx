@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Calendar, MapPin } from "lucide-react";
 
 export default function Events() {
   const events = [
@@ -122,7 +123,7 @@ export default function Events() {
                 <div className="space-y-3 pt-4 border-t border-gray-100">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-[#2B5589]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <span className="text-lg">📅</span>
+                      <Calendar className="w-5 h-5 text-[#2B5589]" />
                     </div>
                     <div>
                       <p className="text-xs text-gray-500 uppercase tracking-wide font-semibold">
@@ -136,7 +137,7 @@ export default function Events() {
 
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-[#FACC01]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <span className="text-lg">📍</span>
+                      <MapPin className="w-5 h-5 text-[#FACC01]" />
                     </div>
                     <div>
                       <p className="text-xs text-gray-500 uppercase tracking-wide font-semibold">

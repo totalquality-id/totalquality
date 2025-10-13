@@ -268,7 +268,7 @@ export default function Navbar() {
                     </a>
                   ) : (
                     <a
-                      onClick={(e) => handleSmoothScroll(e, "#selg-assessment")}
+                      onClick={(e) => handleSmoothScroll(e, "#self-assessment")}
                       className="relative group px-4 xl:px-6 py-2 xl:py-2.5 rounded-lg font-semibold cursor-pointer transition-all duration-700 ease-in-out"
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 rounded-lg blur-md group-hover:blur-lg transition-all duration-300" />
@@ -424,6 +424,8 @@ export default function Navbar() {
               <a
                 href="https://www.facebook.com/totalquality.id/"
                 aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-500 ${
                   scrolled
                     ? "bg-gray-100 text-gray-600 hover:bg-[#2B5589] hover:text-white"
@@ -435,6 +437,8 @@ export default function Navbar() {
               <a
                 href="https://www.linkedin.com/company/pt-total-quality-indonesia/"
                 aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-500 ${
                   scrolled
                     ? "bg-gray-100 text-gray-600 hover:bg-[#2B5589] hover:text-white"
@@ -446,6 +450,8 @@ export default function Navbar() {
               <a
                 href="https://www.instagram.com/totalquality.id/"
                 aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-500 ${
                   scrolled
                     ? "bg-gray-100 text-gray-600 hover:bg-[#2B5589] hover:text-white"
@@ -457,6 +463,8 @@ export default function Navbar() {
               <a
                 href="https://www.twitter.com/totalquality_id"
                 aria-label="Twitter"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-500 ${
                   scrolled
                     ? "bg-gray-100 text-gray-600 hover:bg-[#2B5589] hover:text-white"
