@@ -73,7 +73,7 @@ export default function Navbar() {
                 : "border-white/20 text-white"
             }`}
           >
-            <div className="flex items-center gap-4 lg:gap-6">
+            <div className="flex items-center font-light gap-4 lg:gap-6">
               <div className="flex items-center gap-2 hover:text-[#FACC01] transition-colors duration-300 cursor-pointer">
                 <Phone className="w-4 h-4 transition-all duration-500" />
                 <span className="transition-all duration-500 hidden xl:inline">
@@ -91,70 +91,46 @@ export default function Navbar() {
               <a
                 href="https://www.facebook.com/totalquality.id/"
                 aria-label="Facebook"
-                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-700 ease-in-out ${
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 border ${
                   scrolled
-                    ? "bg-gray-100 hover:bg-[#2B5589] text-gray-600 hover:text-white"
-                    : "relative group"
+                    ? "border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
+                    : "border-white text-white hover:bg-gray-100 hover:text-[#2B5589]"
                 }`}
               >
-                {!scrolled && (
-                  <>
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 rounded-full blur-md group-hover:blur-lg transition-all duration-300" />
-                    <div className="absolute inset-0 bg-white/20 backdrop-blur-xl rounded-full border border-white/30 group-hover:bg-white/30 transition-all duration-300" />
-                  </>
-                )}
-                <Facebook className="w-4 h-4 relative z-10 transition-all duration-700" />
+                <Facebook className="w-4 h-4" />
               </a>
               <a
                 href="https://www.linkedin.com/company/pt-total-quality-indonesia/"
                 aria-label="LinkedIn"
-                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-700 ease-in-out ${
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 border ${
                   scrolled
-                    ? "bg-gray-100 hover:bg-[#2B5589] text-gray-600 hover:text-white"
-                    : "relative group"
+                    ? "border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
+                    : "border-white text-white hover:bg-gray-100 hover:text-[#2B5589]"
                 }`}
               >
-                {!scrolled && (
-                  <>
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 rounded-full blur-md group-hover:blur-lg transition-all duration-300" />
-                    <div className="absolute inset-0 bg-white/20 backdrop-blur-xl rounded-full border border-white/30 group-hover:bg-white/30 transition-all duration-300" />
-                  </>
-                )}
-                <Linkedin className="w-4 h-4 relative z-10 transition-all duration-700" />
+                <Linkedin className="w-4 h-4" />
               </a>
               <a
                 href="https://www.instagram.com/totalquality.id/"
                 aria-label="Instagram"
-                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-700 ease-in-out ${
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 border ${
                   scrolled
-                    ? "bg-gray-100 hover:bg-[#2B5589] text-gray-600 hover:text-white"
-                    : "relative group"
+                    ? "border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
+                    : "border-white text-white hover:bg-gray-100 hover:text-[#2B5589]"
                 }`}
               >
-                {!scrolled && (
-                  <>
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 rounded-full blur-md group-hover:blur-lg transition-all duration-300" />
-                    <div className="absolute inset-0 bg-white/20 backdrop-blur-xl rounded-full border border-white/30 group-hover:bg-white/30 transition-all duration-300" />
-                  </>
-                )}
-                <Instagram className="w-4 h-4 relative z-10 transition-all duration-700" />
+                <Instagram className="w-4 h-4" />
               </a>
               <a
                 href="https://www.twitter.com/totalquality_id"
                 aria-label="Twitter"
-                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-700 ease-in-out ${
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 border ${
                   scrolled
-                    ? "bg-gray-100 hover:bg-[#2B5589] text-gray-600 hover:text-white"
-                    : "relative group"
+                    ? "border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
+                    : "border-white text-white hover:bg-gray-100 hover:text-[#2B5589]"
                 }`}
               >
-                {!scrolled && (
-                  <>
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 rounded-full blur-md group-hover:blur-lg transition-all duration-300" />
-                    <div className="absolute inset-0 bg-white/20 backdrop-blur-xl rounded-full border border-white/30 group-hover:bg-white/30 transition-all duration-300" />
-                  </>
-                )}
-                <Twitter className="w-4 h-4 relative z-10 transition-all duration-700" />
+                <Twitter className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -176,7 +152,7 @@ export default function Navbar() {
             {/* Desktop Navigation */}
             <nav className="hidden lg:block">
               <ul
-                className={`flex items-center gap-4 xl:gap-8 font-medium text-sm transition-all duration-700 ease-in-out ${
+                className={`flex items-center gap-4 xl:gap-8 font-light text-sm transition-all duration-700 ease-in-out ${
                   scrolled ? "text-gray-700" : "text-white"
                 }`}
               >
@@ -186,11 +162,6 @@ export default function Navbar() {
                     className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
                   >
                     About Us
-                    <span
-                      className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
-                        scrolled ? "bg-[#2B5589]" : "bg-[#FACC01]"
-                      }`}
-                    />
                   </a>
                 </li>
                 <li>
@@ -199,11 +170,6 @@ export default function Navbar() {
                     className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
                   >
                     Services
-                    <span
-                      className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
-                        scrolled ? "bg-[#2B5589]" : "bg-[#FACC01]"
-                      }`}
-                    />
                   </a>
                 </li>
                 <li>
@@ -212,11 +178,6 @@ export default function Navbar() {
                     className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
                   >
                     Events
-                    <span
-                      className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
-                        scrolled ? "bg-[#2B5589]" : "bg-[#FACC01]"
-                      }`}
-                    />
                   </a>
                 </li>
                 <li>
@@ -225,11 +186,6 @@ export default function Navbar() {
                     className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
                   >
                     News
-                    <span
-                      className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
-                        scrolled ? "bg-[#2B5589]" : "bg-[#FACC01]"
-                      }`}
-                    />
                   </a>
                 </li>
                 <li>
@@ -238,11 +194,6 @@ export default function Navbar() {
                     className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
                   >
                     Career
-                    <span
-                      className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
-                        scrolled ? "bg-[#2B5589]" : "bg-[#FACC01]"
-                      }`}
-                    />
                   </a>
                 </li>
                 <li>
@@ -251,31 +202,22 @@ export default function Navbar() {
                     className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
                   >
                     Forum
-                    <span
-                      className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
-                        scrolled ? "bg-[#2B5589]" : "bg-[#FACC01]"
-                      }`}
-                    />
                   </a>
                 </li>
                 <li>
                   {scrolled ? (
                     <a
                       onClick={(e) => handleSmoothScroll(e, "#self-assessment")}
-                      className="px-4 xl:px-6 py-2 xl:py-2.5 rounded-lg font-semibold cursor-pointer transition-all duration-700 ease-in-out shadow-md hover:shadow-lg bg-[#2B5589] text-white hover:bg-[#FACC01] hover:text-[#2B5589]"
+                      className="px-4 xl:px-6 py-2 xl:py-2.5 rounded-full cursor-pointer transition-all duration-700 ease-in-out hover: bg-transparent border border-gray-300 text-gray-600 hover:bg-white hover:border-[#2B5589]"
                     >
                       Self Assessment
                     </a>
                   ) : (
                     <a
                       onClick={(e) => handleSmoothScroll(e, "#self-assessment")}
-                      className="relative group px-4 xl:px-6 py-2 xl:py-2.5 rounded-lg font-semibold cursor-pointer transition-all duration-700 ease-in-out"
+                      className="px-4 xl:px-6 py-2 xl:py-2.5 rounded-full cursor-pointer transition-all duration-700 ease-in-out border border-white text-white hover:bg-white hover:text-[#2B5589]"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 rounded-lg blur-md group-hover:blur-lg transition-all duration-300" />
-                      <div className="absolute inset-0 bg-white/20 backdrop-blur-xl rounded-lg border border-white/30 group-hover:bg-white/30 transition-all duration-300" />
-                      <span className="relative z-10 text-white drop-shadow">
-                        Self Assessment
-                      </span>
+                      Self Assessment
                     </a>
                   )}
                 </li>
