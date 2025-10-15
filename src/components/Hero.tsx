@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Hero1 from "./../../public/images/hero/hero-1.png";
@@ -22,6 +23,22 @@ export default function Hero() {
     //   link: "#community",
     // },
   ];
+
+  const handleSmoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string
+  ) => {
+    e.preventDefault();
+
+    const target = document.querySelector(targetId);
+    if (target) {
+      const yOffset = -80;
+      const y =
+        target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
   return (
     <section
@@ -78,7 +95,8 @@ export default function Hero() {
               <a
                 key={index}
                 href={box.link}
-                className="relative group overflow-hidden shadow-lg transition-all duration-500 flex flex-col bg-white h-48"
+                onClick={(e) => handleSmoothScroll(e, box.link)}
+                className="relative group overflow-hidden shadow-lg transition-all duration-500 flex flex-col bg-white h-48 cursor-pointer"
               >
                 {/* Image Container - akan expand saat hover */}
                 <div className="absolute inset-0 w-full h-40 group-hover:h-full transition-all duration-500 overflow-hidden">
@@ -95,7 +113,7 @@ export default function Hero() {
                 {/* Button - positioned right side */}
                 <div className="absolute top-32 right-6 transform -translate-y-1/2 z-40">
                   <button
-                    className="flex items-center justify-center bg-[#2a5488] rounded-full w-12 h-12 shadow-lg hover:bg-[#1e3f6b] group-hover:bg-transparent transition-colors duration-300"
+                    className="flex items-center justify-center bg-[#364153] rounded-full w-12 h-12 shadow-lg hover:bg-[#FACC01] group-hover:bg-transparent transition-colors duration-300"
                     aria-label={`Go to ${box.title}`}
                   >
                     <ArrowRight

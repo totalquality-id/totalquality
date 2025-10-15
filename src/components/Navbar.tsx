@@ -281,7 +281,7 @@ export default function Navbar() {
                 <a
                   href="#about"
                   onClick={handleLinkClick}
-                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-[#2B5589] hover:text-white transition-all duration-300 font-medium"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
                 >
                   About Us
                 </a>
@@ -290,7 +290,7 @@ export default function Navbar() {
                 <a
                   href="#services"
                   onClick={handleLinkClick}
-                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-[#2B5589] hover:text-white transition-all duration-300 font-medium"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
                 >
                   Services
                 </a>
@@ -299,7 +299,7 @@ export default function Navbar() {
                 <a
                   href="#events"
                   onClick={handleLinkClick}
-                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-[#2B5589] hover:text-white transition-all duration-300 font-medium"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
                 >
                   Events
                 </a>
@@ -308,7 +308,7 @@ export default function Navbar() {
                 <a
                   href="#news"
                   onClick={handleLinkClick}
-                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-[#2B5589] hover:text-white transition-all duration-300 font-medium"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
                 >
                   News
                 </a>
@@ -317,7 +317,7 @@ export default function Navbar() {
                 <a
                   href="#career"
                   onClick={handleLinkClick}
-                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-[#2B5589] hover:text-white transition-all duration-300 font-medium"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
                 >
                   Career
                 </a>
@@ -326,7 +326,7 @@ export default function Navbar() {
                 <a
                   href="#forum"
                   onClick={handleLinkClick}
-                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-[#2B5589] hover:text-white transition-all duration-300 font-medium"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
                 >
                   Forum
                 </a>
@@ -335,7 +335,7 @@ export default function Navbar() {
                 <a
                   href="#self-assessment"
                   onClick={handleLinkClick}
-                  className="block px-4 py-3 rounded-lg bg-[#2B5589] text-white hover:bg-[#FACC01] hover:text-[#2B5589] transition-all duration-300 font-semibold text-center shadow-md"
+                  className="block px-4 py-3 rounded-full bg-transparent border border-gray-300 text-gray-700 hover:bg-[#2B5589] hover:text-white hover:border-[#2B5589] transition-all duration-300 font-normal text-center"
                 >
                   Self Assessment
                 </a>
@@ -351,14 +351,14 @@ export default function Navbar() {
                 className="flex items-center gap-3 text-gray-600 hover:text-[#2B5589] transition-colors duration-300"
               >
                 <Phone className="w-4 h-4" />
-                <span className="text-sm">+62 31 848 4690/95</span>
+                <span className="text-sm font-light">+62 31 848 4690/95</span>
               </a>
               <a
                 href="mailto:info@tqpartner.com"
                 className="flex items-center gap-3 text-gray-600 hover:text-[#2B5589] transition-colors duration-300"
               >
                 <Mail className="w-4 h-4" />
-                <span className="text-sm">info@tqpartner.com</span>
+                <span className="text-sm font-light">info@tqpartner.com</span>
               </a>
             </div>
 
@@ -368,11 +368,7 @@ export default function Navbar() {
                 aria-label="Facebook"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-500 ${
-                  scrolled
-                    ? "bg-gray-100 text-gray-600 hover:bg-[#2B5589] hover:text-white"
-                    : "bg-white/20 text-white hover:bg-white/40"
-                }`}
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
               >
                 <Facebook className="w-4 h-4" />
               </a>
@@ -381,11 +377,7 @@ export default function Navbar() {
                 aria-label="LinkedIn"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-500 ${
-                  scrolled
-                    ? "bg-gray-100 text-gray-600 hover:bg-[#2B5589] hover:text-white"
-                    : "bg-white/20 text-white hover:bg-white/40"
-                }`}
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
@@ -394,11 +386,7 @@ export default function Navbar() {
                 aria-label="Instagram"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-500 ${
-                  scrolled
-                    ? "bg-gray-100 text-gray-600 hover:bg-[#2B5589] hover:text-white"
-                    : "bg-white/20 text-white hover:bg-white/40"
-                }`}
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
               >
                 <Instagram className="w-4 h-4" />
               </a>
@@ -407,11 +395,7 @@ export default function Navbar() {
                 aria-label="Twitter"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-500 ${
-                  scrolled
-                    ? "bg-gray-100 text-gray-600 hover:bg-[#2B5589] hover:text-white"
-                    : "bg-white/20 text-white hover:bg-white/40"
-                }`}
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
               >
                 <Twitter className="w-4 h-4" />
               </a>
