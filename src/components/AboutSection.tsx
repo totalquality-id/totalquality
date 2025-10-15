@@ -17,13 +17,15 @@ export default function AboutSection() {
       { threshold: 0.3 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentSection = sectionRef.current;
+
+    if (currentSection) {
+      observer.observe(currentSection);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentSection) {
+        observer.unobserve(currentSection);
       }
     };
   }, [isVisible]);
@@ -95,8 +97,8 @@ export default function AboutSection() {
               }`}
             >
               Behind every partnership lies a journey of growth and
-              transformation. With over 400 companies served, we're proud to
-              have inspired lasting change through motivation and culture.
+              transformation. With over 400 companies served, we&apos;re proud
+              to have inspired lasting change through motivation and culture.
             </p>
           </div>
         </div>
