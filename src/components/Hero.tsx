@@ -16,11 +16,11 @@ export default function Hero() {
       image: Hero2,
       link: "#services",
     },
-    {
-      title: "AOC Community",
-      image: Hero3,
-      link: "#community",
-    },
+    // {
+    //   title: "AOC Community",
+    //   image: Hero3,
+    //   link: "#community",
+    // },
   ];
 
   return (
@@ -44,13 +44,13 @@ export default function Hero() {
       {/* Hero Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-8 h-full flex flex-col justify-between py-32">
         <div className="flex-1 flex flex-col justify-center">
-          <h1 className="text-6xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-none mb-3">
+          <h1 className="text-6xl md:text-5xl lg:text-7xl font-light tracking-tighter leading-none mb-3">
             <span className="text-amber-300">The Best</span>
             <br />
             <span className="text-white">Corporate Motivator</span>
           </h1>
 
-          <p className="text-lg text-white/90 leading-tight tracking-tight font-extralight max-w-2xl mb-6">
+          <p className="text-xl text-white/90 leading-tight tracking-tight font-extralight max-w-2xl mb-6">
             <span className="text-white">
               Empowering organizations through transformative
             </span>

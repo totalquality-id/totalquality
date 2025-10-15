@@ -60,8 +60,8 @@ export default function AboutSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-12 sm:mb-16">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-[#1a1a1a] mb-4">
+        <div className="mb-8 sm:mb-12">
+          <h2 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-normal tracking-tighter text-[#364153] mb-1">
             They chose us, and grew with us
           </h2>
           <div className="w-full h-[1px] bg-gray-300"></div>
@@ -72,7 +72,7 @@ export default function AboutSection() {
           {/* Left - Statistics */}
           <div className="text-center lg:text-left">
             <div
-              className={`text-7xl sm:text-8xl md:text-9xl lg:text-[140px] xl:text-[160px] font-medium leading-none text-[#2B5589] tracking-tight transition-all duration-700 ${
+              className={`text-8xl sm:text-8xl md:text-9xl lg:text-[140px] xl:text-[160px] font-medium leading-none text-[#2B5589] tracking-tight transition-all duration-700 ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
@@ -80,9 +80,11 @@ export default function AboutSection() {
             >
               {count}+
             </div>
-            <p className="text-lg sm:text-xl md:text-2xl font-light tracking-tight text-[#1a1a1a] mt-4 sm:mt-6">
+            <p className="text-base sm:text-xl md:text-2xl font-light tracking-tighter text-[#1a1a1a] mt-4 sm:mt-6">
               Companies
-              <br />
+              <span className="hidden lg:inline">
+                <br />
+              </span>{" "}
               Served
             </p>
           </div>
@@ -90,7 +92,7 @@ export default function AboutSection() {
           {/* Right - Description */}
           <div className="flex items-center">
             <p
-              className={`text-base sm:text-lg md:text-xl lg:text-2xl font-light tracking-tight text-[#1a1a1a] leading-relaxed transition-all duration-700 delay-300 ${
+              className={`text-base sm:text-xl md:text-xl lg:text-3xl font-light tracking-tighter text-[#1a1a1a] leading-relaxed transition-all duration-700 delay-300 ${
                 isVisible
                   ? "opacity-100 translate-x-0"
                   : "opacity-0 translate-x-10"
