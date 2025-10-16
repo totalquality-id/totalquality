@@ -147,7 +147,7 @@ export default function AboutSection() {
               {row1.map((company, index) => (
                 <div
                   key={`row1-${index}`}
-                  className={`flex-shrink-0 w-32 h-32 relative bg-gradient-to-br from-gray-50 to-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 overflow-hidden ${
+                  className={`flex-shrink-0 w-36 h-36 relative shadow-lg hover:shadow-md transition-all duration-300 hover:scale-105 overflow-hidden ${
                     index % 5 === 0 || index % 7 === 0 ? "animate-pop-up" : ""
                   }`}
                   style={{
@@ -155,7 +155,7 @@ export default function AboutSection() {
                   }}
                 >
                   {/* Subtle border overlay */}
-                  <div className="absolute inset-0 border-[0.5px] border-gray-200/50 pointer-events-none z-10" />
+                  <div className="absolute inset-0 border border-gray-200/50 pointer-events-none z-10" />
                   <Image
                     src={company.logo}
                     alt={company.name}
@@ -174,14 +174,14 @@ export default function AboutSection() {
               {row2.map((company, index) => (
                 <div
                   key={`row2-${index}`}
-                  className={`flex-shrink-0 w-32 h-32 relative bg-gradient-to-br from-gray-50 to-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 overflow-hidden ${
+                  className={`flex-shrink-0 w-36 h-36 relative shadow-lg hover:shadow-md transition-all duration-300 hover:scale-105 overflow-hidden ${
                     index % 6 === 0 || index % 8 === 0 ? "animate-pop-up" : ""
                   }`}
                   style={{
                     animationDelay: `${(index % 6) * 0.9}s`,
                   }}
                 >
-                  <div className="absolute inset-0 border-[0.5px] border-gray-200/50 pointer-events-none z-10" />
+                  <div className="absolute inset-0 border border-gray-200/50 pointer-events-none z-10" />
                   <Image
                     src={company.logo}
                     alt={company.name}
@@ -200,14 +200,14 @@ export default function AboutSection() {
               {row3.map((company, index) => (
                 <div
                   key={`row3-${index}`}
-                  className={`flex-shrink-0 w-32 h-32 relative bg-gradient-to-br from-gray-50 to-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 overflow-hidden ${
+                  className={`flex-shrink-0 w-36 h-36 relative shadow-lg hover:shadow-md transition-all duration-300 hover:scale-105 overflow-hidden ${
                     index % 4 === 0 || index % 9 === 0 ? "animate-pop-up" : ""
                   }`}
                   style={{
                     animationDelay: `${(index % 4) * 1}s`,
                   }}
                 >
-                  <div className="absolute inset-0 border-[0.5px] border-gray-200/50 pointer-events-none z-10" />
+                  <div className="absolute inset-0 border border-gray-200/50 pointer-events-none z-10" />
                   <Image
                     src={company.logo}
                     alt={company.name}
