@@ -1,11 +1,43 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 export default function AboutSection() {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+
+  // Logo perusahaan - ganti dengan logo asli Anda
+  const companyLogos = [
+    { name: "Company 1", logo: "/images/copart/copart-1.jpg" },
+    { name: "Company 2", logo: "/images/copart/copart-2.jpg" },
+    { name: "Company 3", logo: "/images/copart/copart-3.jpg" },
+    { name: "Company 4", logo: "/images/copart/copart-1.jpg" },
+    { name: "Company 5", logo: "/images/copart/copart-2.jpg" },
+    { name: "Company 6", logo: "/images/copart/copart-3.jpg" },
+    { name: "Company 7", logo: "/images/copart/copart-1.jpg" },
+    { name: "Company 8", logo: "/images/copart/copart-2.jpg" },
+    { name: "Company 9", logo: "/images/copart/copart-3.jpg" },
+    { name: "Company 10", logo: "/images/copart/copart-1.jpg" },
+    { name: "Company 11", logo: "/images/copart/copart-2.jpg" },
+    { name: "Company 12", logo: "/images/copart/copart-3.jpg" },
+  ];
+
+  // Duplikasi untuk infinite scroll
+  const row1 = [...companyLogos, ...companyLogos];
+  const row2 = [
+    ...companyLogos.slice(4),
+    ...companyLogos.slice(0, 4),
+    ...companyLogos.slice(4),
+    ...companyLogos.slice(0, 4),
+  ];
+  const row3 = [
+    ...companyLogos.slice(2),
+    ...companyLogos.slice(0, 2),
+    ...companyLogos.slice(2),
+    ...companyLogos.slice(0, 2),
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -68,7 +100,7 @@ export default function AboutSection() {
         </div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mb-16">
           {/* Left - Statistics */}
           <div className="text-center lg:text-left">
             <div
@@ -105,6 +137,142 @@ export default function AboutSection() {
           </div>
         </div>
       </div>
+
+      {/* Logo Carousel Section */}
+      <div className="w-full overflow-hidden py-8">
+        <div className="space-y-6">
+          {/* Scroll Right */}
+          <div className="relative">
+            <div className="flex gap-6 animate-scroll-right">
+              {row1.map((company, index) => (
+                <div
+                  key={`row1-${index}`}
+                  className={`flex-shrink-0 w-32 h-32 relative bg-gradient-to-br from-gray-50 to-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 overflow-hidden ${
+                    index % 5 === 0 || index % 7 === 0 ? "animate-pop-up" : ""
+                  }`}
+                  style={{
+                    animationDelay: `${(index % 5) * 0.8}s`,
+                  }}
+                >
+                  {/* Subtle border overlay */}
+                  <div className="absolute inset-0 border-[0.5px] border-gray-200/50 pointer-events-none z-10" />
+                  <Image
+                    src={company.logo}
+                    alt={company.name}
+                    fill
+                    sizes="128px"
+                    className="object-cover p-3"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Scroll Left */}
+          <div className="relative">
+            <div className="flex gap-6 animate-scroll-left">
+              {row2.map((company, index) => (
+                <div
+                  key={`row2-${index}`}
+                  className={`flex-shrink-0 w-32 h-32 relative bg-gradient-to-br from-gray-50 to-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 overflow-hidden ${
+                    index % 6 === 0 || index % 8 === 0 ? "animate-pop-up" : ""
+                  }`}
+                  style={{
+                    animationDelay: `${(index % 6) * 0.9}s`,
+                  }}
+                >
+                  <div className="absolute inset-0 border-[0.5px] border-gray-200/50 pointer-events-none z-10" />
+                  <Image
+                    src={company.logo}
+                    alt={company.name}
+                    fill
+                    sizes="128px"
+                    className="object-cover p-3"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Scroll Right */}
+          <div className="relative">
+            <div className="flex gap-6 animate-scroll-right-slow">
+              {row3.map((company, index) => (
+                <div
+                  key={`row3-${index}`}
+                  className={`flex-shrink-0 w-32 h-32 relative bg-gradient-to-br from-gray-50 to-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 overflow-hidden ${
+                    index % 4 === 0 || index % 9 === 0 ? "animate-pop-up" : ""
+                  }`}
+                  style={{
+                    animationDelay: `${(index % 4) * 1}s`,
+                  }}
+                >
+                  <div className="absolute inset-0 border-[0.5px] border-gray-200/50 pointer-events-none z-10" />
+                  <Image
+                    src={company.logo}
+                    alt={company.name}
+                    fill
+                    sizes="128px"
+                    className="object-cover p-3"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes scroll-right {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        @keyframes scroll-left {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes pop-up {
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+        }
+
+        .animate-scroll-right {
+          animation: scroll-right 40s linear infinite;
+        }
+
+        .animate-scroll-right-slow {
+          animation: scroll-right 50s linear infinite;
+        }
+
+        .animate-scroll-left {
+          animation: scroll-left 45s linear infinite;
+        }
+
+        .animate-pop-up {
+          animation: pop-up 3s ease-in-out infinite;
+        }
+
+        .animate-scroll-right:hover,
+        .animate-scroll-left:hover,
+        .animate-scroll-right-slow:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </section>
   );
 }
