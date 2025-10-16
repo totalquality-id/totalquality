@@ -240,7 +240,7 @@ export default function AboutSection() {
             <div className="text-white">
               <div className="text-6xl mb-6 font-serif">&ldquo;</div>
               <p className="text-lg lg:text-xl font-light leading-relaxed mb-6 tracking-tight">
-                For more than 20 years, we've partnered with organizations
+                For more than 20 years, we&apos;ve partnered with organizations
                 across Southeast Asia to inspire people, strengthen culture, and
                 drive meaningful change.
               </p>

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Hero1 from "./../../public/images/hero/hero-1.png";
 import Hero2 from "./../../public/images/hero/hero-2.png";
-import Hero3 from "./../../public/images/hero/hero-3.png";
+// import Hero3 from "./../../public/images/hero/hero-3.png";
 
 export default function Hero() {
   const boxes = [
