@@ -222,6 +222,37 @@ export default function AboutSection() {
         </div>
       </div>
 
+      <div className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          {/* Left - Image */}
+          <div className="relative h-[400px] lg:h-[500px]">
+            <Image
+              src="/johan-yan.jpg"
+              alt="CEO Testimonial"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+
+          {/* Right - Quote */}
+          <div className="bg-[#2B5589] p-12 lg:p-16 flex items-center">
+            <div className="text-white">
+              <div className="text-6xl mb-6 font-serif">&ldquo;</div>
+              <p className="text-lg lg:text-xl font-light leading-relaxed mb-6 tracking-tight">
+                For more than 20 years, we've partnered with organizations
+                across Southeast Asia to inspire people, strengthen culture, and
+                drive meaningful change.
+              </p>
+              <p className="text-lg lg:text-xl font-light leading-relaxed tracking-tight">
+                Total Quality Indonesia continues to shape workplaces where
+                motivation and growth thrive together.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <style jsx>{`
         @keyframes scroll-right {
           0% {
