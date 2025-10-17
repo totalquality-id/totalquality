@@ -67,7 +67,7 @@ export default function Hero() {
             <span className="text-white">Corporate Motivator</span>
           </h1>
 
-          <p className="text-xl text-white/90 leading-tight tracking-tight font-extralight max-w-2xl mb-6">
+          <p className="text-2xl text-white/90 leading-tight tracking-tight font-light max-w-2xl mb-6">
             <span className="text-white">
               Empowering organizations through transformative
             </span>
@@ -126,7 +126,7 @@ export default function Hero() {
 
                 {/* Title Container - always on top */}
                 <div className="absolute bottom-0 left-0 right-0 z-30 px-6 py-5 bg-white group-hover:bg-transparent transition-all group-hover:-translate-y-4 duration-500">
-                  <h2 className="text-lg font-extralight tracking-tighter text-[#1a1a1a] group-hover:text-white transition-all group-hover:-translate-y-4 duration-500">
+                  <h2 className="text-lg font-light tracking-tighter text-[#1a1a1a] group-hover:text-white transition-all group-hover:-translate-y-4 duration-500">
                     {box.title}
                   </h2>
                 </div>

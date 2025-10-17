@@ -2,11 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Newsreader } from "next/font/google";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
-  weight: ["300", "600"], // light dan regular
+  weight: ["300", "600"],
 });
 
 export default function AboutSection() {
@@ -14,7 +15,6 @@ export default function AboutSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
-  // Logo perusahaan - ganti dengan logo asli Anda
   const companyLogos = [
     { name: "Company 1", logo: "/images/copart/copart-1.jpg" },
     { name: "Company 2", logo: "/images/copart/copart-2.jpg" },
@@ -30,20 +30,7 @@ export default function AboutSection() {
     { name: "Company 12", logo: "/images/copart/copart-3.jpg" },
   ];
 
-  // Duplikasi untuk infinite scroll
   const row1 = [...companyLogos, ...companyLogos];
-  // const row2 = [
-  //   ...companyLogos.slice(4),
-  //   ...companyLogos.slice(0, 4),
-  //   ...companyLogos.slice(4),
-  //   ...companyLogos.slice(0, 4),
-  // ];
-  // const row3 = [
-  //   ...companyLogos.slice(2),
-  //   ...companyLogos.slice(0, 2),
-  //   ...companyLogos.slice(2),
-  //   ...companyLogos.slice(0, 2),
-  // ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -97,17 +84,14 @@ export default function AboutSection() {
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="mb-8 sm:mb-12">
-          <h2 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-normal tracking-tighter text-[#364153] mb-1">
+          <h2 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-light tracking-tighter text-[#364153] mb-1">
             They chose us, and grew with us
           </h2>
           <div className="w-full h-[1px] bg-gray-300"></div>
         </div>
 
-        {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mb-16">
-          {/* Left - Statistics */}
           <div className="text-center lg:text-left">
             <div
               className={`text-8xl sm:text-8xl md:text-9xl lg:text-[140px] xl:text-[160px] font-medium leading-none text-[#2B5589] tracking-tight transition-all duration-700 ${
@@ -127,7 +111,6 @@ export default function AboutSection() {
             </p>
           </div>
 
-          {/* Right - Description */}
           <div className="flex items-center">
             <p
               className={`text-base sm:text-xl md:text-xl lg:text-3xl font-light tracking-tighter text-[#1a1a1a] leading-relaxed transition-all duration-700 delay-300 ${
@@ -138,22 +121,26 @@ export default function AboutSection() {
             >
               Behind every partnership lies a journey of growth and
               transformation. With over 400 companies served, we&apos;re proud
-              to have inspired lasting change through motivation and culture.
+              to have inspired lasting change through motivation and culture.{" "}
+              <Link
+                href="/about"
+                className="text-[#2B5589] underline underline-offset-4 decoration-2 hover:text-[#1E3F69] transition-colors duration-300 font-light"
+              >
+                Learn more
+              </Link>
             </p>
           </div>
         </div>
       </div>
 
       <div className="mt-16 sm:mt-20 lg:mt-24">
-        <h3 className="text-base sm:text-xl md:text lg:text-3xl font-normal tracking-tighter text-[#364153] mb-2 text-center">
+        <h3 className="text-base sm:text-xl md:text lg:text-3xl font-light tracking-tighter text-[#364153] mb-2 text-center">
           Our Trusted Partners
         </h3>
       </div>
 
-      {/* Logo Carousel Section */}
       <div className="w-full overflow-hidden py-8">
         <div className="space-y-6">
-          {/* Scroll Right */}
           <div className="relative">
             <div className="flex gap-6 animate-scroll-right">
               {row1.map((company, index) => (
@@ -166,7 +153,6 @@ export default function AboutSection() {
                     animationDelay: `${(index % 5) * 0.8}s`,
                   }}
                 >
-                  {/* Subtle border overlay */}
                   <div className="absolute inset-0 border border-gray-200/50 pointer-events-none z-10" />
                   <Image
                     src={company.logo}
@@ -182,112 +168,6 @@ export default function AboutSection() {
         </div>
       </div>
 
-      <div className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-          {/* Image */}
-          <div className="relative h-[400px] lg:h-[500px]">
-            <Image
-              src="/johan-yan.jpg"
-              alt="CEO Testimonial"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
-            <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10">
-              <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#FACC01] rounded-full">
-                  <span className="text-[#2B5589] font-bold text-xs uppercase tracking-normal ">
-                    Direktur Utama
-                  </span>
-                </div>
-                <div>
-                  <h3 className="text-2xl sm:text-3xl font-light text-white mb-1 tracking-tighter">
-                    Johan Yan
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Quote */}
-          <div className="bg-[#2B5589] p-12 lg:p-16 flex items-center">
-            <div className="text-white">
-              <div
-                className={`text-7xl mb-2 font-bold text-shadow-sm text-[#1E3F69] ${newsreader.className}`}
-              >
-                &ldquo;
-              </div>
-              <p
-                className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal text-shadow-gray-200 ${newsreader.className}`}
-              >
-                For more than 20 years, we&apos;ve partnered with organizations
-                across Southeast Asia to inspire people, strengthen culture, and
-                drive meaningful change.
-              </p>
-              <p
-                className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal text-shadow-gray-200 ${newsreader.className}`}
-              >
-                Total Quality Indonesia continues to shape workplaces where
-                motivation and growth thrive together.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Direktur Section - Reverse Layout */}
-      <div className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-          {/* Quote - Left Side (berbeda dari Direktur Utama) */}
-          <div className="bg-gradient-to-br from-[#FACC01] to-[#F5B800] p-12 lg:p-16 flex items-center">
-            <div className="text-[#2B5589]">
-              <div
-                className={`text-7xl mb-2 font-bold text-[#2B5589]/20 ${newsreader.className}`}
-              >
-                &ldquo;
-              </div>
-              <p
-                className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal ${newsreader.className}`}
-              >
-                Through strategic innovation and unwavering commitment, we
-                transform challenges into opportunities for sustainable growth
-                and excellence.
-              </p>
-              <p
-                className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal ${newsreader.className}`}
-              >
-                Together, we build resilient organizations ready for the future.
-              </p>
-            </div>
-          </div>
-
-          {/* Image - Right Side */}
-          <div className="relative h-[400px] lg:h-[500px]">
-            <Image
-              src="/johan-yan.jpg"
-              alt="Director"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
-            <div className="absolute top-0 left-0 right-0 p-8 sm:p-10">
-              <div className="space-y-2">
-                <div>
-                  <h3 className="text-2xl sm:text-3xl font-light text-white mb-1 tracking-tighter">
-                    Yusuf Adi Pura
-                  </h3>
-                </div>
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2B5589] rounded-full">
-                  <span className="text-white font-normal text-xs uppercase tracking-normal ">
-                    Direktur
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <style jsx>{`
         @keyframes scroll-right {
           0% {
@@ -295,15 +175,6 @@ export default function AboutSection() {
           }
           100% {
             transform: translateX(-50%);
-          }
-        }
-
-        @keyframes scroll-left {
-          0% {
-            transform: translateX(-50%);
-          }
-          100% {
-            transform: translateX(0);
           }
         }
 
@@ -321,21 +192,11 @@ export default function AboutSection() {
           animation: scroll-right 40s linear infinite;
         }
 
-        .animate-scroll-right-slow {
-          animation: scroll-right 50s linear infinite;
-        }
-
-        .animate-scroll-left {
-          animation: scroll-left 45s linear infinite;
-        }
-
         .animate-pop-up {
           animation: pop-up 3s ease-in-out infinite;
         }
 
-        .animate-scroll-right:hover,
-        .animate-scroll-left:hover,
-        .animate-scroll-right-slow:hover {
+        .animate-scroll-right:hover {
           animation-play-state: paused;
         }
       `}</style>
