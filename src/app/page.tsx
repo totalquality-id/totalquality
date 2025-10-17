@@ -8,6 +8,7 @@ import Forum from "@/components/Forum";
 import SelfAssessment from "@/components/SelfAssessment";
 import AboutSection from "@/components/AboutSection";
 import ServiceSection from "@/components/ServiceSection";
+import EventSection from "@/components/EventSection";
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
       <Hero />
       <AboutSection />
       <ServiceSection />
+      <EventSection/>
       <About />
       <Services />
       <Events />

@@ -33,8 +33,8 @@ export default function ServiceSection() {
 
   return (
     <section
-      id="services-section"
-      className="relative py-8 sm:py-10 lg:py-12 bg-white"
+      id="service-section"
+      className="relative py-8 sm:py-10 lg:py-12 bg-slate-50"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* Subtle Background Elements */}
@@ -50,11 +50,8 @@ export default function ServiceSection() {
           <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
 
           <div className="max-w-4xl">
-            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extralight tracking-tighter text-[#1a1a1a] md:leading-14 lg:leading-16 mb-6">
-              Comprehensive Solutions for{" "}
-              <span className="text-[#2B5589] font-light text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
-                Organizational Excellence
-              </span>
+            <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
+              Our <span className="text-[#2B5589] font-normal">Services</span>
             </h3>
           </div>
         </div>
