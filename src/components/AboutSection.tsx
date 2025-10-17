@@ -220,7 +220,7 @@ export default function AboutSection() {
               <p
                 className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal text-shadow-gray-200 ${newsreader.className}`}
               >
-                For more than 20 years, we've partnered with organizations
+                For more than 20 years, we&apos;ve partnered with organizations
                 across Southeast Asia to inspire people, strengthen culture, and
                 drive meaningful change.
               </p>
