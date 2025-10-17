@@ -2,6 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { Newsreader } from "next/font/google";
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  weight: ["300", "600"], // light dan regular
+});
 
 export default function AboutSection() {
   const [count, setCount] = useState(0);
@@ -26,18 +32,18 @@ export default function AboutSection() {
 
   // Duplikasi untuk infinite scroll
   const row1 = [...companyLogos, ...companyLogos];
-  const row2 = [
-    ...companyLogos.slice(4),
-    ...companyLogos.slice(0, 4),
-    ...companyLogos.slice(4),
-    ...companyLogos.slice(0, 4),
-  ];
-  const row3 = [
-    ...companyLogos.slice(2),
-    ...companyLogos.slice(0, 2),
-    ...companyLogos.slice(2),
-    ...companyLogos.slice(0, 2),
-  ];
+  // const row2 = [
+  //   ...companyLogos.slice(4),
+  //   ...companyLogos.slice(0, 4),
+  //   ...companyLogos.slice(4),
+  //   ...companyLogos.slice(0, 4),
+  // ];
+  // const row3 = [
+  //   ...companyLogos.slice(2),
+  //   ...companyLogos.slice(0, 2),
+  //   ...companyLogos.slice(2),
+  //   ...companyLogos.slice(0, 2),
+  // ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -138,6 +144,12 @@ export default function AboutSection() {
         </div>
       </div>
 
+      <div className="mt-16 sm:mt-20 lg:mt-24">
+        <h3 className="text-base sm:text-xl md:text lg:text-3xl font-normal tracking-tighter text-[#364153] mb-2 text-center">
+          Our Trusted Partners
+        </h3>
+      </div>
+
       {/* Logo Carousel Section */}
       <div className="w-full overflow-hidden py-8">
         <div className="space-y-6">
@@ -167,64 +179,12 @@ export default function AboutSection() {
               ))}
             </div>
           </div>
-
-          {/* Scroll Left */}
-          <div className="relative">
-            <div className="flex gap-6 animate-scroll-left">
-              {row2.map((company, index) => (
-                <div
-                  key={`row2-${index}`}
-                  className={`flex-shrink-0 w-36 h-36 relative shadow-lg hover:shadow-md transition-all duration-300 hover:scale-105 overflow-hidden ${
-                    index % 6 === 0 || index % 8 === 0 ? "animate-pop-up" : ""
-                  }`}
-                  style={{
-                    animationDelay: `${(index % 6) * 0.9}s`,
-                  }}
-                >
-                  <div className="absolute inset-0 border border-gray-200/50 pointer-events-none z-10" />
-                  <Image
-                    src={company.logo}
-                    alt={company.name}
-                    fill
-                    sizes="128px"
-                    className="object-cover p-3"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Scroll Right */}
-          <div className="relative">
-            <div className="flex gap-6 animate-scroll-right-slow">
-              {row3.map((company, index) => (
-                <div
-                  key={`row3-${index}`}
-                  className={`flex-shrink-0 w-36 h-36 relative shadow-lg hover:shadow-md transition-all duration-300 hover:scale-105 overflow-hidden ${
-                    index % 4 === 0 || index % 9 === 0 ? "animate-pop-up" : ""
-                  }`}
-                  style={{
-                    animationDelay: `${(index % 4) * 1}s`,
-                  }}
-                >
-                  <div className="absolute inset-0 border border-gray-200/50 pointer-events-none z-10" />
-                  <Image
-                    src={company.logo}
-                    alt={company.name}
-                    fill
-                    sizes="128px"
-                    className="object-cover p-3"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
 
       <div className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-          {/* Left - Image */}
+          {/* Image */}
           <div className="relative h-[400px] lg:h-[500px]">
             <Image
               src="/johan-yan.jpg"
@@ -233,21 +193,96 @@ export default function AboutSection() {
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
+            <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#FACC01] rounded-full">
+                  <span className="text-[#2B5589] font-bold text-xs uppercase tracking-normal ">
+                    Direktur Utama
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-light text-white mb-1 tracking-tighter">
+                    Johan Yan
+                  </h3>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Right - Quote */}
+          {/* Quote */}
           <div className="bg-[#2B5589] p-12 lg:p-16 flex items-center">
             <div className="text-white">
-              <div className="text-6xl mb-6 font-serif">&ldquo;</div>
-              <p className="text-lg lg:text-xl font-light leading-relaxed mb-6 tracking-tight">
-                For more than 20 years, we&apos;ve partnered with organizations
+              <div
+                className={`text-7xl mb-2 font-bold text-shadow-sm text-[#1E3F69] ${newsreader.className}`}
+              >
+                &ldquo;
+              </div>
+              <p
+                className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal text-shadow-gray-200 ${newsreader.className}`}
+              >
+                For more than 20 years, we've partnered with organizations
                 across Southeast Asia to inspire people, strengthen culture, and
                 drive meaningful change.
               </p>
-              <p className="text-lg lg:text-xl font-light leading-relaxed tracking-tight">
+              <p
+                className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal text-shadow-gray-200 ${newsreader.className}`}
+              >
                 Total Quality Indonesia continues to shape workplaces where
                 motivation and growth thrive together.
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Direktur Section - Reverse Layout */}
+      <div className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          {/* Quote - Left Side (berbeda dari Direktur Utama) */}
+          <div className="bg-gradient-to-br from-[#FACC01] to-[#F5B800] p-12 lg:p-16 flex items-center">
+            <div className="text-[#2B5589]">
+              <div
+                className={`text-7xl mb-2 font-bold text-[#2B5589]/20 ${newsreader.className}`}
+              >
+                &ldquo;
+              </div>
+              <p
+                className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal ${newsreader.className}`}
+              >
+                Through strategic innovation and unwavering commitment, we
+                transform challenges into opportunities for sustainable growth
+                and excellence.
+              </p>
+              <p
+                className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal ${newsreader.className}`}
+              >
+                Together, we build resilient organizations ready for the future.
+              </p>
+            </div>
+          </div>
+
+          {/* Image - Right Side */}
+          <div className="relative h-[400px] lg:h-[500px]">
+            <Image
+              src="/johan-yan.jpg"
+              alt="Director"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+            <div className="absolute top-0 left-0 right-0 p-8 sm:p-10">
+              <div className="space-y-2">
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-light text-white mb-1 tracking-tighter">
+                    Yusuf Adi Pura
+                  </h3>
+                </div>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2B5589] rounded-full">
+                  <span className="text-white font-normal text-xs uppercase tracking-normal ">
+                    Direktur
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
