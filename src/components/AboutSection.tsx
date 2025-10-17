@@ -3,12 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Newsreader } from "next/font/google";
+// import { Newsreader } from "next/font/google";
 
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  weight: ["300", "600"],
-});
+// const newsreader = Newsreader({
+//   subsets: ["latin"],
+//   weight: ["300", "600"],
+// });
 
 export default function AboutSection() {
   const [count, setCount] = useState(0);

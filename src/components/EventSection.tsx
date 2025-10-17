@@ -49,7 +49,7 @@ export default function EventSection() {
         {/* Section Header */}
         <div className="mb-12 sm:mb-16">
           <h2 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-light tracking-tighter text-[#364153] mb-1">
-            Don't Miss Out
+            Don&apos;t Miss Out
           </h2>
           <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
 
