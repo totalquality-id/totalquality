@@ -9,6 +9,7 @@ import SelfAssessment from "@/components/SelfAssessment";
 import AboutSection from "@/components/AboutSection";
 import ServiceSection from "@/components/ServiceSection";
 import EventSection from "@/components/EventSection";
+import NewsSection from "@/components/NewsSection";
 
 export default function HomePage() {
   return (
@@ -16,7 +17,8 @@ export default function HomePage() {
       <Hero />
       <AboutSection />
       <ServiceSection />
-      <EventSection/>
+      <EventSection />
+      <NewsSection />
       <About />
       <Services />
       <Events />
