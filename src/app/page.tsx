@@ -7,12 +7,14 @@ import Career from "@/components/Career";
 import Forum from "@/components/Forum";
 import SelfAssessment from "@/components/SelfAssessment";
 import AboutSection from "@/components/AboutSection";
+import ServiceSection from "@/components/ServiceSection";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
       <AboutSection />
+      <ServiceSection />
       <About />
       <Services />
       <Events />

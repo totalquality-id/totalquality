@@ -98,7 +98,6 @@ export default function Hero() {
                 onClick={(e) => handleSmoothScroll(e, box.link)}
                 className="relative group overflow-hidden shadow-lg transition-all duration-500 flex flex-col bg-white h-48 cursor-pointer"
               >
-                {/* Image Container - akan expand saat hover */}
                 <div className="absolute inset-0 w-full h-40 group-hover:h-full transition-all duration-500 overflow-hidden">
                   <Image
                     src={box.image}
@@ -106,11 +105,9 @@ export default function Hero() {
                     fill
                     className="object-cover transform transition-transform duration-500 group-hover:scale-110"
                   />
-                  {/* Dark overlay on hover */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-500" />
                 </div>
 
-                {/* Button - positioned right side */}
                 <div className="absolute top-32 right-6 transform -translate-y-1/2 z-40">
                   <button
                     className="flex items-center justify-center bg-[#364153] rounded-full w-12 h-12 shadow-lg hover:bg-[#FACC01] group-hover:bg-transparent transition-colors duration-300"

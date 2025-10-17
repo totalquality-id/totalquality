@@ -152,8 +152,8 @@ export default function Navbar() {
             {/* Desktop Navigation */}
             <nav className="hidden lg:block">
               <ul
-                className={`flex items-center gap-4 xl:gap-8 font-light text-sm transition-all duration-700 ease-in-out ${
-                  scrolled ? "text-gray-700" : "text-white"
+                className={`flex items-center gap-4 xl:gap-8 font-light tracking-normal text-sm transition-all duration-700 ease-in-out ${
+                  scrolled ? "text-black" : "text-white"
                 }`}
               >
                 <li>
@@ -208,14 +208,14 @@ export default function Navbar() {
                   {scrolled ? (
                     <a
                       onClick={(e) => handleSmoothScroll(e, "#self-assessment")}
-                      className="px-4 xl:px-6 py-2 xl:py-2.5 rounded-full cursor-pointer transition-all duration-700 ease-in-out hover: bg-transparent border border-gray-300 text-gray-600 hover:bg-white hover:border-[#2B5589]"
+                      className="px-4 xl:px-6 py-2 xl:py-2.5 font-normal rounded-full cursor-pointer transition-all duration-700 ease-in-out hover: bg-transparent border border-gray-300 text-gray-600 hover:bg-white hover:border-[#2B5589]"
                     >
                       Self Assessment
                     </a>
                   ) : (
                     <a
                       onClick={(e) => handleSmoothScroll(e, "#self-assessment")}
-                      className="px-4 xl:px-6 py-2 xl:py-2.5 rounded-full cursor-pointer transition-all duration-700 ease-in-out border border-white text-white hover:bg-white hover:text-[#2B5589]"
+                      className="px-4 xl:px-6 py-2 xl:py-2.5 font-normal rounded-full cursor-pointer transition-all duration-700 ease-in-out border border-white text-white hover:bg-white hover:text-[#2B5589]"
                     >
                       Self Assessment
                     </a>
