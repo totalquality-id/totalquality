@@ -7,6 +7,7 @@ import {
   Mail,
   ArrowRight,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   const footerLinks = {
@@ -64,10 +65,11 @@ export default function Footer() {
               {/* Logo/Brand */}
               <div className="inline-flex items-center gap-3">
                 <div className="w-12 h-12 bg-[#ffffff] flex items-center justify-center p-2">
-                  <img
+                  <Image
                     src="/tq-logo.png"
                     alt="Total Quality Logo"
-                    className="w-full h-full object-contain"
+                    fill
+                    className="object-contain p-1"
                   />
                 </div>
                 <div>

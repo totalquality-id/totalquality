@@ -172,7 +172,8 @@ export default function SelfAssessmentSection() {
             <div className="max-w-xl">
               <p className="text-base sm:text-lg lg:text-xl font-light tracking-tight text-[#364153]">
                 Take our quick assessment and receive personalized
-                recommendations tailored to your organization's unique needs.
+                recommendations tailored to your organization&apos;s unique
+                needs.
               </p>
             </div>
 
