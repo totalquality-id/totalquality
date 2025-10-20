@@ -95,9 +95,9 @@ export default function CareerSection() {
                 <h3 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tighter leading-tight">
                   Ready to Make an Impact?
                 </h3>
-                <p className="text-base sm:text-lg lg:text-xl text-white/90 font-light leading-relaxed max-w-2xl">
-                  Discover open positions and become part of our mission to
-                  transform organizations across Southeast Asia.
+                <p className="text-base sm:text-lg lg:text-xl text-white/90 font-light leading-8 max-w-2xl">
+                  Join us and play your part in driving productivity,
+                  profitability, and extraordinary success.
                 </p>
               </div>
 

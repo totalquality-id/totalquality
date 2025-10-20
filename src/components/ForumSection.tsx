@@ -76,7 +76,7 @@ export default function ForumSection() {
               {/* Likes Badge - Outside card, bottom right corner */}
               <div className="absolute bottom-1 right-3 z-10">
                 <button
-                  className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300"
+                  className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300 cursor-pointer"
                   aria-label={`Like quote by ${post.author}. Currently ${post.likes} likes`}
                   type="button"
                 >
@@ -101,8 +101,8 @@ export default function ForumSection() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div className="max-w-xl">
               <p className="text-base sm:text-lg lg:text-xl font-light tracking-tight text-[#364153]">
-                Join our community and discover more inspiring quotes from our
-                agents of change.
+                Discover motivational quotes from Total Quality Indonesia, made
+                to inspire our Agents of Change.
               </p>
             </div>
 
