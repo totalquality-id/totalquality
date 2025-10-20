@@ -64,7 +64,7 @@ export default function Footer() {
             <div className="space-y-4">
               {/* Logo/Brand */}
               <div className="inline-flex items-center gap-3">
-                <div className="w-12 h-12 bg-[#ffffff] flex items-center justify-center p-2">
+                <div className="w-12 h-12 bg-white flex items-center justify-center p-2 relative">
                   <Image
                     src="/tq-logo.png"
                     alt="Total Quality Logo"
