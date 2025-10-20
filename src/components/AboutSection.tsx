@@ -80,7 +80,7 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="about-section"
-      className="relative py-8 sm:py-10 lg:py-12 bg-white"
+      className="relative py-16 sm:py-20 lg:py-24 bg-white"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

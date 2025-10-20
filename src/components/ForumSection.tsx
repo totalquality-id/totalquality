@@ -25,7 +25,7 @@ export default function ForumSection() {
   return (
     <section
       id="forum-section"
-      className="relative py-8 sm:py-10 lg:py-12 bg-slate-50"
+      className="relative py-16 sm:py-20 lg:py-24 bg-slate-50"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* Subtle Background Elements */}

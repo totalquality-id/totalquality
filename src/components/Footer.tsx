@@ -83,8 +83,8 @@ export default function Footer() {
               </div>
 
               <p className="text-white/80 leading-relaxed max-w-sm font-light text-sm">
-                Empowering organizations across Southeast Asia through strategic
-                HR solutions and transformative leadership development.
+                Driving organizational success through culture transformation
+                and human empowerment.
               </p>
             </div>
 
