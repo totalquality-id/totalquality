@@ -127,11 +127,6 @@ export default function NewsSection() {
 
               {/* Hover Accent Line */}
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#2B5589] to-[#FACC01] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-
-              {/* Number Indicator */}
-              <div className="absolute top-36 right-6 text-6xl font-extralight text-gray-200 group-hover:text-gray-300 transition-colors duration-500 select-none">
-                0{index + 1}
-              </div>
             </article>
           ))}
         </div>

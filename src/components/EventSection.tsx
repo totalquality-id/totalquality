@@ -146,11 +146,6 @@ export default function EventSection() {
                   </a>
                 </div>
               </div>
-
-              {/* Number Indicator */}
-              <div className="absolute top-52 right-6 text-6xl font-extralight text-gray-200 group-hover:text-gray-300 transition-colors duration-500 select-none">
-                0{index + 1}
-              </div>
             </article>
           ))}
         </div>

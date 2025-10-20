@@ -8,7 +8,6 @@ export default function ServiceSection() {
         "A structured mentoring program designed to enhance productivity and efficiency through motivation, team building, productive work culture development, and the creation of Agents of Change.",
       icon: <Users className="w-7 h-7 text-[#2B5589]" />,
       gradient: "from-[#2B5589]/5 to-white",
-      accentColor: "bg-[#2B5589]",
       hoverBorder: "hover:border-[#2B5589]/40",
     },
     {
@@ -17,7 +16,6 @@ export default function ServiceSection() {
         "A structured, hands-on mentoring program to establish and implement an effective management system. Daily on-site guidance ensures smooth execution and leads to internationally recognized certification.",
       icon: <Settings className="w-7 h-7 text-[#FACC01]" />,
       gradient: "from-[#FACC01]/5 to-white",
-      accentColor: "bg-[#FACC01]",
       hoverBorder: "hover:border-[#FACC01]/40",
     },
     {
@@ -26,7 +24,6 @@ export default function ServiceSection() {
         "A structured and continuous mentoring program to build a positive corporate culture through Agents of Change. Daily on-site assistance supports implementation, system alignment, and monitoring to improve overall effectiveness and productivity.",
       icon: <TrendingUp className="w-7 h-7 text-[#2B5589]" />,
       gradient: "from-[#2B5589]/5 to-white",
-      accentColor: "bg-gradient-to-r from-[#2B5589] to-[#FACC01]",
       hoverBorder: "hover:border-[#2B5589]/40",
     },
   ];
@@ -73,10 +70,6 @@ export default function ServiceSection() {
                   <div className="w-14 h-14 bg-white border border-gray-200 flex items-center justify-center group-hover:border-gray-300 transition-all duration-300">
                     {service.icon}
                   </div>
-
-                  <div
-                    className={`w-1.5 h-1.5 ${service.accentColor} group-hover:w-10 group-hover:h-1.5 transition-all duration-500`}
-                  />
                 </div>
 
                 {/* Title */}
@@ -111,11 +104,6 @@ export default function ServiceSection() {
                     </svg>
                   </a>
                 </div>
-              </div>
-
-              {/* Number Indicator */}
-              <div className="absolute top-6 right-6 text-6xl font-extralight text-gray-200 group-hover:text-gray-300 transition-colors duration-500 select-none">
-                0{index + 1}
               </div>
             </div>
           ))}

@@ -105,7 +105,7 @@ export default function CareerSection() {
               <div className="grid grid-cols-3 gap-6 lg:gap-8 py-6 border-y border-white/20">
                 {[
                   { number: "20+", label: "Years Experience" },
-                  { number: "300+", label: "Corporate Partner" },
+                  { number: "400+", label: "Corporate Partner" },
                   { number: "100+", label: "Agent of Change" },
                 ].map((stat, index) => (
                   <div key={index} className="space-y-2">
