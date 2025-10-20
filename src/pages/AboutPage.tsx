@@ -86,14 +86,16 @@ export default function AboutPage() {
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[500px] bg-gradient-to-br from-[#2B5589] to-[#1E3F69]">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-          <div className="text-white">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extralight tracking-tight mb-6">
-              About Us
+      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#2B5589] to-[#1e3d5f] text-white overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#FACC01]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter leading-10 sm:leading-12  md:leading-16 lg:leading-18 mb-6 mt-16">
+              About <span className="text-[#FACC01] font-normal">Us</span>
             </h1>
-            <p className="text-xl sm:text-2xl lg:text-3xl font-light max-w-3xl tracking-tight">
+            <p className="text-base sm:text-lg lg:text-xl font-light text-white/90 leading-tight max-w-3xl">
               Inspiring excellence and transforming organizations for over two
               decades
             </p>
