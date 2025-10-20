@@ -11,6 +11,7 @@ import ServiceSection from "@/components/ServiceSection";
 import EventSection from "@/components/EventSection";
 import NewsSection from "@/components/NewsSection";
 import CareerSection from "@/components/CareerSection";
+import ForumSection from "@/components/ForumSection";
 
 export default function HomePage() {
   return (
@@ -21,6 +22,7 @@ export default function HomePage() {
       <EventSection />
       <NewsSection />
       <CareerSection />
+      <ForumSection />
       <About />
       <Services />
       <Events />
