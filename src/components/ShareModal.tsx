@@ -13,6 +13,13 @@ import {
   Sparkles,
   CircleDot,
 } from "lucide-react";
+import React from "react";
+
+// Mode type
+type Mode = "color" | "gradient" | "image";
+
+// Icon component type (SVG React component)
+type IconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
 interface ShareModalProps {
   quote: string;
@@ -25,16 +32,16 @@ export default function ShareModal({
   author,
   onClose,
 }: ShareModalProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  const [mode, setMode] = useState<"color" | "gradient" | "image">("gradient");
+  const [mode, setMode] = useState<Mode>("gradient");
   const [bgColor, setBgColor] = useState("#2B5589");
   const [gradient, setGradient] = useState("from-[#2B5589] to-[#1E3F69]");
   const [bgImage, setBgImage] = useState<string | null>(null);
   const [font, setFont] = useState("font-light italic");
   const [textColor, setTextColor] = useState("#ffffff");
 
-  const gradients = [
+  const gradients: { name: string; colors: [string, string] }[] = [
     { name: "from-[#2B5589] to-[#1E3F69]", colors: ["#2B5589", "#1E3F69"] },
     { name: "from-[#FACC01] to-[#E89A00]", colors: ["#FACC01", "#E89A00"] },
     { name: "from-[#FF7E5F] to-[#FEB47B]", colors: ["#FF7E5F", "#FEB47B"] },
@@ -132,6 +139,17 @@ export default function ShareModal({
     }
   };
 
+  // helper to render icon buttons (typed)
+  const backgroundOptions: {
+    value: Mode;
+    label: string;
+    icon: IconComponent;
+  }[] = [
+    { value: "gradient", label: "Gradient", icon: Sparkles },
+    { value: "color", label: "Solid", icon: CircleDot },
+    { value: "image", label: "Image", icon: ImageIcon },
+  ];
+
   return (
     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-300">
       <div className="bg-white w-full max-w-6xl max-h-[90vh] overflow-y-auto relative shadow-2xl animate-in slide-in-from-bottom-4 duration-300">
@@ -149,6 +167,7 @@ export default function ShareModal({
           <button
             onClick={onClose}
             className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-all duration-300"
+            aria-label="Close share modal"
           >
             <X className="w-5 h-5" />
           </button>
@@ -169,21 +188,19 @@ export default function ShareModal({
               </div>
 
               <div className="grid grid-cols-3 gap-3 mb-6">
-                {[
-                  { value: "gradient", label: "Gradient", icon: Sparkles },
-                  { value: "color", label: "Solid", icon: CircleDot },
-                  { value: "image", label: "Image", icon: ImageIcon },
-                ].map((option) => {
+                {backgroundOptions.map((option) => {
                   const Icon = option.icon;
                   return (
                     <button
                       key={option.value}
-                      onClick={() => setMode(option.value as any)}
+                      onClick={() => setMode(option.value)}
                       className={`relative overflow-hidden p-4 border transition-all duration-300 group ${
                         mode === option.value
                           ? "bg-[#2B5589] text-white border-[#2B5589] shadow-lg"
                           : "bg-white text-[#364153] border-gray-200 hover:border-gray-300 hover:shadow-md"
                       }`}
+                      aria-pressed={mode === option.value}
+                      type="button"
                     >
                       <Icon className="w-6 h-6 mb-2 mx-auto" />
                       <span className="text-xs font-light block">
@@ -204,7 +221,7 @@ export default function ShareModal({
                     Choose your gradient
                   </p>
                   <div className="grid grid-cols-3 gap-3">
-                    {gradients.map((g, idx) => (
+                    {gradients.map((g) => (
                       <button
                         key={g.name}
                         onClick={() => setGradient(g.name)}
@@ -216,7 +233,9 @@ export default function ShareModal({
                         style={{
                           background: `linear-gradient(135deg, ${g.colors[0]}, ${g.colors[1]})`,
                         }}
-                      ></button>
+                        type="button"
+                        aria-label={`Select gradient ${g.name}`}
+                      />
                     ))}
                   </div>
                 </div>
@@ -234,6 +253,7 @@ export default function ShareModal({
                       value={bgColor}
                       onChange={(e) => setBgColor(e.target.value)}
                       className="w-20 h-20 border-2 border-gray-200 rounded-lg cursor-pointer"
+                      aria-label="Choose background color"
                     />
                     <div className="flex-1">
                       <p className="text-lg font-mono text-[#1a1a1a] mb-1">
@@ -283,8 +303,8 @@ export default function ShareModal({
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-light text-[#364153] mb-1 flex items-center gap-2">
-                            <span className="text-green-600">✓</span>
-                            Image uploaded successfully
+                            <span className="text-green-600">✓</span> Image
+                            uploaded successfully
                           </p>
                           <p className="text-xs text-gray-400 truncate">
                             Background image is ready
@@ -341,6 +361,8 @@ export default function ShareModal({
                             ? "bg-gradient-to-br from-[#2B5589] to-[#1E3F69] text-white border-[#2B5589] shadow-lg"
                             : "bg-white text-[#364153] border-gray-200 hover:border-[#2B5589] hover:shadow-md"
                         }`}
+                        type="button"
+                        aria-pressed={font === f.class}
                       >
                         <div className={`text-3xl mb-2 ${f.class}`}>
                           {f.preview}
@@ -368,6 +390,8 @@ export default function ShareModal({
                             ? "border-[#1a1a1a] ring-2 ring-gray-300 shadow-lg"
                             : "border-gray-200 hover:border-gray-300 hover:shadow-md"
                         }`}
+                        type="button"
+                        aria-pressed={textColor === color.value}
                       >
                         <div
                           className="w-full h-12 mb-2 border border-gray-200"
@@ -490,6 +514,7 @@ export default function ShareModal({
                   <button
                     onClick={() => shareToSocialMedia("whatsapp")}
                     className="group relative p-4 border border-gray-200 hover:border-[#25D366] hover:shadow-lg transition-all duration-300 overflow-hidden"
+                    type="button"
                   >
                     <div className="absolute inset-0 bg-[#25D366]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="relative">
@@ -508,6 +533,7 @@ export default function ShareModal({
                   <button
                     onClick={() => shareToSocialMedia("instagram")}
                     className="group relative p-4 border border-gray-200 hover:border-[#E4405F] hover:shadow-lg transition-all duration-300 overflow-hidden"
+                    type="button"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#833AB4]/5 via-[#FD1D1D]/5 to-[#F77737]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="relative">
@@ -526,6 +552,7 @@ export default function ShareModal({
                   <button
                     onClick={() => shareToSocialMedia("twitter")}
                     className="group relative p-4 border border-gray-200 hover:border-black hover:shadow-lg transition-all duration-300 overflow-hidden"
+                    type="button"
                   >
                     <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="relative">
@@ -544,6 +571,7 @@ export default function ShareModal({
                   <button
                     onClick={() => shareToSocialMedia("facebook")}
                     className="group relative p-4 border border-gray-200 hover:border-[#1877F2] hover:shadow-lg transition-all duration-300 overflow-hidden"
+                    type="button"
                   >
                     <div className="absolute inset-0 bg-[#1877F2]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="relative">
@@ -563,7 +591,8 @@ export default function ShareModal({
             </div>
           </div>
         </div>
-      </div>
+      </div>{" "}
+      {/* end modal container */}
     </div>
   );
 }
