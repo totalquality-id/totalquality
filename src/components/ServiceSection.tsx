@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import Link from "next/link";
 import { Users, Settings, TrendingUp } from "lucide-react";
 
@@ -21,8 +21,13 @@ export default function ServiceSection() {
       .catch((err) => console.error("Error fetching services:", err));
   }, []);
 
-  // mapping icon & gradient
-  const styleMap: Record<string, any> = {
+  interface StyleConfig {
+    icon: JSX.Element;
+    gradient: string;
+    hoverBorder: string;
+  }
+  
+  const styleMap: Record<string, StyleConfig> = {
     "Quality Empowerment System": {
       icon: <Users className="w-7 h-7 text-[#2B5589]" />,
       gradient: "from-[#2B5589]/5 to-white",
@@ -39,6 +44,7 @@ export default function ServiceSection() {
       hoverBorder: "hover:border-[#2B5589]/40",
     },
   };
+  
 
   // tampilkan 3 service utama saja
   const displayedServices = services.slice(0, 3);

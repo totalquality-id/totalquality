@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface Service {
   id: number;
@@ -82,11 +83,16 @@ export default function AllServicesPage() {
                         {service.description}
                       </p>
                       {service.image && (
-                        <img
-                          src={service.image}
-                          alt={service.title}
-                          className="w-full h-56 object-cover border border-gray-100"
-                        />
+                        <div className="relative w-full h-56">
+                          <Image
+                            src={service.image}
+                            alt={service.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover border border-gray-100 rounded"
+                            priority
+                          />
+                        </div>
                       )}
                     </div>
                   </div>
