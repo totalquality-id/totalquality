@@ -26,7 +26,7 @@ export default function CareerSection() {
 
   return (
     <section
-      id="career-section"
+      id="career"
       className="relative py-16 sm:py-20 lg:py-24 bg-white"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >

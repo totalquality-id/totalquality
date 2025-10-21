@@ -14,7 +14,6 @@ interface Service {
 export default function ServiceSection() {
   const [services, setServices] = useState<Service[]>([]);
 
-  // Ambil data dari backend
   useEffect(() => {
     fetch("/api/services")
       .then((res) => res.json())
@@ -46,7 +45,7 @@ export default function ServiceSection() {
 
   return (
     <section
-      id="service-section"
+      id="service"
       className="relative py-16 sm:py-20 lg:py-24 bg-slate-50"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >

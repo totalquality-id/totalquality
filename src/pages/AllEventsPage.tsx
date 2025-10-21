@@ -192,7 +192,7 @@ export default function AllEventsPage() {
                   </div>
 
                   {/* CTA */}
-                  <div className="pt-2">
+                  {/* <div className="pt-2">
                     <a
                       href="/contact"
                       className="inline-flex items-center gap-2 text-sm text-[#2B5589] font-light underline underline-offset-4 decoration-1 hover:text-[#1E3F69] group-hover:gap-3 transition-all duration-300"
@@ -212,13 +212,13 @@ export default function AllEventsPage() {
                         />
                       </svg>
                     </a>
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Number Indicator */}
-                <div className="absolute top-52 right-6 text-6xl font-extralight text-gray-200 group-hover:text-gray-300 transition-colors duration-500 select-none">
+                {/* <div className="absolute top-52 right-6 text-6xl font-extralight text-gray-200 group-hover:text-gray-300 transition-colors duration-500 select-none">
                   0{index + 1}
-                </div>
+                </div> */}
               </article>
             ))}
           </div>
@@ -234,11 +234,11 @@ export default function AllEventsPage() {
 
             <div className="relative max-w-4xl mx-auto text-center space-y-8">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tighter leading-tight">
-                Can't Find the Right Event?
+                Can&apos;t Find the Right Event?
               </h2>
               <p className="text-base sm:text-lg lg:text-xl text-white/90 font-light leading-relaxed max-w-2xl mx-auto">
                 Contact us to learn about custom training programs and private
-                workshops tailored to your organization's needs.
+                workshops tailored to your organization&apos;s needs.
               </p>
               <div>
                 <a

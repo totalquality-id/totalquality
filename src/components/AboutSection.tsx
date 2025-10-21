@@ -57,29 +57,41 @@ export default function AboutSection() {
 
   useEffect(() => {
     if (isVisible) {
-      const duration = 2000;
-      const steps = 60;
-      const increment = 400 / steps;
-      let current = 0;
+      const duration = 2500;
+      const endValue = 400;
+      let startTime: number | null = null;
 
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= 400) {
-          setCount(400);
-          clearInterval(timer);
+      const easeOutQuart = (t: number): number => {
+        return 1 - Math.pow(1 - t, 4);
+      };
+
+      const animate = (currentTime: number) => {
+        if (!startTime) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const easedProgress = easeOutQuart(progress);
+        const currentCount = Math.floor(easedProgress * endValue);
+
+        setCount(currentCount);
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
         } else {
-          setCount(Math.floor(current));
+          setCount(endValue);
         }
-      }, duration / steps);
+      };
 
-      return () => clearInterval(timer);
+      const animationId = requestAnimationFrame(animate);
+
+      return () => cancelAnimationFrame(animationId);
     }
   }, [isVisible]);
 
   return (
     <section
       ref={sectionRef}
-      id="about-section"
+      id="about"
       className="relative py-16 sm:py-20 lg:py-24 bg-white"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >

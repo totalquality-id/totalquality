@@ -3,7 +3,16 @@ import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, Mail, Facebook, Linkedin, Instagram, Twitter, Menu, X } from "lucide-react";
+import {
+  Phone,
+  Mail,
+  Facebook,
+  Linkedin,
+  Instagram,
+  Twitter,
+  Menu,
+  X,
+} from "lucide-react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -86,13 +95,21 @@ export default function Navbar() {
             }`}
           >
             <div className="flex items-center font-light gap-4 lg:gap-6">
-              <div className="flex items-center gap-2 hover:text-[#FACC01] transition-colors duration-300 cursor-pointer">
+              <div
+                className={`flex items-center gap-2 transition-colors duration-300 cursor-pointer ${
+                  scrolled ? "hover:text-[#2B5589]" : "hover:text-white/80"
+                }`}
+              >
                 <Phone className="w-4 h-4 transition-all duration-500" />
                 <span className="transition-all duration-500 hidden xl:inline">
                   +62 31 848 4690/95
                 </span>
               </div>
-              <div className="flex items-center gap-2 hover:text-[#FACC01] transition-colors duration-300 cursor-pointer">
+              <div
+                className={`flex items-center gap-2 transition-colors duration-300 cursor-pointer ${
+                  scrolled ? "hover:text-[#2B5589]" : "hover:text-white/80"
+                }`}
+              >
                 <Mail className="w-4 h-4 transition-all duration-500" />
                 <span className="transition-all duration-500 hidden xl:inline">
                   info@tqpartner.com
@@ -178,54 +195,66 @@ export default function Navbar() {
               >
                 <li>
                   <a
-                    href="#about-section"
-                    onClick={(e) => handleNavigation(e, "#about-section")}
-                    className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
+                    href="#about"
+                    onClick={(e) => handleNavigation(e, "#about")}
+                    className={`cursor-pointer transition-colors duration-300 relative group ${
+                      scrolled ? "hover:text-[#2B5589]" : "hover:text-white/70"
+                    }`}
                   >
                     About Us
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#service-section"
-                    onClick={(e) => handleNavigation(e, "#service-section")}
-                    className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
+                    href="#service"
+                    onClick={(e) => handleNavigation(e, "#service")}
+                    className={`cursor-pointer transition-colors duration-300 relative group ${
+                      scrolled ? "hover:text-[#2B5589]" : "hover:text-white/70"
+                    }`}
                   >
                     Services
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#event-section"
-                    onClick={(e) => handleNavigation(e, "#event-section")}
-                    className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
+                    href="#event"
+                    onClick={(e) => handleNavigation(e, "#event")}
+                    className={`cursor-pointer transition-colors duration-300 relative group ${
+                      scrolled ? "hover:text-[#2B5589]" : "hover:text-white/70"
+                    }`}
                   >
                     Events
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#news-section"
-                    onClick={(e) => handleNavigation(e, "#news-section")}
-                    className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
+                    href="#news"
+                    onClick={(e) => handleNavigation(e, "#news")}
+                    className={`cursor-pointer transition-colors duration-300 relative group ${
+                      scrolled ? "hover:text-[#2B5589]" : "hover:text-white/70"
+                    }`}
                   >
                     News
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#career-section"
-                    onClick={(e) => handleNavigation(e, "#career-section")}
-                    className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
+                    href="#career"
+                    onClick={(e) => handleNavigation(e, "#career")}
+                    className={`cursor-pointer transition-colors duration-300 relative group ${
+                      scrolled ? "hover:text-[#2B5589]" : "hover:text-white/70"
+                    }`}
                   >
                     Career
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#forum-section"
-                    onClick={(e) => handleNavigation(e, "#forum-section")}
-                    className="hover:text-[#FACC01] cursor-pointer transition-colors duration-300 relative group"
+                    href="#forum"
+                    onClick={(e) => handleNavigation(e, "#forum")}
+                    className={`cursor-pointer transition-colors duration-300 relative group ${
+                      scrolled ? "hover:text-[#2B5589]" : "hover:text-white/70"
+                    }`}
                   >
                     Forum
                   </a>
@@ -233,20 +262,16 @@ export default function Navbar() {
                 <li>
                   {scrolled ? (
                     <a
-                      href="#self-assessment-section"
-                      onClick={(e) =>
-                        handleNavigation(e, "#self-assessment-section")
-                      }
+                      href="#self-assessment"
+                      onClick={(e) => handleNavigation(e, "#self-assessment")}
                       className="px-4 xl:px-6 py-2 xl:py-2.5 font-normal rounded-full cursor-pointer transition-all duration-700 ease-in-out hover: bg-transparent border border-gray-300 text-gray-600 hover:bg-white hover:border-[#2B5589]"
                     >
                       Self Assessment
                     </a>
                   ) : (
                     <a
-                      href="#self-assessment-section"
-                      onClick={(e) =>
-                        handleNavigation(e, "#self-assessment-section")
-                      }
+                      href="#self-assessment"
+                      onClick={(e) => handleNavigation(e, "#self-assessment")}
                       className="px-4 xl:px-6 py-2 xl:py-2.5 font-normal rounded-full cursor-pointer transition-all duration-700 ease-in-out border border-white text-white hover:bg-white hover:text-[#2B5589]"
                     >
                       Self Assessment
@@ -313,8 +338,8 @@ export default function Navbar() {
             <ul className="space-y-1 px-4">
               <li>
                 <a
-                  href="#about-section"
-                  onClick={(e) => handleNavigation(e, "#about-section")}
+                  href="#about"
+                  onClick={(e) => handleNavigation(e, "#about")}
                   className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
                 >
                   About Us
@@ -322,8 +347,8 @@ export default function Navbar() {
               </li>
               <li>
                 <a
-                  href="#service-section"
-                  onClick={(e) => handleNavigation(e, "#service-section")}
+                  href="#service"
+                  onClick={(e) => handleNavigation(e, "#service")}
                   className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
                 >
                   Services
@@ -331,8 +356,8 @@ export default function Navbar() {
               </li>
               <li>
                 <a
-                  href="#event-section"
-                  onClick={(e) => handleNavigation(e, "#event-section")}
+                  href="#event"
+                  onClick={(e) => handleNavigation(e, "#event")}
                   className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
                 >
                   Events
@@ -340,8 +365,8 @@ export default function Navbar() {
               </li>
               <li>
                 <a
-                  href="#news-section"
-                  onClick={(e) => handleNavigation(e, "#news-section")}
+                  href="#news"
+                  onClick={(e) => handleNavigation(e, "#news")}
                   className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
                 >
                   News
@@ -349,8 +374,8 @@ export default function Navbar() {
               </li>
               <li>
                 <a
-                  href="#career-section"
-                  onClick={(e) => handleNavigation(e, "#career-section")}
+                  href="#career"
+                  onClick={(e) => handleNavigation(e, "#career")}
                   className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
                 >
                   Career
@@ -358,8 +383,8 @@ export default function Navbar() {
               </li>
               <li>
                 <a
-                  href="#forum-section"
-                  onClick={(e) => handleNavigation(e, "#forum-section")}
+                  href="#forum"
+                  onClick={(e) => handleNavigation(e, "#forum")}
                   className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
                 >
                   Forum
@@ -367,10 +392,8 @@ export default function Navbar() {
               </li>
               <li className="pt-2">
                 <a
-                  href="#self-assessment-section"
-                  onClick={(e) =>
-                    handleNavigation(e, "#self-assessment-section")
-                  }
+                  href="#self-assessment"
+                  onClick={(e) => handleNavigation(e, "#self-assessment")}
                   className="block px-4 py-3 rounded-full bg-transparent border border-gray-300 text-gray-700 hover:bg-[#2B5589] hover:text-white hover:border-[#2B5589] transition-all duration-300 font-normal text-center"
                 >
                   Self Assessment

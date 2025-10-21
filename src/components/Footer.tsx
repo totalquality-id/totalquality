@@ -92,7 +92,7 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <MapPin className="w-4 h-4 text-[#FACC01]" />
+                  <MapPin className="w-4 h-4 text-white" />
                 </div>
                 <div className="text-sm text-white/80 font-light">
                   <p className="font-normal text-white mb-0.5">
@@ -104,11 +104,11 @@ export default function Footer() {
 
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-4 h-4 text-[#FACC01]" />
+                  <Mail className="w-4 h-4 text-white" />
                 </div>
                 <a
                   href="mailto:info@tqpartner.com"
-                  className="text-sm text-white/80 font-light hover:text-[#FACC01] transition-colors duration-300"
+                  className="text-sm text-white font-light hover:text-white/80 transition-colors duration-300"
                 >
                   info@tqpartner.com
                 </a>
@@ -173,7 +173,7 @@ export default function Footer() {
                     <a
                       key={index}
                       href={social.href}
-                      className="group relative w-12 h-12 bg-white/10 hover:bg-[#FACC01] flex items-center justify-center transition-all duration-300 hover:scale-105"
+                      className="group relative w-12 h-12 bg-white/10 hover:bg-white flex items-center justify-center transition-all duration-300"
                       aria-label={social.label}
                     >
                       <IconComponent className="w-5 h-5 text-white group-hover:text-[#2B5589] transition-colors duration-300" />
@@ -192,7 +192,7 @@ export default function Footer() {
                   placeholder="Enter your email"
                   className="flex-1 px-4 py-3 bg-white/10 border border-white/20 text-white placeholder-white/50 text-sm font-light focus:outline-none focus:border-[#FACC01] focus:bg-white/15 transition-all duration-300"
                 />
-                <button className="px-6 py-3 bg-[#FACC01] hover:bg-[#FDD835] text-[#2B5589] transition-all duration-300">
+                <button className="px-6 py-3 bg-[#FACC01] hover:bg-[#FDD835] text-[#2B5589] transition-all duration-300 cursor-pointer">
                   <ArrowRight className="w-5 h-5" />
                 </button>
               </div>

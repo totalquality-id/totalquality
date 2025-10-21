@@ -85,7 +85,7 @@ export default function AllServicesPage() {
                         <img
                           src={service.image}
                           alt={service.title}
-                          className="w-full h-56 object-cover rounded-md border border-gray-100"
+                          className="w-full h-56 object-cover border border-gray-100"
                         />
                       )}
                     </div>
@@ -112,8 +112,8 @@ export default function AllServicesPage() {
                 Ready to Transform Your Organization?
               </h2>
               <p className="text-base sm:text-lg lg:text-xl text-white/90 font-light leading-relaxed max-w-2xl mx-auto">
-                Let’s discuss how our services can help you achieve operational
-                excellence and sustainable growth.
+                Let&apos;s discuss how our services can help you achieve
+                operational excellence and sustainable growth.
               </p>
               <div>
                 <a
