@@ -464,7 +464,7 @@ export default function ShareModal({
                         textShadow: "0 2px 15px rgba(0,0,0,0.4)",
                       }}
                     >
-                      "{quote}"
+                      &quot;{quote}&quot;
                     </p>
                     <p
                       className="text-sm font-light"

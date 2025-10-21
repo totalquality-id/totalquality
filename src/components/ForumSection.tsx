@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import ShareModal from "@/components/ShareModal";
 
 export default function ForumSection() {
@@ -46,13 +46,13 @@ export default function ForumSection() {
     });
   };
 
-  const incrementShare = (index: number) => {
-    setShares((prev) => {
-      const updated = [...prev];
-      updated[index] += 1;
-      return updated;
-    });
-  };
+  // const incrementShare = (index: number) => {
+  //   setShares((prev) => {
+  //     const updated = [...prev];
+  //     updated[index] += 1;
+  //     return updated;
+  //   });
+  // };
 
   return (
     <section
