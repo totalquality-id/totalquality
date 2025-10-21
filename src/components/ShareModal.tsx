@@ -283,7 +283,7 @@ export default function ShareModal({
                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                         id="image-upload"
                       />
-                      <div className="relative z-10 pointer-events-none">
+                      <div className="relative pointer-events-none">
                         <div className="w-16 h-16 mx-auto border border-gray-200 flex items-center justify-center mb-3 group-hover:border-gray-300 transition-all duration-300">
                           <ImageIcon className="w-8 h-8 text-[#364153]" />
                         </div>
