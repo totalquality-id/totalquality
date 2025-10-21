@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useMemo } from "react";
 
 export default function AllQuotesPage() {
   const forumPosts = [
@@ -87,6 +90,55 @@ export default function AllQuotesPage() {
       category: "Motivation",
     },
   ];
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filter, setFilter] = useState("Terbaru");
+  const [likes, setLikes] = useState(forumPosts.map((p) => p.likes));
+  const [liked, setLiked] = useState(forumPosts.map(() => false));
+  const [shares, setShares] = useState(forumPosts.map(() => 0));
+
+  const filteredPosts = useMemo(() => {
+    let posts = [...forumPosts];
+
+    if (searchQuery.trim()) {
+      posts = posts.filter(
+        (p) =>
+          p.quote.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          p.author.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    switch (filter) {
+      case "Terbaru":
+        return posts.reverse(); // contoh urutan terbalik
+      case "Terlama":
+        return posts; // urutan default
+      case "Paling Disukai":
+        return posts.sort((a, b) => b.likes - a.likes);
+      default:
+        return posts;
+    }
+  }, [searchQuery, filter, forumPosts]);
+
+  const toggleLike = (index: number) => {
+    setLiked((prev) => {
+      const updated = [...prev];
+      updated[index] = !updated[index];
+      return updated;
+    });
+    setLikes((prev) => {
+      const updated = [...prev];
+      updated[index] += liked[index] ? -1 : 1;
+      return updated;
+    });
+  };
+
+  const incrementShare = (index: number) => {
+    setShares((prev) => {
+      const updated = [...prev];
+      updated[index] += 1;
+      return updated;
+    });
+  };
 
   return (
     <div
@@ -117,8 +169,52 @@ export default function AllQuotesPage() {
       {/* Quotes Grid Section */}
       <section className="relative py-16 sm:py-20 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Filter & Search Bar */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-10">
+            {/* Filter */}
+            <div className="flex gap-3">
+              {["Terbaru", "Terlama", "Paling Disukai"].map((option) => (
+                <button
+                  key={option}
+                  onClick={() => setFilter(option)}
+                  className={`px-4 py-2 border rounded-full text-sm transition-all duration-300 ${
+                    filter === option
+                      ? "bg-[#2B5589] text-white border-[#2B5589]"
+                      : "bg-white text-[#364153] border-gray-300 hover:border-[#2B5589]"
+                  }`}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+
+            {/* Search */}
+            <div className="relative w-full sm:w-64">
+              <input
+                type="text"
+                placeholder="Cari quote atau penulis..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2B5589]"
+              />
+              <svg
+                className="w-5 h-5 text-black absolute right-3 top-2.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {forumPosts.map((post, index) => (
+            {filteredPosts.map((post, index) => (
               <article key={index} className="group relative pb-6">
                 {/* Card Content */}
                 <div className="p-8 lg:p-10 bg-white border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-300">
@@ -143,22 +239,41 @@ export default function AllQuotesPage() {
                   </div>
                 </div>
 
-                {/* Likes Badge - Outside card, bottom right corner */}
-                <div className="absolute bottom-1 right-3 z-10">
+                {/* Like & Share Buttons */}
+                <div className="absolute bottom-1 right-3 z-10 flex gap-3">
+                  {/* Like Button */}
                   <button
+                    onClick={() => toggleLike(index)}
                     className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300 cursor-pointer"
-                    aria-label={`Like quote by ${post.author}. Currently ${post.likes} likes`}
                     type="button"
                   >
                     <Image
-                      src="/like.png"
+                      src={liked[index] ? "/like.png" : "/unlike.png"}
                       alt="Like"
                       width={16}
                       height={16}
                       className="w-4 h-4 object-cover"
                     />
                     <span className="text-[#364153] text-sm font-light">
-                      {post.likes}
+                      {likes[index]}
+                    </span>
+                  </button>
+
+                  {/* Share Button */}
+                  <button
+                    onClick={() => incrementShare(index)}
+                    className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300 cursor-pointer"
+                    type="button"
+                  >
+                    <Image
+                      src="/share.png"
+                      alt="Share"
+                      width={16}
+                      height={16}
+                      className="w-4 h-4 object-cover"
+                    />
+                    <span className="text-[#364153] text-sm font-light">
+                      {shares[index]}
                     </span>
                   </button>
                 </div>
@@ -169,53 +284,6 @@ export default function AllQuotesPage() {
                 </div>
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Community CTA Section */}
-      <section className="relative py-16 sm:py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative p-12 lg:p-16 bg-gradient-to-br from-[#2B5589] to-[#3A6BA5] text-white overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#FACC01]/10 rounded-full blur-3xl" />
-
-            <div className="relative max-w-4xl mx-auto text-center space-y-8">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tighter leading-tight">
-                Become an Agent of Change
-              </h2>
-              <p className="text-base sm:text-lg lg:text-xl text-white/90 font-light leading-relaxed max-w-2xl mx-auto">
-                Join our community of transformational leaders and share your
-                journey of creating positive change in your organization.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="/contact"
-                  className="group inline-flex items-center justify-center gap-3 bg-white text-[#2B5589] font-light px-8 py-4 hover:bg-slate-50 transition-all duration-300"
-                >
-                  <span className="text-sm tracking-wide">Join Our Forum</span>
-                  <svg
-                    className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="/about"
-                  className="group inline-flex items-center justify-center gap-3 bg-transparent border border-white text-white font-light px-8 py-4 hover:bg-white/10 transition-all duration-300"
-                >
-                  <span className="text-sm tracking-wide">Learn More</span>
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </section>

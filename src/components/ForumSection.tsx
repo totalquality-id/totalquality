@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useMemo } from "react";
 
 export default function ForumSection() {
   const forumPosts = [
@@ -21,6 +24,30 @@ export default function ForumSection() {
       likes: 120,
     },
   ];
+  const [likes, setLikes] = useState(forumPosts.map((p) => p.likes));
+  const [liked, setLiked] = useState(forumPosts.map(() => false));
+  const [shares, setShares] = useState(forumPosts.map(() => 0));
+
+  const toggleLike = (index: number) => {
+    setLiked((prev) => {
+      const updated = [...prev];
+      updated[index] = !updated[index];
+      return updated;
+    });
+    setLikes((prev) => {
+      const updated = [...prev];
+      updated[index] += liked[index] ? -1 : 1;
+      return updated;
+    });
+  };
+
+  const incrementShare = (index: number) => {
+    setShares((prev) => {
+      const updated = [...prev];
+      updated[index] += 1;
+      return updated;
+    });
+  };
 
   return (
     <section
@@ -73,22 +100,37 @@ export default function ForumSection() {
                 </div>
               </div>
 
-              {/* Likes Badge - Outside card, bottom right corner */}
-              <div className="absolute bottom-1 right-3 z-10">
+              {/* Like & Share Buttons */}
+              <div className="absolute bottom-1 right-3 z-10 flex gap-3">
                 <button
-                  className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300 cursor-pointer"
-                  aria-label={`Like quote by ${post.author}. Currently ${post.likes} likes`}
-                  type="button"
+                  onClick={() => toggleLike(index)}
+                  className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
                 >
                   <Image
-                    src="/like.png"
+                    src={liked[index] ? "/like.png" : "/unlike.png"}
                     alt="Like"
                     width={16}
                     height={16}
                     className="w-4 h-4 object-cover"
                   />
                   <span className="text-[#364153] text-sm font-light">
-                    {post.likes}
+                    {likes[index]}
+                  </span>
+                </button>
+
+                <button
+                  onClick={() => incrementShare(index)}
+                  className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
+                >
+                  <Image
+                    src="/share.png"
+                    alt="Share"
+                    width={16}
+                    height={16}
+                    className="w-4 h-4 object-cover"
+                  />
+                  <span className="text-[#364153] text-sm font-light">
+                    {shares[index]}
                   </span>
                 </button>
               </div>

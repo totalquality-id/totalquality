@@ -223,19 +223,19 @@ export default function Footer() {
             <div className="flex items-center gap-8">
               <a
                 href="/privacy"
-                className="text-sm text-white/70 font-light hover:text-[#FACC01] transition-colors duration-300"
+                className="text-sm text-white/70 font-light hover:text-white transition-colors duration-300"
               >
                 Privacy Policy
               </a>
               <a
                 href="/terms"
-                className="text-sm text-white/70 font-light hover:text-[#FACC01] transition-colors duration-300"
+                className="text-sm text-white/70 font-light hover:text-white transition-colors duration-300"
               >
                 Terms of Service
               </a>
               <a
                 href="/cookies"
-                className="text-sm text-white/70 font-light hover:text-[#FACC01] transition-colors duration-300"
+                className="text-sm text-white/70 font-light hover:text-white transition-colors duration-300"
               >
                 Cookie Policy
               </a>
