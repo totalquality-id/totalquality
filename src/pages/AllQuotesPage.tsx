@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useMemo } from "react";
+import ShareModal from "@/components/ShareModal";
 
 export default function AllQuotesPage() {
   const forumPosts = [
@@ -95,6 +96,10 @@ export default function AllQuotesPage() {
   const [likes, setLikes] = useState(forumPosts.map((p) => p.likes));
   const [liked, setLiked] = useState(forumPosts.map(() => false));
   const [shares, setShares] = useState(forumPosts.map(() => 0));
+  const [activeShare, setActiveShare] = useState<{
+    quote: string;
+    author: string;
+  } | null>(null);
 
   const filteredPosts = useMemo(() => {
     let posts = [...forumPosts];
@@ -132,13 +137,13 @@ export default function AllQuotesPage() {
     });
   };
 
-  const incrementShare = (index: number) => {
-    setShares((prev) => {
-      const updated = [...prev];
-      updated[index] += 1;
-      return updated;
-    });
-  };
+  // const incrementShare = (index: number) => {
+  //   setShares((prev) => {
+  //     const updated = [...prev];
+  //     updated[index] += 1;
+  //     return updated;
+  //   });
+  // };
 
   return (
     <div
@@ -261,7 +266,9 @@ export default function AllQuotesPage() {
 
                   {/* Share Button */}
                   <button
-                    onClick={() => incrementShare(index)}
+                    onClick={() =>
+                      setActiveShare({ quote: post.quote, author: post.author })
+                    }
                     className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300 cursor-pointer"
                     type="button"
                   >
@@ -287,6 +294,13 @@ export default function AllQuotesPage() {
           </div>
         </div>
       </section>
+      {activeShare && (
+        <ShareModal
+          quote={activeShare.quote}
+          author={activeShare.author}
+          onClose={() => setActiveShare(null)}
+        />
+      )}
     </div>
   );
 }

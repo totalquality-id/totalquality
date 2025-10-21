@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useMemo } from "react";
+import ShareModal from "@/components/ShareModal";
 
 export default function ForumSection() {
   const forumPosts = [
@@ -27,6 +28,10 @@ export default function ForumSection() {
   const [likes, setLikes] = useState(forumPosts.map((p) => p.likes));
   const [liked, setLiked] = useState(forumPosts.map(() => false));
   const [shares, setShares] = useState(forumPosts.map(() => 0));
+  const [activeShare, setActiveShare] = useState<{
+    quote: string;
+    author: string;
+  } | null>(null);
 
   const toggleLike = (index: number) => {
     setLiked((prev) => {
@@ -119,7 +124,9 @@ export default function ForumSection() {
                 </button>
 
                 <button
-                  onClick={() => incrementShare(index)}
+                  onClick={() =>
+                    setActiveShare({ quote: post.quote, author: post.author })
+                  }
                   className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
                 >
                   <Image
@@ -170,6 +177,13 @@ export default function ForumSection() {
           </div>
         </div>
       </div>
+      {activeShare && (
+        <ShareModal
+          quote={activeShare.quote}
+          author={activeShare.author}
+          onClose={() => setActiveShare(null)}
+        />
+      )}
     </section>
   );
 }
