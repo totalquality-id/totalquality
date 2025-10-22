@@ -1,58 +1,80 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ShareModal from "@/components/ShareModal";
 import { Heart, Forward } from "lucide-react";
 
 export default function ForumSection() {
-  const forumPosts = [
-    {
-      quote:
-        "Kemauan dari diri sendiri untuk berubah menjadi lebih baik adalah inti dari perubahan yang positif sesungguhnya.",
-      author: "Johan Yan",
-      likes: 124,
-    },
-    {
-      quote:
-        "Rejeki besar akan datang pada orang yang bermimpi besar, bergerak besar, berkorban besar dan berkontribusi besar!",
-      author: "Yusuf Adi Pura",
-      likes: 109,
-    },
-    {
-      quote:
-        "Dengan bermalas-malas takkan tercapai apa yang diidamkan; dengan bekerja keras orang mendapat kekayaan.",
-      author: "Johan Yan",
-      likes: 120,
-    },
-  ];
-  const [likes, setLikes] = useState(forumPosts.map((p) => p.likes));
-  const [liked, setLiked] = useState(forumPosts.map(() => false));
-  const [shares] = useState(forumPosts.map(() => 0));
+  const [forumPosts, setForumPosts] = useState<any[]>([]);
+  const [liked, setLiked] = useState<boolean[]>([]);
   const [activeShare, setActiveShare] = useState<{
     quote: string;
     author: string;
   } | null>(null);
 
-  const toggleLike = (index: number) => {
+  useEffect(() => {
+    const fetchForums = async () => {
+      const res = await fetch("/api/forums");
+      const data = await res.json();
+      setForumPosts(data);
+      setLiked(
+        data.map(
+          (p: any) => localStorage.getItem(`forum_like_${p.id}`) === "true"
+        )
+      );
+    };
+    fetchForums();
+  }, []);
+
+  const toggleLike = async (index: number, id: number) => {
+    const isLiked = liked[index];
+
     setLiked((prev) => {
       const updated = [...prev];
-      updated[index] = !updated[index];
+      updated[index] = !isLiked;
       return updated;
     });
-    setLikes((prev) => {
+
+    setForumPosts((prev) => {
       const updated = [...prev];
-      updated[index] += liked[index] ? -1 : 1;
+      updated[index].likes += isLiked ? -1 : 1;
       return updated;
+    });
+
+    if (isLiked) localStorage.removeItem(`forum_like_${id}`);
+    else localStorage.setItem(`forum_like_${id}`, "true");
+
+    const endpoint = isLiked
+      ? `/api/forums/${id}/unlike`
+      : `/api/forums/${id}/like`;
+
+    try {
+      await fetch(endpoint, { method: "POST" });
+    } catch (err) {
+      console.error("Failed to update like:", err);
+    }
+  };
+
+  const handleShare = async (index: number, id: number) => {
+    await fetch(`/api/forums/${id}/share`, { method: "POST" });
+    setForumPosts((prev) => {
+      const updated = [...prev];
+      updated[index].shares += 1;
+      return updated;
+    });
+    setActiveShare({
+      quote: forumPosts[index].quote,
+      author: forumPosts[index].author,
     });
   };
 
-  // const incrementShare = (index: number) => {
-  //   setShares((prev) => {
-  //     const updated = [...prev];
-  //     updated[index] += 1;
-  //     return updated;
-  //   });
-  // };
+  if (!forumPosts.length) {
+    return (
+      <section className="py-24 text-center text-gray-500">
+        Loading forum...
+      </section>
+    );
+  }
 
   return (
     <section
@@ -109,7 +131,7 @@ export default function ForumSection() {
               <div className="absolute bottom-1 right-3 z-10 flex gap-3">
                 {/* Like Button */}
                 <button
-                  onClick={() => toggleLike(index)}
+                  onClick={() => toggleLike(index, post.id)}
                   className={`flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md 
       transition-all duration-300 cursor-pointer active:scale-95`}
                 >
@@ -123,21 +145,19 @@ export default function ForumSection() {
       `}
                   />
                   <span className="text-[#364153] text-sm font-light">
-                    {likes[index]}
+                    {post.likes}
                   </span>
                 </button>
 
                 {/* Share Button */}
                 <button
-                  onClick={() =>
-                    setActiveShare({ quote: post.quote, author: post.author })
-                  }
+                  onClick={() => handleShare(index, post.id)}
                   className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md 
       transition-all duration-300 cursor-pointer active:scale-95"
                 >
                   <Forward className="w-4 h-4 stroke-gray-500 transition-transform duration-200" />
                   <span className="text-[#364153] text-sm font-light">
-                    {shares[index]}
+                    {post.shares}
                   </span>
                 </button>
               </div>

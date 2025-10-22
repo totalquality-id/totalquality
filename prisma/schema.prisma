@@ -60,8 +60,10 @@ model Career {
 }
 
 model Forum {
-  id          Int      @id @default(autoincrement())
-  quote       String
-  author      String
-  createdAt   DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  quote     String
+  author    String
+  likes     Int      @default(0)
+  shares    Int      @default(0)
+  createdAt DateTime @default(now())
 }

@@ -1,93 +1,75 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import ShareModal from "@/components/ShareModal";
 import { Heart, Forward } from "lucide-react";
 
 export default function AllQuotesPage() {
-  const forumPosts = [
-    {
-      quote:
-        "Kemauan dari diri sendiri untuk berubah menjadi lebih baik adalah inti dari perubahan yang positif sesungguhnya.",
-      author: "Johan Yan",
-      likes: 124,
-    },
-    {
-      quote:
-        "Rejeki besar akan datang pada orang yang bermimpi besar, bergerak besar, berkorban besar dan berkontribusi besar!",
-      author: "Yusuf Adi Pura",
-      likes: 109,
-    },
-    {
-      quote:
-        "Dengan bermalas-malas takkan tercapai apa yang diidamkan; dengan bekerja keras orang mendapat kekayaan.",
-      author: "Johan Yan",
-      likes: 120,
-    },
-    {
-      quote:
-        "Kepemimpinan sejati dimulai dengan kemampuan memimpin diri sendiri sebelum memimpin orang lain.",
-      author: "Total Quality Team",
-      likes: 156,
-    },
-    {
-      quote:
-        "Budaya organisasi yang kuat adalah hasil dari komitmen bersama untuk terus berkembang dan berinovasi.",
-      author: "Johan Yan",
-      likes: 98,
-    },
-    {
-      quote:
-        "Perubahan dimulai dari kesadaran, diperkuat dengan tindakan, dan diabadikan melalui konsistensi.",
-      author: "Yusuf Adi Pura",
-      likes: 142,
-    },
-    {
-      quote:
-        "Tim yang solid bukan hanya tentang bekerja bersama, tetapi tentang tumbuh bersama menuju visi yang sama.",
-      author: "Total Quality Team",
-      likes: 167,
-    },
-    {
-      quote:
-        "Kualitas bukan tujuan akhir, tetapi perjalanan berkelanjutan menuju kesempurnaan.",
-      author: "Johan Yan",
-      likes: 134,
-    },
-    {
-      quote:
-        "Agent of Change adalah mereka yang tidak hanya melihat masalah, tetapi menciptakan solusi dan menginspirasi perubahan.",
-      author: "Total Quality Team",
-      likes: 189,
-    },
-    {
-      quote:
-        "Kesuksesan organisasi diukur bukan dari seberapa besar, tetapi seberapa berdampak.",
-      author: "Yusuf Adi Pura",
-      likes: 145,
-    },
-    {
-      quote:
-        "Investasi terbaik adalah investasi pada pengembangan sumber daya manusia.",
-      author: "Johan Yan",
-      likes: 178,
-    },
-    {
-      quote:
-        "Motivasi yang sejati datang dari dalam diri, bukan dari paksaan eksternal.",
-      author: "Total Quality Team",
-      likes: 112,
-    },
-  ];
+  const [forumPosts, setForumPosts] = useState<any[]>([]);
+  const [liked, setLiked] = useState<boolean[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filter, setFilter] = useState("Terbaru");
-  const [likes, setLikes] = useState(forumPosts.map((p) => p.likes));
-  const [liked, setLiked] = useState(forumPosts.map(() => false));
   const [shares] = useState(forumPosts.map(() => 0));
   const [activeShare, setActiveShare] = useState<{
     quote: string;
     author: string;
   } | null>(null);
+
+  useEffect(() => {
+    const fetchForums = async () => {
+      const res = await fetch("/api/forums");
+      const data = await res.json();
+      setForumPosts(data);
+      setLiked(
+        data.map(
+          (p: any) => localStorage.getItem(`forum_like_${p.id}`) === "true"
+        )
+      );
+    };
+    fetchForums();
+  }, []);
+
+  const toggleLike = async (index: number, id: number) => {
+    const isLiked = liked[index];
+
+    setLiked((prev) => {
+      const updated = [...prev];
+      updated[index] = !isLiked;
+      return updated;
+    });
+
+    setForumPosts((prev) => {
+      const updated = [...prev];
+      updated[index].likes += isLiked ? -1 : 1;
+      return updated;
+    });
+
+    if (isLiked) localStorage.removeItem(`forum_like_${id}`);
+    else localStorage.setItem(`forum_like_${id}`, "true");
+
+    const endpoint = isLiked
+      ? `/api/forums/${id}/unlike`
+      : `/api/forums/${id}/like`;
+
+    try {
+      await fetch(endpoint, { method: "POST" });
+    } catch (err) {
+      console.error("Failed to update like:", err);
+    }
+  };
+
+  const handleShare = async (index: number, id: number) => {
+    await fetch(`/api/forums/${id}/share`, { method: "POST" });
+    setForumPosts((prev) => {
+      const updated = [...prev];
+      updated[index].shares += 1;
+      return updated;
+    });
+    setActiveShare({
+      quote: forumPosts[index].quote,
+      author: forumPosts[index].author,
+    });
+  };
 
   const filteredPosts = useMemo(() => {
     let posts = [...forumPosts];
@@ -111,27 +93,6 @@ export default function AllQuotesPage() {
         return posts;
     }
   }, [searchQuery, filter, forumPosts]);
-
-  const toggleLike = (index: number) => {
-    setLiked((prev) => {
-      const updated = [...prev];
-      updated[index] = !updated[index];
-      return updated;
-    });
-    setLikes((prev) => {
-      const updated = [...prev];
-      updated[index] += liked[index] ? -1 : 1;
-      return updated;
-    });
-  };
-
-  // const incrementShare = (index: number) => {
-  //   setShares((prev) => {
-  //     const updated = [...prev];
-  //     updated[index] += 1;
-  //     return updated;
-  //   });
-  // };
 
   return (
     <div
@@ -229,7 +190,7 @@ export default function AllQuotesPage() {
                 <div className="absolute bottom-1 right-3 z-10 flex gap-3">
                   {/* Like Button */}
                   <button
-                    onClick={() => toggleLike(index)}
+                    onClick={() => toggleLike(index, post.id)}
                     className={`flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md 
       transition-all duration-300 cursor-pointer active:scale-95`}
                   >
@@ -243,21 +204,19 @@ export default function AllQuotesPage() {
       `}
                     />
                     <span className="text-[#364153] text-sm font-light">
-                      {likes[index]}
+                      {post.likes}{" "}
                     </span>
                   </button>
 
                   {/* Share Button */}
                   <button
-                    onClick={() =>
-                      setActiveShare({ quote: post.quote, author: post.author })
-                    }
+                    onClick={() => handleShare(index, post.id)}
                     className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md 
       transition-all duration-300 cursor-pointer active:scale-95"
                   >
                     <Forward className="w-4 h-4 stroke-gray-500 transition-transform duration-200" />
                     <span className="text-[#364153] text-sm font-light">
-                      {shares[index]}
+                      {post.shares}{" "}
                     </span>
                   </button>
                 </div>
