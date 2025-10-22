@@ -29,10 +29,11 @@ export const incrementLikes = async (id: number, value: number) => {
     data: { likes: { increment: value } },
     select: {
       id: true,
+      createdAt: true,
       quote: true,
       author: true,
-      createdAt: true,
       likes: true,
+      shares: true,
     },
   });
 };
