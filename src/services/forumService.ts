@@ -45,11 +45,28 @@ export const incrementLikes = async (id: number, value: number) => {
   };
 };
 
-export const decrementLikes = async (id: number, by = 1) => {
-  return await prisma.forum.update({
+export const decrementLikes = async (id: number, value: number) => {
+  const updated = await prisma.forum.update({
     where: { id },
-    data: { likes: { decrement: by } },
+    data: {
+      likes: { decrement: value },
+    },
+    select: {
+      id: true,
+      createdAt: true,
+      quote: true,
+      author: true,
+      likes: true,
+    },
   });
+
+  return updated as {
+    id: number;
+    createdAt: Date;
+    quote: string;
+    author: string;
+    likes: number;
+  };
 };
 
 export const incrementShares = async (id: number, by = 1) => {
