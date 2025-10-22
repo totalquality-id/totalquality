@@ -4,8 +4,16 @@ import { useState, useEffect } from "react";
 import ShareModal from "@/components/ShareModal";
 import { Heart, Forward } from "lucide-react";
 
+interface ForumPost {
+  id: number;
+  quote: string;
+  author: string;
+  likes: number;
+  shares: number;
+}
+
 export default function ForumSection() {
-  const [forumPosts, setForumPosts] = useState<any[]>([]);
+  const [forumPosts, setForumPosts] = useState<ForumPost[]>([]);
   const [liked, setLiked] = useState<boolean[]>([]);
   const [activeShare, setActiveShare] = useState<{
     quote: string;
@@ -15,12 +23,10 @@ export default function ForumSection() {
   useEffect(() => {
     const fetchForums = async () => {
       const res = await fetch("/api/forums");
-      const data = await res.json();
+      const data: ForumPost[] = await res.json();
       setForumPosts(data);
       setLiked(
-        data.map(
-          (p: any) => localStorage.getItem(`forum_like_${p.id}`) === "true"
-        )
+        data.map((p) => localStorage.getItem(`forum_like_${p.id}`) === "true")
       );
     };
     fetchForums();
