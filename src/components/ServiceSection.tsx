@@ -26,7 +26,7 @@ export default function ServiceSection() {
     gradient: string;
     hoverBorder: string;
   }
-  
+
   const styleMap: Record<string, StyleConfig> = {
     "Quality Empowerment System": {
       icon: <Users className="w-7 h-7 text-[#2B5589]" />,
@@ -44,7 +44,6 @@ export default function ServiceSection() {
       hoverBorder: "hover:border-[#2B5589]/40",
     },
   };
-  
 
   // tampilkan 3 service utama saja
   const displayedServices = services.slice(0, 3);
@@ -69,7 +68,7 @@ export default function ServiceSection() {
 
           <div className="max-w-4xl">
             <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
-              Our <span className="text-[#2B5589] font-normal">Services</span>
+              Our <span className="text-[#0201FF] font-normal">Services</span>
             </h3>
           </div>
         </div>
@@ -123,7 +122,7 @@ export default function ServiceSection() {
 
             <Link
               href="/services"
-              className="group inline-flex items-center gap-3 bg-[#2B5589] text-white font-light px-8 py-4 hover:bg-[#1E3F69] transition-all duration-300"
+              className="group inline-flex items-center gap-3 bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
             >
               <span className="text-sm tracking-wide">
                 Explore All Services

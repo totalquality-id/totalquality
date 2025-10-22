@@ -3,7 +3,6 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Hero1 from "./../../public/images/hero/hero-1.png";
 import Hero2 from "./../../public/images/hero/hero-2.png";
-// import Hero3 from "./../../public/images/hero/hero-3.png";
 
 export default function Hero() {
   const boxes = [
@@ -15,13 +14,8 @@ export default function Hero() {
     {
       title: "Our Services",
       image: Hero2,
-      link: "#services",
+      link: "#service",
     },
-    // {
-    //   title: "AOC Community",
-    //   image: Hero3,
-    //   link: "#community",
-    // },
   ];
 
   const handleSmoothScroll = (
@@ -96,7 +90,7 @@ export default function Hero() {
                 key={index}
                 href={box.link}
                 onClick={(e) => handleSmoothScroll(e, box.link)}
-                className="relative group overflow-hidden shadow-lg transition-all duration-500 flex flex-col bg-white h-40 sm:h-44 md:h-48 cursor-pointer"
+                className="relative group overflow-hidden shadow-lg transition-all duration-500 flex flex-col bg-white h-40 sm:h-44 md:h-48"
               >
                 <div className="absolute inset-0 w-full h-32 sm:h-36 md:h-40 group-hover:h-full transition-all duration-500 overflow-hidden">
                   <Image
@@ -110,7 +104,7 @@ export default function Hero() {
 
                 <div className="absolute top-28 sm:top-29 md:top-32 right-4 sm:right-6 transform -translate-y-1/2 z-40">
                   <button
-                    className="flex items-center justify-center bg-[#364153] rounded-full w-10 h-10 sm:w-12 sm:h-12 shadow-lg hover:bg-[#FACC01] group-hover:bg-transparent transition-colors duration-300"
+                    className="flex items-center justify-center bg-[#0201FF] rounded-full w-10 h-10 sm:w-12 sm:h-12 shadow-lg hover:bg-[#0201FF] group-hover:bg-transparent transition-colors duration-300 cursor-pointer"
                     aria-label={`Go to ${box.title}`}
                   >
                     <ArrowRight

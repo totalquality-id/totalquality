@@ -68,7 +68,7 @@ export default function SelfAssessmentSection() {
           <div className="max-w-4xl">
             <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
               Self{" "}
-              <span className="text-[#2B5589] font-normal">Assessment</span>
+              <span className="text-[#0201FF] font-normal">Assessment</span>
             </h3>
             <p className="text-base sm:text-lg lg:text-xl font-light tracking-tight text-[#364153] mt-4">
               Discover which of our services best fit your needs through a quick
@@ -90,7 +90,7 @@ export default function SelfAssessmentSection() {
                 >
                   <div className="text-center space-y-4">
                     <div className="inline-flex w-14 h-14 bg-slate-50 border border-gray-200 items-center justify-center mx-auto group-hover:border-gray-300 transition-all duration-300">
-                      <IconComponent className="w-6 h-6 text-[#2B5589]" />
+                      <IconComponent className="w-6 h-6 text-[#0201FF]" />
                     </div>
                     <div>
                       <h3 className="text-lg lg:text-xl font-light tracking-tight text-[#1a1a1a] mb-2">
@@ -137,14 +137,14 @@ export default function SelfAssessmentSection() {
                       <div className="relative space-y-4">
                         {/* Number Badge */}
                         <div className="relative inline-flex">
-                          <div className="w-16 h-16 bg-[#2B5589] flex items-center justify-center group-hover:bg-[#1E3F69] transition-all duration-300">
+                          <div className="w-16 h-16 bg-[#0201FF] flex items-center justify-center group-hover:bg-[#1E3F69] transition-all duration-300">
                             <span className="text-white font-light text-xl tracking-tight">
                               {step.number}
                             </span>
                           </div>
                           {/* Icon Badge */}
                           <div className="absolute -top-4 -right-4 w-10 h-10 bg-white border border-gray-200 flex items-center justify-center rounded-full">
-                            <IconComponent className="w-5 h-5 text-[#2B5589]" />
+                            <IconComponent className="w-5 h-5 text-[#0201FF]" />
                           </div>
                         </div>
 
@@ -179,7 +179,7 @@ export default function SelfAssessmentSection() {
 
             <a
               href="/forum"
-              className="group inline-flex items-center gap-3 bg-[#2B5589] text-white font-light px-8 py-4 hover:bg-[#1E3F69] transition-all duration-300"
+              className="group inline-flex items-center gap-3 bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
             >
               <span className="text-sm tracking-wide">Start Assessment</span>
               <svg

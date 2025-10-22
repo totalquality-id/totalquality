@@ -106,7 +106,7 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mb-16">
           <div className="text-center lg:text-left">
             <div
-              className={`text-8xl sm:text-8xl md:text-9xl lg:text-[140px] xl:text-[160px] font-medium leading-none text-[#2B5589] tracking-tight transition-all duration-700 ${
+              className={`text-8xl sm:text-8xl md:text-9xl lg:text-[140px] xl:text-[160px] font-medium leading-none text-[#0201FF] tracking-tight transition-all duration-700 ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
@@ -136,7 +136,7 @@ export default function AboutSection() {
               to have inspired lasting change through motivation and culture.{" "}
               <Link
                 href="/about"
-                className="text-[#2B5589] underline underline-offset-4 decoration-2 hover:text-[#1E3F69] transition-colors duration-300 font-light"
+                className="text-[#0201FF] underline underline-offset-4 decoration-2 hover:text-[#1E3F69] transition-colors duration-300 font-light"
               >
                 Learn more
               </Link>

@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useMemo } from "react";
 import ShareModal from "@/components/ShareModal";
+import { Heart, Forward } from "lucide-react";
 
 export default function AllQuotesPage() {
   const forumPosts = [
@@ -11,91 +11,79 @@ export default function AllQuotesPage() {
         "Kemauan dari diri sendiri untuk berubah menjadi lebih baik adalah inti dari perubahan yang positif sesungguhnya.",
       author: "Johan Yan",
       likes: 124,
-      category: "Personal Growth",
     },
     {
       quote:
         "Rejeki besar akan datang pada orang yang bermimpi besar, bergerak besar, berkorban besar dan berkontribusi besar!",
       author: "Yusuf Adi Pura",
       likes: 109,
-      category: "Success",
     },
     {
       quote:
         "Dengan bermalas-malas takkan tercapai apa yang diidamkan; dengan bekerja keras orang mendapat kekayaan.",
       author: "Johan Yan",
       likes: 120,
-      category: "Work Ethics",
     },
     {
       quote:
         "Kepemimpinan sejati dimulai dengan kemampuan memimpin diri sendiri sebelum memimpin orang lain.",
       author: "Total Quality Team",
       likes: 156,
-      category: "Leadership",
     },
     {
       quote:
         "Budaya organisasi yang kuat adalah hasil dari komitmen bersama untuk terus berkembang dan berinovasi.",
       author: "Johan Yan",
       likes: 98,
-      category: "Culture",
     },
     {
       quote:
         "Perubahan dimulai dari kesadaran, diperkuat dengan tindakan, dan diabadikan melalui konsistensi.",
       author: "Yusuf Adi Pura",
       likes: 142,
-      category: "Change Management",
     },
     {
       quote:
         "Tim yang solid bukan hanya tentang bekerja bersama, tetapi tentang tumbuh bersama menuju visi yang sama.",
       author: "Total Quality Team",
       likes: 167,
-      category: "Teamwork",
     },
     {
       quote:
         "Kualitas bukan tujuan akhir, tetapi perjalanan berkelanjutan menuju kesempurnaan.",
       author: "Johan Yan",
       likes: 134,
-      category: "Quality",
     },
     {
       quote:
         "Agent of Change adalah mereka yang tidak hanya melihat masalah, tetapi menciptakan solusi dan menginspirasi perubahan.",
       author: "Total Quality Team",
       likes: 189,
-      category: "Innovation",
     },
     {
       quote:
         "Kesuksesan organisasi diukur bukan dari seberapa besar, tetapi seberapa berdampak.",
       author: "Yusuf Adi Pura",
       likes: 145,
-      category: "Success",
     },
     {
       quote:
         "Investasi terbaik adalah investasi pada pengembangan sumber daya manusia.",
       author: "Johan Yan",
       likes: 178,
-      category: "Development",
     },
     {
       quote:
         "Motivasi yang sejati datang dari dalam diri, bukan dari paksaan eksternal.",
       author: "Total Quality Team",
       likes: 112,
-      category: "Motivation",
     },
   ];
   const [searchQuery, setSearchQuery] = useState("");
   const [filter, setFilter] = useState("Terbaru");
   const [likes, setLikes] = useState(forumPosts.map((p) => p.likes));
   const [liked, setLiked] = useState(forumPosts.map(() => false));
-  const [shares, setShares] = useState(forumPosts.map(() => 0));
+  const [shares] = useState(forumPosts.map(() => 0));
   const [activeShare, setActiveShare] = useState<{
     quote: string;
     author: string;
@@ -151,7 +139,7 @@ export default function AllQuotesPage() {
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#2B5589] to-[#1e3d5f] text-white overflow-hidden">
+      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#0201FF] to-[#0000d1] text-white overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#FACC01]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
 
@@ -184,7 +172,7 @@ export default function AllQuotesPage() {
                   onClick={() => setFilter(option)}
                   className={`px-4 py-2 border rounded-full text-sm transition-all duration-300 ${
                     filter === option
-                      ? "bg-[#2B5589] text-white border-[#2B5589]"
+                      ? "bg-[#0201FF] text-white border-[#0201FF]"
                       : "bg-white text-[#364153] border-gray-300 hover:border-[#2B5589]"
                   }`}
                 >
@@ -200,7 +188,7 @@ export default function AllQuotesPage() {
                 placeholder="Cari quote atau penulis..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2B5589]"
+                className="w-full border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0201FF ]"
               />
               <svg
                 className="w-5 h-5 text-black absolute right-3 top-2.5"
@@ -223,13 +211,6 @@ export default function AllQuotesPage() {
               <article key={index} className="group relative pb-6">
                 {/* Card Content */}
                 <div className="p-8 lg:p-10 bg-white border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-300">
-                  {/* Category Badge */}
-                  <div className="mb-4">
-                    <span className="inline-flex items-center px-3 py-1 bg-slate-50 border border-gray-200 text-xs font-light tracking-wide text-[#2B5589]">
-                      {post.category}
-                    </span>
-                  </div>
-
                   {/* Content */}
                   <div className="space-y-6">
                     {/* Quote Text */}
@@ -249,15 +230,17 @@ export default function AllQuotesPage() {
                   {/* Like Button */}
                   <button
                     onClick={() => toggleLike(index)}
-                    className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300 cursor-pointer"
-                    type="button"
+                    className={`flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md 
+      transition-all duration-300 cursor-pointer active:scale-95`}
                   >
-                    <Image
-                      src={liked[index] ? "/like.png" : "/unlike.png"}
-                      alt="Like"
-                      width={16}
-                      height={16}
-                      className="w-4 h-4 object-cover"
+                    <Heart
+                      className={`w-4 h-4 transition-all duration-300 
+        ${
+          liked[index]
+            ? "fill-red-500 stroke-red-500 scale-125 "
+            : "stroke-gray-500"
+        }
+      `}
                     />
                     <span className="text-[#364153] text-sm font-light">
                       {likes[index]}
@@ -269,25 +252,14 @@ export default function AllQuotesPage() {
                     onClick={() =>
                       setActiveShare({ quote: post.quote, author: post.author })
                     }
-                    className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300 cursor-pointer"
-                    type="button"
+                    className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md 
+      transition-all duration-300 cursor-pointer active:scale-95"
                   >
-                    <Image
-                      src="/share.png"
-                      alt="Share"
-                      width={16}
-                      height={16}
-                      className="w-4 h-4 object-cover"
-                    />
+                    <Forward className="w-4 h-4 stroke-gray-500 transition-transform duration-200" />
                     <span className="text-[#364153] text-sm font-light">
                       {shares[index]}
                     </span>
                   </button>
-                </div>
-
-                {/* Number Indicator */}
-                <div className="absolute top-4 right-4 text-5xl font-extralight text-gray-200 group-hover:text-gray-300 transition-colors duration-500 select-none">
-                  {index < 9 ? `0${index + 1}` : index + 1}
                 </div>
               </article>
             ))}

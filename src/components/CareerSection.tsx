@@ -45,7 +45,7 @@ export default function CareerSection() {
           <div className="max-w-4xl">
             <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
               Build Your{" "}
-              <span className="text-[#2B5589] font-normal">Career</span> With Us
+              <span className="text-[#0201FF] font-normal">Career</span> With Us
             </h3>
             <p className="text-base sm:text-lg lg:text-xl font-light tracking-tight text-[#364153] mt-4">
               Join our team and grow with us. Explore available jobs, learn
@@ -67,7 +67,7 @@ export default function CareerSection() {
                 >
                   <div className="space-y-4">
                     <div className="w-12 h-12 bg-slate-50 border border-gray-200 flex items-center justify-center group-hover:border-gray-300 transition-all duration-300">
-                      <IconComponent className="w-6 h-6 text-[#2B5589]" />
+                      <IconComponent className="w-6 h-6 text-[#0201FF]" />
                     </div>
                     <div>
                       <h3 className="text-base lg:text-lg font-light tracking-tight text-[#1a1a1a] mb-2">
@@ -84,7 +84,7 @@ export default function CareerSection() {
           </div>
 
           {/* CTA Section */}
-          <div className="relative p-12 lg:p-16 bg-gradient-to-br from-[#2B5589] to-[#3A6BA5] text-white overflow-hidden">
+          <div className="relative p-12 lg:p-16 bg-gradient-to-br from-[#0201FF] to-[#0000d1] text-white overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#FACC01]/10 rounded-full blur-3xl" />

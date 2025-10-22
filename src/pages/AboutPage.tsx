@@ -86,7 +86,7 @@ export default function AboutPage() {
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#2B5589] to-[#1e3d5f] text-white overflow-hidden">
+      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#0201FF] to-[#0000d1] text-white overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#FACC01]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
 
@@ -107,7 +107,7 @@ export default function AboutPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <div className="text-center mb-4">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#2B5589] mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#0201FF] mb-4">
               Our Leadership
             </h2>
             <div className="w-24 h-1 bg-[#FACC01] mx-auto" />
@@ -144,7 +144,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="bg-[#2B5589] p-12 lg:p-16 flex items-center">
+            <div className="bg-[#0201FF] p-12 lg:p-16 flex items-center">
               <div className="text-white">
                 <div
                   className={`text-7xl mb-2 font-bold text-[#1E3F69] ${newsreader.className}`}
@@ -210,7 +210,7 @@ export default function AboutPage() {
                       Yusuf Adi Pura
                     </h3>
                   </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2B5589] rounded-full">
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#0201FF] rounded-full">
                     <span className="text-white font-normal text-xs uppercase tracking-normal">
                       Direktur
                     </span>
@@ -226,7 +226,7 @@ export default function AboutPage() {
       <section ref={timelineRef} className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#2B5589] mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#0201FF] mb-4">
               Our Journey
             </h2>
             <div className="w-24 h-1 bg-[#FACC01] mx-auto" />
@@ -244,8 +244,8 @@ export default function AboutPage() {
                   onClick={() => setActiveYear(index)}
                   className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${
                     activeYear === index
-                      ? "bg-[#2B5589] text-white shadow-lg scale-110"
-                      : "bg-white text-[#2B5589] hover:bg-gray-100 border-2 border-[#2B5589]"
+                      ? "bg-[#0201FF] text-white shadow-lg"
+                      : "bg-white text-[#0201FF] hover:bg-gray-100 border-2 border-[#0201FF]"
                   }`}
                 >
                   {item.year}
@@ -288,7 +288,7 @@ export default function AboutPage() {
                     : "opacity-0 translate-x-10"
                 }`}
               >
-                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#2B5589] mb-6 tracking-tight">
+                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0201FF] mb-6 tracking-tight">
                   {timelineData[activeYear].title}
                 </h3>
                 <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
@@ -319,7 +319,7 @@ export default function AboutPage() {
                   <button
                     onClick={() => setActiveYear(Math.max(0, activeYear - 1))}
                     disabled={activeYear === 0}
-                    className="px-6 py-3 bg-white border-2 border-[#2B5589] text-[#2B5589] rounded-full font-semibold hover:bg-[#2B5589] hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="px-6 py-3 bg-white border-2 border-[#0201FF] text-[#0201FF] rounded-full font-semibold hover:bg-[#0201FF] hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     ← Previous
                   </button>
@@ -330,7 +330,7 @@ export default function AboutPage() {
                       )
                     }
                     disabled={activeYear === timelineData.length - 1}
-                    className="px-6 py-3 bg-[#2B5589] text-white rounded-full font-semibold hover:bg-[#1E3F69] transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="px-6 py-3 bg-[#0201FF] text-white rounded-full font-semibold hover:bg-[#0000d1] transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     Next →
                   </button>

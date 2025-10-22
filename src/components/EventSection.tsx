@@ -11,7 +11,7 @@ export default function EventSection() {
       location: "Lembah Indah, Malang",
       image: "/images/events/legacy.jpg",
       badge: "Register Now",
-      badgeColor: "bg-[#2B5589] text-white",
+      badgeColor: "bg-[#0201FF] text-white",
     },
     {
       title: "HR Innovation Workshop",
@@ -56,7 +56,7 @@ export default function EventSection() {
           <div className="max-w-4xl">
             <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
               Upcoming{" "}
-              <span className="text-[#2B5589] font-normal">Events</span>
+              <span className="text-[#0201FF] font-normal">Events</span>
             </h3>
             <p className="text-base sm:text-lg lg:text-xl font-light tracking-tight text-[#364153] mt-4">
               Connect, learn, and grow with industry experts
@@ -105,7 +105,7 @@ export default function EventSection() {
                 {/* Event Details */}
                 <div className="space-y-3 pt-4 border-t border-gray-100">
                   <div className="flex items-start gap-3">
-                    <Calendar className="w-4 h-4 text-[#2B5589] mt-0.5 flex-shrink-0" />
+                    <Calendar className="w-4 h-4 text-[#0201FF] mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="text-xs text-[#364153] font-light">
                         {event.date}
@@ -162,7 +162,7 @@ export default function EventSection() {
 
             <a
               href="/events"
-              className="group inline-flex items-center gap-3 bg-[#2B5589] text-white font-light px-8 py-4 hover:bg-[#1E3F69] transition-all duration-300"
+              className="group inline-flex items-center gap-3 bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
             >
               <span className="text-sm tracking-wide">View All Events</span>
               <svg

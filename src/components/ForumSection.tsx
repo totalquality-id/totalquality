@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import ShareModal from "@/components/ShareModal";
+import { Heart, Forward } from "lucide-react";
 
 export default function ForumSection() {
   const forumPosts = [
@@ -27,7 +27,7 @@ export default function ForumSection() {
   ];
   const [likes, setLikes] = useState(forumPosts.map((p) => p.likes));
   const [liked, setLiked] = useState(forumPosts.map(() => false));
-  const [shares, setShares] = useState(forumPosts.map(() => 0));
+  const [shares] = useState(forumPosts.map(() => 0));
   const [activeShare, setActiveShare] = useState<{
     quote: string;
     author: string;
@@ -75,7 +75,7 @@ export default function ForumSection() {
           <div className="max-w-4xl">
             <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
               Forum —{" "}
-              <span className="text-[#2B5589] font-normal">
+              <span className="text-[#0201FF] font-normal">
                 Agent of Change
               </span>
             </h3>
@@ -107,35 +107,35 @@ export default function ForumSection() {
 
               {/* Like & Share Buttons */}
               <div className="absolute bottom-1 right-3 z-10 flex gap-3">
+                {/* Like Button */}
                 <button
                   onClick={() => toggleLike(index)}
-                  className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
+                  className={`flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md 
+      transition-all duration-300 cursor-pointer active:scale-95`}
                 >
-                  <Image
-                    src={liked[index] ? "/like.png" : "/unlike.png"}
-                    alt="Like"
-                    width={16}
-                    height={16}
-                    className="w-4 h-4 object-cover"
+                  <Heart
+                    className={`w-4 h-4 transition-all duration-300 
+        ${
+          liked[index]
+            ? "fill-red-500 stroke-red-500 scale-125 "
+            : "stroke-gray-500"
+        }
+      `}
                   />
                   <span className="text-[#364153] text-sm font-light">
                     {likes[index]}
                   </span>
                 </button>
 
+                {/* Share Button */}
                 <button
                   onClick={() =>
                     setActiveShare({ quote: post.quote, author: post.author })
                   }
-                  className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
+                  className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md 
+      transition-all duration-300 cursor-pointer active:scale-95"
                 >
-                  <Image
-                    src="/share.png"
-                    alt="Share"
-                    width={16}
-                    height={16}
-                    className="w-4 h-4 object-cover"
-                  />
+                  <Forward className="w-4 h-4 stroke-gray-500 transition-transform duration-200" />
                   <span className="text-[#364153] text-sm font-light">
                     {shares[index]}
                   </span>
@@ -157,7 +157,7 @@ export default function ForumSection() {
 
             <a
               href="/forum"
-              className="group inline-flex items-center gap-3 bg-[#2B5589] text-white font-light px-8 py-4 hover:bg-[#1E3F69] transition-all duration-300"
+              className="group inline-flex items-center gap-3 bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
             >
               <span className="text-sm tracking-wide">See All Quotes</span>
               <svg

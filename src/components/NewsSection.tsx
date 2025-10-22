@@ -6,7 +6,7 @@ export default function NewsSection() {
         "We're thrilled to announce strategic collaborations with top organizations across Southeast Asia to expand our impact.",
       date: "March 8, 2025",
       category: "Partnership",
-      categoryColor: "bg-[#2B5589] text-white",
+      categoryColor: "bg-[#0201FF] text-white",
     },
     {
       title: "Award-Winning HR Innovation Program",
@@ -22,7 +22,7 @@ export default function NewsSection() {
         "Join us for the biggest leadership conference of the year featuring world-class speakers and networking opportunities.",
       date: "February 15, 2025",
       category: "Event",
-      categoryColor: "bg-[#2B5589] text-white",
+      categoryColor: "bg-[#0201FF] text-white",
     },
   ];
 
@@ -46,7 +46,7 @@ export default function NewsSection() {
 
           <div className="max-w-4xl">
             <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
-              Latest <span className="text-[#2B5589] font-normal">News</span>
+              Latest <span className="text-[#0201FF] font-normal">News</span>
             </h3>
             <p className="text-base sm:text-lg lg:text-xl font-light tracking-tight text-[#364153] mt-4">
               Insights, updates, and stories from our journey
@@ -143,7 +143,7 @@ export default function NewsSection() {
 
             <a
               href="/news"
-              className="group inline-flex items-center gap-3 bg-[#2B5589] text-white font-light px-8 py-4 hover:bg-[#1E3F69] transition-all duration-300"
+              className="group inline-flex items-center gap-3 bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
             >
               <span className="text-sm tracking-wide">View All News</span>
               <svg

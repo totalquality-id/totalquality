@@ -13,7 +13,7 @@ export default function AllEventsPage() {
       attendees: "150+ Participants",
       image: "/images/events/legacy.jpg",
       badge: "Register Now",
-      badgeColor: "bg-[#2B5589] text-white",
+      badgeColor: "bg-[#0201FF] text-white",
       category: "Training",
     },
     {
@@ -52,8 +52,7 @@ export default function AllEventsPage() {
       attendees: "300+ Participants",
       image: "/images/events/legacy.jpg",
       badge: "Early Bird",
-      badgeColor: "bg-[#2B5589] text-white",
-      category: "Conference",
+      badgeColor: "bg-[#0201FF] text-white",
     },
     {
       title: "Agent of Change Summit",
@@ -66,7 +65,6 @@ export default function AllEventsPage() {
       image: "/images/events/legacy.jpg",
       badge: "Coming Soon",
       badgeColor: "bg-[#FACC01] text-[#2B5589]",
-      category: "Summit",
     },
     {
       title: "Leadership Excellence Program",
@@ -78,8 +76,7 @@ export default function AllEventsPage() {
       attendees: "80+ Participants",
       image: "/images/events/legacy.jpg",
       badge: "Registration Open",
-      badgeColor: "bg-[#2B5589] text-white",
-      category: "Program",
+      badgeColor: "bg-[#0201FF] text-white",
     },
   ];
 
@@ -89,7 +86,7 @@ export default function AllEventsPage() {
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#2B5589] to-[#1e3d5f] text-white overflow-hidden">
+      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#0201FF] to-[#0000d1] text-white overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#FACC01]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
 
@@ -132,11 +129,6 @@ export default function AllEventsPage() {
                     className={`absolute top-4 right-4 px-3 py-1.5 ${event.badgeColor} text-xs font-light tracking-wide`}
                   >
                     {event.badge}
-                  </div>
-
-                  {/* Category */}
-                  <div className="absolute bottom-4 left-4 px-3 py-1 bg-white/90 text-xs font-light tracking-wide text-[#2B5589]">
-                    {event.category}
                   </div>
                 </div>
 
@@ -228,7 +220,7 @@ export default function AllEventsPage() {
       {/* CTA Section */}
       <section className="relative py-16 sm:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative p-12 lg:p-16 bg-gradient-to-br from-[#2B5589] to-[#3A6BA5] text-white overflow-hidden">
+          <div className="relative p-12 lg:p-16 bg-gradient-to-br from-[#2B5589] to-[#0201FF] text-white overflow-hidden">
             <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#FACC01]/10 rounded-full blur-3xl" />
 

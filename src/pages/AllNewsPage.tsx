@@ -8,8 +8,7 @@ export default function AllNewsPage() {
         "This partnership marks a significant milestone in our mission to transform organizational culture across the region. By joining forces with leading companies, we aim to create a network of excellence that benefits all stakeholders.",
       date: "March 8, 2025",
       category: "Partnership",
-      emoji: "🤝",
-      categoryColor: "bg-[#2B5589] text-white",
+      categoryColor: "bg-[#0201FF] text-white",
       author: "Corporate Relations Team",
     },
     {
@@ -20,7 +19,6 @@ export default function AllNewsPage() {
         "The award recognizes our commitment to developing cutting-edge solutions that address the evolving needs of modern organizations. This framework has already been implemented successfully in over 50 companies.",
       date: "February 22, 2025",
       category: "Achievement",
-      emoji: "🏆",
       categoryColor: "bg-[#FACC01] text-[#2B5589]",
       author: "Innovation Team",
     },
@@ -32,8 +30,7 @@ export default function AllNewsPage() {
         "The summit will feature keynote speeches from industry leaders, interactive workshops, and networking sessions designed to foster collaboration and knowledge sharing among participants.",
       date: "February 15, 2025",
       category: "Event",
-      emoji: "📢",
-      categoryColor: "bg-[#2B5589] text-white",
+      categoryColor: "bg-[#0201FF] text-white",
       author: "Events Team",
     },
     {
@@ -44,7 +41,6 @@ export default function AllNewsPage() {
         "This achievement reflects our dedication to building sustainable change capabilities within organizations. Each Agent of Change represents a beacon of transformation in their respective companies.",
       date: "January 30, 2025",
       category: "Achievement",
-      emoji: "🎯",
       categoryColor: "bg-[#FACC01] text-[#2B5589]",
       author: "Training Team",
     },
@@ -56,8 +52,7 @@ export default function AllNewsPage() {
         "The platform features interactive courses, live mentoring sessions, and a community forum where participants can connect and share experiences. This marks a new era in our training delivery.",
       date: "January 15, 2025",
       category: "Innovation",
-      emoji: "💡",
-      categoryColor: "bg-[#2B5589] text-white",
+      categoryColor: "bg-[#0201FF] text-white",
       author: "Technology Team",
     },
     {
@@ -68,7 +63,6 @@ export default function AllNewsPage() {
         "This expansion allows us to serve a broader client base and share our proven methodologies with organizations across Southeast Asia. Local teams are already in place to ensure seamless service delivery.",
       date: "December 20, 2024",
       category: "Partnership",
-      emoji: "🌏",
       categoryColor: "bg-[#FACC01] text-[#2B5589]",
       author: "Business Development",
     },
@@ -80,8 +74,7 @@ export default function AllNewsPage() {
         "This outstanding achievement is a testament to our comprehensive mentoring approach and hands-on support throughout the certification process. We're proud to have helped hundreds of organizations achieve international recognition.",
       date: "December 10, 2024",
       category: "Achievement",
-      emoji: "📊",
-      categoryColor: "bg-[#2B5589] text-white",
+      categoryColor: "bg-[#0201FF] text-white",
       author: "Quality Assurance Team",
     },
     {
@@ -92,7 +85,6 @@ export default function AllNewsPage() {
         "The report highlights key achievements including serving 400+ companies, training 10,000+ professionals, and maintaining a 95% client satisfaction rate. We're grateful for the trust our clients place in us.",
       date: "November 25, 2024",
       category: "Company News",
-      emoji: "📈",
       categoryColor: "bg-[#FACC01] text-[#2B5589]",
       author: "Management Team",
     },
@@ -104,8 +96,7 @@ export default function AllNewsPage() {
         "The research, conducted over 12 months with 200+ organizations, provides data-driven insights into the factors that contribute to lasting cultural transformation and employee engagement.",
       date: "November 10, 2024",
       category: "Research",
-      emoji: "🔬",
-      categoryColor: "bg-[#2B5589] text-white",
+      categoryColor: "bg-[#0201FF] text-white",
       author: "Research Team",
     },
   ];
@@ -116,7 +107,7 @@ export default function AllNewsPage() {
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#2B5589] to-[#1e3d5f] text-white overflow-hidden">
+      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#0201FF] to-[#0000d1] text-white overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#FACC01]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
 
@@ -149,11 +140,6 @@ export default function AllNewsPage() {
                     className={`inline-flex items-center px-3 py-1.5 ${article.categoryColor} text-xs font-light tracking-wide`}
                   >
                     {article.category}
-                  </div>
-
-                  {/* Emoji Icon */}
-                  <div className="w-14 h-14 bg-white border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-                    <span className="text-2xl">{article.emoji}</span>
                   </div>
                 </div>
 
@@ -220,11 +206,6 @@ export default function AllNewsPage() {
 
                 {/* Hover Accent Line */}
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#2B5589] to-[#FACC01] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-
-                {/* Number Indicator */}
-                <div className="absolute top-36 right-6 text-6xl font-extralight text-gray-200 group-hover:text-gray-300 transition-colors duration-500 select-none">
-                  0{index + 1}
-                </div>
               </article>
             ))}
           </div>
@@ -234,7 +215,7 @@ export default function AllNewsPage() {
       {/* Newsletter Section */}
       <section className="relative py-16 sm:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative p-12 lg:p-16 bg-gradient-to-br from-[#2B5589] to-[#3A6BA5] text-white overflow-hidden">
+          <div className="relative p-12 lg:p-16 bg-gradient-to-br from-[#2B5589] to-[#0201FF] text-white overflow-hidden">
             <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#FACC01]/10 rounded-full blur-3xl" />
 

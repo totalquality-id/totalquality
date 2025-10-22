@@ -49,7 +49,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="relative bg-gradient-to-br from-[#2B5589] via-[#1e3d5f] to-[#2B5589] text-white overflow-hidden"
+      className="relative bg-gradient-to-br from-[#0201FF] via-[#0000d1] to-[#0201FF] text-white overflow-hidden"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* Subtle Decorative Elements */}
@@ -176,7 +176,7 @@ export default function Footer() {
                       className="group relative w-12 h-12 bg-white/10 hover:bg-white flex items-center justify-center transition-all duration-300"
                       aria-label={social.label}
                     >
-                      <IconComponent className="w-5 h-5 text-white group-hover:text-[#2B5589] transition-colors duration-300" />
+                      <IconComponent className="w-5 h-5 text-white group-hover:text-[#0201FF] transition-colors duration-300" />
                     </a>
                   );
                 })}
@@ -192,7 +192,7 @@ export default function Footer() {
                   placeholder="Enter your email"
                   className="flex-1 px-4 py-3 bg-white/10 border border-white/20 text-white placeholder-white/50 text-sm font-light focus:outline-none focus:border-[#FACC01] focus:bg-white/15 transition-all duration-300"
                 />
-                <button className="px-6 py-3 bg-[#FACC01] hover:bg-[#FDD835] text-[#2B5589] transition-all duration-300 cursor-pointer">
+                <button className="px-6 py-3 bg-[#FACC01] hover:bg-[#FDD835] text-[#0201FF] transition-all duration-300 cursor-pointer">
                   <ArrowRight className="w-5 h-5" />
                 </button>
               </div>

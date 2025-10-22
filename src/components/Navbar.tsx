@@ -97,7 +97,7 @@ export default function Navbar() {
             <div className="flex items-center font-light gap-4 lg:gap-6">
               <div
                 className={`flex items-center gap-2 transition-colors duration-300 cursor-pointer ${
-                  scrolled ? "hover:text-[#2B5589]" : "hover:text-white/80"
+                  scrolled ? "hover:text-[#0201FF]" : "hover:text-white/80"
                 }`}
               >
                 <Phone className="w-4 h-4 transition-all duration-500" />
@@ -107,7 +107,7 @@ export default function Navbar() {
               </div>
               <div
                 className={`flex items-center gap-2 transition-colors duration-300 cursor-pointer ${
-                  scrolled ? "hover:text-[#2B5589]" : "hover:text-white/80"
+                  scrolled ? "hover:text-[#0201FF]" : "hover:text-white/80"
                 }`}
               >
                 <Mail className="w-4 h-4 transition-all duration-500" />
@@ -124,8 +124,8 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 border ${
                   scrolled
-                    ? "border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
-                    : "border-white text-white hover:bg-gray-100 hover:text-[#2B5589]"
+                    ? "border-gray-300 text-gray-600 hover:border-[#0201FF] hover:text-[#0201FF]"
+                    : "border-white text-white hover:bg-gray-100 hover:text-[#0201FF]"
                 }`}
               >
                 <Facebook className="w-4 h-4" />
@@ -137,8 +137,8 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 border ${
                   scrolled
-                    ? "border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
-                    : "border-white text-white hover:bg-gray-100 hover:text-[#2B5589]"
+                    ? "border-gray-300 text-gray-600 hover:border-[#0201FF] hover:text-[#0201FF]"
+                    : "border-white text-white hover:bg-gray-100 hover:text-[#0201FF]"
                 }`}
               >
                 <Linkedin className="w-4 h-4" />
@@ -150,8 +150,8 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 border ${
                   scrolled
-                    ? "border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
-                    : "border-white text-white hover:bg-gray-100 hover:text-[#2B5589]"
+                    ? "border-gray-300 text-gray-600 hover:border-[#0201FF] hover:text-[#0201FF]"
+                    : "border-white text-white hover:bg-gray-100 hover:text-[#0201FF]"
                 }`}
               >
                 <Instagram className="w-4 h-4" />
@@ -163,8 +163,8 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 border ${
                   scrolled
-                    ? "border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
-                    : "border-white text-white hover:bg-gray-100 hover:text-[#2B5589]"
+                    ? "border-gray-300 text-gray-600 hover:border-[#0201FF] hover:text-[#0201FF]"
+                    : "border-white text-white hover:bg-gray-100 hover:text-[#0201FF]"
                 }`}
               >
                 <Twitter className="w-4 h-4" />
@@ -198,7 +198,7 @@ export default function Navbar() {
                     href="#about"
                     onClick={(e) => handleNavigation(e, "#about")}
                     className={`cursor-pointer transition-colors duration-300 relative group ${
-                      scrolled ? "hover:text-[#2B5589]" : "hover:text-white/70"
+                      scrolled ? "hover:text-[#0201FF]" : "hover:text-white/70"
                     }`}
                   >
                     About Us
@@ -209,7 +209,7 @@ export default function Navbar() {
                     href="#service"
                     onClick={(e) => handleNavigation(e, "#service")}
                     className={`cursor-pointer transition-colors duration-300 relative group ${
-                      scrolled ? "hover:text-[#2B5589]" : "hover:text-white/70"
+                      scrolled ? "hover:text-[#0201FF]" : "hover:text-white/70"
                     }`}
                   >
                     Services
@@ -220,7 +220,7 @@ export default function Navbar() {
                     href="#event"
                     onClick={(e) => handleNavigation(e, "#event")}
                     className={`cursor-pointer transition-colors duration-300 relative group ${
-                      scrolled ? "hover:text-[#2B5589]" : "hover:text-white/70"
+                      scrolled ? "hover:text-[#0201FF]" : "hover:text-white/70"
                     }`}
                   >
                     Events
@@ -231,7 +231,7 @@ export default function Navbar() {
                     href="#news"
                     onClick={(e) => handleNavigation(e, "#news")}
                     className={`cursor-pointer transition-colors duration-300 relative group ${
-                      scrolled ? "hover:text-[#2B5589]" : "hover:text-white/70"
+                      scrolled ? "hover:text-[#0201FF]" : "hover:text-white/70"
                     }`}
                   >
                     News
@@ -242,7 +242,7 @@ export default function Navbar() {
                     href="#career"
                     onClick={(e) => handleNavigation(e, "#career")}
                     className={`cursor-pointer transition-colors duration-300 relative group ${
-                      scrolled ? "hover:text-[#2B5589]" : "hover:text-white/70"
+                      scrolled ? "hover:text-[#0201FF]" : "hover:text-white/70"
                     }`}
                   >
                     Career
@@ -253,7 +253,7 @@ export default function Navbar() {
                     href="#forum"
                     onClick={(e) => handleNavigation(e, "#forum")}
                     className={`cursor-pointer transition-colors duration-300 relative group ${
-                      scrolled ? "hover:text-[#2B5589]" : "hover:text-white/70"
+                      scrolled ? "hover:text-[#0201FF]" : "hover:text-white/70"
                     }`}
                   >
                     Forum
@@ -264,7 +264,7 @@ export default function Navbar() {
                     <a
                       href="#self-assessment"
                       onClick={(e) => handleNavigation(e, "#self-assessment")}
-                      className="px-4 xl:px-6 py-2 xl:py-2.5 font-normal rounded-full cursor-pointer transition-all duration-700 ease-in-out hover: bg-transparent border border-gray-300 text-gray-600 hover:bg-white hover:border-[#2B5589]"
+                      className="px-4 xl:px-6 py-2 xl:py-2.5 font-normal rounded-full cursor-pointer transition-all duration-700 ease-in-out hover: bg-transparent border border-gray-300 text-gray-600 hover:bg-white hover:text-[#0201FF] hover:border-[#0201FF]"
                     >
                       Self Assessment
                     </a>
@@ -272,7 +272,7 @@ export default function Navbar() {
                     <a
                       href="#self-assessment"
                       onClick={(e) => handleNavigation(e, "#self-assessment")}
-                      className="px-4 xl:px-6 py-2 xl:py-2.5 font-normal rounded-full cursor-pointer transition-all duration-700 ease-in-out border border-white text-white hover:bg-white hover:text-[#2B5589]"
+                      className="px-4 xl:px-6 py-2 xl:py-2.5 font-normal rounded-full cursor-pointer transition-all duration-700 ease-in-out border border-white text-white hover:bg-white hover:text-[#0201FF]"
                     >
                       Self Assessment
                     </a>
@@ -340,7 +340,7 @@ export default function Navbar() {
                 <a
                   href="#about"
                   onClick={(e) => handleNavigation(e, "#about")}
-                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#0201FF] transition-all duration-300 font-light"
                 >
                   About Us
                 </a>
@@ -349,7 +349,7 @@ export default function Navbar() {
                 <a
                   href="#service"
                   onClick={(e) => handleNavigation(e, "#service")}
-                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#0201FF] transition-all duration-300 font-light"
                 >
                   Services
                 </a>
@@ -358,7 +358,7 @@ export default function Navbar() {
                 <a
                   href="#event"
                   onClick={(e) => handleNavigation(e, "#event")}
-                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#0201FF] transition-all duration-300 font-light"
                 >
                   Events
                 </a>
@@ -367,7 +367,7 @@ export default function Navbar() {
                 <a
                   href="#news"
                   onClick={(e) => handleNavigation(e, "#news")}
-                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#0201FF] transition-all duration-300 font-light"
                 >
                   News
                 </a>
@@ -376,7 +376,7 @@ export default function Navbar() {
                 <a
                   href="#career"
                   onClick={(e) => handleNavigation(e, "#career")}
-                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#0201FF] transition-all duration-300 font-light"
                 >
                   Career
                 </a>
@@ -385,7 +385,7 @@ export default function Navbar() {
                 <a
                   href="#forum"
                   onClick={(e) => handleNavigation(e, "#forum")}
-                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#2B5589] transition-all duration-300 font-light"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#0201FF] transition-all duration-300 font-light"
                 >
                   Forum
                 </a>
@@ -394,7 +394,7 @@ export default function Navbar() {
                 <a
                   href="#self-assessment"
                   onClick={(e) => handleNavigation(e, "#self-assessment")}
-                  className="block px-4 py-3 rounded-full bg-transparent border border-gray-300 text-gray-700 hover:bg-[#2B5589] hover:text-white hover:border-[#2B5589] transition-all duration-300 font-normal text-center"
+                  className="block px-4 py-3 rounded-full bg-transparent border border-gray-300 text-gray-700 hover:bg-[#0201FF] hover:text-white hover:border-[#0201FF] transition-all duration-300 font-normal text-center"
                 >
                   Self Assessment
                 </a>
@@ -407,14 +407,14 @@ export default function Navbar() {
             <div className="space-y-3">
               <a
                 href="tel:+62318484690"
-                className="flex items-center gap-3 text-gray-600 hover:text-[#2B5589] transition-colors duration-300"
+                className="flex items-center gap-3 text-gray-600 hover:text-[#0201FF] transition-colors duration-300"
               >
                 <Phone className="w-4 h-4" />
                 <span className="text-sm font-light">+62 31 848 4690/95</span>
               </a>
               <a
                 href="mailto:info@tqpartner.com"
-                className="flex items-center gap-3 text-gray-600 hover:text-[#2B5589] transition-colors duration-300"
+                className="flex items-center gap-3 text-gray-600 hover:text-[#0201FF] transition-colors duration-300"
               >
                 <Mail className="w-4 h-4" />
                 <span className="text-sm font-light">info@tqpartner.com</span>
@@ -427,7 +427,7 @@ export default function Navbar() {
                 aria-label="Facebook"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border border-gray-300 text-gray-600 hover:border-[#0201FF] hover:text-[#0201FF]"
               >
                 <Facebook className="w-4 h-4" />
               </a>
@@ -436,7 +436,7 @@ export default function Navbar() {
                 aria-label="LinkedIn"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border border-gray-300 text-gray-600 hover:border-[#0201FF] hover:text-[#0201FF]"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
@@ -445,7 +445,7 @@ export default function Navbar() {
                 aria-label="Instagram"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border border-gray-300 text-gray-600 hover:border-[#0201FF] hover:text-[#0201FF]"
               >
                 <Instagram className="w-4 h-4" />
               </a>
@@ -454,7 +454,7 @@ export default function Navbar() {
                 aria-label="Twitter"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border border-gray-300 text-gray-600 hover:border-[#2B5589] hover:text-[#2B5589]"
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border border-gray-300 text-gray-600 hover:border-[#0201FF] hover:text-[#0201FF]"
               >
                 <Twitter className="w-4 h-4" />
               </a>
