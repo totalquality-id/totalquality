@@ -24,7 +24,7 @@ export const deleteForum = async (id: number) => {
 };
 
 export const incrementLikes = async (id: number, value: number) => {
-  return prisma.forum.update({
+  const updated = await prisma.forum.update({
     where: { id },
     data: { likes: { increment: value } },
     select: {
@@ -33,9 +33,16 @@ export const incrementLikes = async (id: number, value: number) => {
       quote: true,
       author: true,
       likes: true,
-      shares: true,
     },
   });
+
+  return updated as {
+    id: number;
+    createdAt: Date;
+    quote: string;
+    author: string;
+    likes: number;
+  };
 };
 
 export const decrementLikes = async (id: number, by = 1) => {
