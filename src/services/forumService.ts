@@ -23,10 +23,17 @@ export const deleteForum = async (id: number) => {
   return await prisma.forum.delete({ where: { id } });
 };
 
-export const incrementLikes = async (id: number, by = 1) => {
-  return await prisma.forum.update({
+export const incrementLikes = async (id: number, value: number) => {
+  return prisma.forum.update({
     where: { id },
-    data: { likes: { increment: by } },
+    data: { likes: { increment: value } },
+    select: {
+      id: true,
+      quote: true,
+      author: true,
+      createdAt: true,
+      likes: true,
+    },
   });
 };
 
