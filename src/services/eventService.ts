@@ -20,8 +20,8 @@ export const createEvent = async (data: {
     title: data.title,
     description: data.description,
     date: data.date,
-    location: data.location ?? undefined,
-    image: data.image ?? undefined,
+    ...(data.location && { location: data.location }),
+    ...(data.image && { image: data.image }),
   };
 
   return await prisma.event.create({ data: cleanData });
