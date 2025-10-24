@@ -74,14 +74,6 @@ export default function ForumSection() {
     });
   };
 
-  if (!forumPosts.length) {
-    return (
-      <section className="py-24 text-center text-gray-500">
-        Loading forum...
-      </section>
-    );
-  }
-
   return (
     <section
       id="forum"

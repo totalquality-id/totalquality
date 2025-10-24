@@ -10,7 +10,6 @@ export default function EventSection() {
       date: "January 9-11, 2026",
       location: "Lembah Indah, Malang",
       image: "/images/events/legacy.jpg",
-      badge: "Register Now",
       badgeColor: "bg-[#0201FF] text-white",
     },
     {
@@ -20,7 +19,6 @@ export default function EventSection() {
       date: "April 22, 2025",
       location: "Surabaya Business Park",
       image: "/images/events/legacy.jpg",
-      badge: "Upcoming",
       badgeColor: "bg-[#FACC01] text-[#2B5589]",
     },
     {
@@ -30,7 +28,6 @@ export default function EventSection() {
       date: "May 10, 2025",
       location: "Bali International Hub",
       image: "/images/events/legacy.jpg",
-      badge: "Limited Seats",
       badgeColor: "bg-[#FACC01] text-[#2B5589]",
     },
   ];
@@ -81,13 +78,6 @@ export default function EventSection() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-transparent" />
-
-                {/* Badge */}
-                <div
-                  className={`absolute top-4 right-4 px-3 py-1.5 ${event.badgeColor} text-xs font-light tracking-wide`}
-                >
-                  {event.badge}
-                </div>
               </div>
 
               {/* Content */}

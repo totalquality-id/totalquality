@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -26,7 +23,7 @@ model User {
 model Service {
   id          Int      @id @default(autoincrement())
   title       String
-  description String
+  description String   @db.Text
   image       String?
   createdAt   DateTime @default(now())
 }
@@ -34,8 +31,8 @@ model Service {
 model Event {
   id          Int      @id @default(autoincrement())
   title       String
-  description String
-  location    String
+  description String   @db.Text
+  location    String?
   image       String?
   date        DateTime
   createdAt   DateTime @default(now())
@@ -44,16 +41,17 @@ model Event {
 model News {
   id          Int      @id @default(autoincrement())
   title       String
-  content     String
+  content     String   @db.Text
   image       String?
+  author      String?  // Added missing field
   createdAt   DateTime @default(now())
 }
 
 model Career {
   id          Int      @id @default(autoincrement())
   title       String
-  description String
-  requirements String
+  description String   @db.Text
+  requirements String  @db.Text
   location    String
   applicants  User[]
   createdAt   DateTime @default(now())
@@ -61,7 +59,7 @@ model Career {
 
 model Forum {
   id        Int      @id @default(autoincrement())
-  quote     String
+  quote     String   @db.Text
   author    String
   likes     Int      @default(0)
   shares    Int      @default(0)
