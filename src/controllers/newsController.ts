@@ -87,8 +87,12 @@ export const patchNews = async (id: number, req: Request) => {
       throw new ApiError(400, "author must be a string");
     }
 
-    // Prepare update data
-    const updateData: any = {};
+    const updateData: Partial<{
+      title: string;
+      content: string;
+      image?: string;
+      author?: string;
+    }> = {};
     if (body.title !== undefined) updateData.title = body.title.trim();
     if (body.content !== undefined) updateData.content = body.content.trim();
     if (body.author !== undefined) updateData.author = body.author.trim();

@@ -2,7 +2,7 @@ export class ApiError extends Error {
   constructor(
     public statusCode: number,
     public message: string,
-    public details?: any
+    public details?: unknown
   ) {
     super(message);
     this.name = "ApiError";
@@ -26,7 +26,7 @@ export const handleError = (error: unknown): Response => {
   }
 
   if (error && typeof error === "object" && "code" in error) {
-    const prismaError = error as { code: string; meta?: any };
+    const prismaError = error as { code: string; meta?: { target?: string[] } };
 
     switch (prismaError.code) {
       case "P2002":
@@ -70,7 +70,10 @@ export const handleError = (error: unknown): Response => {
   );
 };
 
-export const successResponse = (data: any, status: number = 200): Response => {
+export const successResponse = (
+  data: unknown,
+  status: number = 200
+): Response => {
   return new Response(JSON.stringify(data), {
     status,
     headers: { "Content-Type": "application/json" },

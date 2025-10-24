@@ -20,8 +20,11 @@ export const getService = async (id: number) => {
         { status: 404 }
       );
     return NextResponse.json(service, { status: 200 });
-  } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: error instanceof Error ? error.message : "Unknown error" },
+      { status: 500 }
+    );
   }
 };
 
@@ -66,8 +69,11 @@ export const updateService = async (id: number, request: Request) => {
     const body = await request.json();
     const updated = await serviceService.updateService(id, body);
     return NextResponse.json(updated, { status: 200 });
-  } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: error instanceof Error ? error.message : "Unknown error" },
+      { status: 500 }
+    );
   }
 };
 
@@ -78,7 +84,10 @@ export const removeService = async (id: number) => {
       { message: "Service deleted successfully" },
       { status: 200 }
     );
-  } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: error instanceof Error ? error.message : "Unknown error" },
+      { status: 500 }
+    );
   }
 };

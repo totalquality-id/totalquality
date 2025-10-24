@@ -102,7 +102,13 @@ export const patchEvent = async (id: number, req: Request) => {
       throw new ApiError(400, "location must be a string");
     }
 
-    const updateData: any = {};
+    const updateData: Partial<{
+      title: string;
+      description: string;
+      date: Date;
+      location?: string;
+      image?: string;
+    }> = {};
     if (body.title !== undefined) updateData.title = body.title.trim();
     if (body.description !== undefined)
       updateData.description = body.description.trim();
