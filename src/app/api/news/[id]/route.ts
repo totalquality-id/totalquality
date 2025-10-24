@@ -1,19 +1,25 @@
 import * as newsController from "@/controllers/newsController";
 
-export async function GET(_: Request, { params }: { params: { id: string } }) {
-  return newsController.getNews(Number(params.id));
+export async function GET(
+  _: Request,
+  context: { params: Promise<{ id: string }> }
+) {
+  const { id } = await context.params;
+  return newsController.getNews(Number(id));
 }
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  return newsController.patchNews(Number(params.id), req);
+  const { id } = await context.params;
+  return newsController.patchNews(Number(id), req);
 }
 
 export async function DELETE(
   _: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  return newsController.removeNews(Number(params.id));
+  const { id } = await context.params;
+  return newsController.removeNews(Number(id));
 }

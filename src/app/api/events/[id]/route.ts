@@ -1,19 +1,25 @@
 import * as eventController from "@/controllers/eventController";
 
-export async function GET(_: Request, { params }: { params: { id: string } }) {
-  return eventController.getEvent(Number(params.id));
+export async function GET(
+  _: Request,
+  context: { params: Promise<{ id: string }> }
+) {
+  const { id } = await context.params;
+  return eventController.getEvent(Number(id));
 }
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  return eventController.patchEvent(Number(params.id), req);
+  const { id } = await context.params;
+  return eventController.patchEvent(Number(id), req);
 }
 
 export async function DELETE(
   _: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  return eventController.removeEvent(Number(params.id));
+  const { id } = await context.params;
+  return eventController.removeEvent(Number(id));
 }
