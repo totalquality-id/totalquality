@@ -178,7 +178,7 @@ export default function SelfAssessmentSection() {
             </div>
 
             <a
-              href="/forum"
+              href="https://pat.totalquality.co.id/"
               className="group inline-flex items-center gap-3 bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
             >
               <span className="text-sm tracking-wide">Start Assessment</span>

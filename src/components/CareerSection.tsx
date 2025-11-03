@@ -1,6 +1,38 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { TrendingUp, Award, Sparkles, Scale } from "lucide-react";
 
+interface Career {
+  id: number;
+  title: string;
+  description: string;
+  requirements: string;
+  location: string;
+  _count: {
+    applicants: number;
+  };
+}
+
 export default function CareerSection() {
+  const [careers, setCareers] = useState<Career[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCareers = async () => {
+      try {
+        const res = await fetch("/api/careers");
+        const data = await res.json();
+        setCareers(data);
+      } catch (err) {
+        console.error("Failed to fetch careers:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCareers();
+  }, []);
+
   const benefits = [
     {
       icon: TrendingUp,
@@ -106,7 +138,10 @@ export default function CareerSection() {
                 {[
                   { number: "20+", label: "Years Experience" },
                   { number: "400+", label: "Corporate Partner" },
-                  { number: "100+", label: "Agent of Change" },
+                  { 
+                    number: loading ? "..." : `${careers.length}+`, 
+                    label: "Open Positions" 
+                  },
                 ].map((stat, index) => (
                   <div key={index} className="space-y-2">
                     <div className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tighter text-[#FACC01]">

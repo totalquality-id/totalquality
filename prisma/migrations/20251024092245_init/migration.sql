@@ -15,7 +15,7 @@ CREATE TABLE `User` (
 CREATE TABLE `Service` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(191) NOT NULL,
+    `description` TEXT NOT NULL,
     `image` VARCHAR(191) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
@@ -26,8 +26,8 @@ CREATE TABLE `Service` (
 CREATE TABLE `Event` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(191) NOT NULL,
-    `location` VARCHAR(191) NOT NULL,
+    `description` TEXT NOT NULL,
+    `location` VARCHAR(191) NULL,
     `image` VARCHAR(191) NULL,
     `date` DATETIME(3) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -39,8 +39,9 @@ CREATE TABLE `Event` (
 CREATE TABLE `News` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(191) NOT NULL,
-    `content` VARCHAR(191) NOT NULL,
+    `content` TEXT NOT NULL,
     `image` VARCHAR(191) NULL,
+    `author` VARCHAR(191) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`id`)
@@ -50,8 +51,8 @@ CREATE TABLE `News` (
 CREATE TABLE `Career` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(191) NOT NULL,
-    `requirements` VARCHAR(191) NOT NULL,
+    `description` TEXT NOT NULL,
+    `requirements` TEXT NOT NULL,
     `location` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
@@ -61,8 +62,10 @@ CREATE TABLE `Career` (
 -- CreateTable
 CREATE TABLE `Forum` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `quote` VARCHAR(191) NOT NULL,
+    `quote` TEXT NOT NULL,
     `author` VARCHAR(191) NOT NULL,
+    `likes` INTEGER NOT NULL DEFAULT 0,
+    `shares` INTEGER NOT NULL DEFAULT 0,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`id`)

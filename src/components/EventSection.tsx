@@ -1,36 +1,45 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Calendar, MapPin } from "lucide-react";
 
+interface Event {
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  location?: string;
+  image?: string;
+}
+
 export default function EventSection() {
-  const events = [
-    {
-      title: "Legacy Training Camp",
-      description:
-        "Join industry leaders for an inspiring day of insights, networking, and transformative leadership strategies.",
-      date: "January 9-11, 2026",
-      location: "Lembah Indah, Malang",
-      image: "/images/events/legacy.jpg",
-      badgeColor: "bg-[#0201FF] text-white",
-    },
-    {
-      title: "HR Innovation Workshop",
-      description:
-        "Discover cutting-edge HR practices and tools that will revolutionize your talent management approach.",
-      date: "April 22, 2025",
-      location: "Surabaya Business Park",
-      image: "/images/events/legacy.jpg",
-      badgeColor: "bg-[#FACC01] text-[#2B5589]",
-    },
-    {
-      title: "Corporate Motivation Seminar",
-      description:
-        "Energize your team with powerful motivational techniques and real-world success stories from top executives.",
-      date: "May 10, 2025",
-      location: "Bali International Hub",
-      image: "/images/events/legacy.jpg",
-      badgeColor: "bg-[#FACC01] text-[#2B5589]",
-    },
-  ];
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await fetch("/api/events");
+        const data = await res.json();
+        setEvents(data);
+      } catch (err) {
+        console.error("Failed to fetch events:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchEvents();
+  }, []);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
 
   return (
     <section
@@ -61,84 +70,110 @@ export default function EventSection() {
           </div>
         </div>
 
+        {/* Loading State */}
+        {loading && (
+          <div className="text-center py-12">
+            <p className="text-[#364153] font-light">Loading events...</p>
+          </div>
+        )}
+
         {/* Events Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
-          {events.map((event, index) => (
-            <article
-              key={index}
-              className="group relative bg-white border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-500 overflow-hidden"
-            >
-              {/* Image Header */}
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={event.image}
-                  alt={event.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-transparent" />
-              </div>
-
-              {/* Content */}
-              <div className="p-8 space-y-6">
-                {/* Title */}
-                <h3 className="text-xl lg:text-2xl font-light tracking-tight text-[#1a1a1a] group-hover:text-[#2B5589] transition-colors duration-300">
-                  {event.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm lg:text-base text-[#364153] leading-relaxed font-light">
-                  {event.description}
-                </p>
-
-                {/* Event Details */}
-                <div className="space-y-3 pt-4 border-t border-gray-100">
-                  <div className="flex items-start gap-3">
-                    <Calendar className="w-4 h-4 text-[#0201FF] mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="text-xs text-[#364153] font-light">
-                        {event.date}
-                      </p>
+        {!loading && events.length > 0 && (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
+            {events.map((event) => (
+              <article
+                key={event.id}
+                className="group relative bg-white border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-500 overflow-hidden"
+              >
+                {/* Image Header */}
+                <div className="relative h-48 overflow-hidden bg-gray-100">
+                  {event.image ? (
+                    <Image
+                      src={event.image}
+                      alt={event.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#2B5589]/10 to-[#FACC01]/10">
+                      <Calendar className="w-12 h-12 text-[#2B5589]/30" />
                     </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-4 h-4 text-[#FACC01] mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="text-xs text-[#364153] font-light">
-                        {event.location}
-                      </p>
-                    </div>
-                  </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-transparent" />
                 </div>
 
-                {/* CTA Link */}
-                <div className="pt-2">
-                  <a
-                    href="/events"
-                    className="inline-flex items-center gap-2 text-sm text-[#2B5589] font-light underline underline-offset-4 decoration-1 hover:text-[#1E3F69] group-hover:gap-3 transition-all duration-300"
-                  >
-                    <span>View Details</span>
-                    <svg
-                      className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                {/* Content */}
+                <div className="p-8 space-y-6">
+                  {/* Title */}
+                  <h3 className="text-xl lg:text-2xl font-light tracking-tight text-[#1a1a1a] group-hover:text-[#2B5589] transition-colors duration-300">
+                    {event.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm lg:text-base text-[#364153] leading-relaxed font-light">
+                    {event.description}
+                  </p>
+
+                  {/* Event Details */}
+                  <div className="space-y-3 pt-4 border-t border-gray-100">
+                    <div className="flex items-start gap-3">
+                      <Calendar className="w-4 h-4 text-[#0201FF] mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-xs text-[#364153] font-light">
+                          {formatDate(event.date)}
+                        </p>
+                      </div>
+                    </div>
+
+                    {event.location && (
+                      <div className="flex items-start gap-3">
+                        <MapPin className="w-4 h-4 text-[#FACC01] mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-xs text-[#364153] font-light">
+                            {event.location}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* CTA Link */}
+                  <div className="pt-2">
+                    <a
+                      href={`/events/${event.id}`}
+                      className="inline-flex items-center gap-2 text-sm text-[#2B5589] font-light underline underline-offset-4 decoration-1 hover:text-[#1E3F69] group-hover:gap-3 transition-all duration-300"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </a>
+                      <span>View Details</span>
+                      <svg
+                        className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={1.5}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
-        </div>
+              </article>
+            ))}
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!loading && events.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-[#364153] font-light text-lg">
+              No upcoming events at the moment. Check back soon!
+            </p>
+          </div>
+        )}
 
         {/* Bottom CTA */}
         <div className="mt-16 sm:mt-20 border-t border-gray-200 pt-12">
@@ -151,7 +186,7 @@ export default function EventSection() {
             </div>
 
             <a
-              href="/events"
+              href="/event/${event.id}"
               className="group inline-flex items-center gap-3 bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
             >
               <span className="text-sm tracking-wide">View All Events</span>
