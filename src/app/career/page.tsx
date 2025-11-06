@@ -1,4 +1,3 @@
-import ProtectedRoute from "@/components/ProtectedRoute";
 import AllCareersPage from "@/pages/AllCareersPage";
 
 export const metadata = {

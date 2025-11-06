@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MapPin, Users, Briefcase } from "lucide-react";
+import { MapPin } from "lucide-react";
 import UserProfileSection from "@/components/UserProfileSection";
 
 interface Career {

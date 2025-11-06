@@ -5,6 +5,7 @@ import { Calendar, MapPin, ArrowLeft } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import UserProfileSection from "@/components/UserProfileSection";
 import AuthModal from "@/components/AuthModal";
+import Link from "next/link";
 
 interface Career {
   id: number;
@@ -109,13 +110,13 @@ export default function CareerDetailPage() {
             The career opportunity you&apos;re looking for doesn&apos;t exist or
             has been closed.
           </p>
-          <a
+          <Link
             href="/career"
             className="inline-flex items-center gap-2 text-[#2B5589] font-light hover:text-[#1E3F69] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Careers</span>
-          </a>
+          </Link>
         </div>
       </div>
     );

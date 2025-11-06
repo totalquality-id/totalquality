@@ -43,8 +43,36 @@ export const getUserById = async (id: number) => {
   });
 };
 
-export const updateUser = async (id: number, data: any) => {
-  // Check if email is being updated and if it's already in use
+export const updateUser = async (
+  id: number,
+  data: {
+    name?: string;
+    email?: string;
+    password?: string;
+    phone?: string | null;
+    address?: string | null;
+    dateOfBirth?: Date | null;
+    age?: number | null;
+    gender?: string | null;
+    lastEducation?: string | null;
+    institution?: string | null;
+    major?: string | null;
+    graduationYear?: number | null;
+    gpa?: number | null;
+    lastCompany?: string | null;
+    lastPosition?: string | null;
+    workStartDate?: Date | null;
+    workEndDate?: Date | null;
+    jobDescription?: string | null;
+    reasonLeaving?: string | null;
+    skills?: string | null;
+    certifications?: string | null;
+    portfolioUrl?: string | null;
+    linkedinUrl?: string | null;
+    isProfileComplete?: boolean;
+  }
+) => {
+  // checck if email is being updated and if it's already in use
   if (data.email) {
     const existingUser = await prisma.user.findFirst({
       where: {
@@ -58,25 +86,24 @@ export const updateUser = async (id: number, data: any) => {
     }
   }
 
-  // ⭐ BUILD UPDATE OBJECT
   const updateData: Prisma.UserUpdateInput = {
     name: data.name,
     email: data.email,
-    
+
     // Profile
     phone: data.phone,
     address: data.address,
     dateOfBirth: data.dateOfBirth,
     age: data.age,
     gender: data.gender,
-    
+
     // Education
     lastEducation: data.lastEducation,
     institution: data.institution,
     major: data.major,
     graduationYear: data.graduationYear,
     gpa: data.gpa,
-    
+
     // Experience
     lastCompany: data.lastCompany,
     lastPosition: data.lastPosition,
@@ -84,7 +111,7 @@ export const updateUser = async (id: number, data: any) => {
     workEndDate: data.workEndDate,
     jobDescription: data.jobDescription,
     reasonLeaving: data.reasonLeaving,
-    
+
     // Additional
     skills: data.skills,
     certifications: data.certifications,

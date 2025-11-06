@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Calendar, MapPin } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 
 interface Event {
   id: number;
@@ -16,7 +16,6 @@ interface Event {
 
 export default function EventDetailPage() {
   const params = useParams();
-  const router = useRouter();
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);

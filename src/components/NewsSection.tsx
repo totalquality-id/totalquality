@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface News {
   id: number;
@@ -205,7 +206,7 @@ export default function NewsSection() {
               </p>
             </div>
 
-            <a
+            <Link
               href="/news"
               className="group inline-flex items-center gap-3 bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
             >
@@ -223,7 +224,7 @@ export default function NewsSection() {
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

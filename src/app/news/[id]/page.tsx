@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Calendar, User } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
+import Link from "next/link";
 
 interface News {
   id: number;
@@ -16,7 +17,6 @@ interface News {
 
 export default function NewsDetailPage() {
   const params = useParams();
-  const router = useRouter();
   const [news, setNews] = useState<News | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -90,12 +90,12 @@ export default function NewsDetailPage() {
             The news article you&apos;re looking for doesn&apos;t exist or has
             been removed.
           </p>
-          <a
+          <Link
             href="/news"
             className="inline-flex items-center gap-2 text-[#2B5589] font-light hover:text-[#1E3F69] transition-colors"
           >
             <span>Back to News</span>
-          </a>
+          </Link>
         </div>
       </div>
     );
@@ -268,7 +268,7 @@ export default function NewsDetailPage() {
           </div>
 
           <div className="text-center">
-            <a
+            <Link
               href="/news"
               className="group inline-flex items-center gap-3 bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
             >
@@ -286,7 +286,7 @@ export default function NewsDetailPage() {
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

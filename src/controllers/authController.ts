@@ -1,10 +1,10 @@
 import * as authService from "@/services/authService";
-import { handleError, successResponse, ApiError } from "@/utils/apiResponse";
+import { handleError, ApiError } from "@/utils/apiResponse";
 
 export const register = async (req: Request) => {
   try {
     console.log("Register endpoint hit");
-    
+
     const body = await req.json();
     console.log("Request body:", { ...body, password: "***" });
 
@@ -45,9 +45,9 @@ export const register = async (req: Request) => {
       password: body.password,
     });
 
-    console.log("Registration successful:", { 
-      userId: result.user.id, 
-      hasToken: !!result.token 
+    console.log("Registration successful:", {
+      userId: result.user.id,
+      hasToken: !!result.token,
     });
 
     // Wrap result in successResponse format
@@ -76,7 +76,7 @@ export const register = async (req: Request) => {
 export const login = async (req: Request) => {
   try {
     console.log("Login endpoint hit");
-    
+
     const body = await req.json();
     console.log("Login attempt for:", body.email);
 
@@ -97,9 +97,9 @@ export const login = async (req: Request) => {
       password: body.password,
     });
 
-    console.log("Login successful:", { 
-      userId: result.user.id, 
-      hasToken: !!result.token 
+    console.log("Login successful:", {
+      userId: result.user.id,
+      hasToken: !!result.token,
     });
 
     // Wrap result in successResponse format
