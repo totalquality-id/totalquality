@@ -16,8 +16,31 @@ model User {
   email     String   @unique
   password  String
   role      String   @default("user")
-  careers   Career[]
-  createdAt DateTime @default(now())
+  phone             String?
+  address           String?   @db.Text
+  dateOfBirth       DateTime?
+  age               Int?
+  gender            String?
+  lastEducation     String?
+  institution       String?
+  major             String?
+  graduationYear    Int?
+  gpa               Float?
+  lastCompany       String?
+  lastPosition      String?
+  workStartDate     DateTime?
+  workEndDate       DateTime?
+  jobDescription    String?   @db.Text
+  reasonLeaving     String?   @db.Text
+  skills            String?   @db.Text
+  certifications    String?   @db.Text
+  portfolioUrl      String?
+  linkedinUrl       String?
+  isProfileComplete Boolean   @default(false)
+  
+  careers      Career[]      @relation("UserCareers")
+  applications Application[]
+  createdAt    DateTime      @default(now())
 }
 
 model Service {
@@ -48,13 +71,39 @@ model News {
 }
 
 model Career {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String   @db.Text
-  requirements String  @db.Text
-  location    String
-  applicants  User[]
-  createdAt   DateTime @default(now())
+  id           Int           @id @default(autoincrement())
+  title        String
+  description  String        @db.Text
+  requirements String        @db.Text
+  location     String
+  salary       String?
+  jobType      String?
+  experience   String?
+  
+  applicants   User[]        @relation("UserCareers")
+  applications Application[]
+  createdAt    DateTime      @default(now())
+}
+
+model Application {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  careerId       Int
+  coverLetter    String?  @db.Text
+  expectedSalary String?
+  availableDate  DateTime?
+  referenceContact String? @db.Text  // JSON array
+  status         String   @default("pending")  // "pending", "reviewed", "interview", "accepted", "rejected"
+  appliedAt      DateTime @default(now())
+  reviewedAt     DateTime?
+  notes          String?  @db.Text  // Notes from HR
+  
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  career  Career @relation(fields: [careerId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, careerId])
+  @@index([userId])
+  @@index([careerId])
 }
 
 model Forum {

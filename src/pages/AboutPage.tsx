@@ -20,42 +20,42 @@ export default function AboutPage() {
       title: "The Beginning",
       description:
         "Total Quality Indonesia was founded by Johan Yan with a vision to transform organizational culture across Southeast Asia through motivation and excellence.",
-      image: "/timeline/2000.jpg",
+      image: "/images/timeline/1.jpg",
     },
     {
-      year: "2005",
-      title: "Regional Expansion",
+      year: "2006",
+      title: "Expansion Through New Branch Offices",
       description:
-        "Expanded our services across Indonesia, reaching over 50 companies and establishing ourselves as a trusted partner in organizational development.",
-      image: "/timeline/2005.jpg",
+        "In 2006, Total Quality expanded its reach by opening new branch offices in Jakarta and Singapore, strengthening its presence in Southeast Asia.",
+      image: "/images/timeline/2.jpg",
     },
     {
-      year: "2010",
-      title: "Innovation in Training",
+      year: "2007",
+      title: "The 1st Annual National Empowerment Congress (ANEC)",
       description:
-        "Introduced cutting-edge training methodologies combining traditional wisdom with modern psychological approaches to workplace motivation.",
-      image: "/timeline/2010.jpg",
+        "Total Quality successfully held Indonesia’s largest motivational congress, engaging hundreds of company directors and thousands of managers nationwide.",
+      image: "/images/timeline/3.jpg",
     },
     {
-      year: "2015",
-      title: "Milestone Achievement",
+      year: "2008",
+      title: "Breaking Records at the 2nd ANEC",
       description:
-        "Reached 200+ companies served, launching specialized programs for various industries including manufacturing, retail, and services.",
-      image: "/timeline/2015.jpg",
+        "The 2nd Annual National Empowerment Congress (ANEC) achieved remarkable milestones by breaking six MURI (Indonesian World Records Museum) records. The event gathered 486 Directors and 4,073 Managers, earning recognition as the largest motivational congress in Southeast Asia.",
+      image: "/images/timeline/4.jpg",
     },
     {
-      year: "2020",
-      title: "Digital Transformation",
+      year: "2012",
+      title: "Royal Recognition for Cultural Preservation",
       description:
-        "Adapted to the new normal by developing hybrid training programs, combining in-person workshops with digital learning platforms.",
-      image: "/timeline/2020.jpg",
+        "Johan Yan, President Director of Total Quality, received the honorary title “Prince” from Pakubowono XIII of the Surakarta Sunanate in recognition of his significant contribution to preserving Indonesia’s cultural heritage.",
+      image: "/images/timeline/5.jpg",
     },
     {
-      year: "2025",
-      title: "Looking Forward",
+      year: "2013",
+      title: "Among Indonesia’s 10 Most Influential Young Leaders",
       description:
-        "With 400+ companies served, we continue to innovate and inspire, shaping the future of workplace culture and organizational excellence.",
-      image: "/timeline/2025.jpg",
+        "In 2013, Johan Yan was honored as one of Indonesia’s 10 Most Influential Young Leaders in Culture by the United Nations-affiliated youth organization, JCI (Junior Chamber International).",
+      image: "/images/timeline/6.jpg",
     },
   ];
 
@@ -122,7 +122,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 shadow-2xl">
             <div className="relative h-[400px] lg:h-[500px]">
               <Image
-                src="/johan-yan.jpg"
+                src="https://images.squarespace-cdn.com/content/v1/5521b031e4b06ebe90178744/1578614550199-VA0TPUX88IDO9OUKBO3J/YT_19_03.jpg?format=1000w"
                 alt="CEO Testimonial"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -189,7 +189,7 @@ export default function AboutPage() {
                 <p
                   className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal ${newsreader.className}`}
                 >
-                  Together, we build resilient organizations ready for the
+                  Together, we build resilient organization ready for the
                   future.
                 </p>
               </div>
@@ -197,7 +197,7 @@ export default function AboutPage() {
 
             <div className="relative h-[400px] lg:h-[500px]">
               <Image
-                src="/johan-yan.jpg"
+                src="https://img.freepik.com/free-photo/portrait-confident-young-businessman-with-his-arms-crossed_23-2148176206.jpg?semt=ais_hybrid&w=740&q=80"
                 alt="Director"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"

@@ -65,30 +65,61 @@ export const deleteCareer = async (id: number) => {
   return await prisma.career.delete({ where: { id } });
 };
 
-export const applyToCareer = async (careerId: number, userId: number) => {
-  // Check if user already applied
-  const career = await prisma.career.findUnique({
-    where: { id: careerId },
-    include: {
-      applicants: {
-        where: { id: userId },
+export const applyToCareer = async (
+  careerId: number,
+  userId: number,
+  applicationData?: {
+    coverLetter?: string;
+    expectedSalary?: string;
+    availableDate?: Date | null;
+  }
+) => {
+  const existingApplication = await prisma.application.findUnique({
+    where: {
+      userId_careerId: {
+        userId: userId,
+        careerId: careerId,
       },
     },
+  });
+
+  if (existingApplication) {
+    throw new Error("Already applied to this position");
+  }
+
+  // Check if career exists
+  const career = await prisma.career.findUnique({
+    where: { id: careerId },
   });
 
   if (!career) {
     throw new Error("Career not found");
   }
 
-  if (career.applicants.length > 0) {
-    throw new Error("Already applied to this position");
-  }
-
-  return await prisma.career.update({
-    where: { id: careerId },
+  // ⭐ CREATE APPLICATION
+  return await prisma.application.create({
     data: {
-      applicants: {
-        connect: { id: userId },
+      userId: userId,
+      careerId: careerId,
+      coverLetter: applicationData?.coverLetter,
+      expectedSalary: applicationData?.expectedSalary,
+      availableDate: applicationData?.availableDate,
+      status: "pending",
+    },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+      career: {
+        select: {
+          id: true,
+          title: true,
+          location: true,
+        },
       },
     },
   });

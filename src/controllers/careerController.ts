@@ -157,12 +157,30 @@ export const applyCareer = async (id: number, req: Request) => {
       throw new ApiError(400, "Valid userId is required");
     }
 
-    const result = await careerService.applyToCareer(id, body.userId);
-    return successResponse(result);
+    // ⭐ EXTRACT APPLICATION DATA
+    const applicationData = {
+      coverLetter: body.coverLetter,
+      expectedSalary: body.expectedSalary,
+      availableDate: body.availableDate ? new Date(body.availableDate) : null,
+    };
+
+    const result = await careerService.applyToCareer(
+      id,
+      body.userId,
+      applicationData
+    );
+
+    return Response.json(
+      {
+        success: true,
+        data: result,
+      },
+      { status: 201 }
+    );
   } catch (error) {
     if (
       error instanceof Error &&
-      error.message === "Already apply to this position"
+      error.message === "Already applied to this position"
     ) {
       return handleError(new ApiError(400, error.message));
     }

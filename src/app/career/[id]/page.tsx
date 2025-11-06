@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Calendar, MapPin, Users, Briefcase } from "lucide-react";
-import { useParams } from "next/navigation";
+import { Calendar, MapPin, ArrowLeft } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import UserProfileSection from "@/components/UserProfileSection";
+import AuthModal from "@/components/AuthModal";
 
 interface Career {
   id: number;
@@ -18,9 +20,13 @@ interface Career {
 
 export default function CareerDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const [career, setCareer] = useState<Career | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [applying, setApplying] = useState(false);
+  const [applied, setApplied] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   useEffect(() => {
     const fetchCareer = async () => {
@@ -48,6 +54,25 @@ export default function CareerDetailPage() {
 
     fetchCareer();
   }, [params]);
+
+  const handleApply = async () => {
+    if (!career) return;
+
+    const token = localStorage.getItem("token");
+    const userStr = localStorage.getItem("user");
+
+    if (!token || !userStr) {
+      setShowAuthModal(true);
+      return;
+    }
+
+    window.location.href = `/career/${career.id}/apply`;
+  };
+
+  const handleAuthSuccess = () => {
+    setShowAuthModal(false);
+    handleApply();
+  };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -88,6 +113,7 @@ export default function CareerDetailPage() {
             href="/career"
             className="inline-flex items-center gap-2 text-[#2B5589] font-light hover:text-[#1E3F69] transition-colors"
           >
+            <ArrowLeft className="w-4 h-4" />
             <span>Back to Careers</span>
           </a>
         </div>
@@ -116,8 +142,10 @@ export default function CareerDetailPage() {
             </p>
           </div>
         </div>
-        
       </section>
+
+      {/* User Profile Section */}
+      <UserProfileSection />
 
       {/* Career Details Section */}
       <section className="relative py-16 sm:py-20 lg:py-24">
@@ -236,32 +264,52 @@ export default function CareerDetailPage() {
                 </p>
               </div>
 
-              <a
-                href="/contact"
-                className="group inline-flex items-center gap-3 bg-white text-[#0201FF] font-light px-8 py-4 hover:bg-slate-50 transition-all duration-300 flex-shrink-0"
+              <button
+                onClick={handleApply}
+                disabled={applying || applied}
+                className={`group inline-flex items-center gap-3 font-light px-8 py-4 transition-all duration-300 flex-shrink-0 cursor-pointer ${
+                  applied
+                    ? "bg-green-500 text-white cursor-not-allowed"
+                    : applying
+                    ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                    : "bg-white text-[#0201FF] hover:bg-slate-50"
+                }`}
               >
-                <span className="text-sm tracking-wide">Apply Now</span>
-                <svg
-                  className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </a>
+                <span className="text-sm tracking-wide">
+                  {applied
+                    ? "Applied ✓"
+                    : applying
+                    ? "Applying..."
+                    : "Apply Now"}
+                </span>
+                {!applying && !applied && (
+                  <svg
+                    className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
         </div>
       </section>
-
+      {/* Auth Modal */}
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        onSuccess={handleAuthSuccess}
+      />
       {/* Related Careers Section */}
-      <section className="relative py-16 sm:py-20 bg-slate-50">
+      {/* <section className="relative py-16 sm:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
             <h2 className="text-base sm:text-lg font-light tracking-tighter text-[#364153] mb-1">
@@ -296,7 +344,7 @@ export default function CareerDetailPage() {
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

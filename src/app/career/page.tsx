@@ -1,3 +1,4 @@
+import ProtectedRoute from "@/components/ProtectedRoute";
 import AllCareersPage from "@/pages/AllCareersPage";
 
 export const metadata = {
@@ -5,6 +6,6 @@ export const metadata = {
   description: "Join our team and grow with us",
 };
 
-export default function Events() {
+export default function Career() {
   return <AllCareersPage />;
 }
