@@ -387,7 +387,7 @@ export default function Navbar() {
                   onClick={(e) => handleNavigation(e, "#forum")}
                   className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#0201FF] transition-all duration-300 font-light"
                 >
-                  Forum
+                  AOC Connect
                 </a>
               </li>
               <li className="pt-2">

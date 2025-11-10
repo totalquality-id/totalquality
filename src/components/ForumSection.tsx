@@ -94,10 +94,7 @@ export default function ForumSection() {
 
           <div className="max-w-4xl">
             <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
-              Forum —{" "}
-              <span className="text-[#0201FF] font-normal">
-                Agent of Change
-              </span>
+              AOC — <span className="text-[#0201FF] font-normal">Connect</span>
             </h3>
             <p className="text-base sm:text-lg lg:text-xl font-light tracking-tight text-[#364153] mt-4">
               Share and interact with motivational quotes from us

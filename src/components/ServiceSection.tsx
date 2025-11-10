@@ -1,8 +1,14 @@
 "use client";
 
-import { JSX, useEffect, useState } from "react";
+import { JSX, useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { Users, Settings, TrendingUp } from "lucide-react";
+import {
+  Users,
+  Settings,
+  TrendingUp,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 interface Service {
   id: number;
@@ -13,13 +19,53 @@ interface Service {
 
 export default function ServiceSection() {
   const [services, setServices] = useState<Service[]>([]);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch("/api/services")
       .then((res) => res.json())
-      .then((data) => setServices(data))
+      .then((data) => {
+        // Sort services by id in ascending order (oldest first)
+        const sortedData = data.sort((a: Service, b: Service) => a.id - b.id);
+        setServices(sortedData);
+      })
       .catch((err) => console.error("Error fetching services:", err));
   }, []);
+
+  const checkScrollability = () => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const { scrollLeft, scrollWidth, clientWidth } = container;
+    setCanScrollLeft(scrollLeft > 0);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+  };
+
+  useEffect(() => {
+    checkScrollability();
+    window.addEventListener("resize", checkScrollability);
+    return () => window.removeEventListener("resize", checkScrollability);
+  }, [services]);
+
+  const scroll = (direction: "left" | "right") => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const scrollAmount = container.clientWidth * 0.8;
+    const targetScroll =
+      direction === "left"
+        ? container.scrollLeft - scrollAmount
+        : container.scrollLeft + scrollAmount;
+
+    container.scrollTo({
+      left: targetScroll,
+      behavior: "smooth",
+    });
+
+    setTimeout(checkScrollability, 300);
+  };
 
   interface StyleConfig {
     icon: JSX.Element;
@@ -45,8 +91,8 @@ export default function ServiceSection() {
     },
   };
 
-  // tampilkan 3 service utama saja
-  const displayedServices = services.slice(0, 3);
+  // Tampilkan semua services untuk scrolling
+  const displayedServices = services.filter((service) => service.id >= 1);
 
   return (
     <section
@@ -73,41 +119,87 @@ export default function ServiceSection() {
           </div>
         </div>
 
-        {/* Services grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
-          {displayedServices.map((service) => {
-            const style = styleMap[service.title] || {
-              icon: <Users className="w-7 h-7 text-[#2B5589]" />,
-              gradient: "from-gray-100 to-white",
-              hoverBorder: "hover:border-gray-200",
-            };
+        {/* Services Container with Navigation */}
+        <div className="relative mb-12">
+          {/* Navigation Buttons */}
+          {canScrollLeft && (
+            <button
+              onClick={() => scroll("left")}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white border border-gray-200 hover:border-[#0201FF] hover:bg-[#0201FF] hover:text-white flex items-center justify-center transition-all duration-300 shadow-lg group"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-6 h-6 text-[#0201FF] group-hover:text-white transition-colors duration-300" />
+            </button>
+          )}
 
-            return (
-              <div
-                key={service.id}
-                className={`group relative p-8 lg:p-10 bg-gradient-to-br ${style.gradient} border border-gray-200 ${style.hoverBorder} hover:shadow-lg transition-all duration-500 overflow-hidden`}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          {canScrollRight && (
+            <button
+              onClick={() => scroll("right")}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-white border border-gray-200 hover:border-[#0201FF] hover:bg-[#0201FF] hover:text-white flex items-center justify-center transition-all duration-300 shadow-lg group"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-6 h-6 text-[#0201FF] group-hover:text-white transition-colors duration-300" />
+            </button>
+          )}
 
-                <div className="relative space-y-6">
-                  <div className="flex items-start justify-between">
-                    <div className="w-14 h-14 bg-white border border-gray-200 flex items-center justify-center group-hover:border-gray-300 transition-all duration-300">
-                      {style.icon}
+          {/* Scrollable Services Grid */}
+          <div
+            ref={scrollContainerRef}
+            onScroll={checkScrollability}
+            className="overflow-x-auto scrollbar-hide scroll-smooth"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
+            <div className="flex gap-6 lg:gap-8 pb-4">
+              {displayedServices.map((service) => {
+                const style = styleMap[service.title] || {
+                  icon: <Users className="w-7 h-7 text-[#2B5589]" />,
+                  gradient: "from-gray-100 to-white",
+                  hoverBorder: "hover:border-gray-200",
+                };
+
+                return (
+                  <div
+                    key={service.id}
+                    className={`group relative p-8 lg:p-10 bg-gradient-to-br ${style.gradient} border border-gray-200 ${style.hoverBorder} hover:shadow-lg transition-all duration-500 overflow-hidden flex-shrink-0 w-[320px] sm:w-[380px] lg:w-[420px]`}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    <div className="relative space-y-6">
+                      <div className="flex items-start justify-between">
+                        <div className="w-14 h-14 bg-white border border-gray-200 flex items-center justify-center group-hover:border-gray-300 transition-all duration-300">
+                          {style.icon}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl lg:text-2xl font-light tracking-tight text-[#1a1a1a] mb-4 group-hover:text-[#2B5589] transition-colors duration-300">
+                          {service.title}
+                        </h3>
+                        <p className="text-sm lg:text-base text-[#364153] leading-relaxed font-light">
+                          {service.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
+                );
+              })}
+            </div>
+          </div>
 
-                  <div>
-                    <h3 className="text-xl lg:text-2xl font-light tracking-tight text-[#1a1a1a] mb-4 group-hover:text-[#2B5589] transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm lg:text-base text-[#364153] leading-relaxed font-light">
-                      {service.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {/* Scroll Indicator Dots */}
+          {/* {displayedServices.length > 3 && (
+            <div className="flex justify-center gap-2 mt-6">
+              {displayedServices.map((_, index) => (
+                <div
+                  key={index}
+                  className="w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"
+                />
+              ))}
+            </div>
+          )} */}
         </div>
 
         {/* Tombol Explore */}
@@ -144,6 +236,12 @@ export default function ServiceSection() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 }

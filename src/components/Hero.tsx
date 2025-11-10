@@ -56,9 +56,9 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-between py-20 sm:py-24 md:py-32 min-h-screen">
         <div className="flex-1 flex flex-col justify-center mb-8 sm:mb-12">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter leading-none mb-3 sm:mb-4">
-            <span className="text-amber-300">The Best</span>
+            <span className="text-amber-300">Totally</span>
             <br />
-            <span className="text-white">Corporate Motivator</span>
+            <span className="text-white">Agent of Change</span>
           </h1>
 
           <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-tight tracking-tight font-light max-w-2xl mb-6">

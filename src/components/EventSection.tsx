@@ -186,7 +186,7 @@ export default function EventSection() {
             </div>
 
             <a
-              href="/event/${event.id}"
+              href="/events"
               className="group inline-flex items-center gap-3 bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
             >
               <span className="text-sm tracking-wide">View All Events</span>

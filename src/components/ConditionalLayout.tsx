@@ -12,8 +12,9 @@ export default function ConditionalLayout({
   const pathname = usePathname();
 
   const isApplicationForm = pathname?.includes("/apply") ?? false;
+  const isAssessmentPage = pathname?.includes("/assessment") ?? false;
 
-  if (isApplicationForm) {
+  if (isApplicationForm || isAssessmentPage) {
     return <main>{children}</main>;
   }
 

@@ -77,7 +77,7 @@ export default function Footer() {
                     Total Quality
                   </h3>
                   <p className="text-xs text-white/70 font-light tracking-widest uppercase">
-                    Agent of Change
+                    Totally Agent of Change
                   </p>
                 </div>
               </div>
