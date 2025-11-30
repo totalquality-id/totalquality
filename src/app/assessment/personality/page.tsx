@@ -445,7 +445,7 @@ export default function PersonalityAssessment() {
     },
     phlegmatic: {
       title: "Phlegmatic - The Peacemaker",
-      color: "from-[#0201FF] to-[#0000d1]",
+      color: "from-[#2B5589] to-[#0000d1]",
       description:
         "Anda adalah pribadi yang tenang, sabar, dan diplomatic. Anda memiliki kemampuan alami untuk menciptakan harmoni dan stabilitas di lingkungan Anda.",
       strengths: [
@@ -465,7 +465,7 @@ export default function PersonalityAssessment() {
     },
     choleric: {
       title: "Choleric - The Leader",
-      color: "from-[#0201FF] to-[#0000d1]",
+      color: "from-[#2B5589] to-[#0000d1]",
       description:
         "Anda adalah pribadi yang kuat, decisive, dan goal-oriented. Anda adalah pemimpin alami yang selalu fokus pada hasil dan pencapaian.",
       strengths: [
@@ -508,7 +508,7 @@ export default function PersonalityAssessment() {
           <div className="text-center mb-12">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tighter text-[#1a1a1a] mb-4">
               Your{" "}
-              <span className="text-[#0201FF] font-normal">Personality</span>{" "}
+              <span className="text-[#2B5589] font-normal">Personality</span>{" "}
               Profile
             </h1>
             <p className="text-lg text-[#364153] font-light">
@@ -535,7 +535,7 @@ export default function PersonalityAssessment() {
                   </div>
                   <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-[#0201FF] transition-all duration-1000"
+                      className="h-full bg-[#2B5589] transition-all duration-1000"
                       style={{ width: `${(score / 20) * 100}%` }}
                     />
                   </div>
@@ -615,7 +615,7 @@ export default function PersonalityAssessment() {
           <div className="text-center space-y-4">
             <button
               onClick={() => (window.location.href = "/")}
-              className="inline-flex items-center gap-3 bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
+              className="inline-flex items-center gap-3 bg-[#2B5589] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
             >
               <span className="text-sm tracking-wide">Back to Home</span>
             </button>
@@ -641,7 +641,7 @@ export default function PersonalityAssessment() {
         <div className="mb-6">
           <Link
             href="/"
-            className="inline-flex items-center text-sm text-[#364153] hover:text-[#0201FF] transition-colors duration-200 font-light"
+            className="inline-flex items-center text-sm text-[#364153] hover:text-[#2B5589] transition-colors duration-200 font-light"
           >
             <ChevronLeft className="w-4 h-4 mr-1" />
             Back to Homepage
@@ -658,7 +658,7 @@ export default function PersonalityAssessment() {
           </div>
           <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
             <div
-              className="h-full bg-[#0201FF] transition-all duration-300"
+              className="h-full bg-[#2B5589] transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -674,15 +674,15 @@ export default function PersonalityAssessment() {
               <button
                 key={index}
                 onClick={() => handleAnswer(option.type)}
-                className="w-full text-left p-6 bg-white border-2 border-gray-200 hover:border-[#0201FF] hover:shadow-lg transition-all duration-300 group"
+                className="w-full text-left p-6 bg-white border-2 border-gray-200 hover:border-[#2B5589] hover:shadow-lg transition-all duration-300 group"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center border-2 border-gray-300 group-hover:border-[#0201FF] group-hover:bg-[#0201FF] transition-all duration-300 rounded-full">
+                  <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center border-2 border-gray-300 group-hover:border-[#2B5589] group-hover:bg-[#2B5589] transition-all duration-300 rounded-full">
                     <span className="text-sm font-light text-gray-400 group-hover:text-white">
                       {String.fromCharCode(65 + index)}
                     </span>
                   </div>
-                  <p className="text-base sm:text-lg font-light text-[#364153] group-hover:text-[#0201FF] transition-colors duration-300">
+                  <p className="text-base sm:text-lg font-light text-[#364153] group-hover:text-[#2B5589] transition-colors duration-300">
                     {option.text}
                   </p>
                 </div>
@@ -694,7 +694,7 @@ export default function PersonalityAssessment() {
         {currentQuestion > 0 && (
           <button
             onClick={() => setCurrentQuestion(currentQuestion - 1)}
-            className="text-[#364153] hover:text-[#0201FF] font-light text-sm transition-colors duration-300"
+            className="text-[#364153] hover:text-[#2B5589] font-light text-sm transition-colors duration-300"
           >
             ← Previous Question
           </button>

@@ -49,12 +49,9 @@ export default function Footer() {
 
   return (
     <footer
-      className="relative bg-gradient-to-br from-[#0201FF] via-[#0000d1] to-[#0201FF] text-white overflow-hidden"
+      className="relative bg-black text-white overflow-hidden"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
-      {/* Subtle Decorative Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#FACC01]/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
 
       {/* Main Footer Content */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">

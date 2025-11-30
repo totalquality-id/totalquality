@@ -30,7 +30,7 @@ export default function UserProfileSection() {
     if (storedUser) {
       const userData = JSON.parse(storedUser);
       setUser(userData);
-      
+
       // Fetch applied careers (if you have this endpoint)
       // fetchAppliedCareers(userData.id);
     }
@@ -39,7 +39,7 @@ export default function UserProfileSection() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    
+
     router.push("/");
   };
 
@@ -67,7 +67,7 @@ export default function UserProfileSection() {
               {/* User Info */}
               <div className="flex items-center gap-4">
                 {/* Avatar */}
-                <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-[#0201FF] to-[#0000d1] rounded-full flex items-center justify-center">
+                <div className="flex-shrink-0 w-14 h-14 bg-[#2B5589] rounded-full flex items-center justify-center">
                   <User className="w-7 h-7 text-white" />
                 </div>
 

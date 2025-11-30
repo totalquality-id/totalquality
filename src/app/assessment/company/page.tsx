@@ -455,7 +455,7 @@ export default function CompanyAssessment() {
           <div className="text-center mb-12">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tighter text-[#1a1a1a] mb-4">
               Company System{" "}
-              <span className="text-[#0201FF] font-normal">Assessment</span>{" "}
+              <span className="text-[#2B5589] font-normal">Assessment</span>{" "}
               Results
             </h1>
             <p className="text-lg text-[#364153] font-light">
@@ -535,7 +535,7 @@ export default function CompanyAssessment() {
             <ul className="space-y-4">
               {result.recommendations.map((recommendation, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center bg-[#0201FF] text-white text-sm rounded-full mt-0.5">
+                  <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center bg-[#2B5589] text-white text-sm rounded-full mt-0.5">
                     {idx + 1}
                   </div>
                   <p className="text-base font-light text-[#364153] leading-relaxed">
@@ -547,7 +547,7 @@ export default function CompanyAssessment() {
           </div>
 
           {/* CTA */}
-          <div className="bg-gradient-to-br from-[#0201FF] to-[#0000d1] p-8 sm:p-10 text-white text-center">
+          <div className="bg-gradient-to-br from-[#2B5589] to-[#0000d1] p-8 sm:p-10 text-white text-center">
             <h3 className="text-2xl sm:text-3xl font-light tracking-tight mb-4">
               Ready to Transform Your Organization?
             </h3>
@@ -558,7 +558,7 @@ export default function CompanyAssessment() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => (window.location.href = "/contact")}
-                className="inline-flex items-center justify-center gap-3 bg-white text-[#0201FF] font-light px-8 py-4 hover:bg-gray-100 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-3 bg-white text-[#2B5589] font-light px-8 py-4 hover:bg-gray-100 transition-all duration-300"
               >
                 <span className="text-sm tracking-wide">Contact Us</span>
               </button>
@@ -587,7 +587,7 @@ export default function CompanyAssessment() {
         <div className="mb-6">
           <Link
             href="/"
-            className="inline-flex items-center text-sm text-[#364153] hover:text-[#0201FF] transition-colors duration-200 font-light"
+            className="inline-flex items-center text-sm text-[#364153] hover:text-[#2B5589] transition-colors duration-200 font-light"
           >
             <ChevronLeft className="w-4 h-4 mr-1" />
             Back to Homepage
@@ -605,7 +605,7 @@ export default function CompanyAssessment() {
           </div>
           <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
             <div
-              className="h-full bg-[#0201FF] transition-all duration-300"
+              className="h-full bg-[#2B5589] transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -628,10 +628,10 @@ export default function CompanyAssessment() {
               <button
                 key={index}
                 onClick={() => handleAnswer(option.score)}
-                className="w-full text-left p-5 bg-white border-2 border-gray-200 hover:border-[#0201FF] hover:shadow-lg transition-all duration-300 group"
+                className="w-full text-left p-5 bg-white border-2 border-gray-200 hover:border-[#2B5589] hover:shadow-lg transition-all duration-300 group"
               >
                 <div className="flex items-center justify-between gap-4">
-                  <p className="text-base sm:text-lg font-light text-[#364153] group-hover:text-[#0201FF] transition-colors duration-300">
+                  <p className="text-base sm:text-lg font-light text-[#364153] group-hover:text-[#2B5589] transition-colors duration-300">
                     {option.text}
                   </p>
                   <div className="flex gap-1">
@@ -639,8 +639,8 @@ export default function CompanyAssessment() {
                       <div
                         key={i}
                         className={`w-2 h-2 rounded-full ${
-                          i < option.score ? "bg-[#0201FF]" : "bg-gray-300"
-                        } group-hover:bg-[#0201FF] transition-colors duration-300`}
+                          i < option.score ? "bg-[#2B5589]" : "bg-gray-300"
+                        } group-hover:bg-[#2B5589] transition-colors duration-300`}
                       />
                     ))}
                   </div>
@@ -654,7 +654,7 @@ export default function CompanyAssessment() {
         {currentQuestion > 0 && (
           <button
             onClick={() => setCurrentQuestion(currentQuestion - 1)}
-            className="text-[#364153] hover:text-[#0201FF] font-light text-sm transition-colors duration-300"
+            className="text-[#364153] hover:text-[#2B5589] font-light text-sm transition-colors duration-300"
           >
             ← Previous Question
           </button>

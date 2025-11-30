@@ -8,7 +8,7 @@ export default function AllNewsPage() {
         "This partnership marks a significant milestone in our mission to transform organizational culture across the region. By joining forces with leading companies, we aim to create a network of excellence that benefits all stakeholders.",
       date: "March 8, 2025",
       category: "Partnership",
-      categoryColor: "bg-[#0201FF] text-white",
+      categoryColor: "bg-[#2B5589] text-white",
       author: "Corporate Relations Team",
     },
     {
@@ -30,7 +30,7 @@ export default function AllNewsPage() {
         "The summit will feature keynote speeches from industry leaders, interactive workshops, and networking sessions designed to foster collaboration and knowledge sharing among participants.",
       date: "February 15, 2025",
       category: "Event",
-      categoryColor: "bg-[#0201FF] text-white",
+      categoryColor: "bg-[#2B5589] text-white",
       author: "Events Team",
     },
     {
@@ -52,7 +52,7 @@ export default function AllNewsPage() {
         "The platform features interactive courses, live mentoring sessions, and a community forum where participants can connect and share experiences. This marks a new era in our training delivery.",
       date: "January 15, 2025",
       category: "Innovation",
-      categoryColor: "bg-[#0201FF] text-white",
+      categoryColor: "bg-[#2B5589] text-white",
       author: "Technology Team",
     },
     {
@@ -74,7 +74,7 @@ export default function AllNewsPage() {
         "This outstanding achievement is a testament to our comprehensive mentoring approach and hands-on support throughout the certification process. We're proud to have helped hundreds of organizations achieve international recognition.",
       date: "December 10, 2024",
       category: "Achievement",
-      categoryColor: "bg-[#0201FF] text-white",
+      categoryColor: "bg-[#2B5589] text-white",
       author: "Quality Assurance Team",
     },
     {
@@ -96,7 +96,7 @@ export default function AllNewsPage() {
         "The research, conducted over 12 months with 200+ organizations, provides data-driven insights into the factors that contribute to lasting cultural transformation and employee engagement.",
       date: "November 10, 2024",
       category: "Research",
-      categoryColor: "bg-[#0201FF] text-white",
+      categoryColor: "bg-[#2B5589] text-white",
       author: "Research Team",
     },
   ];
@@ -107,7 +107,7 @@ export default function AllNewsPage() {
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#0201FF] to-[#0000d1] text-white overflow-hidden">
+      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#1a2942] via-[#2B5589] to-[#1e3a5f] text-white overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#FACC01]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
 
@@ -215,7 +215,7 @@ export default function AllNewsPage() {
       {/* Newsletter Section */}
       <section className="relative py-16 sm:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative p-12 lg:p-16 bg-[#0201FF] text-white overflow-hidden">
+          <div className="relative p-12 lg:p-16 bg-[#2B5589] text-white overflow-hidden">
             <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#FACC01]/10 rounded-full blur-3xl" />
 

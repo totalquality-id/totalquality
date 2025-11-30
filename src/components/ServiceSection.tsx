@@ -1,14 +1,9 @@
 "use client";
 
-import { JSX, useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import {
-  Users,
-  Settings,
-  TrendingUp,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Service {
   id: number;
@@ -27,7 +22,6 @@ export default function ServiceSection() {
     fetch("/api/services")
       .then((res) => res.json())
       .then((data) => {
-        // Sort services by id in ascending order (oldest first)
         const sortedData = data.sort((a: Service, b: Service) => a.id - b.id);
         setServices(sortedData);
       })
@@ -67,172 +61,157 @@ export default function ServiceSection() {
     setTimeout(checkScrollability, 300);
   };
 
-  interface StyleConfig {
-    icon: JSX.Element;
-    gradient: string;
-    hoverBorder: string;
-  }
-
-  const styleMap: Record<string, StyleConfig> = {
-    "Quality Empowerment System": {
-      icon: <Users className="w-7 h-7 text-[#2B5589]" />,
-      gradient: "from-[#2B5589]/5 to-white",
-      hoverBorder: "hover:border-[#2B5589]/40",
-    },
-    "Quality Management System": {
-      icon: <Settings className="w-7 h-7 text-[#FACC01]" />,
-      gradient: "from-[#FACC01]/5 to-white",
-      hoverBorder: "hover:border-[#FACC01]/40",
-    },
-    "Quality Improvement System": {
-      icon: <TrendingUp className="w-7 h-7 text-[#2B5589]" />,
-      gradient: "from-[#2B5589]/5 to-white",
-      hoverBorder: "hover:border-[#2B5589]/40",
-    },
-  };
-
-  // Tampilkan semua services untuk scrolling
   const displayedServices = services.filter((service) => service.id >= 1);
 
   return (
     <section
       id="service"
-      className="relative py-16 sm:py-20 lg:py-24 bg-slate-50"
+      className="relative py-16 sm:py-20 lg:py-24 overflow-hidden"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
-      {/* Background elemen */}
-      <div className="absolute top-1/4 right-10 w-64 h-64 bg-[#FACC01]/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 left-10 w-72 h-72 bg-[#2B5589]/5 rounded-full blur-3xl" />
+      {/* Decorative Accent Elements - Subtle */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Top Left Accent */}
+        <div className="absolute top-10 left-10 w-20 h-20 border border-[#0201FF]/10 rounded-full" />
+        <div className="absolute top-14 left-14 w-12 h-12 border border-[#0201FF]/8 rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Header */}
-        <div className="mb-12 sm:mb-16">
-          <h2 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-light tracking-tighter text-[#364153] mb-1">
-            What We Offer
-          </h2>
-          <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
+        {/* Top Right Accent */}
+        <div className="absolute top-16 right-12 w-16 h-16 border border-[#FACC01]/10 rounded-lg rotate-45" />
 
-          <div className="max-w-4xl">
-            <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
-              Our <span className="text-[#0201FF] font-normal">Services</span>
-            </h3>
-          </div>
-        </div>
+        {/* Bottom Right Accent */}
+        <div className="absolute bottom-16 right-20 w-18 h-18 border border-[#FACC01]/10 rounded-lg rotate-12" />
+      </div>
 
-        {/* Services Container with Navigation */}
-        <div className="relative mb-12">
-          {/* Navigation Buttons */}
-          {canScrollLeft && (
-            <button
-              onClick={() => scroll("left")}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white border border-gray-200 hover:border-[#0201FF] hover:bg-[#0201FF] hover:text-white flex items-center justify-center transition-all duration-300 shadow-lg group"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft className="w-6 h-6 text-[#0201FF] group-hover:text-white transition-colors duration-300" />
-            </button>
-          )}
+      {/* Header with Container */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-8">
+        <div className="flex items-center justify-between gap-4">
+          {/* Left Side - Title and Link */}
+          <div className="flex items-center gap-8">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-light tracking-tighter text-white">
+              What We <span className="font-semibold">Offer</span>
+            </h2>
 
-          {canScrollRight && (
-            <button
-              onClick={() => scroll("right")}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-white border border-gray-200 hover:border-[#0201FF] hover:bg-[#0201FF] hover:text-white flex items-center justify-center transition-all duration-300 shadow-lg group"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-6 h-6 text-[#0201FF] group-hover:text-white transition-colors duration-300" />
-            </button>
-          )}
-
-          {/* Scrollable Services Grid */}
-          <div
-            ref={scrollContainerRef}
-            onScroll={checkScrollability}
-            className="overflow-x-auto scrollbar-hide scroll-smooth"
-            style={{
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-            }}
-          >
-            <div className="flex gap-6 lg:gap-8 pb-4">
-              {displayedServices.map((service) => {
-                const style = styleMap[service.title] || {
-                  icon: <Users className="w-7 h-7 text-[#2B5589]" />,
-                  gradient: "from-gray-100 to-white",
-                  hoverBorder: "hover:border-gray-200",
-                };
-
-                return (
-                  <div
-                    key={service.id}
-                    className={`group relative p-8 lg:p-10 bg-gradient-to-br ${style.gradient} border border-gray-200 ${style.hoverBorder} hover:shadow-lg transition-all duration-500 overflow-hidden flex-shrink-0 w-[320px] sm:w-[380px] lg:w-[420px]`}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                    <div className="relative space-y-6">
-                      <div className="flex items-start justify-between">
-                        <div className="w-14 h-14 bg-white border border-gray-200 flex items-center justify-center group-hover:border-gray-300 transition-all duration-300">
-                          {style.icon}
-                        </div>
-                      </div>
-
-                      <div>
-                        <h3 className="text-xl lg:text-2xl font-light tracking-tight text-[#1a1a1a] mb-4 group-hover:text-[#2B5589] transition-colors duration-300">
-                          {service.title}
-                        </h3>
-                        <p className="text-sm lg:text-base text-[#364153] leading-relaxed font-light">
-                          {service.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Scroll Indicator Dots */}
-          {/* {displayedServices.length > 3 && (
-            <div className="flex justify-center gap-2 mt-6">
-              {displayedServices.map((_, index) => (
-                <div
-                  key={index}
-                  className="w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"
-                />
-              ))}
-            </div>
-          )} */}
-        </div>
-
-        {/* Tombol Explore */}
-        <div className="mt-16 sm:mt-20 border-t border-gray-200 pt-12">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div className="max-w-xl">
-              <p className="text-base sm:text-lg lg:text-xl font-light tracking-tight text-[#364153]">
-                Ready to transform your organization? Let&apos;s discuss how our
-                services can help you achieve excellence.
-              </p>
-            </div>
-
+            {/* Explore All Services Link */}
             <Link
               href="/services"
-              className="group inline-flex items-center gap-3 bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
+              className="hidden lg:inline-flex text-center items-center gap-2 text-white/80 hover:text-white transition-all duration-300 group"
             >
-              <span className="text-sm tracking-wide">
-                Explore All Services
-              </span>
+              <span className="text-xl font-medium">Explore All Services</span>
               <svg
-                className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300"
+                className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
                 fill="none"
-                stroke="currentColor"
                 viewBox="0 0 24 24"
+                stroke="currentColor"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={1.5}
+                  strokeWidth={2}
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
             </Link>
+          </div>
+
+          {/* Right Side - Navigation Buttons */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => scroll("left")}
+              disabled={!canScrollLeft}
+              className={`w-12 h-12 backdrop-blur-md bg-white/10 border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 shadow-xl group ${
+                canScrollLeft
+                  ? "hover:bg-white/20 cursor-pointer"
+                  : "opacity-40 cursor-not-allowed"
+              }`}
+              aria-label="Scroll left"
+            >
+              <ChevronLeft
+                className={`w-6 h-6 text-white transition-transform duration-300 ${
+                  canScrollLeft ? "group-hover:-translate-x-0.5" : ""
+                }`}
+              />
+            </button>
+
+            <button
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              className={`w-12 h-12 backdrop-blur-md bg-white/10 border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 shadow-xl group ${
+                canScrollRight
+                  ? "hover:bg-white/20 cursor-pointer"
+                  : "opacity-40 cursor-not-allowed"
+              }`}
+              aria-label="Scroll right"
+            >
+              <ChevronRight
+                className={`w-6 h-6 text-white transition-transform duration-300 ${
+                  canScrollRight ? "group-hover:translate-x-0.5" : ""
+                }`}
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Services Container - Full Width Overflow */}
+      <div className="relative z-10 w-full mb-12">
+        {/* Scrollable Services Grid */}
+        <div
+          ref={scrollContainerRef}
+          onScroll={checkScrollability}
+          className="overflow-x-auto scrollbar-hide scroll-smooth"
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex gap-4 lg:gap-4 pb-4 pr-[calc(1rem+6.75rem)] sm:pr-[calc(1.5rem+6.75rem)] lg:pr-[calc(2rem+6.75rem)]">
+              {" "}
+              {displayedServices.map((service) => (
+                <div
+                  key={service.id}
+                  className="group relative flex-shrink-0 w-[260px] sm:w-[300px] lg:w-[310px] h-[450px] sm:h-[500px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500"
+                >
+                  {/* Background Image */}
+                  <div className="absolute inset-0">
+                    {service.image ? (
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        sizes="(max-width: 640px) 320px, (max-width: 1024px) 380px, 420px"
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-[#2B5589] to-[#1a2942]" />
+                    )}
+
+                    {/* Sophisticated Multi-Layer Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-black/35 to-black/70" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+
+                  {/* Content Container */}
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-6 lg:p-6">
+                    {/* Title - Show by default, hide on hover */}
+                    <h3 className="text-2xl sm:text-3xl lg:text-3xl font-normal tracking-tighter text-white leading-tighter mb-4 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4">
+                      {service.title}
+                    </h3>
+
+                    {/* Description - Hidden by default, show on hover */}
+                    <p className="text-sm sm:text-base text-white/90 leading-relaxed font-light absolute bottom-6 sm:bottom-8 lg:bottom-10 left-6 sm:left-6 lg:left-6 right-6 sm:right-8 lg:right-10 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  {/* Glow Effect on Hover */}
+                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl bg-[#0201FF]/20 -z-10" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

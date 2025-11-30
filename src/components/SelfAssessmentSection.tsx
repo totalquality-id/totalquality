@@ -1,18 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import {
-  Zap,
-  Target,
-  BarChart3,
-  ClipboardList,
-  Search,
-  Gift,
-  User,
-  Building2,
-  X,
-} from "lucide-react";
+import { User, Building2, X, ArrowRight, Target, Clock } from "lucide-react";
 
 export default function SelfAssessmentSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,9 +21,8 @@ export default function SelfAssessmentSection() {
     setShowFormModal(true);
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    localStorage.setItem("assessmentUserData", JSON.stringify(formData));
+  const handleFormSubmit = () => {
+    console.log("Assessment data:", formData);
     window.location.href = selectedAssessment;
   };
 
@@ -47,60 +35,19 @@ export default function SelfAssessmentSection() {
     });
   };
 
-  const assessmentFeatures = [
-    {
-      icon: Zap,
-      title: "Quick & Easy",
-      description: "Complete in just 5 minutes",
-    },
-    {
-      icon: Target,
-      title: "Personalized Results",
-      description: "Get tailored recommendations",
-    },
-    {
-      icon: BarChart3,
-      title: "Instant Insights",
-      description: "Understand your needs immediately",
-    },
-  ];
-
-  const steps = [
-    {
-      number: "01",
-      title: "Answer Questions",
-      description: "Simple multiple-choice questions about your organization",
-      icon: ClipboardList,
-    },
-    {
-      number: "02",
-      title: "Get Analysis",
-      description: "AI-powered analysis of your needs and challenges",
-      icon: Search,
-    },
-    {
-      number: "03",
-      title: "Receive Recommendations",
-      description: "Customized service recommendations for your goals",
-      icon: Gift,
-    },
-  ];
-
   const assessmentTypes = [
     {
       icon: User,
       title: "Personality Assessment",
-      description:
-        "Discover your personality type (Sanguine, Melancholic, Phlegmatic, Choleric)",
-      color: "from-[#0201FF] to-[#0000d1]",
+      description: "Discover your personality type",
+      color: "from-[#FACC01] to-[#ffd700]",
       link: "/assessment/personality",
     },
     {
       icon: Building2,
       title: "Company System Assessment",
-      description:
-        "Evaluate your organization's system effectiveness and cultural health",
-      color: "from-[#0201FF] to-[#0000d1]",
+      description: "Evaluate your organization's effectiveness",
+      color: "from-[#FACC01] to-[#ffd700]",
       link: "/assessment/company",
     },
   ];
@@ -108,219 +55,119 @@ export default function SelfAssessmentSection() {
   return (
     <section
       id="self-assessment"
-      className="relative py-16 sm:py-20 lg:py-24 bg-white"
+      className="relative w-full min-h-screen overflow-hidden"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
-      {/* Subtle Background Elements */}
-      <div className="absolute top-1/4 right-10 w-72 h-72 bg-[#FACC01]/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 left-10 w-64 h-64 bg-[#2B5589]/5 rounded-full blur-3xl" />
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://img.freepik.com/free-photo/office-workers-using-finance-graphs_23-2150408662.jpg?t=st=1763346942~exp=1763350542~hmac=0ded83086bd5296bcf5157748c156c2e152b8e4b522737c18b285a2e25a0ff6e&w=2000"
+          alt="Self Assessment Background"
+          className="w-full h-full object-cover"
+        />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Section Header */}
-        <div className="mb-12 sm:mb-16">
-          <h2 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-light tracking-tighter text-[#364153] mb-1">
-            Discover Your Path
+        <div className="absolute inset-0 bg-gradient-to-b from-black/1- via-black/30 to-black" />
+      </div>
+
+      {/* Content Container - CENTERED */}
+      <div className="relative z-10 h-full min-h-screen flex items-center justify-center px-4 sm:px-8 lg:px-16">
+        <div className="max-w-6xl text-center">
+          {/* Main Title */}
+          <h2 className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tighter text-white leading-tighter mb-4 sm:mb-6">
+            Self Assessment
           </h2>
-          <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
 
-          <div className="max-w-4xl">
-            <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
-              Self{" "}
-              <span className="text-[#0201FF] font-normal">Assessment</span>
-            </h3>
-            <p className="text-base sm:text-lg lg:text-xl font-light tracking-tight text-[#364153] mt-4">
-              Discover which of our services best fit your needs through a quick
-              self-assessment quiz.
-            </p>
-          </div>
-        </div>
+          {/* Description */}
+          <p className="text-lg sm:text-xl lg:text-2xl text-white/90 leading-tight font-light max-w-2xl mx-auto mb-4 sm:mb-8">
+            Discover your path with a quick assessment. Get personalized
+            recommendations tailored to your needs.
+          </p>
 
-        {/* Main Content */}
-        <div className="space-y-12 lg:space-y-16">
-          {/* Features Cards */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {assessmentFeatures.map((feature, index) => {
-              const IconComponent = feature.icon;
-              return (
-                <div
-                  key={index}
-                  className="group relative p-8 lg:p-10 bg-white border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="text-center space-y-4">
-                    <div className="inline-flex w-14 h-14 bg-slate-50 border border-gray-200 items-center justify-center mx-auto group-hover:border-gray-300 transition-all duration-300">
-                      <IconComponent className="w-6 h-6 text-[#0201FF]" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg lg:text-xl font-light tracking-tight text-[#1a1a1a] mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-[#364153] leading-relaxed font-light">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* How It Works Section */}
-          <div className="relative p-10 lg:p-12 bg-white border border-gray-200 overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#FACC01]/5 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#2B5589]/5 rounded-full blur-3xl" />
-
-            <div className="relative space-y-10 lg:space-y-12">
-              <div className="text-center space-y-3">
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light tracking-tighter text-[#1a1a1a]">
-                  How It Works
-                </h3>
-                <p className="text-[#364153] text-base lg:text-lg font-light max-w-2xl mx-auto">
-                  Three simple steps to find your perfect solution
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
-                {steps.map((step, index) => {
-                  const IconComponent = step.icon;
-                  return (
-                    <div key={index} className="group relative">
-                      {index < steps.length - 1 && (
-                        <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-px bg-gray-200" />
-                      )}
-
-                      <div className="relative space-y-4">
-                        <div className="relative inline-flex">
-                          <div className="w-16 h-16 bg-[#0201FF] flex items-center justify-center group-hover:bg-[#1E3F69] transition-all duration-300">
-                            <span className="text-white font-light text-xl tracking-tight">
-                              {step.number}
-                            </span>
-                          </div>
-                          <div className="absolute -top-4 -right-4 w-10 h-10 bg-white border border-gray-200 flex items-center justify-center rounded-full">
-                            <IconComponent className="w-5 h-5 text-[#0201FF]" />
-                          </div>
-                        </div>
-
-                        <div className="space-y-2">
-                          <h4 className="text-lg lg:text-xl font-light tracking-tight text-[#1a1a1a]">
-                            {step.title}
-                          </h4>
-                          <p className="text-sm text-[#364153] leading-relaxed font-light">
-                            {step.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-16 sm:mt-20 border-t border-gray-200 pt-12">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div className="max-w-xl">
-              <p className="text-base sm:text-lg lg:text-xl font-light tracking-tight text-[#364153]">
-                Take our quick assessment and receive personalized
-                recommendations tailored to your organization&apos;s unique
-                needs.
+          {/* Stats - Minimal */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-center gap-4 sm:gap-8 mb-10 sm:mb-12">
+            <div className="flex items-center justify-center gap-3">
+              <Clock className="w-5 h-5 text-[#FACC01] flex-shrink-0" />
+              <p className="text-sm sm:text-base text-white/90 font-light">
+                5 Minutes Quick Test
               </p>
             </div>
 
+            <div className="flex items-center justify-center gap-3">
+              <Target className="w-5 h-5 text-[#FACC01] flex-shrink-0" />
+              <p className="text-sm sm:text-base text-white/90 font-light">
+                Personalized Results
+              </p>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="flex justify-center">
             <button
               onClick={() => setIsModalOpen(true)}
-              className="group inline-flex items-center gap-3 bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300"
+              className="group inline-flex items-center justify-center gap-3 bg-[#FACC01] text-[#1a2942] font-medium px-8 py-4 hover:bg-[#ffd700] transition-all duration-300 shadow-2xl shadow-[#FACC01]/30 hover:shadow-[#FACC01]/50 hover:scale-105"
             >
-              <span className="text-sm tracking-wide">Start Assessment</span>
-              <svg
-                className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
+              <span className="text-base tracking-wide">Start Assessment</span>
+              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Decorative Elements */}
+      <div className="absolute top-1/4 right-10 w-64 h-64 bg-[#FACC01]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Assessment Type Selection Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="relative bg-white max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            {/* Close Button */}
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-lg">
+          <div className="relative backdrop-blur-2xl bg-[#1a2942]/95 border border-white/20 max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl rounded-lg">
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 transition-colors duration-300 z-10"
+              className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center backdrop-blur-md bg-white/10 hover:bg-white/20 border border-white/20 rounded-full transition-colors duration-300 z-10 group"
             >
-              <X className="w-5 h-5 text-gray-600" />
+              <X className="w-6 h-6 text-white group-hover:rotate-90 transition-transform duration-300" />
             </button>
 
-            {/* Modal Content */}
             <div className="p-8 sm:p-12">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tighter text-[#1a1a1a] mb-4">
-                  Choose Your{" "}
-                  <span className="text-[#0201FF] font-normal">Assessment</span>
+              <div className="text-center mb-10">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tighter text-white mb-3">
+                  Choose Your <span className="text-[#FACC01]">Assessment</span>
                 </h2>
-                <p className="text-base sm:text-lg text-[#364153] font-light max-w-2xl mx-auto">
-                  Select the assessment type that best fits your needs
+                <p className="text-base sm:text-lg text-white/80 font-light">
+                  Select the type that best fits your needs
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-6">
                 {assessmentTypes.map((type, index) => {
                   const IconComponent = type.icon;
                   return (
                     <button
                       key={index}
                       onClick={() => handleAssessmentSelect(type.link)}
-                      className="group relative p-8 bg-white border-2 border-gray-200 hover:border-[#0201FF] transition-all duration-300 hover:shadow-xl w-full text-left"
+                      className="group relative p-8 backdrop-blur-md bg-white/10 hover:bg-white/15 border-2 border-white/20 hover:border-[#FACC01] transition-all duration-500 hover:shadow-2xl hover:shadow-[#FACC01]/30 hover:-translate-y-2 text-left overflow-hidden rounded-lg"
                     >
-                      {/* Background Gradient */}
                       <div
-                        className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${type.color} opacity-5 blur-2xl`}
+                        className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${type.color} opacity-10 group-hover:opacity-20 blur-2xl transition-opacity duration-500`}
                       />
 
                       <div className="relative">
-                        {/* Icon */}
                         <div
-                          className={`inline-flex w-16 h-16 bg-gradient-to-br ${type.color} items-center justify-center mb-6`}
+                          className={`inline-flex w-16 h-16 bg-gradient-to-br ${type.color} rounded-2xl items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-[#FACC01]/30`}
                         >
-                          <IconComponent className="w-8 h-8 text-white" />
+                          <IconComponent className="w-8 h-8 text-[#1a2942]" />
                         </div>
 
-                        {/* Content */}
-                        <h3 className="text-2xl font-light tracking-tight text-[#1a1a1a] mb-3">
+                        <h3 className="text-xl sm:text-2xl font-light tracking-tight text-white mb-3 group-hover:text-[#FACC01] transition-colors duration-300">
                           {type.title}
                         </h3>
-                        <p className="text-sm text-[#364153] leading-relaxed font-light mb-6">
+                        <p className="text-sm text-white/70 leading-relaxed font-light mb-6">
                           {type.description}
                         </p>
 
-                        {/* CTA */}
-                        <div className="flex items-center gap-2 text-[#0201FF] font-light group-hover:gap-4 transition-all duration-300">
-                          <span className="text-sm">Start This Assessment</span>
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={1.5}
-                              d="M17 8l4 4m0 0l-4 4m4-4H3"
-                            />
-                          </svg>
+                        <div className="flex items-center gap-2 text-[#FACC01] font-medium">
+                          <span className="text-sm">Start</span>
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
                         </div>
                       </div>
                     </button>
@@ -331,11 +178,11 @@ export default function SelfAssessmentSection() {
           </div>
         </div>
       )}
-      {/* Form Modal */}
+
+      {/* User Information Form Modal */}
       {showFormModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="relative bg-white max-w-md w-full shadow-2xl">
-            {/* Close Button */}
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-lg">
+          <div className="relative backdrop-blur-2xl bg-[#1a2942]/95 border border-white/20 max-w-lg w-full shadow-2xl rounded-lg">
             <button
               onClick={() => {
                 setShowFormModal(false);
@@ -347,31 +194,28 @@ export default function SelfAssessmentSection() {
                   gender: "",
                 });
               }}
-              className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 transition-colors duration-300 z-10"
+              className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center backdrop-blur-md bg-white/10 hover:bg-white/20 border border-white/20 rounded-full transition-colors duration-300 z-10 group"
             >
-              <X className="w-5 h-5 text-gray-600" />
+              <X className="w-6 h-6 text-white group-hover:rotate-90 transition-transform duration-300" />
             </button>
 
-            {/* Form Content */}
             <div className="p-8 sm:p-10">
               <div className="text-center mb-8">
-                <h2 className="text-2xl sm:text-3xl font-light tracking-tighter text-[#1a1a1a] mb-2">
-                  Before We{" "}
-                  <span className="text-[#0201FF] font-normal">Begin</span>
+                <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-white mb-2">
+                  Before We <span className="text-[#FACC01]">Begin</span>
                 </h2>
-                <p className="text-sm text-[#364153] font-light">
-                  Please fill in your information to get started
+                <p className="text-sm text-white/80 font-light">
+                  Please fill in your information
                 </p>
               </div>
 
-              <form onSubmit={handleFormSubmit} className="space-y-6">
-                {/* Name Field */}
+              <div className="space-y-5">
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-light text-[#364153] mb-2"
+                    className="block text-sm font-medium text-white mb-2"
                   >
-                    Name / Initials <span className="text-red-500">*</span>
+                    Name / Initials <span className="text-[#FACC01]">*</span>
                   </label>
                   <input
                     type="text"
@@ -380,18 +224,17 @@ export default function SelfAssessmentSection() {
                     required
                     value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="e.g., John Doe or J.D."
-                    className="w-full px-4 py-3 border-2 border-gray-200 focus:border-[#0201FF] focus:outline-none transition-colors duration-300 text-[#1a1a1a] font-light"
+                    placeholder="e.g., John Doe"
+                    className="w-full px-4 py-3 backdrop-blur-md bg-white/10 border-2 border-white/20 focus:border-[#FACC01] focus:outline-none transition-colors duration-300 text-white placeholder-white/50 font-light rounded-lg"
                   />
                 </div>
 
-                {/* Job Field */}
                 <div>
                   <label
                     htmlFor="job"
-                    className="block text-sm font-light text-[#364153] mb-2"
+                    className="block text-sm font-medium text-white mb-2"
                   >
-                    Occupation <span className="text-red-500">*</span>
+                    Occupation <span className="text-[#FACC01]">*</span>
                   </label>
                   <input
                     type="text"
@@ -401,59 +244,58 @@ export default function SelfAssessmentSection() {
                     value={formData.job}
                     onChange={handleInputChange}
                     placeholder="e.g., Marketing Manager"
-                    className="w-full px-4 py-3 border-2 border-gray-200 focus:border-[#0201FF] focus:outline-none transition-colors duration-300 text-[#1a1a1a] font-light"
+                    className="w-full px-4 py-3 backdrop-blur-md bg-white/10 border-2 border-white/20 focus:border-[#FACC01] focus:outline-none transition-colors duration-300 text-white placeholder-white/50 font-light rounded-lg"
                   />
                 </div>
 
-                {/* Job Field */}
-                <div>
-                  <label
-                    htmlFor="city"
-                    className="block text-sm font-light text-[#364153] mb-2"
-                  >
-                    Job City <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="city"
-                    name="city"
-                    required
-                    value={formData.city}
-                    onChange={handleInputChange}
-                    placeholder="e.g., Surabaya"
-                    className="w-full px-4 py-3 border-2 border-gray-200 focus:border-[#0201FF] focus:outline-none transition-colors duration-300 text-[#1a1a1a] font-light"
-                  />
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      htmlFor="city"
+                      className="block text-sm font-medium text-white mb-2"
+                    >
+                      City <span className="text-[#FACC01]">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      required
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      placeholder="Surabaya"
+                      className="w-full px-4 py-3 backdrop-blur-md bg-white/10 border-2 border-white/20 focus:border-[#FACC01] focus:outline-none transition-colors duration-300 text-white placeholder-white/50 font-light rounded-lg"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="age"
+                      className="block text-sm font-medium text-white mb-2"
+                    >
+                      Age <span className="text-[#FACC01]">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      id="age"
+                      name="age"
+                      required
+                      min="15"
+                      max="100"
+                      value={formData.age}
+                      onChange={handleInputChange}
+                      placeholder="25"
+                      className="w-full px-4 py-3 backdrop-blur-md bg-white/10 border-2 border-white/20 focus:border-[#FACC01] focus:outline-none transition-colors duration-300 text-white placeholder-white/50 font-light rounded-lg"
+                    />
+                  </div>
                 </div>
 
-                {/* Age Field */}
-                <div>
-                  <label
-                    htmlFor="age"
-                    className="block text-sm font-light text-[#364153] mb-2"
-                  >
-                    Age <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="number"
-                    id="age"
-                    name="age"
-                    required
-                    min="15"
-                    max="100"
-                    value={formData.age}
-                    onChange={handleInputChange}
-                    placeholder="e.g., 25"
-                    className="w-full px-4 py-3 border-2 border-gray-200 focus:border-[#0201FF] focus:outline-none transition-colors duration-300 text-[#1a1a1a] font-light"
-                  />
-                </div>
-
-                {/* Gender Field */}
                 <div>
                   <label
                     htmlFor="gender"
-                    className="block text-sm font-light text-[#364153] mb-2"
+                    className="block text-sm font-medium text-white mb-2"
                   >
-                    Gender <span className="text-red-500">*</span>
+                    Gender <span className="text-[#FACC01]">*</span>
                   </label>
                   <select
                     id="gender"
@@ -461,42 +303,36 @@ export default function SelfAssessmentSection() {
                     required
                     value={formData.gender}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border-2 border-gray-200 focus:border-[#0201FF] focus:outline-none transition-colors duration-300 text-[#1a1a1a] font-light bg-white"
+                    className="w-full px-4 py-3 backdrop-blur-md bg-white/10 border-2 border-white/20 focus:border-[#FACC01] focus:outline-none transition-colors duration-300 text-white font-light rounded-lg"
                   >
-                    <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Prefer not to say</option>
+                    <option value="" className="bg-[#1a2942] text-white">
+                      Select Gender
+                    </option>
+                    <option value="male" className="bg-[#1a2942] text-white">
+                      Male
+                    </option>
+                    <option value="female" className="bg-[#1a2942] text-white">
+                      Female
+                    </option>
+                    <option value="other" className="bg-[#1a2942] text-white">
+                      Prefer not to say
+                    </option>
                   </select>
                 </div>
 
-                {/* Submit Button */}
                 <button
-                  type="submit"
-                  className="w-full bg-[#0201FF] text-white font-light px-8 py-4 hover:bg-[#0000d1] transition-all duration-300 flex items-center justify-center gap-3 group"
+                  onClick={handleFormSubmit}
+                  className="group w-full bg-white text-[#1a2942] font-semibold px-8 py-4 rounded-full hover:bg-[#FACC01] hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 hover:scale-105 mt-6"
                 >
-                  <span className="text-sm tracking-wide">
+                  <span className="text-base tracking-wide">
                     Start Assessment
                   </span>
-                  <svg
-                    className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
                 </button>
-              </form>
+              </div>
 
-              <p className="text-xs text-center text-[#364153] font-light mt-6">
-                Your information is used solely for generating personalized
-                assessment results.
+              <p className="text-xs text-center text-white/60 font-light mt-5">
+                Your information is used solely for personalized results
               </p>
             </div>
           </div>

@@ -155,7 +155,7 @@ export default function ShareModal({
           <div>
             <h3 className="text-2xl sm:text-3xl font-light tracking-tight text-[#1a1a1a]">
               Customize &{" "}
-              <span className="font-normal text-[#0201FF]">Share</span>
+              <span className="font-normal text-[#2B5589]">Share</span>
             </h3>
             <p className="text-sm text-[#364153] font-light mt-1">
               Create your perfect quote design
@@ -193,7 +193,7 @@ export default function ShareModal({
                       onClick={() => setMode(option.value)}
                       className={`relative overflow-hidden p-4 border transition-all duration-300 group ${
                         mode === option.value
-                          ? "bg-[#0201FF] text-white border-[#0201FF] shadow-lg"
+                          ? "bg-[#2B5589] text-white border-[#2B5589] shadow-lg"
                           : "bg-white text-[#364153] border-gray-200 hover:border-gray-300 hover:shadow-md"
                       }`}
                       aria-pressed={mode === option.value}
@@ -355,8 +355,8 @@ export default function ShareModal({
                         onClick={() => setFont(f.class)}
                         className={`relative p-5 border transition-all duration-300 overflow-hidden group ${
                           font === f.class
-                            ? "bg-gradient-to-br from-[#0201FF] to-[#0000d1] text-white border-[#0201FF] shadow-lg"
-                            : "bg-white text-[#364153] border-gray-200 hover:border-[#0201FF] hover:shadow-md"
+                            ? "bg-gradient-to-br from-[#2B5589] to-[#1e3a5f] text-white border-[#2B5589] shadow-lg"
+                            : "bg-white text-[#364153] border-gray-200 hover:border-[#2B5589] hover:shadow-md"
                         }`}
                         type="button"
                         aria-pressed={font === f.class}
@@ -495,7 +495,7 @@ export default function ShareModal({
               {/* Download */}
               <button
                 onClick={handleDownload}
-                className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#0201FF] to-[#0000d1] text-white py-4 hover:shadow-lg transition-all duration-300 font-light group"
+                className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#2B5589] to-[#1e3a5f] text-white py-4 hover:shadow-lg transition-all duration-300 font-light group"
               >
                 <Download className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>Download Image</span>

@@ -105,7 +105,7 @@ export default function AllQuotesPage() {
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#0201FF] to-[#0000d1] text-white overflow-hidden">
+      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#1a2942] via-[#2B5589] to-[#1e3a5f] text-white overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#FACC01]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
 
@@ -138,7 +138,7 @@ export default function AllQuotesPage() {
                   onClick={() => setFilter(option)}
                   className={`px-4 py-2 border rounded-full text-sm transition-all duration-300 ${
                     filter === option
-                      ? "bg-[#0201FF] text-white border-[#0201FF]"
+                      ? "bg-[#2B5589] text-white border-[#2B5589]"
                       : "bg-white text-[#364153] border-gray-300 hover:border-[#2B5589]"
                   }`}
                 >

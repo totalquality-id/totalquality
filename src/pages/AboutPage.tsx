@@ -33,7 +33,7 @@ export default function AboutPage() {
       year: "2007",
       title: "The 1st Annual National Empowerment Congress (ANEC)",
       description:
-        "Total Quality successfully held Indonesia’s largest motivational congress, engaging hundreds of company directors and thousands of managers nationwide.",
+        "Total Quality successfully held Indonesia's largest motivational congress, engaging hundreds of company directors and thousands of managers nationwide.",
       image: "/images/timeline/3.jpg",
     },
     {
@@ -47,14 +47,14 @@ export default function AboutPage() {
       year: "2012",
       title: "Royal Recognition for Cultural Preservation",
       description:
-        "Johan Yan, President Director of Total Quality, received the honorary title “Prince” from Pakubowono XIII of the Surakarta Sunanate in recognition of his significant contribution to preserving Indonesia’s cultural heritage.",
+        "Johan Yan, President Director of Total Quality, received the honorary title 'Prince' from Pakubowono XIII of the Surakarta Sunanate in recognition of his significant contribution to preserving Indonesia's cultural heritage.",
       image: "/images/timeline/5.jpg",
     },
     {
       year: "2013",
-      title: "Among Indonesia’s 10 Most Influential Young Leaders",
+      title: "Among Indonesia's 10 Most Influential Young Leaders",
       description:
-        "In 2013, Johan Yan was honored as one of Indonesia’s 10 Most Influential Young Leaders in Culture by the United Nations-affiliated youth organization, JCI (Junior Chamber International).",
+        "In 2013, Johan Yan was honored as one of Indonesia's 10 Most Influential Young Leaders in Culture by the United Nations-affiliated youth organization, JCI (Junior Chamber International).",
       image: "/images/timeline/6.jpg",
     },
   ];
@@ -86,7 +86,7 @@ export default function AboutPage() {
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#0201FF] to-[#0000d1] text-white overflow-hidden">
+      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#1a2942] via-[#2B5589] to-[#1e3a5f] text-white overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#FACC01]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
 
@@ -104,45 +104,48 @@ export default function AboutPage() {
       </section>
 
       {/* About Company Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#0201FF] mb-4">
-              About Us
+          <div className="mb-12">
+            <h2 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-light tracking-tighter text-[#364153] mb-1">
+              Company Overview
             </h2>
-            <div className="w-24 h-1 bg-[#FACC01] mx-auto" />
+            <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
+            <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
+              Who <span className="text-[#2B5589] font-normal">We Are</span>
+            </h3>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div className="space-y-6">
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg text-[#364153] leading-relaxed font-light">
                 Established in{" "}
-                <span className="font-semibold text-[#0201FF]">2005</span>, PT
+                <span className="text-[#2B5589] font-normal">2005</span>, PT
                 Total Quality Indonesia has been a trusted partner for
                 organizational development across Southeast Asia. With over{" "}
-                <span className="font-semibold text-[#0201FF]">
+                <span className="text-[#2B5589] font-normal">
                   406 partner organizations
                 </span>{" "}
                 spanning multiple industry sectors, we specialize in human
                 resource development and management system implementation.
               </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg text-[#364153] leading-relaxed font-light">
                 Operating from our offices in{" "}
-                <span className="font-semibold text-[#0201FF]">Jakarta</span>{" "}
-                and{" "}
-                <span className="font-semibold text-[#0201FF]">Surabaya</span>,
-                we deliver comprehensive solutions that drive sustainable growth
+                <span className="text-[#2B5589] font-normal">Jakarta</span> and{" "}
+                <span className="text-[#2B5589] font-normal">Surabaya</span>, we
+                deliver comprehensive solutions that drive sustainable growth
                 and organizational excellence.
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-[#0201FF] to-[#0000d1] p-8 rounded-2xl shadow-xl">
-              <h3 className="text-2xl font-light text-white mb-6">
+            <div className="bg-white border border-gray-200 p-10 shadow-sm">
+              <div className="w-12 h-1 bg-[#2B5589] mb-6"></div>
+              <h3 className="text-2xl font-light text-[#1a1a1a] mb-6 tracking-tight">
                 Our Approach
               </h3>
-              <p className="text-white/90 leading-relaxed mb-6">
+              <p className="text-[#364153] leading-relaxed mb-6 font-light">
                 Our{" "}
-                <span className="font-semibold text-[#FACC01]">
+                <span className="text-[#2B5589] font-normal">
                   Quality Empowerment System
                 </span>{" "}
                 delivers professional training and continuous guidance over a
@@ -150,18 +153,11 @@ export default function AboutPage() {
                 developed to address your organization's needs in enhancing
                 human resource quality and achieving organizational targets.
               </p>
-              <p className="text-white/90 leading-relaxed">
-                We focus on building a positive{" "}
-                <span className="font-semibold text-[#FACC01]">
-                  corporate culture
-                </span>{" "}
-                and developing{" "}
-                <span className="font-semibold text-[#FACC01]">
-                  agents of change
-                </span>{" "}
-                who serve as catalysts for positive transformation, ensuring
-                your organization becomes more productive, effective, and
-                capable of achieving its vision.
+              <p className="text-[#364153] leading-relaxed font-light">
+                We focus on building a positive corporate culture and developing
+                agents of change who serve as catalysts for positive
+                transformation, ensuring your organization becomes more
+                productive, effective, and capable of achieving its vision.
               </p>
             </div>
           </div>
@@ -169,39 +165,43 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-          <div className="text-center mb-4">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#0201FF] mb-4">
-              Our Leadership
+          <div className="mb-12">
+            <h2 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-light tracking-tighter text-[#364153] mb-1">
+              Meet Our Leaders
             </h2>
-            <div className="w-24 h-1 bg-[#FACC01] mx-auto" />
+            <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
+            <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
+              Our <span className="text-[#2B5589] font-normal">Leadership</span>
+            </h3>
           </div>
-          <p className="text-center text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mt-6">
+          <p className="text-lg sm:text-xl text-[#364153] font-light max-w-3xl">
             Led by visionary leaders committed to organizational excellence
           </p>
         </div>
 
         {/* Direktur Utama */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 shadow-2xl rounded-2xl overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 shadow-lg overflow-hidden border border-gray-200">
             <div className="relative h-[400px] lg:h-[500px]">
               <Image
                 src="https://images.squarespace-cdn.com/content/v1/5521b031e4b06ebe90178744/1578614550199-VA0TPUX88IDO9OUKBO3J/YT_19_03.jpg?format=1000w"
-                alt="CEO Testimonial"
+                alt="CEO"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10">
-                <div className="space-y-2">
-                  <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#FACC01] rounded-full">
-                    <span className="text-[#2B5589] font-bold text-xs uppercase tracking-normal">
+                <div className="space-y-3">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#2B5589]">
+                    <span className="text-white font-light text-xs uppercase tracking-wide">
                       Direktur Utama
                     </span>
                   </div>
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-light text-white mb-1 tracking-tighter">
+                    <h3 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
                       Johan Yan
                     </h3>
                   </div>
@@ -209,13 +209,9 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="bg-[#0201FF] p-12 lg:p-16 flex items-center">
-              <div className="text-white">
-                <div
-                  className={`text-7xl mb-2 font-bold text-[#1E3F69] ${newsreader.className}`}
-                >
-                  &ldquo;
-                </div>
+            <div className="bg-white p-12 lg:p-16 flex items-center border-l border-gray-200">
+              <div className="text-[#1a1a1a]">
+                <div className="w-12 h-1 bg-[#2B5589] mb-8"></div>
                 <p
                   className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal ${newsreader.className}`}
                 >
@@ -236,14 +232,10 @@ export default function AboutPage() {
 
         {/* Direktur */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 shadow-2xl rounded-2xl overflow-hidden">
-            <div className="bg-gradient-to-br from-[#FACC01] to-[#F5B800] p-12 lg:p-16 flex items-center">
-              <div className="text-[#2B5589]">
-                <div
-                  className={`text-7xl mb-2 font-bold text-[#2B5589]/20 ${newsreader.className}`}
-                >
-                  &ldquo;
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 shadow-lg overflow-hidden border border-gray-200">
+            <div className="bg-white p-12 lg:p-16 flex items-center border-r border-gray-200">
+              <div className="text-[#1a1a1a]">
+                <div className="w-12 h-1 bg-[#2B5589] mb-8"></div>
                 <p
                   className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal ${newsreader.className}`}
                 >
@@ -268,15 +260,16 @@ export default function AboutPage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
-              <div className="absolute top-0 left-0 right-0 p-8 sm:p-10">
-                <div className="space-y-2">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10">
+                <div className="space-y-3">
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-light text-white mb-1 tracking-tighter">
+                    <h3 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
                       Yusuf Adi Pura
                     </h3>
                   </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#0201FF] rounded-full">
-                    <span className="text-white font-normal text-xs uppercase tracking-normal">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#2B5589]">
+                    <span className="text-white font-light text-xs uppercase tracking-wide">
                       Direktur
                     </span>
                   </div>
@@ -288,26 +281,30 @@ export default function AboutPage() {
       </section>
 
       {/* Company Values Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#0201FF] mb-4">
-              Our Core Values
+          <div className="mb-16">
+            <h2 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-light tracking-tighter text-[#364153] mb-1">
+              What Drives Us
             </h2>
-            <div className="w-24 h-1 bg-[#FACC01] mx-auto" />
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mt-6">
+            <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
+            <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
+              Our Core{" "}
+              <span className="text-[#2B5589] font-normal">Values</span>
+            </h3>
+            <p className="text-lg sm:text-xl text-[#364153] font-light max-w-3xl mt-4">
               The principles that guide everything we do
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Trustworthy */}
-            <div className="group relative bg-gradient-to-br from-[#0201FF] to-[#0000d1] p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#FACC01]/10 rounded-full blur-2xl" />
+            <div className="group relative bg-white border border-gray-200 p-10 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#2B5589] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
               <div className="relative">
-                <div className="w-16 h-16 bg-[#FACC01] rounded-full flex items-center justify-center mb-6">
+                <div className="w-12 h-12 border-2 border-[#2B5589] flex items-center justify-center mb-6 group-hover:bg-[#2B5589] transition-colors duration-300">
                   <svg
-                    className="w-8 h-8 text-[#0201FF]"
+                    className="w-6 h-6 text-[#2B5589] group-hover:text-white transition-colors duration-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -320,10 +317,10 @@ export default function AboutPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-semibold text-white mb-4">
+                <h3 className="text-2xl font-light text-[#1a1a1a] mb-4 tracking-tight">
                   Trustworthy
                 </h3>
-                <p className="text-white/90 leading-relaxed">
+                <p className="text-[#364153] leading-relaxed font-light">
                   We believe trust is the cornerstone of Total Quality. Our
                   relationships with stakeholders and the bond between
                   organizations and employees must be built on mutual trust and
@@ -334,12 +331,12 @@ export default function AboutPage() {
             </div>
 
             {/* Contribution */}
-            <div className="group relative bg-gradient-to-br from-[#FACC01] to-[#F5B800] p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+            <div className="group relative bg-white border border-gray-200 p-10 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#2B5589] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
               <div className="relative">
-                <div className="w-16 h-16 bg-[#0201FF] rounded-full flex items-center justify-center mb-6">
+                <div className="w-12 h-12 border-2 border-[#2B5589] flex items-center justify-center mb-6 group-hover:bg-[#2B5589] transition-colors duration-300">
                   <svg
-                    className="w-8 h-8 text-white"
+                    className="w-6 h-6 text-[#2B5589] group-hover:text-white transition-colors duration-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -352,10 +349,10 @@ export default function AboutPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-semibold text-[#0201FF] mb-4">
+                <h3 className="text-2xl font-light text-[#1a1a1a] mb-4 tracking-tight">
                   Contribution
                 </h3>
-                <p className="text-[#2B5589] leading-relaxed">
+                <p className="text-[#364153] leading-relaxed font-light">
                   Guided by the principle "it is better to give than to
                   receive," we measure all performance, achievements, and
                   recognition by the meaningful contributions made to the
@@ -366,12 +363,12 @@ export default function AboutPage() {
             </div>
 
             {/* Partnership */}
-            <div className="group relative bg-gradient-to-br from-[#2B5589] to-[#1E3F69] p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#FACC01]/10 rounded-full blur-2xl" />
+            <div className="group relative bg-white border border-gray-200 p-10 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#2B5589] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
               <div className="relative">
-                <div className="w-16 h-16 bg-[#FACC01] rounded-full flex items-center justify-center mb-6">
+                <div className="w-12 h-12 border-2 border-[#2B5589] flex items-center justify-center mb-6 group-hover:bg-[#2B5589] transition-colors duration-300">
                   <svg
-                    className="w-8 h-8 text-[#0201FF]"
+                    className="w-6 h-6 text-[#2B5589] group-hover:text-white transition-colors duration-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -384,10 +381,10 @@ export default function AboutPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-semibold text-white mb-4">
+                <h3 className="text-2xl font-light text-[#1a1a1a] mb-4 tracking-tight">
                   Partnership
                 </h3>
-                <p className="text-white/90 leading-relaxed">
+                <p className="text-[#364153] leading-relaxed font-light">
                   We view our employees as family and trusted colleagues who
                   support, strengthen, and complement each other while
                   maintaining professional excellence. Our clients are valued
@@ -400,29 +397,32 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline Section */}
-      <section ref={timelineRef} className="py-20 bg-gray-50">
+      <section ref={timelineRef} className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#0201FF] mb-4">
-              Our Journey
+          <div className="mb-16">
+            <h2 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-light tracking-tighter text-[#364153] mb-1">
+              Our History
             </h2>
-            <div className="w-24 h-1 bg-[#FACC01] mx-auto" />
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mt-6">
+            <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
+            <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
+              Our <span className="text-[#2B5589] font-normal">Journey</span>
+            </h3>
+            <p className="text-lg sm:text-xl text-[#364153] font-light max-w-3xl mt-4">
               Two decades of transformation, innovation, and excellence
             </p>
           </div>
 
           {/* Timeline Navigation */}
-          <div className="flex justify-center mb-12 overflow-x-auto pb-4">
-            <div className="inline-flex gap-4 px-4">
+          <div className="flex justify-start mb-12 overflow-x-auto pb-4">
+            <div className="inline-flex gap-3 px-4">
               {timelineData.map((item, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveYear(index)}
-                  className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${
+                  className={`px-6 py-3 font-light transition-all duration-300 whitespace-nowrap border ${
                     activeYear === index
-                      ? "bg-[#0201FF] text-white shadow-lg"
-                      : "bg-white text-[#0201FF] hover:bg-gray-100 border-2 border-[#0201FF]"
+                      ? "bg-[#2B5589] text-white border-[#2B5589] shadow-md"
+                      : "bg-white text-[#364153] hover:bg-gray-50 border-gray-300"
                   }`}
                 >
                   {item.year}
@@ -436,7 +436,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Image */}
               <div
-                className={`relative h-[400px] lg:h-[500px] rounded-lg overflow-hidden shadow-2xl transition-all duration-700 ${
+                className={`relative h-[400px] lg:h-[500px] overflow-hidden shadow-lg transition-all duration-700 border border-gray-200 ${
                   isTimelineVisible
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 -translate-x-10"
@@ -451,7 +451,7 @@ export default function AboutPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <span className="inline-block px-4 py-2 bg-[#FACC01] text-[#2B5589] font-bold text-2xl rounded">
+                  <span className="inline-block px-5 py-2 bg-[#2B5589] text-white font-normal text-2xl">
                     {timelineData[activeYear].year}
                   </span>
                 </div>
@@ -465,23 +465,24 @@ export default function AboutPage() {
                     : "opacity-0 translate-x-10"
                 }`}
               >
-                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#0201FF] mb-6 tracking-tight">
+                <div className="w-16 h-1 bg-[#2B5589] mb-6"></div>
+                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#1a1a1a] mb-6 tracking-tight">
                   {timelineData[activeYear].title}
                 </h3>
-                <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+                <p className="text-lg sm:text-xl text-[#364153] leading-relaxed font-light">
                   {timelineData[activeYear].description}
                 </p>
 
                 {/* Progress Indicator */}
                 <div className="mt-8">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-sm font-semibold text-[#2B5589]">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-sm font-light text-[#364153]">
                       {activeYear + 1} of {timelineData.length}
                     </span>
                   </div>
-                  <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-1 bg-gray-200 overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-[#2B5589] to-[#FACC01] transition-all duration-500"
+                      className="h-full bg-[#2B5589] transition-all duration-500"
                       style={{
                         width: `${
                           ((activeYear + 1) / timelineData.length) * 100
@@ -496,7 +497,7 @@ export default function AboutPage() {
                   <button
                     onClick={() => setActiveYear(Math.max(0, activeYear - 1))}
                     disabled={activeYear === 0}
-                    className="px-6 py-3 bg-white border-2 border-[#0201FF] text-[#0201FF] rounded-full font-semibold hover:bg-[#0201FF] hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="px-6 py-3 bg-white border border-gray-300 text-[#364153] font-light hover:bg-gray-50 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     ← Previous
                   </button>
@@ -507,7 +508,7 @@ export default function AboutPage() {
                       )
                     }
                     disabled={activeYear === timelineData.length - 1}
-                    className="px-6 py-3 bg-[#0201FF] text-white rounded-full font-semibold hover:bg-[#0000d1] transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="px-6 py-3 bg-[#2B5589] text-white font-light hover:bg-[#0000d1] transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     Next →
                   </button>
@@ -518,7 +519,7 @@ export default function AboutPage() {
 
           {/* Timeline Visual Line */}
           <div className="mt-20 relative">
-            <div className="absolute left-0 right-0 top-1/2 h-1 bg-gray-300 -translate-y-1/2" />
+            <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-gray-300 -translate-y-1/2" />
             <div className="relative flex justify-between items-center">
               {timelineData.map((item, index) => (
                 <button
@@ -527,14 +528,14 @@ export default function AboutPage() {
                   className="relative z-10 group"
                 >
                   <div
-                    className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                    className={`w-3 h-3 transition-all duration-300 ${
                       index <= activeYear
-                        ? "bg-[#FACC01] scale-150"
+                        ? "bg-[#2B5589] scale-150"
                         : "bg-gray-300 hover:bg-gray-400"
                     }`}
                   />
                   <span
-                    className={`absolute top-8 left-1/2 -translate-x-1/2 text-sm font-semibold whitespace-nowrap transition-all duration-300 ${
+                    className={`absolute top-8 left-1/2 -translate-x-1/2 text-sm font-light whitespace-nowrap transition-all duration-300 ${
                       index <= activeYear ? "text-[#2B5589]" : "text-gray-400"
                     }`}
                   >
@@ -548,39 +549,43 @@ export default function AboutPage() {
       </section>
 
       {/* Client Testimonials Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#0201FF] mb-4">
-              What Our Clients Say
+          <div className="mb-16">
+            <h2 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-light tracking-tighter text-[#364153] mb-1">
+              Client Feedback
             </h2>
-            <div className="w-24 h-1 bg-[#FACC01] mx-auto" />
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mt-6">
+            <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
+            <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
+              What Our Clients{" "}
+              <span className="text-[#2B5589] font-normal">Say</span>
+            </h3>
+            <p className="text-lg sm:text-xl text-[#364153] font-light max-w-3xl mt-4">
               Trusted by industry leaders across Southeast Asia
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Testimonial Card 1 */}
-            <div className="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="bg-white border border-gray-200 p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#0201FF] to-[#0000d1] rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                <div className="w-16 h-16 bg-gray-100 border border-gray-200 flex items-center justify-center text-[#364153] text-2xl font-light">
                   A
                 </div>
                 <div className="ml-4">
-                  <h4 className="text-lg font-semibold text-[#0201FF]">
+                  <h4 className="text-lg font-light text-[#1a1a1a]">
                     [Client Name]
                   </h4>
-                  <p className="text-sm text-gray-600">[Position]</p>
-                  <p className="text-sm text-gray-500">[Company Name]</p>
+                  <p className="text-sm text-[#364153] font-light">
+                    [Position]
+                  </p>
+                  <p className="text-sm text-gray-500 font-light">
+                    [Company Name]
+                  </p>
                 </div>
               </div>
-              <div
-                className={`text-5xl text-[#FACC01] mb-4 ${newsreader.className}`}
-              >
-                &ldquo;
-              </div>
-              <p className="text-gray-700 leading-relaxed mb-4">
+              <div className="w-8 h-1 bg-[#2B5589] mb-4"></div>
+              <p className="text-[#364153] leading-relaxed mb-4 font-light">
                 [Testimonial content will be added here. This space is reserved
                 for client feedback about their experience with Total Quality
                 Indonesia.]
@@ -589,7 +594,7 @@ export default function AboutPage() {
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className="w-5 h-5"
+                    className="w-4 h-4"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -600,25 +605,25 @@ export default function AboutPage() {
             </div>
 
             {/* Testimonial Card 2 */}
-            <div className="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="bg-white border border-gray-200 p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#FACC01] to-[#F5B800] rounded-full flex items-center justify-center text-[#0201FF] text-2xl font-bold">
+                <div className="w-16 h-16 bg-gray-100 border border-gray-200 flex items-center justify-center text-[#364153] text-2xl font-light">
                   B
                 </div>
                 <div className="ml-4">
-                  <h4 className="text-lg font-semibold text-[#0201FF]">
+                  <h4 className="text-lg font-light text-[#1a1a1a]">
                     [Client Name]
                   </h4>
-                  <p className="text-sm text-gray-600">[Position]</p>
-                  <p className="text-sm text-gray-500">[Company Name]</p>
+                  <p className="text-sm text-[#364153] font-light">
+                    [Position]
+                  </p>
+                  <p className="text-sm text-gray-500 font-light">
+                    [Company Name]
+                  </p>
                 </div>
               </div>
-              <div
-                className={`text-5xl text-[#FACC01] mb-4 ${newsreader.className}`}
-              >
-                &ldquo;
-              </div>
-              <p className="text-gray-700 leading-relaxed mb-4">
+              <div className="w-8 h-1 bg-[#2B5589] mb-4"></div>
+              <p className="text-[#364153] leading-relaxed mb-4 font-light">
                 [Testimonial content will be added here. This space is reserved
                 for client feedback about their experience with Total Quality
                 Indonesia.]
@@ -627,7 +632,7 @@ export default function AboutPage() {
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className="w-5 h-5"
+                    className="w-4 h-4"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -638,25 +643,25 @@ export default function AboutPage() {
             </div>
 
             {/* Testimonial Card 3 */}
-            <div className="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="bg-white border border-gray-200 p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#2B5589] to-[#1E3F69] rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                <div className="w-16 h-16 bg-gray-100 border border-gray-200 flex items-center justify-center text-[#364153] text-2xl font-light">
                   C
                 </div>
                 <div className="ml-4">
-                  <h4 className="text-lg font-semibold text-[#0201FF]">
+                  <h4 className="text-lg font-light text-[#1a1a1a]">
                     [Client Name]
                   </h4>
-                  <p className="text-sm text-gray-600">[Position]</p>
-                  <p className="text-sm text-gray-500">[Company Name]</p>
+                  <p className="text-sm text-[#364153] font-light">
+                    [Position]
+                  </p>
+                  <p className="text-sm text-gray-500 font-light">
+                    [Company Name]
+                  </p>
                 </div>
               </div>
-              <div
-                className={`text-5xl text-[#FACC01] mb-4 ${newsreader.className}`}
-              >
-                &ldquo;
-              </div>
-              <p className="text-gray-700 leading-relaxed mb-4">
+              <div className="w-8 h-1 bg-[#2B5589] mb-4"></div>
+              <p className="text-[#364153] leading-relaxed mb-4 font-light">
                 [Testimonial content will be added here. This space is reserved
                 for client feedback about their experience with Total Quality
                 Indonesia.]
@@ -665,7 +670,7 @@ export default function AboutPage() {
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className="w-5 h-5"
+                    className="w-4 h-4"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
