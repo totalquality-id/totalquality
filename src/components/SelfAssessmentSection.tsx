@@ -22,7 +22,28 @@ export default function SelfAssessmentSection() {
   };
 
   const handleFormSubmit = () => {
-    console.log("Assessment data:", formData);
+    if (
+      !formData.name ||
+      !formData.job ||
+      !formData.city ||
+      !formData.age ||
+      !formData.gender
+    ) {
+      alert("Mohon isi semua field terlebih dahulu");
+      return;
+    }
+
+    localStorage.setItem(
+      "assessmentUserInfo",
+      JSON.stringify({
+        name: formData.name.trim(),
+        job: formData.job.trim(),
+        city: formData.city.trim(),
+        age: formData.age,
+        gender: formData.gender,
+      })
+    );
+
     window.location.href = selectedAssessment;
   };
 

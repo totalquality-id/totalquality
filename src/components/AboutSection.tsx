@@ -118,7 +118,7 @@ export default function AboutSection() {
               {/* Main Counter */}
               <div className="text-center lg:text-left">
                 <div
-                  className={`text-[190px] sm:text-[200px] md:text-[270px] lg:text-[160px] xl:text-[220px] font-semibold leading-none text-white tracking-tight transition-all duration-700 ${
+                  className={`text-[130px] sm:text-[130px] md:text-[210px] lg:text-[160px] xl:text-[220px] font-semibold leading-none text-white tracking-tight transition-all duration-700 ${
                     isVisible
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-10"
@@ -185,17 +185,173 @@ export default function AboutSection() {
         </div>
       </div>
 
-      {/* Partners Section */}
       <div className="relative z-10 mt-16 sm:mt-20 lg:mt-24 pb-16">
-        {/* Section Title dengan Glass Effect */}
         <div className="max-w-4xl mx-auto text-center mb-12">
-          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal tracking-tight text-white">
+          {/* <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal tracking-tight text-white">
             Our Trusted Partners
+          </h3> */}
+          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal tracking-tight text-white">
+            Our Partner Distribution
           </h3>
         </div>
 
-        {/* Logo Carousel dengan Enhanced Design */}
-        <div className="w-full overflow-hidden py-4">
+        {/* Partner Distribution Map/Image */}
+        <div className="max-w-8xl mx-auto">
+          {/* Image Container */}
+          <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[24/9]">
+            <Image
+              src="/client-maps.png"
+              alt="Partner Distribution Map"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1280px"
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Client Testimonials */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+          <div className="text-center mb-12">
+            <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal tracking-tight text-white mb-2">
+              What Our Clients Say
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {/* Testimonial Card 1 */}
+            <div className="backdrop-blur-md bg-white/10 p-8 rounded-2xl border border-white/20 shadow-2xl hover:bg-white/15 transition-all duration-300 hover:-translate-y-1">
+              <div className="flex items-center mb-6">
+                <div className="w-14 h-14 relative rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0">
+                  <Image
+                    src="/images/testimonials/hermanto-tanoko.png"
+                    alt="Hermanto Tanoko"
+                    fill
+                    sizes="56px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="ml-4">
+                  <h4 className="text-lg font-normal text-white">
+                    Hermanto Tanoko
+                  </h4>
+                  <p className="text-sm text-white/80 font-light">Owner</p>
+                  <p className="text-sm text-white/60 font-light">
+                    Tancorp Group
+                  </p>
+                </div>
+              </div>
+              <div className="w-8 h-1 bg-[#FACC01] mb-4"></div>
+              <p className="text-white/90 leading-relaxed mb-4 font-light text-sm sm:text-base">
+                Total Quality Indonesia has transformed our organizational
+                culture completely. Their Quality Empowerment System helped us
+                develop strong leaders and created a more motivated workforce.
+                The impact on our team's performance has been remarkable.
+              </p>
+              <div className="flex text-[#FACC01]">
+                {[...Array(5)].map((_, i) => (
+                  <svg
+                    key={i}
+                    className="w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+            </div>
+
+            {/* Testimonial Card 2 */}
+            <div className="backdrop-blur-md bg-white/10 p-8 rounded-2xl border border-white/20 shadow-2xl hover:bg-white/15 transition-all duration-300 hover:-translate-y-1">
+              <div className="flex items-center mb-6">
+                <div className="w-14 h-14 relative rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0">
+                  <Image
+                    src="/images/testimonials/rio-haryanto.png"
+                    alt="Rio Haryanto"
+                    fill
+                    sizes="56px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="ml-4">
+                  <h4 className="text-lg font-normal text-white">
+                    Rio Haryanto
+                  </h4>
+                  <p className="text-sm text-white/80 font-light">Director</p>
+                  <p className="text-sm text-white/60 font-light">
+                    PT Solo Murni
+                  </p>
+                </div>
+              </div>
+              <div className="w-8 h-1 bg-[#FACC01] mb-4"></div>
+              <p className="text-white/90 leading-relaxed mb-4 font-light text-sm sm:text-base">
+                Working with Total Quality was a game-changer for our
+                organization. Their training programs are not just theoretical
+                but highly practical and immediately applicable. Our employee
+                engagement scores increased by 40% within 6 months.
+              </p>
+              <div className="flex text-[#FACC01]">
+                {[...Array(5)].map((_, i) => (
+                  <svg
+                    key={i}
+                    className="w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+            </div>
+
+            {/* Testimonial Card 3 */}
+            <div className="backdrop-blur-md bg-white/10 p-8 rounded-2xl border border-white/20 shadow-2xl hover:bg-white/15 transition-all duration-300 hover:-translate-y-1">
+              <div className="flex items-center mb-6">
+                <div className="w-14 h-14 relative rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0">
+                  <Image
+                    src="/images/testimonials/andry-sumampouw.png"
+                    alt="Andry Sumampow"
+                    fill
+                    sizes="56px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="ml-4">
+                  <h4 className="text-lg font-normal text-white">
+                    Andry Sumampow
+                  </h4>
+                  <p className="text-sm text-white/80 font-light">Owner</p>
+                  <p className="text-sm text-white/60 font-light">
+                    Jerapah Group
+                  </p>
+                </div>
+              </div>
+              <div className="w-8 h-1 bg-[#FACC01] mb-4"></div>
+              <p className="text-white/90 leading-relaxed mb-4 font-light text-sm sm:text-base">
+                The partnership with Total Quality Indonesia has been
+                invaluable. Their expertise in building positive corporate
+                culture and developing change agents has helped us navigate
+                organizational transformation smoothly. Highly recommended for
+                any company serious about growth.
+              </p>
+              <div className="flex text-[#FACC01]">
+                {[...Array(5)].map((_, i) => (
+                  <svg
+                    key={i}
+                    className="w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* <div className="w-full overflow-hidden py-4">
           <div className="relative">
             <div className="flex gap-8 animate-scroll-right">
               {row1.map((company, index) => (
@@ -208,13 +364,10 @@ export default function AboutSection() {
                     animationDelay: `${(index % 5) * 0.8}s`,
                   }}
                 >
-                  {/* Glass Card Effect */}
                   <div className="absolute inset-0 backdrop-blur-sm bg-white/10 rounded-xl border border-white/20 shadow-xl group-hover:shadow-2xl group-hover:bg-white/20 transition-all duration-300 overflow-hidden">
-                    {/* Shine Effect on Hover */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                     </div>
-                    {/* Logo dengan filter untuk membuat putih */}
                     <div className="relative w-full h-full p-4 group-hover:scale-105 transition-transform duration-300">
                       <Image
                         src={company.logo}
@@ -226,13 +379,47 @@ export default function AboutSection() {
                       />
                     </div>
                   </div>
-                  {/* Glow Effect */}
                   <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl bg-[#0201FF]/20 -z-10" />
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
+
+        {/* <div className="w-full overflow-hidden py-4">
+          <div className="relative">
+            <div className="flex gap-8 animate-scroll-right">
+              {row1.map((company, index) => (
+                <div
+                  key={`row1-${index}`}
+                  className={`flex-shrink-0 w-40 h-40 relative group ${
+                    index % 5 === 0 || index % 7 === 0 ? "animate-pop-up" : ""
+                  }`}
+                  style={{
+                    animationDelay: `${(index % 5) * 0.8}s`,
+                  }}
+                >
+                  <div className="absolute inset-0 backdrop-blur-sm bg-white/10 rounded-xl border border-white/20 shadow-xl group-hover:shadow-2xl group-hover:bg-white/20 transition-all duration-300 overflow-hidden">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                    </div>
+                    <div className="relative w-full h-full p-4 group-hover:scale-105 transition-transform duration-300">
+                      <Image
+                        src={company.logo}
+                        alt={company.name}
+                        fill
+                        sizes="160px"
+                        className="object-contain"
+                        // style={{ filter: "brightness(0) invert(1)" }}
+                      />
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl bg-[#0201FF]/20 -z-10" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div> */}
       </div>
 
       <style jsx>{`

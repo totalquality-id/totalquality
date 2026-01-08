@@ -2,7 +2,7 @@
 
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type PersonalityType = "sanguine" | "melancholic" | "phlegmatic" | "choleric";
 
@@ -28,10 +28,28 @@ interface PersonalityDescription {
 
 type PersonalityDescriptions = Record<PersonalityType, PersonalityDescription>;
 
+interface UserInfo {
+  name: string;
+  job: string;
+  city: string;
+  age: string;
+  gender: string;
+}
+
 export default function PersonalityAssessment() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, PersonalityType>>({});
   const [showResult, setShowResult] = useState(false);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  // Load user info from localStorage (passed from SelfAssessmentSection)
+  useEffect(() => {
+    const storedUserInfo = localStorage.getItem("assessmentUserInfo");
+    if (storedUserInfo) {
+      setUserInfo(JSON.parse(storedUserInfo));
+    }
+  }, []);
 
   const questions: Question[] = [
     {
@@ -380,6 +398,41 @@ export default function PersonalityAssessment() {
     },
   ];
 
+  const personalityDescriptions: PersonalityDescriptions = {
+    sanguine: {
+      title: "Sanguine - The Influencer",
+      color: "from-[#FACC01] to-[#F5B800]",
+      description: "Anda adalah pribadi yang energik, optimis, dan sosial. Anda senang berada di sekitar orang lain dan memiliki kemampuan alami untuk memotivasi dan menginspirasi mereka.",
+      strengths: ["Antusiasme tinggi", "Komunikator yang baik", "Optimis", "Kreatif", "Mudah beradaptasi"],
+      weaknesses: ["Kurang fokus", "Impulsif", "Kurang detail", "Susah menepati janji"],
+      tips: "Kembangkan disiplin diri dan perhatian pada detail. Buat sistem untuk membantu Anda tetap terorganisir.",
+    },
+    melancholic: {
+      title: "Melancholic - The Thinker",
+      color: "from-[#2B5589] to-[#1E3F69]",
+      description: "Anda adalah pribadi yang analitis, perfeksionis, dan thoughtful. Anda memiliki standar tinggi dan selalu berusaha mencapai kesempurnaan dalam segala hal.",
+      strengths: ["Analitis", "Perfeksionis", "Loyal", "Organized", "Sensitive terhadap detail"],
+      weaknesses: ["Terlalu kritis", "Pessimistic", "Moody", "Sulit menerima kritik"],
+      tips: "Belajar untuk menerima ketidaksempurnaan. Fokus pada progress, bukan perfection.",
+    },
+    phlegmatic: {
+      title: "Phlegmatic - The Peacemaker",
+      color: "from-[#2B5589] to-[#0000d1]",
+      description: "Anda adalah pribadi yang tenang, sabar, dan diplomatic. Anda memiliki kemampuan alami untuk menciptakan harmoni dan stabilitas di lingkungan Anda.",
+      strengths: ["Reliable", "Patient", "Diplomatic", "Good listener", "Team player"],
+      weaknesses: ["Kurang inisiatif", "Terlalu passive", "Menghindari konflik", "Lambat dalam mengambil keputusan"],
+      tips: "Berani mengambil risiko dan keluar dari comfort zone. Latih diri untuk lebih proaktif.",
+    },
+    choleric: {
+      title: "Choleric - The Leader",
+      color: "from-[#2B5589] to-[#0000d1]",
+      description: "Anda adalah pribadi yang kuat, decisive, dan goal-oriented. Anda adalah pemimpin alami yang selalu fokus pada hasil dan pencapaian.",
+      strengths: ["Leadership", "Decisive", "Goal-oriented", "Confident", "Problem solver"],
+      weaknesses: ["Bossy", "Kurang empati", "Impatient", "Workaholic"],
+      tips: "Kembangkan empati dan listening skills. Belajar untuk delegate dan trust others.",
+    },
+  };
+
   const calculateResult = () => {
     const scores: Record<PersonalityType, number> = {
       sanguine: 0,
@@ -395,89 +448,12 @@ export default function PersonalityAssessment() {
     const sorted = (Object.entries(scores) as [PersonalityType, number][]).sort(
       (a, b) => b[1] - a[1]
     );
+    
     return {
       primary: sorted[0],
       secondary: sorted[1],
       scores,
     };
-  };
-
-  const personalityDescriptions: PersonalityDescriptions = {
-    sanguine: {
-      title: "Sanguine - The Influencer",
-      color: "from-[#FACC01] to-[#F5B800]",
-      description:
-        "Anda adalah pribadi yang energik, optimis, dan sosial. Anda senang berada di sekitar orang lain dan memiliki kemampuan alami untuk memotivasi dan menginspirasi mereka.",
-      strengths: [
-        "Antusiasme tinggi",
-        "Komunikator yang baik",
-        "Optimis",
-        "Kreatif",
-        "Mudah beradaptasi",
-      ],
-      weaknesses: [
-        "Kurang fokus",
-        "Impulsif",
-        "Kurang detail",
-        "Susah menepati janji",
-      ],
-      tips: "Kembangkan disiplin diri dan perhatian pada detail. Buat sistem untuk membantu Anda tetap terorganisir.",
-    },
-    melancholic: {
-      title: "Melancholic - The Thinker",
-      color: "from-[#2B5589] to-[#1E3F69]",
-      description:
-        "Anda adalah pribadi yang analitis, perfeksionis, dan thoughtful. Anda memiliki standar tinggi dan selalu berusaha mencapai kesempurnaan dalam segala hal.",
-      strengths: [
-        "Analitis",
-        "Perfeksionis",
-        "Loyal",
-        "Organized",
-        "Sensitive terhadap detail",
-      ],
-      weaknesses: [
-        "Terlalu kritis",
-        "Pessimistic",
-        "Moody",
-        "Sulit menerima kritik",
-      ],
-      tips: "Belajar untuk menerima ketidaksempurnaan. Fokus pada progress, bukan perfection.",
-    },
-    phlegmatic: {
-      title: "Phlegmatic - The Peacemaker",
-      color: "from-[#2B5589] to-[#0000d1]",
-      description:
-        "Anda adalah pribadi yang tenang, sabar, dan diplomatic. Anda memiliki kemampuan alami untuk menciptakan harmoni dan stabilitas di lingkungan Anda.",
-      strengths: [
-        "Reliable",
-        "Patient",
-        "Diplomatic",
-        "Good listener",
-        "Team player",
-      ],
-      weaknesses: [
-        "Kurang inisiatif",
-        "Terlalu passive",
-        "Menghindari konflik",
-        "Lambat dalam mengambil keputusan",
-      ],
-      tips: "Berani mengambil risiko dan keluar dari comfort zone. Latih diri untuk lebih proaktif.",
-    },
-    choleric: {
-      title: "Choleric - The Leader",
-      color: "from-[#2B5589] to-[#0000d1]",
-      description:
-        "Anda adalah pribadi yang kuat, decisive, dan goal-oriented. Anda adalah pemimpin alami yang selalu fokus pada hasil dan pencapaian.",
-      strengths: [
-        "Leadership",
-        "Decisive",
-        "Goal-oriented",
-        "Confident",
-        "Problem solver",
-      ],
-      weaknesses: ["Bossy", "Kurang empati", "Impatient", "Workaholic"],
-      tips: "Kembangkan empati dan listening skills. Belajar untuk delegate dan trust others.",
-    },
   };
 
   const handleAnswer = (type: PersonalityType) => {
@@ -489,8 +465,71 @@ export default function PersonalityAssessment() {
       }, 300);
     } else {
       setTimeout(() => {
-        setShowResult(true);
+        saveResultsToBackend();
       }, 300);
+    }
+  };
+
+  const saveResultsToBackend = async () => {
+    if (!userInfo) {
+      setShowResult(true);
+      return;
+    }
+
+    setSaving(true);
+
+    try {
+      const result = calculateResult();
+      
+      // Prepare data for backend
+      const assessmentData = {
+        name: userInfo.name,
+        job: userInfo.job,
+        city: userInfo.city,
+        age: parseInt(userInfo.age),
+        gender: userInfo.gender,
+        type: "personality",
+        answers: answers,
+        results: {
+          primary: result.primary,
+          secondary: result.secondary,
+          scores: result.scores,
+        },
+      };
+
+      // Try to get auth token (optional)
+      const token = localStorage.getItem("token");
+      const headers: HeadersInit = {
+        "Content-Type": "application/json",
+      };
+      
+      if (token) {
+        headers.Authorization = `Bearer ${token}`;
+      }
+
+      const response = await fetch("/api/assessments", {
+        method: "POST",
+        headers,
+        body: JSON.stringify(assessmentData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Assessment saved:", data);
+        // Store assessment ID for potential future reference
+        if (data.data?.id) {
+          localStorage.setItem("lastAssessmentId", data.data.id.toString());
+        }
+      } else {
+        console.error("Failed to save assessment");
+      }
+    } catch (error) {
+      console.error("Error saving assessment:", error);
+    } finally {
+      setSaving(false);
+      setShowResult(true);
+      // Clear user info from localStorage
+      localStorage.removeItem("assessmentUserInfo");
     }
   };
 
@@ -500,38 +539,41 @@ export default function PersonalityAssessment() {
     const secondaryPersonality = personalityDescriptions[result.secondary[0]];
 
     return (
-      <div
-        className="min-h-screen bg-white"
-        style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-      >
+      <div className="min-h-screen bg-white" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
         <div className="max-w-5xl mx-auto px-4 py-16 sm:py-20">
+          {saving && (
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+              <div className="bg-white p-6 rounded-lg shadow-xl">
+                <p className="text-[#364153] font-light">Saving your results...</p>
+              </div>
+            </div>
+          )}
+
           <div className="text-center mb-12">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tighter text-[#1a1a1a] mb-4">
-              Your{" "}
-              <span className="text-[#2B5589] font-normal">Personality</span>{" "}
-              Profile
+              Your <span className="text-[#2B5589] font-normal">Personality</span> Profile
             </h1>
             <p className="text-lg text-[#364153] font-light">
-              Based on your answers, here&apos;s your personality assessment
+              Based on your answers, here's your personality assessment
             </p>
+            {userInfo && (
+              <p className="text-sm text-[#364153]/60 font-light mt-2">
+                Assessment for: {userInfo.name} • {userInfo.job}
+              </p>
+            )}
           </div>
 
+          {/* Distribution */}
           <div className="bg-gray-50 border border-gray-200 p-8 mb-8">
             <h3 className="text-xl font-light tracking-tight text-[#1a1a1a] mb-6">
               Your Personality Distribution
             </h3>
             <div className="space-y-4">
-              {(
-                Object.entries(result.scores) as [PersonalityType, number][]
-              ).map(([type, score]) => (
+              {(Object.entries(result.scores) as [PersonalityType, number][]).map(([type, score]) => (
                 <div key={type}>
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-light text-[#364153] capitalize">
-                      {type}
-                    </span>
-                    <span className="text-sm font-light text-[#364153]">
-                      {score}/20
-                    </span>
+                    <span className="text-sm font-light text-[#364153] capitalize">{type}</span>
+                    <span className="text-sm font-light text-[#364153]">{score}/20</span>
                   </div>
                   <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div
@@ -544,9 +586,8 @@ export default function PersonalityAssessment() {
             </div>
           </div>
 
-          <div
-            className={`bg-gradient-to-br ${primaryPersonality.color} p-8 sm:p-10 mb-8 shadow-xl`}
-          >
+          {/* Primary Personality */}
+          <div className={`bg-gradient-to-br ${primaryPersonality.color} p-8 sm:p-10 mb-8 shadow-xl`}>
             <div className="text-white">
               <div className="mb-6">
                 <span className="inline-block px-4 py-1.5 bg-white/20 rounded-full text-sm mb-4">
@@ -564,40 +605,35 @@ export default function PersonalityAssessment() {
                 <div>
                   <h4 className="font-normal text-lg mb-3">Strengths</h4>
                   <ul className="space-y-2">
-                    {primaryPersonality.strengths.map(
-                      (strength: string, idx: number) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <span className="text-white/70">•</span>
-                          <span className="font-light">{strength}</span>
-                        </li>
-                      )
-                    )}
+                    {primaryPersonality.strengths.map((strength, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="text-white/70">•</span>
+                        <span className="font-light">{strength}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-normal text-lg mb-3">Areas for Growth</h4>
                   <ul className="space-y-2">
-                    {primaryPersonality.weaknesses.map(
-                      (weakness: string, idx: number) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <span className="text-white/70">•</span>
-                          <span className="font-light">{weakness}</span>
-                        </li>
-                      )
-                    )}
+                    {primaryPersonality.weaknesses.map((weakness, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="text-white/70">•</span>
+                        <span className="font-light">{weakness}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
 
               <div className="bg-white/10 p-4 rounded">
                 <h4 className="font-normal text-lg mb-2">Development Tips</h4>
-                <p className="font-light leading-relaxed">
-                  {primaryPersonality.tips}
-                </p>
+                <p className="font-light leading-relaxed">{primaryPersonality.tips}</p>
               </div>
             </div>
           </div>
 
+          {/* Secondary Personality */}
           <div className="bg-white border-2 border-gray-200 p-8 sm:p-10 mb-8">
             <div className="mb-6">
               <span className="inline-block px-4 py-1.5 bg-gray-100 rounded-full text-sm text-[#364153] mb-4">
@@ -612,6 +648,7 @@ export default function PersonalityAssessment() {
             </div>
           </div>
 
+          {/* CTA */}
           <div className="text-center space-y-4">
             <button
               onClick={() => (window.location.href = "/")}
@@ -620,8 +657,7 @@ export default function PersonalityAssessment() {
               <span className="text-sm tracking-wide">Back to Home</span>
             </button>
             <p className="text-sm text-[#364153] font-light">
-              Want to learn more? Contact us for personalized development
-              programs.
+              Want to learn more? Contact us for personalized development programs.
             </p>
           </div>
         </div>
@@ -632,12 +668,8 @@ export default function PersonalityAssessment() {
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <div
-      className="min-h-screen bg-white"
-      style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-    >
+    <div className="min-h-screen bg-white" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
       <div className="max-w-4xl mx-auto px-4 py-16 sm:py-20">
-        {/* Back Button */}
         <div className="mb-6">
           <Link
             href="/"
@@ -647,6 +679,8 @@ export default function PersonalityAssessment() {
             Back to Homepage
           </Link>
         </div>
+
+        {/* Progress Bar */}
         <div className="mb-12">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm font-light text-[#364153]">
@@ -664,11 +698,13 @@ export default function PersonalityAssessment() {
           </div>
         </div>
 
+        {/* Question */}
         <div className="mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#1a1a1a] mb-8">
             {questions[currentQuestion].question}
           </h2>
 
+          {/* Options */}
           <div className="space-y-4">
             {questions[currentQuestion].options.map((option, index) => (
               <button
@@ -691,6 +727,7 @@ export default function PersonalityAssessment() {
           </div>
         </div>
 
+        {/* Previous Button */}
         {currentQuestion > 0 && (
           <button
             onClick={() => setCurrentQuestion(currentQuestion - 1)}

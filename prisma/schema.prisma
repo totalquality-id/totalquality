@@ -42,6 +42,7 @@ model User {
   careers      Career[]      @relation("UserCareers")
   applications Application[]
   createdAt    DateTime      @default(now())
+  assessmentResults AssessmentResult[]
 }
 
 model Service {
@@ -114,4 +115,33 @@ model Forum {
   likes     Int      @default(0)
   shares    Int      @default(0)
   createdAt DateTime @default(now())
+}
+
+model AssessmentResult {
+  id        Int      @id @default(autoincrement())
+  userId    Int?     // Optional: link to User if they're registered
+  
+  // User Info (for non-registered users)
+  name      String
+  job       String
+  city      String
+  age       Int
+  gender    String
+  
+  // Assessment Info
+  type      String   // "personality" or "company"
+  
+  // Results (stored as JSON for flexibility)
+  answers   Json     // Store all answers
+  results   Json     // Store calculated results
+  
+  // Metadata
+  createdAt DateTime @default(now())
+  
+  // Relations
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([type])
+  @@index([createdAt])
 }

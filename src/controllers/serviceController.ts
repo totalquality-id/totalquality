@@ -1,6 +1,7 @@
 import * as serviceService from "@/services/serviceService";
 import { handleError, successResponse, ApiError } from "@/utils/apiResponse";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { handleFileUpload } from "@/utils/fileUpload";
 
 export const getServices = async () => {
   try {
@@ -89,5 +90,36 @@ export const removeService = async (id: number) => {
       { message: error instanceof Error ? error.message : "Unknown error" },
       { status: 500 }
     );
+  }
+};
+
+export const postServiceWithFile = async (req: NextRequest) => {
+  try {
+    const formData = await req.formData();
+
+    const title = formData.get("title") as string;
+    const description = formData.get("description") as string;
+    const file = formData.get("image") as File;
+
+    if (!title || !description) {
+      throw new ApiError(400, "title and description are required");
+    }
+
+    let imageUrl: string | undefined;
+
+    // Handle file upload if exists
+    if (file) {
+      imageUrl = await handleFileUpload(req, "uploads/services");
+    }
+
+    const created = await serviceService.createService({
+      title: title.trim(),
+      description: description.trim(),
+      image: imageUrl,
+    });
+
+    return successResponse(created, 201);
+  } catch (error) {
+    return handleError(error);
   }
 };

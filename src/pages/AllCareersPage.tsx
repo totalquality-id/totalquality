@@ -10,9 +10,12 @@ interface Career {
   description: string;
   requirements: string;
   location: string;
+  salary?: string;
+  jobType?: string;
+  experience?: string;
   createdAt: string;
   _count: {
-    applicants: number;
+    applications: number; // Menggunakan applications, bukan applicants
   };
 }
 
