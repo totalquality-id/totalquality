@@ -1,5 +1,6 @@
 import * as careerService from "@/services/careerService";
 import { handleError, successResponse, ApiError } from "@/utils/apiResponse";
+import { requireAdmin } from "@/middleware/authMiddleware";
 
 export const getCareers = async () => {
   try {
@@ -132,8 +133,10 @@ export const patchCareer = async (id: number, req: Request) => {
   }
 };
 
-export const removeCareer = async (id: number) => {
+export const removeCareer = async (id: number, req: Request) => {
   try {
+    requireAdmin(req);
+
     if (!id || isNaN(id)) {
       throw new ApiError(400, "Invalid career ID");
     }

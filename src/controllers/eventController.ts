@@ -1,5 +1,6 @@
 import * as eventService from "@/services/eventService";
 import { handleError, successResponse, ApiError } from "@/utils/apiResponse";
+import { requireAdmin } from "@/middleware/authMiddleware";
 
 export const getEvents = async () => {
   try {
@@ -28,6 +29,8 @@ export const getEvent = async (id: number) => {
 
 export const createEvent = async (req: Request) => {
   try {
+    requireAdmin(req);
+
     const body = await req.json();
 
     if (!body.title || !body.description || !body.date) {
@@ -77,6 +80,8 @@ export const createEvent = async (req: Request) => {
 
 export const patchEvent = async (id: number, req: Request) => {
   try {
+    requireAdmin(req);
+
     if (!id || isNaN(id)) {
       throw new ApiError(400, "Invalid event ID");
     }
@@ -133,8 +138,10 @@ export const patchEvent = async (id: number, req: Request) => {
   }
 };
 
-export const removeEvent = async (id: number) => {
+export const removeEvent = async (id: number, req: Request) => {
   try {
+    requireAdmin(req);
+
     if (!id || isNaN(id)) {
       throw new ApiError(400, "Invalid event ID");
     }

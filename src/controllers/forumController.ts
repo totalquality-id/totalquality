@@ -1,5 +1,6 @@
 import * as forumService from "@/services/forumService";
 import { handleError, successResponse, ApiError } from "@/utils/apiResponse";
+import { requireAdmin } from "@/middleware/authMiddleware";
 
 export const getForums = async () => {
   try {
@@ -28,6 +29,8 @@ export const getForum = async (id: number) => {
 
 export const createForum = async (req: Request) => {
   try {
+    requireAdmin(req);
+
     const body = await req.json();
 
     if (!body.quote || !body.author) {
@@ -57,6 +60,8 @@ export const createForum = async (req: Request) => {
 
 export const patchForum = async (id: number, req: Request) => {
   try {
+    requireAdmin(req);
+
     if (!id || isNaN(id)) {
       throw new ApiError(400, "Invalid forum ID");
     }
@@ -89,8 +94,10 @@ export const patchForum = async (id: number, req: Request) => {
   }
 };
 
-export const removeForum = async (id: number) => {
+export const removeForum = async (id: number, req: Request) => {
   try {
+    requireAdmin(req);
+
     if (!id || isNaN(id)) {
       throw new ApiError(400, "Invalid forum ID");
     }

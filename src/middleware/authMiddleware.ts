@@ -46,3 +46,20 @@ export const requireAdmin = (req: Request): AuthUser => {
 
   return user;
 };
+
+export const requireAdminOrOwner = (
+  req: Request,
+  resourceUserId: number
+): AuthUser => {
+  const user = requireAuth(req);
+
+  if (user.role === "admin") {
+    return user;
+  }
+
+  if (user.userId !== resourceUserId) {
+    throw new ApiError(403, "Access denied");
+  }
+
+  return user;
+};

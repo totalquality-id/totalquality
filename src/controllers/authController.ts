@@ -99,6 +99,7 @@ export const login = async (req: Request) => {
 
     console.log("Login successful:", {
       userId: result.user.id,
+      role: result.user.role,
       hasToken: !!result.token,
     });
 

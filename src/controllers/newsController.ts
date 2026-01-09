@@ -1,5 +1,6 @@
 import * as newsService from "@/services/newsService";
 import { handleError, successResponse, ApiError } from "@/utils/apiResponse";
+import { requireAdmin } from "@/middleware/authMiddleware";
 
 export const getNewsList = async () => {
   try {
@@ -28,6 +29,8 @@ export const getNews = async (id: number) => {
 
 export const createNews = async (req: Request) => {
   try {
+    requireAdmin(req);
+
     const body = await req.json();
 
     if (!body.title || !body.content) {
@@ -64,6 +67,8 @@ export const createNews = async (req: Request) => {
 
 export const patchNews = async (id: number, req: Request) => {
   try {
+    requireAdmin(req);
+
     if (!id || isNaN(id)) {
       throw new ApiError(400, "Invalid news ID");
     }
@@ -108,8 +113,10 @@ export const patchNews = async (id: number, req: Request) => {
   }
 };
 
-export const removeNews = async (id: number) => {
+export const removeNews = async (id: number, req: Request) => {
   try {
+    requireAdmin(req);
+
     if (!id || isNaN(id)) {
       throw new ApiError(400, "Invalid news ID");
     }

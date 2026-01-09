@@ -2,6 +2,7 @@ import * as serviceService from "@/services/serviceService";
 import { handleError, successResponse, ApiError } from "@/utils/apiResponse";
 import { NextRequest, NextResponse } from "next/server";
 import { handleFileUpload } from "@/utils/fileUpload";
+import { requireAdmin } from "@/middleware/authMiddleware";
 
 export const getServices = async () => {
   try {
@@ -31,6 +32,8 @@ export const getService = async (id: number) => {
 
 export const postService = async (req: Request) => {
   try {
+    requireAdmin(req);
+
     const body = await req.json();
 
     if (!body.title || !body.description) {
@@ -65,9 +68,11 @@ export const postService = async (req: Request) => {
   }
 };
 
-export const updateService = async (id: number, request: Request) => {
+export const updateService = async (id: number, req: Request) => {
   try {
-    const body = await request.json();
+    requireAdmin(req);
+
+    const body = await req.json();
     const updated = await serviceService.updateService(id, body);
     return NextResponse.json(updated, { status: 200 });
   } catch (error) {
@@ -78,8 +83,10 @@ export const updateService = async (id: number, request: Request) => {
   }
 };
 
-export const removeService = async (id: number) => {
+export const removeService = async (id: number, req: Request) => {
   try {
+    requireAdmin(req);
+
     await serviceService.deleteService(id);
     return NextResponse.json(
       { message: "Service deleted successfully" },
@@ -95,6 +102,8 @@ export const removeService = async (id: number) => {
 
 export const postServiceWithFile = async (req: NextRequest) => {
   try {
+    requireAdmin(req);
+
     const formData = await req.formData();
 
     const title = formData.get("title") as string;
