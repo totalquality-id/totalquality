@@ -22,5 +22,5 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  return await careerController.removeCareer(parseInt(id));
+  return await careerController.removeCareer(parseInt(id), req);
 }

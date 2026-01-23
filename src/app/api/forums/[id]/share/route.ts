@@ -1,7 +1,8 @@
 import * as forumController from "@/controllers/forumController";
+import { NextRequest } from "next/server";
 
 export async function POST(
-  request: Request,
+  req: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   const { id } = await context.params;

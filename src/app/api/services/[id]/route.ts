@@ -1,7 +1,8 @@
 import * as serviceController from "@/controllers/serviceController";
+import { NextRequest } from "next/server";
 
 export async function GET(
-  request: Request,
+  req: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   const { id } = await context.params;
@@ -9,17 +10,17 @@ export async function GET(
 }
 
 export async function PATCH(
-  request: Request,
+  req: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   const { id } = await context.params;
-  return serviceController.updateService(parseInt(id), request);
+  return serviceController.updateService(parseInt(id), req);
 }
 
 export async function DELETE(
-  request: Request,
+  req: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   const { id } = await context.params;
-  return serviceController.removeService(parseInt(id));
+  return serviceController.removeService(parseInt(id), req);
 }

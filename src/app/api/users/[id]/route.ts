@@ -1,7 +1,8 @@
 import { getUser, updateUser, removeUser } from "@/controllers/userController";
+import { NextRequest } from "next/server";
 
 export async function GET(
-  req: Request,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id: idString } = await params;
@@ -10,7 +11,7 @@ export async function GET(
 }
 
 export async function PATCH(
-  req: Request,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id: idString } = await params;
@@ -19,7 +20,7 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  req: Request,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id: idString } = await params;

@@ -1,7 +1,8 @@
 import * as forumController from "@/controllers/forumController";
+import { NextRequest } from "next/server";
 
 export async function GET(
-  request: Request,
+  req: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   const { id } = await context.params;
@@ -9,17 +10,17 @@ export async function GET(
 }
 
 export async function PATCH(
-  request: Request,
+  req: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   const { id } = await context.params;
-  return forumController.patchForum(parseInt(id), request);
+  return forumController.patchForum(parseInt(id), req);
 }
 
 export async function DELETE(
-  request: Request,
+  req: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   const { id } = await context.params;
-  return forumController.removeForum(parseInt(id));
+  return forumController.removeForum(parseInt(id), req);
 }

@@ -1,7 +1,8 @@
 import * as eventController from "@/controllers/eventController";
+import { NextRequest } from "next/server";
 
 export async function GET(
-  _: Request,
+  _: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   const { id } = await context.params;
@@ -9,7 +10,7 @@ export async function GET(
 }
 
 export async function PATCH(
-  req: Request,
+  req: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   const { id } = await context.params;
@@ -17,9 +18,9 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  _: Request,
+  req: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   const { id } = await context.params;
-  return eventController.removeEvent(Number(id));
+  return eventController.removeEvent(Number(id), req);
 }

@@ -1,7 +1,8 @@
 import { requireAuth } from "@/middleware/authMiddleware";
 import { handleError, successResponse } from "@/utils/apiResponse";
+import { NextRequest } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   try {
     const user = requireAuth(req);
 
