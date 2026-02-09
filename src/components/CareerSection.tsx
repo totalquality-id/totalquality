@@ -1,10 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import {
-  Rocket,
-  Users,
-  Lightbulb,
   Calendar,
   ArrowRight,
   Briefcase,
@@ -52,13 +50,15 @@ export default function CareerSection() {
     >
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src="https://img.freepik.com/free-photo/hr-representatives-positively-greeting-female-job-candidate_1163-4702.jpg?t=st=1763294266~exp=1763297866~hmac=7ab1936330ce265b8825e3783140cd959ebd4116b83f601539989b15564e13ce&w=2000"
           alt="Team collaboration"
+          fill
           className="w-full h-full object-cover"
         />
 
         {/* Multi-Layer Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/1- via-black/30 to-black" />
         <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-black/35 to-black/70" />
         {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" /> */}
       </div>

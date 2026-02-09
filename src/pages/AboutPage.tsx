@@ -86,9 +86,25 @@ export default function AboutPage() {
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#1a2942] via-[#2B5589] to-[#1e3a5f] text-white overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#FACC01]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#000033] via-[#0201FF] to-[#1a0f5c] text-white overflow-hidden">
+        {/* Decorative Gradients */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#FACC01]/12 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#06b6d4]/8 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-[#0201FF]/20 rounded-full blur-3xl" />
+
+        {/* Subtle Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: "50px 50px",
+            }}
+          />
+        </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
@@ -110,9 +126,9 @@ export default function AboutPage() {
             <h2 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-light tracking-tighter text-[#364153] mb-1">
               Company Overview
             </h2>
-            <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
+            <div className="w-full h-[1px] bg-gradient-to-r from-[#0201FF]/30 via-[#0201FF]/10 to-transparent mb-8"></div>
             <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
-              Who <span className="text-[#2B5589] font-normal">We Are</span>
+              Who <span className="text-[#0201FF] font-normal">We Are</span>
             </h3>
           </div>
 
@@ -120,10 +136,10 @@ export default function AboutPage() {
             <div className="space-y-6">
               <p className="text-lg text-[#364153] leading-relaxed font-light">
                 Established in{" "}
-                <span className="text-[#2B5589] font-normal">2005</span>, PT
+                <span className="text-[#0201FF] font-normal">2005</span>, PT
                 Total Quality Indonesia has been a trusted partner for
                 organizational development across Southeast Asia. With over{" "}
-                <span className="text-[#2B5589] font-normal">
+                <span className="text-[#0201FF] font-normal">
                   406 partner organizations
                 </span>{" "}
                 spanning multiple industry sectors, we specialize in human
@@ -131,34 +147,43 @@ export default function AboutPage() {
               </p>
               <p className="text-lg text-[#364153] leading-relaxed font-light">
                 Operating from our offices in{" "}
-                <span className="text-[#2B5589] font-normal">Jakarta</span> and{" "}
-                <span className="text-[#2B5589] font-normal">Surabaya</span>, we
+                <span className="text-[#0201FF] font-normal">Jakarta</span> and{" "}
+                <span className="text-[#0201FF] font-normal">Surabaya</span>, we
                 deliver comprehensive solutions that drive sustainable growth
                 and organizational excellence.
               </p>
             </div>
 
-            <div className="bg-white border border-gray-200 p-10 shadow-sm">
-              <div className="w-12 h-1 bg-[#2B5589] mb-6"></div>
-              <h3 className="text-2xl font-light text-[#1a1a1a] mb-6 tracking-tight">
-                Our Approach
-              </h3>
-              <p className="text-[#364153] leading-relaxed mb-6 font-light">
-                Our{" "}
-                <span className="text-[#2B5589] font-normal">
-                  Quality Empowerment System
-                </span>{" "}
-                delivers professional training and continuous guidance over a
-                4-month period, utilizing unique methodologies specifically
-                developed to address your organization's needs in enhancing
-                human resource quality and achieving organizational targets.
-              </p>
-              <p className="text-[#364153] leading-relaxed font-light">
-                We focus on building a positive corporate culture and developing
-                agents of change who serve as catalysts for positive
-                transformation, ensuring your organization becomes more
-                productive, effective, and capable of achieving its vision.
-              </p>
+            <div className="bg-white border border-gray-200 p-10 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+              {/* Subtle Corner Accent */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#0201FF]/5 rounded-full blur-2xl group-hover:bg-[#0201FF]/8 transition-all duration-300" />
+
+              <div className="relative">
+                <div className="w-12 h-1 bg-[#0201FF] mb-6"></div>
+                <h3 className="text-2xl font-light text-[#1a1a1a] mb-6 tracking-tight">
+                  Our Approach
+                </h3>
+                <p className="text-[#364153] leading-relaxed mb-6 font-light">
+                  Our{" "}
+                  <span className="text-[#0201FF] font-normal">
+                    Quality Empowerment System
+                  </span>{" "}
+                  delivers professional training and continuous guidance over a
+                  4-month period, utilizing unique methodologies specifically
+                  developed to address your organization's needs in enhancing
+                  human resource quality and achieving organizational targets.
+                </p>
+                <p className="text-[#364153] leading-relaxed font-light">
+                  We focus on building a positive corporate culture and
+                  developing agents of change who serve as catalysts for
+                  positive transformation, ensuring your organization becomes
+                  more productive, effective, and capable of achieving its
+                  vision.
+                </p>
+              </div>
+
+              {/* Bottom Accent Line */}
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0201FF] to-[#FACC01] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </div>
           </div>
         </div>
@@ -173,7 +198,7 @@ export default function AboutPage() {
             </h2>
             <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
             <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
-              Our <span className="text-[#2B5589] font-normal">Leadership</span>
+              Our <span className="text-[#0201FF] font-normal">Leadership</span>
             </h3>
           </div>
           <p className="text-lg sm:text-xl text-[#364153] font-light max-w-3xl">
@@ -195,7 +220,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10">
                 <div className="space-y-3">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#2B5589]">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#0201FF]">
                     <span className="text-white font-light text-xs uppercase tracking-wide">
                       Direktur Utama
                     </span>
@@ -211,7 +236,7 @@ export default function AboutPage() {
 
             <div className="bg-white p-12 lg:p-16 flex items-center border-l border-gray-200">
               <div className="text-[#1a1a1a]">
-                <div className="w-12 h-1 bg-[#2B5589] mb-8"></div>
+                <div className="w-12 h-1 bg-[#0201FF] mb-8"></div>
                 <p
                   className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal ${newsreader.className}`}
                 >
@@ -235,7 +260,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 shadow-lg overflow-hidden border border-gray-200">
             <div className="bg-white p-12 lg:p-16 flex items-center border-r border-gray-200">
               <div className="text-[#1a1a1a]">
-                <div className="w-12 h-1 bg-[#2B5589] mb-8"></div>
+                <div className="w-12 h-1 bg-[#0201FF] mb-8"></div>
                 <p
                   className={`text-xl lg:text-xl font-normal leading-7 mb-10 tracking-normal ${newsreader.className}`}
                 >
@@ -254,7 +279,7 @@ export default function AboutPage() {
 
             <div className="relative h-[400px] lg:h-[500px]">
               <Image
-                src="https://img.freepik.com/free-photo/portrait-confident-young-businessman-with-his-arms-crossed_23-2148176206.jpg?semt=ais_hybrid&w=740&q=80"
+                src="/YSF.jpg"
                 alt="Director"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -268,7 +293,7 @@ export default function AboutPage() {
                       Yusuf Adi Pura
                     </h3>
                   </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#2B5589]">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#0201FF]">
                     <span className="text-white font-light text-xs uppercase tracking-wide">
                       Direktur
                     </span>
@@ -290,7 +315,7 @@ export default function AboutPage() {
             <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
             <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
               Our Core{" "}
-              <span className="text-[#2B5589] font-normal">Values</span>
+              <span className="text-[#0201FF] font-normal">Values</span>
             </h3>
             <p className="text-lg sm:text-xl text-[#364153] font-light max-w-3xl mt-4">
               The principles that guide everything we do
@@ -300,11 +325,11 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Trustworthy */}
             <div className="group relative bg-white border border-gray-200 p-10 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-              <div className="absolute top-0 left-0 w-1 h-full bg-[#2B5589] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#0201FF] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
               <div className="relative">
-                <div className="w-12 h-12 border-2 border-[#2B5589] flex items-center justify-center mb-6 group-hover:bg-[#2B5589] transition-colors duration-300">
+                <div className="w-12 h-12 border-2 border-[#0201FF] flex items-center justify-center mb-6 group-hover:bg-[#0201FF] transition-colors duration-300">
                   <svg
-                    className="w-6 h-6 text-[#2B5589] group-hover:text-white transition-colors duration-300"
+                    className="w-6 h-6 text-[#0201FF] group-hover:text-white transition-colors duration-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -332,11 +357,11 @@ export default function AboutPage() {
 
             {/* Contribution */}
             <div className="group relative bg-white border border-gray-200 p-10 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-              <div className="absolute top-0 left-0 w-1 h-full bg-[#2B5589] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#0201FF] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
               <div className="relative">
-                <div className="w-12 h-12 border-2 border-[#2B5589] flex items-center justify-center mb-6 group-hover:bg-[#2B5589] transition-colors duration-300">
+                <div className="w-12 h-12 border-2 border-[#0201FF] flex items-center justify-center mb-6 group-hover:bg-[#0201FF] transition-colors duration-300">
                   <svg
-                    className="w-6 h-6 text-[#2B5589] group-hover:text-white transition-colors duration-300"
+                    className="w-6 h-6 text-[#0201FF] group-hover:text-white transition-colors duration-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -364,11 +389,11 @@ export default function AboutPage() {
 
             {/* Partnership */}
             <div className="group relative bg-white border border-gray-200 p-10 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-              <div className="absolute top-0 left-0 w-1 h-full bg-[#2B5589] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#0201FF] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
               <div className="relative">
-                <div className="w-12 h-12 border-2 border-[#2B5589] flex items-center justify-center mb-6 group-hover:bg-[#2B5589] transition-colors duration-300">
+                <div className="w-12 h-12 border-2 border-[#0201FF] flex items-center justify-center mb-6 group-hover:bg-[#0201FF] transition-colors duration-300">
                   <svg
-                    className="w-6 h-6 text-[#2B5589] group-hover:text-white transition-colors duration-300"
+                    className="w-6 h-6 text-[#0201FF] group-hover:text-white transition-colors duration-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -404,16 +429,16 @@ export default function AboutPage() {
               Our History
             </h2>
             <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
-            <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
-              Our <span className="text-[#2B5589] font-normal">Journey</span>
+            {/* <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
+              Our <span className="text-[#0201FF] font-normal">Journey</span>
             </h3>
             <p className="text-lg sm:text-xl text-[#364153] font-light max-w-3xl mt-4">
               Two decades of transformation, innovation, and excellence
-            </p>
+            </p> */}
           </div>
 
           {/* Timeline Navigation */}
-          <div className="flex justify-start mb-12 overflow-x-auto pb-4">
+          {/* <div className="flex justify-start mb-12 overflow-x-auto pb-4">
             <div className="inline-flex gap-3 px-4">
               {timelineData.map((item, index) => (
                 <button
@@ -421,7 +446,7 @@ export default function AboutPage() {
                   onClick={() => setActiveYear(index)}
                   className={`px-6 py-3 font-light transition-all duration-300 whitespace-nowrap border ${
                     activeYear === index
-                      ? "bg-[#2B5589] text-white border-[#2B5589] shadow-md"
+                      ? "bg-[#0201FF] text-white border-[#0201FF] shadow-md"
                       : "bg-white text-[#364153] hover:bg-gray-50 border-gray-300"
                   }`}
                 >
@@ -429,13 +454,13 @@ export default function AboutPage() {
                 </button>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Timeline Content */}
           <div className="relative">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Image */}
-              <div
+              {/* <div
                 className={`relative h-[400px] lg:h-[500px] overflow-hidden shadow-lg transition-all duration-700 border border-gray-200 ${
                   isTimelineVisible
                     ? "opacity-100 translate-x-0"
@@ -451,11 +476,11 @@ export default function AboutPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <span className="inline-block px-5 py-2 bg-[#2B5589] text-white font-normal text-2xl">
+                  <span className="inline-block px-5 py-2 bg-[#0201FF] text-white font-normal text-2xl">
                     {timelineData[activeYear].year}
                   </span>
                 </div>
-              </div>
+              </div> */}
 
               {/* Content */}
               <div
@@ -465,7 +490,7 @@ export default function AboutPage() {
                     : "opacity-0 translate-x-10"
                 }`}
               >
-                <div className="w-16 h-1 bg-[#2B5589] mb-6"></div>
+                {/* <div className="w-16 h-1 bg-[#0201FF] mb-6"></div> */}
                 <h3 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#1a1a1a] mb-6 tracking-tight">
                   {timelineData[activeYear].title}
                 </h3>
@@ -482,7 +507,7 @@ export default function AboutPage() {
                   </div>
                   <div className="h-1 bg-gray-200 overflow-hidden">
                     <div
-                      className="h-full bg-[#2B5589] transition-all duration-500"
+                      className="h-full bg-[#0201FF] transition-all duration-500"
                       style={{
                         width: `${
                           ((activeYear + 1) / timelineData.length) * 100
@@ -508,7 +533,7 @@ export default function AboutPage() {
                       )
                     }
                     disabled={activeYear === timelineData.length - 1}
-                    className="px-6 py-3 bg-[#2B5589] text-white font-light hover:bg-[#0000d1] transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="px-6 py-3 bg-[#0201FF] text-white font-light hover:bg-[#0000d1] transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     Next →
                   </button>
@@ -530,13 +555,13 @@ export default function AboutPage() {
                   <div
                     className={`w-3 h-3 transition-all duration-300 ${
                       index <= activeYear
-                        ? "bg-[#2B5589] scale-150"
+                        ? "bg-[#0201FF] scale-150"
                         : "bg-gray-300 hover:bg-gray-400"
                     }`}
                   />
                   <span
                     className={`absolute top-8 left-1/2 -translate-x-1/2 text-sm font-light whitespace-nowrap transition-all duration-300 ${
-                      index <= activeYear ? "text-[#2B5589]" : "text-gray-400"
+                      index <= activeYear ? "text-[#0201FF]" : "text-gray-400"
                     }`}
                   >
                     {item.year}
@@ -549,7 +574,7 @@ export default function AboutPage() {
       </section>
 
       {/* Client Testimonials Section */}
-      <section className="py-20 bg-slate-50">
+      {/* <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16">
             <h2 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-light tracking-tighter text-[#364153] mb-1">
@@ -558,7 +583,7 @@ export default function AboutPage() {
             <div className="w-full h-[1px] bg-gray-300 mb-8"></div>
             <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-[#1a1a1a] leading-tight mb-4">
               What Our Clients{" "}
-              <span className="text-[#2B5589] font-normal">Say</span>
+              <span className="text-[#0201FF] font-normal">Say</span>
             </h3>
             <p className="text-lg sm:text-xl text-[#364153] font-light max-w-3xl mt-4">
               Trusted by industry leaders across Southeast Asia
@@ -566,7 +591,6 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Testimonial Card 1 */}
             <div className="bg-white border border-gray-200 p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-center mb-6">
                 <div className="w-16 h-16 bg-gray-100 border border-gray-200 flex items-center justify-center text-[#364153] text-2xl font-light">
@@ -584,7 +608,7 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
-              <div className="w-8 h-1 bg-[#2B5589] mb-4"></div>
+              <div className="w-8 h-1 bg-[#0201FF] mb-4"></div>
               <p className="text-[#364153] leading-relaxed mb-4 font-light">
                 [Testimonial content will be added here. This space is reserved
                 for client feedback about their experience with Total Quality
@@ -604,7 +628,6 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Testimonial Card 2 */}
             <div className="bg-white border border-gray-200 p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-center mb-6">
                 <div className="w-16 h-16 bg-gray-100 border border-gray-200 flex items-center justify-center text-[#364153] text-2xl font-light">
@@ -622,7 +645,7 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
-              <div className="w-8 h-1 bg-[#2B5589] mb-4"></div>
+              <div className="w-8 h-1 bg-[#0201FF] mb-4"></div>
               <p className="text-[#364153] leading-relaxed mb-4 font-light">
                 [Testimonial content will be added here. This space is reserved
                 for client feedback about their experience with Total Quality
@@ -642,7 +665,6 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Testimonial Card 3 */}
             <div className="bg-white border border-gray-200 p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-center mb-6">
                 <div className="w-16 h-16 bg-gray-100 border border-gray-200 flex items-center justify-center text-[#364153] text-2xl font-light">
@@ -660,7 +682,7 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
-              <div className="w-8 h-1 bg-[#2B5589] mb-4"></div>
+              <div className="w-8 h-1 bg-[#0201FF] mb-4"></div>
               <p className="text-[#364153] leading-relaxed mb-4 font-light">
                 [Testimonial content will be added here. This space is reserved
                 for client feedback about their experience with Total Quality
@@ -681,7 +703,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

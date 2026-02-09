@@ -4,8 +4,8 @@ import ServiceSection from "@/components/ServiceSection";
 import EventSection from "@/components/EventSection";
 import NewsSection from "@/components/NewsSection";
 import CareerSection from "@/components/CareerSection";
-import ForumSection from "@/components/ForumSection";
-import SelfAssessmentSection from "@/components/SelfAssessmentSection";
+// import ForumSection from "@/components/ForumSection";
+// import SelfAssessmentSection from "@/components/SelfAssessmentSection";
 import GlobalBackground from "@/components/GlobalBackground";
 import ConsultationModal from "@/components/ConsultationModal";
 
@@ -20,8 +20,8 @@ export default function HomePage() {
       <EventSection />
       <NewsSection />
       <CareerSection />
-      <ForumSection />
-      <SelfAssessmentSection />
+      {/* <ForumSection />
+      <SelfAssessmentSection /> */}
     </>
   );
 }

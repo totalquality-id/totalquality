@@ -106,7 +106,7 @@ export default function NewsSection() {
           {/* Left Side - Title and Link */}
           <div className="flex items-center gap-8">
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-light tracking-tighter text-[#1a1a1a] leading-tight">
-              Latest <span className="text-[#2B5589] font-normal">News</span>
+              Latest <span className="text-[#0201FF] font-normal">News</span>
             </h2>
 
             {/* View All News Link */}
@@ -232,7 +232,7 @@ export default function NewsSection() {
 
                       {/* Multi-Layer Gradient Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/40 to-black/70" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
                       {/* Hover Overlay - Darker for better text visibility */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

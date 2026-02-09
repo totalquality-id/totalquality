@@ -248,7 +248,7 @@ export default function Navbar() {
                     Career
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a
                     href="#forum"
                     onClick={(e) => handleNavigation(e, "#forum")}
@@ -277,7 +277,7 @@ export default function Navbar() {
                       Self Assessment
                     </a>
                   )}
-                </li>
+                </li> */}
               </ul>
             </nav>
 
@@ -381,7 +381,7 @@ export default function Navbar() {
                   Career
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="#forum"
                   onClick={(e) => handleNavigation(e, "#forum")}
@@ -398,7 +398,7 @@ export default function Navbar() {
                 >
                   Self Assessment
                 </a>
-              </li>
+              </li> */}
             </ul>
           </nav>
 
