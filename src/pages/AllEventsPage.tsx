@@ -1,84 +1,54 @@
+"use client";
+
 import Image from "next/image";
-import { Calendar, MapPin, Users, Clock } from "lucide-react";
+import { Calendar, MapPin, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
+
+interface Event {
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  location?: string;
+  image?: string;
+}
 
 export default function AllEventsPage() {
-  const events = [
-    {
-      title: "Legacy Training Camp",
-      description:
-        "Join industry leaders for an inspiring day of insights, networking, and transformative leadership strategies.",
-      date: "January 9-11, 2026",
-      time: "09:00 - 17:00 WIB",
-      location: "Lembah Indah, Malang",
-      attendees: "150+ Participants",
-      image: "/images/events/legacy.jpg",
-      badge: "Register Now",
-      badgeColor: "bg-[#0201FF] text-white",
-      category: "Training",
-    },
-    {
-      title: "HR Innovation Workshop",
-      description:
-        "Discover cutting-edge HR practices and tools that will revolutionize your talent management approach.",
-      date: "April 22, 2025",
-      time: "08:00 - 16:00 WIB",
-      location: "Surabaya Business Park",
-      attendees: "100+ Participants",
-      image: "/images/events/legacy.jpg",
-      badge: "Upcoming",
-      badgeColor: "bg-[#FACC01] text-[#2B5589]",
-      category: "Workshop",
-    },
-    {
-      title: "Corporate Motivation Seminar",
-      description:
-        "Energize your team with powerful motivational techniques and real-world success stories from top executives.",
-      date: "May 10, 2025",
-      time: "13:00 - 18:00 WIB",
-      location: "Bali International Hub",
-      attendees: "200+ Participants",
-      image: "/images/events/legacy.jpg",
-      badge: "Limited Seats",
-      badgeColor: "bg-[#FACC01] text-[#2B5589]",
-      category: "Seminar",
-    },
-    {
-      title: "Quality Management Conference",
-      description:
-        "Annual conference bringing together quality management professionals to share best practices and innovations.",
-      date: "June 15-16, 2025",
-      time: "08:30 - 17:00 WIB",
-      location: "Jakarta Convention Center",
-      attendees: "300+ Participants",
-      image: "/images/events/legacy.jpg",
-      badge: "Early Bird",
-      badgeColor: "bg-[#0201FF] text-white",
-    },
-    {
-      title: "Agent of Change Summit",
-      description:
-        "Celebrate and learn from our successful Agents of Change who have transformed their organizations.",
-      date: "July 20, 2025",
-      time: "09:00 - 16:00 WIB",
-      location: "Surabaya Grand Hotel",
-      attendees: "250+ Participants",
-      image: "/images/events/legacy.jpg",
-      badge: "Coming Soon",
-      badgeColor: "bg-[#FACC01] text-[#2B5589]",
-    },
-    {
-      title: "Leadership Excellence Program",
-      description:
-        "Intensive program designed to develop next-generation leaders with strategic thinking and execution skills.",
-      date: "August 5-7, 2025",
-      time: "08:00 - 18:00 WIB",
-      location: "Bandung Leadership Center",
-      attendees: "80+ Participants",
-      image: "/images/events/legacy.jpg",
-      badge: "Registration Open",
-      badgeColor: "bg-[#0201FF] text-white",
-    },
-  ];
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch("/api/events");
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch events");
+        }
+
+        const data = await res.json();
+        setEvents(data);
+      } catch (err) {
+        console.error("Error fetching events:", err);
+        setError("Failed to load events. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
 
   return (
     <div
@@ -106,115 +76,104 @@ export default function AllEventsPage() {
 
       {/* Events Grid Section */}
       <section className="relative py-16 sm:py-20 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {events.map((event, index) => (
-              <article
-                key={index}
-                className="group relative bg-white border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-500 overflow-hidden"
-              >
-                {/* Image Header */}
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={event.image}
-                    alt={event.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-transparent" />
-
-                  {/* Badge */}
-                  <div
-                    className={`absolute top-4 right-4 px-3 py-1.5 ${event.badgeColor} text-xs font-light tracking-wide`}
-                  >
-                    {event.badge}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-8 space-y-6">
-                  {/* Title */}
-                  <h3 className="text-xl lg:text-2xl font-light tracking-tight text-[#1a1a1a] group-hover:text-[#2B5589] transition-colors duration-300">
-                    {event.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-sm lg:text-base text-[#364153] leading-relaxed font-light">
-                    {event.description}
-                  </p>
-
-                  {/* Event Details */}
-                  <div className="space-y-3 pt-4 border-t border-gray-100">
-                    <div className="flex items-start gap-3">
-                      <Calendar className="w-4 h-4 text-[#2B5589] mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="text-xs text-[#364153] font-light">
-                          {event.date}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <Clock className="w-4 h-4 text-[#FACC01] mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="text-xs text-[#364153] font-light">
-                          {event.time}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <MapPin className="w-4 h-4 text-[#2B5589] mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="text-xs text-[#364153] font-light">
-                          {event.location}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <Users className="w-4 h-4 text-[#FACC01] mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="text-xs text-[#364153] font-light">
-                          {event.attendees}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* CTA */}
-                  {/* <div className="pt-2">
-                    <a
-                      href="/contact"
-                      className="inline-flex items-center gap-2 text-sm text-[#2B5589] font-light underline underline-offset-4 decoration-1 hover:text-[#1E3F69] group-hover:gap-3 transition-all duration-300"
-                    >
-                      <span>Register Now</span>
-                      <svg
-                        className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </a>
-                  </div> */}
-                </div>
-
-                {/* Number Indicator */}
-                {/* <div className="absolute top-52 right-6 text-6xl font-extralight text-gray-200 group-hover:text-gray-300 transition-colors duration-500 select-none">
-                  0{index + 1}
-                </div> */}
-              </article>
-            ))}
+        {loading && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
+            <p className="text-[#364153] font-light">Loading events...</p>
           </div>
-        </div>
+        )}
+
+        {error && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
+            <p className="text-red-600 font-light">{error}</p>
+          </div>
+        )}
+
+        {!loading && !error && events.length === 0 && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
+            <p className="text-[#364153] font-light">
+              No events available at the moment.
+            </p>
+          </div>
+        )}
+
+        {!loading && !error && events.length > 0 && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {events.map((event) => (
+                <article
+                  key={event.id}
+                  className="group relative bg-white border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-500 overflow-hidden"
+                >
+                  {/* Image Header */}
+                  <div className="relative h-48 overflow-hidden">
+                    {event.image ? (
+                      <Image
+                        src={event.image}
+                        alt={event.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-[#2B5589] to-[#0201FF] flex items-center justify-center">
+                        <svg
+                          className="w-20 h-20 text-white/20"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-transparent" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-8 space-y-6">
+                    {/* Title */}
+                    <h3 className="text-xl lg:text-2xl font-light tracking-tight text-[#1a1a1a] group-hover:text-[#2B5589] transition-colors duration-300">
+                      {event.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-sm lg:text-base text-[#364153] leading-relaxed font-light">
+                      {event.description}
+                    </p>
+
+                    {/* Event Details */}
+                    <div className="space-y-3 pt-4 border-t border-gray-100">
+                      <div className="flex items-start gap-3">
+                        <Calendar className="w-4 h-4 text-[#2B5589] mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-xs text-[#364153] font-light">
+                            {formatDate(event.date)}
+                          </p>
+                        </div>
+                      </div>
+
+                      {event.location && (
+                        <div className="flex items-start gap-3">
+                          <MapPin className="w-4 h-4 text-[#2B5589] mt-0.5 flex-shrink-0" />
+                          <div>
+                            <p className="text-xs text-[#364153] font-light">
+                              {event.location}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
 
       {/* CTA Section */}

@@ -7,7 +7,6 @@ import {
   User,
   Mail,
   ArrowRight,
-  CheckCircle2,
   Sparkles,
   Clock,
 } from "lucide-react";
@@ -22,10 +21,39 @@ export default function ConsultationModal() {
   });
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 2000);
-    return () => clearTimeout(timer);
+    // Check if modal should be shown based on localStorage
+    const CONSULTATION_MODAL_KEY = "consultation_modal_last_shown";
+    const CONSULTATION_MODAL_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+    const lastShownTime = localStorage.getItem(CONSULTATION_MODAL_KEY);
+    const now = Date.now();
+
+    // Show modal if:
+    // 1. Never shown before, or
+    // 2. More than 24 hours have passed
+    let shouldShowModal = false;
+
+    if (!lastShownTime) {
+      // First time visiting
+      shouldShowModal = true;
+    } else {
+      const lastTime = parseInt(lastShownTime, 10);
+      if (now - lastTime > CONSULTATION_MODAL_INTERVAL) {
+        // More than 24 hours have passed
+        shouldShowModal = true;
+      }
+    }
+
+    if (shouldShowModal) {
+      // Delay showing the modal by 2 seconds
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+        // Update the last shown time
+        localStorage.setItem(CONSULTATION_MODAL_KEY, now.toString());
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   useEffect(() => {

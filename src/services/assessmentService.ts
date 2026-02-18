@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/services/assessmentService.ts
 import prisma from "@/config/prismaConfig";
 

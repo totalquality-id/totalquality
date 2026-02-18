@@ -69,49 +69,63 @@ export default function AboutPage() {
       { threshold: 0.2 }
     );
 
-    if (timelineRef.current) {
-      observer.observe(timelineRef.current);
+    const currentRef = timelineRef.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (timelineRef.current) {
-        observer.unobserve(timelineRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
 
-  return (
-    <div
-      className="bg-white"
-      style={{ fontFamily: "Inter, system-ui, sans-serif" }}
-    >
-      {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#000033] via-[#0201FF] to-[#1a0f5c] text-white overflow-hidden">
-        {/* Decorative Gradients */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#FACC01]/12 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#06b6d4]/8 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-[#0201FF]/20 rounded-full blur-3xl" />
+ return (
+    <div className="bg-white" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
+      
+      {/* Hero Section - Diperbarui agar selaras dengan GlobalBackground */}
+      <section className="relative py-20 sm:py-24 lg:py-32 bg-[#15156b] text-white overflow-hidden">
+        
+        {/* 1. Base Gradient Layer - Meniru kedalaman GlobalBackground */}
+        <div 
+          className="absolute inset-0 opacity-60" 
+          style={{
+            background: `radial-gradient(circle at 0% 0%, #0201FF 0%, transparent 40%), 
+                         radial-gradient(circle at 100% 100%, #0201FF 0%, transparent 40%)`
+          }}
+        />
 
-        {/* Subtle Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.03]">
+        {/* 2. Mesh Grid - Disamakan ukurannya (60px) dan opasitasnya */}
+        <div className="absolute inset-0 opacity-[0.05]">
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `
-                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
-              `,
-              backgroundSize: "50px 50px",
+              backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
+              backgroundSize: "60px 60px",
             }}
           />
         </div>
 
+        {/* 3. Soft Spotlights - Aksen dinamis khas GlobalBackground */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-[#0201FF]/20 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '8s' }} />
+          <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-[#0201FF]/15 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '10s' }} />
+        </div>
+
+        {/* 4. Noise Texture Overlay - Memberikan kesan premium matte */}
+        <div className="absolute inset-0 opacity-[0.02] pointer-events-none brightness-100 contrast-150" 
+             style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}>
+        </div>
+
+        {/* Hero Content */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter leading-10 sm:leading-12  md:leading-16 lg:leading-18 mb-6 mt-16">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter leading-tight mb-6 mt-16">
               About <span className="text-[#FACC01] font-normal">Us</span>
             </h1>
-            <p className="text-base sm:text-lg lg:text-xl font-light text-white/90 leading-tight max-w-3xl">
+            <p className="text-base sm:text-lg lg:text-xl font-light text-white/80 leading-tight max-w-3xl">
               Inspiring excellence and transforming organizations for over two
               decades
             </p>
@@ -170,7 +184,7 @@ export default function AboutPage() {
                   </span>{" "}
                   delivers professional training and continuous guidance over a
                   4-month period, utilizing unique methodologies specifically
-                  developed to address your organization's needs in enhancing
+                  developed to address your organization&apos;s needs in enhancing
                   human resource quality and achieving organizational targets.
                 </p>
                 <p className="text-[#364153] leading-relaxed font-light">
@@ -378,8 +392,8 @@ export default function AboutPage() {
                   Contribution
                 </h3>
                 <p className="text-[#364153] leading-relaxed font-light">
-                  Guided by the principle "it is better to give than to
-                  receive," we measure all performance, achievements, and
+                  Guided by the principle &ldquo;it is better to give than to
+                  receive,&rdquo; we measure all performance, achievements, and
                   recognition by the meaningful contributions made to the
                   organization. Every action should add value and drive
                   collective success.
