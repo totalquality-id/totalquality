@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Heart, Share2, MessageCircle, Quote, Sparkles } from "lucide-react";
+import Image from "next/image";
+import { Heart, Share2, Quote } from "lucide-react";
 
 interface ForumPost {
   id: number;
@@ -32,7 +33,7 @@ export default function ForumSection() {
                 ? localStorage.getItem(`forum_like_${p.id}`)
                 : null;
             return stored === "true";
-          })
+          }),
         );
       } catch (err) {
         console.error("Failed to fetch forums:", err);
@@ -129,9 +130,10 @@ export default function ForumSection() {
             <div className="relative h-full rounded-2xl overflow-hidden shadow-lg">
               {/* Background Image */}
               <div className="absolute inset-0">
-                <img
+                <Image
                   src="/direksi.jpg"
                   alt="CEO"
+                  fill
                   className="w-full h-full object-cover"
                 />
 
@@ -300,7 +302,7 @@ export default function ForumSection() {
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-6">
               <Quote className="w-5 h-5 text-[#FACC01] mb-2" />
               <p className="text-[#1a1a1a] italic mb-2">
-                "{activeShare.quote}"
+                &quot;{activeShare.quote}&quot;
               </p>
               <p className="text-sm text-[#364153]">- {activeShare.author}</p>
             </div>

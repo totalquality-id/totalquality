@@ -9,22 +9,22 @@ export default function AboutSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
-  const companyLogos = [
-    { name: "Company 1", logo: "/images/copart/copart-1.jpg" },
-    { name: "Company 2", logo: "/images/copart/copart-2.jpg" },
-    { name: "Company 3", logo: "/images/copart/copart-3.jpg" },
-    { name: "Company 4", logo: "/images/copart/copart-1.jpg" },
-    { name: "Company 5", logo: "/images/copart/copart-2.jpg" },
-    { name: "Company 6", logo: "/images/copart/copart-3.jpg" },
-    { name: "Company 7", logo: "/images/copart/copart-1.jpg" },
-    { name: "Company 8", logo: "/images/copart/copart-2.jpg" },
-    { name: "Company 9", logo: "/images/copart/copart-3.jpg" },
-    { name: "Company 10", logo: "/images/copart/copart-1.jpg" },
-    { name: "Company 11", logo: "/images/copart/copart-2.jpg" },
-    { name: "Company 12", logo: "/images/copart/copart-3.jpg" },
-  ];
+  // const companyLogos = [
+  //   { name: "Company 1", logo: "/images/copart/copart-1.jpg" },
+  //   { name: "Company 2", logo: "/images/copart/copart-2.jpg" },
+  //   { name: "Company 3", logo: "/images/copart/copart-3.jpg" },
+  //   { name: "Company 4", logo: "/images/copart/copart-1.jpg" },
+  //   { name: "Company 5", logo: "/images/copart/copart-2.jpg" },
+  //   { name: "Company 6", logo: "/images/copart/copart-3.jpg" },
+  //   { name: "Company 7", logo: "/images/copart/copart-1.jpg" },
+  //   { name: "Company 8", logo: "/images/copart/copart-2.jpg" },
+  //   { name: "Company 9", logo: "/images/copart/copart-3.jpg" },
+  //   { name: "Company 10", logo: "/images/copart/copart-1.jpg" },
+  //   { name: "Company 11", logo: "/images/copart/copart-2.jpg" },
+  //   { name: "Company 12", logo: "/images/copart/copart-3.jpg" },
+  // ];
 
-  const row1 = [...companyLogos, ...companyLogos];
+  // const row1 = [...companyLogos, ...companyLogos];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -33,7 +33,7 @@ export default function AboutSection() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     const currentSection = sectionRef.current;
@@ -127,11 +127,11 @@ export default function AboutSection() {
                   {count}+
                 </div>
                 <p className="text-base sm:text-xl md:text-4xl font-normal tracking-tighter text-white mt-4 sm:mt-6">
-                  Companies
+                  Corporate
                   <span className="hidden lg:inline">
                     <br />
                   </span>{" "}
-                  Served
+                  Partners
                 </p>
               </div>
             </div>
@@ -147,14 +147,17 @@ export default function AboutSection() {
               }`}
             >
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-light tracking-tight text-white leading-relaxed">
-                Behind every partnership lies a journey of{" "}
-                <span className="font-semibold tracking-normal">growth</span>{" "}
-                and{" "}
+                Setiap kemitraan adalah sebuah perjalanan menuju{" "}
                 <span className="font-semibold tracking-normal">
-                  transformation
+                  pertumbuhan
+                </span>{" "}
+                dan{" "}
+                <span className="font-semibold tracking-normal">
+                  transformasi
                 </span>
-                . With over 430 companies served, we&apos;re proud to have
-                inspired lasting change through motivation and culture.
+                . Melayani lebih dari 430 perusahaan, kami bangga dapat
+                menciptakan perubahan nyata yang berdampak panjang melalui
+                penguatan motivasi dan budaya kerja.
               </p>
 
               {/* CTA Link dengan Enhanced Style */}
@@ -163,7 +166,7 @@ export default function AboutSection() {
                 className="inline-flex items-center gap-2 mt-6 text-xl font-medium text-white hover:text-[#FACC01] transition-all duration-300 group"
               >
                 <span className="relative">
-                  Learn more
+                  Selengkapnya
                   <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#FACC01] group-hover:w-full transition-all duration-300" />
                 </span>
                 <svg
@@ -214,7 +217,7 @@ export default function AboutSection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
           <div className="text-center mb-12">
             <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal tracking-tight text-white mb-2">
-              What Our Clients Say
+              What Our Partners Say
             </h3>
           </div>
 
@@ -243,12 +246,12 @@ export default function AboutSection() {
               </div>
               <div className="w-8 h-1 bg-[#FACC01] mb-4"></div>
               <p className="text-white/90 leading-relaxed mb-4 font-light text-sm sm:text-base">
-                Total Quality Indonesia has transformed our organizational
-                culture completely. Their Quality Empowerment System helped us
-                develop strong leaders and created a more motivated workforce.
-                The impact on our team's performance has been remarkable.
+                Total Quality membantu kami membangun superteam, bukan sekadar
+                superstar. Kekuatan sejati dari dalam memastikan seluruh tim
+                bergerak selaras untuk mencapai pertumbuhan berkelanjutan dan
+                kemenangan organisasi yang nyata.
               </p>
-              <div className="flex text-[#FACC01]">
+              {/* <div className="flex text-[#FACC01]">
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
@@ -259,7 +262,7 @@ export default function AboutSection() {
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 ))}
-              </div>
+              </div> */}
             </div>
 
             {/* Testimonial Card 2 */}
@@ -286,12 +289,12 @@ export default function AboutSection() {
               </div>
               <div className="w-8 h-1 bg-[#FACC01] mb-4"></div>
               <p className="text-white/90 leading-relaxed mb-4 font-light text-sm sm:text-base">
-                Working with Total Quality was a game-changer for our
-                organization. Their training programs are not just theoretical
-                but highly practical and immediately applicable. Our employee
-                engagement scores increased by 40% within 6 months.
+                Bersama Total Quality, kami mengubah data menjadi aksi nyata
+                melalui komunikasi positif. Mereka membimbing pemimpin kami
+                untuk menggerakkan tim agar berubah dengan cepat, antusias, dan
+                penuh tanggung jawab.
               </p>
-              <div className="flex text-[#FACC01]">
+              {/* <div className="flex text-[#FACC01]">
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
@@ -302,7 +305,7 @@ export default function AboutSection() {
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 ))}
-              </div>
+              </div> */}
             </div>
 
             {/* Testimonial Card 3 */}
@@ -329,13 +332,12 @@ export default function AboutSection() {
               </div>
               <div className="w-8 h-1 bg-[#FACC01] mb-4"></div>
               <p className="text-white/90 leading-relaxed mb-4 font-light text-sm sm:text-base">
-                The partnership with Total Quality Indonesia has been
-                invaluable. Their expertise in building positive corporate
-                culture and developing change agents has helped us navigate
-                organizational transformation smoothly. Highly recommended for
-                any company serious about growth.
+                Total Quality adalah &apos;bahan bakar&apos; yang menghidupkan
+                moral dan motivasi organisasi kami. Sistem penguatan energi
+                mereka memberikan tenaga baru bagi tim untuk melaju lebih jauh
+                dan bertahan lebih lama.
               </p>
-              <div className="flex text-[#FACC01]">
+              {/* <div className="flex text-[#FACC01]">
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
@@ -346,7 +348,7 @@ export default function AboutSection() {
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

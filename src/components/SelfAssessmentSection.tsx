@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { User, Building2, X, ArrowRight, Target, Clock } from "lucide-react";
 
 export default function SelfAssessmentSection() {
@@ -81,10 +82,12 @@ export default function SelfAssessmentSection() {
     >
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src="https://img.freepik.com/free-photo/office-workers-using-finance-graphs_23-2150408662.jpg?t=st=1763346942~exp=1763350542~hmac=0ded83086bd5296bcf5157748c156c2e152b8e4b522737c18b285a2e25a0ff6e&w=2000"
           alt="Self Assessment Background"
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          priority
         />
 
         <div className="absolute inset-0 bg-gradient-to-b from-black/1- via-black/30 to-black" />

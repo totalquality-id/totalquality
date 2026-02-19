@@ -8,6 +8,7 @@ import CareerSection from "@/components/CareerSection";
 // import SelfAssessmentSection from "@/components/SelfAssessmentSection";
 import GlobalBackground from "@/components/GlobalBackground";
 import ConsultationModal from "@/components/ConsultationModal";
+import WhatsAppButton from "@/components/WhatsappButton";
 
 export default function HomePage() {
   return (
@@ -20,6 +21,7 @@ export default function HomePage() {
       <EventSection />
       <NewsSection />
       <CareerSection />
+      <WhatsAppButton />
       {/* <ForumSection />
       <SelfAssessmentSection /> */}
     </>

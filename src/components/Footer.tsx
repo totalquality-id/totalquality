@@ -5,7 +5,7 @@ import {
   Twitter,
   MapPin,
   Mail,
-  ArrowRight,
+  // ArrowRight,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -19,8 +19,8 @@ export default function Footer() {
     ],
     resources: [
       { label: "Career", href: "/career" },
-      { label: "Self Assessment", href: "/self-assessment" },
-      { label: "Forum", href: "/forum" },
+      // { label: "Self Assessment", href: "/self-assessment" },
+      // { label: "Forum", href: "/forum" },
       { label: "Contact", href: "/contact" },
     ],
     connect: [
@@ -52,7 +52,6 @@ export default function Footer() {
       className="relative bg-black text-white overflow-hidden"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
-
       {/* Main Footer Content */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16">
@@ -181,7 +180,7 @@ export default function Footer() {
             </div>
 
             {/* Newsletter */}
-            <div className="space-y-4">
+            {/* <div className="space-y-4">
               <h5 className="text-sm font-light text-white">Stay Updated</h5>
               <div className="flex gap-2">
                 <input
@@ -196,7 +195,7 @@ export default function Footer() {
               <p className="text-xs text-white/60 font-light">
                 Get the latest news and updates
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -219,19 +218,19 @@ export default function Footer() {
             {/* Legal Links */}
             <div className="flex items-center gap-8">
               <a
-                href="/privacy"
+                href="/privacy-policy"
                 className="text-sm text-white/70 font-light hover:text-white transition-colors duration-300"
               >
                 Privacy Policy
               </a>
               <a
-                href="/terms"
+                href="/terms-of-service"
                 className="text-sm text-white/70 font-light hover:text-white transition-colors duration-300"
               >
                 Terms of Service
               </a>
               <a
-                href="/cookies"
+                href="/cookie-policy"
                 className="text-sm text-white/70 font-light hover:text-white transition-colors duration-300"
               >
                 Cookie Policy

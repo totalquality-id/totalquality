@@ -53,17 +53,55 @@ export default function AllNewsPage() {
       className="min-h-screen bg-white"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
-      {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-[#1a2942] via-[#2B5589] to-[#1e3a5f] text-white overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#FACC01]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+      {/* Hero Section - Diperbarui agar selaras dengan GlobalBackground */}
+      <section className="relative py-20 sm:py-24 lg:py-32 bg-[#15156b] text-white overflow-hidden">
+        {/* 1. Base Gradient Layer - Meniru kedalaman GlobalBackground */}
+        <div
+          className="absolute inset-0 opacity-60"
+          style={{
+            background: `radial-gradient(circle at 0% 0%, #0201FF 0%, transparent 40%), 
+                         radial-gradient(circle at 100% 100%, #0201FF 0%, transparent 40%)`,
+          }}
+        />
 
+        {/* 2. Mesh Grid - Disamakan ukurannya (60px) dan opasitasnya */}
+        <div className="absolute inset-0 opacity-[0.05]">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
+              backgroundSize: "60px 60px",
+            }}
+          />
+        </div>
+
+        {/* 3. Soft Spotlights - Aksen dinamis khas GlobalBackground */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-[#0201FF]/20 rounded-full blur-[120px] animate-pulse"
+            style={{ animationDuration: "8s" }}
+          />
+          <div
+            className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-[#0201FF]/15 rounded-full blur-[120px] animate-pulse"
+            style={{ animationDuration: "10s" }}
+          />
+        </div>
+
+        {/* 4. Noise Texture Overlay - Memberikan kesan premium matte */}
+        <div
+          className="absolute inset-0 opacity-[0.02] pointer-events-none brightness-100 contrast-150"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        ></div>
+
+        {/* Hero Content */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter leading-10 sm:leading-12  md:leading-16 lg:leading-18 mb-6 mt-16">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter leading-tight mb-6 mt-16">
               Latest <span className="text-[#FACC01] font-normal">News</span>
             </h1>
-            <p className="text-base sm:text-lg lg:text-xl font-light text-white/90 leading-tight max-w-3xl">
+            <p className="text-base sm:text-lg lg:text-xl font-light text-white/80 leading-tight max-w-3xl">
               Insights, updates, and stories from our journey of transforming
               organizations across Southeast Asia.
             </p>
@@ -178,7 +216,7 @@ export default function AllNewsPage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="relative py-16 sm:py-20 bg-slate-50">
+      {/* <section className="relative py-16 sm:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative p-12 lg:p-16 bg-[#2B5589] text-white overflow-hidden">
             <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
@@ -210,7 +248,7 @@ export default function AllNewsPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

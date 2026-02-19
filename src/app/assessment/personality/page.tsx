@@ -554,7 +554,7 @@ export default function PersonalityAssessment() {
               Your <span className="text-[#2B5589] font-normal">Personality</span> Profile
             </h1>
             <p className="text-lg text-[#364153] font-light">
-              Based on your answers, here's your personality assessment
+              Based on your answers, here&apos;s your personality assessment
             </p>
             {userInfo && (
               <p className="text-sm text-[#364153]/60 font-light mt-2">

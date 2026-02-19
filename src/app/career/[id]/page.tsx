@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -21,7 +22,6 @@ interface Career {
 
 export default function CareerDetailPage() {
   const params = useParams();
-  const router = useRouter();
   const [career, setCareer] = useState<Career | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);

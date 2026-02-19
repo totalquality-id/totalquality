@@ -135,7 +135,7 @@ export default function Hero() {
               {content.ctaText && (
                 <a
                   href={content.ctaLink || "#"}
-                  className="mt-4 px-8 py-4 bg-white hover:bg-red-700 text-black text-lg font-bold uppercase tracking-wider rounded-full transition-transform hover:scale-105 shadow-xl"
+                  className="mt-4 px-8 py-4 bg-white hover:bg-[#FACC01] text-black text-lg font-bold uppercase tracking-wider rounded-full transition-transform shadow-xl"
                 >
                   {content.ctaText}
                 </a>

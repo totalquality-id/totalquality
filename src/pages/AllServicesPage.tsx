@@ -15,6 +15,8 @@ export default function AllServicesPage() {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const contactWa = "6281515300511";
+
   useEffect(() => {
     const fetchServices = async () => {
       try {
@@ -143,18 +145,16 @@ export default function AllServicesPage() {
           )}
         </div>
       </section>
-
-     {/* CTA Section - Diperbarui agar selaras dengan tema GlobalBackground */}
+      {/* CTA Section - Diperbarui agar selaras dengan tema GlobalBackground */}
       <section className="relative py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative p-12 lg:p-20 bg-[#15156b] text-white overflow-hidden shadow-2xl">
-            
             {/* 1. Base Gradient Layer - Meniru kedalaman GlobalBackground */}
-            <div 
-              className="absolute inset-0 opacity-50" 
+            <div
+              className="absolute inset-0 opacity-50"
               style={{
                 background: `radial-gradient(circle at 0% 100%, #0201FF 0%, transparent 40%), 
-                             radial-gradient(circle at 100% 0%, #0201FF 0%, transparent 40%)`
+                             radial-gradient(circle at 100% 0%, #0201FF 0%, transparent 40%)`,
               }}
             />
 
@@ -173,14 +173,20 @@ export default function AllServicesPage() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-[#0201FF]/10 rounded-full blur-[100px] pointer-events-none" />
 
             {/* 4. Noise Texture Overlay */}
-            <div className="absolute inset-0 opacity-[0.02] pointer-events-none brightness-100 contrast-150" 
-                 style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}>
-            </div>
+            <div
+              className="absolute inset-0 opacity-[0.02] pointer-events-none brightness-100 contrast-150"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+              }}
+            ></div>
 
             {/* Content */}
             <div className="relative max-w-4xl mx-auto text-center space-y-8">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tighter leading-tight">
-                Ready to Transform Your <span className="text-[#FACC01] font-normal">Organization?</span>
+                Ready to Transform Your{" "}
+                <span className="text-[#FACC01] font-normal">
+                  Organization?
+                </span>
               </h2>
               <p className="text-base sm:text-lg lg:text-xl text-white/80 font-light leading-relaxed max-w-2xl mx-auto">
                 Let&apos;s discuss how our services can help you achieve
@@ -188,13 +194,15 @@ export default function AllServicesPage() {
               </p>
               <div className="pt-4">
                 <a
-                  href="/contact"
+                  href={`https://wa.me/${contactWa}`}
                   className="group relative inline-flex items-center gap-3 bg-white text-[#01012b] font-light px-10 py-4 overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(2,1,255,0.3)]"
                 >
                   {/* Hover effect on button */}
                   <div className="absolute inset-0 w-0 bg-[#FACC01] transition-all duration-300 group-hover:w-full -z-10" />
-                  
-                  <span className="relative z-10 text-sm font-medium tracking-widest uppercase">Contact Us</span>
+
+                  <span className="relative z-10 text-sm font-medium tracking-widest uppercase">
+                    Contact Us
+                  </span>
                   <svg
                     className="relative z-10 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300"
                     fill="none"

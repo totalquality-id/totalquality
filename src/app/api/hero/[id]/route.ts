@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // src/app/api/hero/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/config/prismaConfig";

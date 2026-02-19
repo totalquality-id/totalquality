@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import { Newsreader } from "next/font/google";
 
 const newsreader = Newsreader({
@@ -19,42 +19,42 @@ export default function AboutPage() {
       year: "2005",
       title: "The Beginning",
       description:
-        "Total Quality Indonesia was founded by Johan Yan with a vision to transform organizational culture across Southeast Asia through motivation and excellence.",
+        "Total Quality Indonesia didirikan oleh Johan Yan dengan visi untuk mentransformasi budaya organisasi di seluruh Asia Tenggara melalui kekuatan motivasi dan keunggulan (excellence).",
       image: "/images/timeline/1.jpg",
     },
     {
       year: "2006",
       title: "Expansion Through New Branch Offices",
       description:
-        "In 2006, Total Quality expanded its reach by opening new branch offices in Jakarta and Singapore, strengthening its presence in Southeast Asia.",
+        "Pada tahun 2006, Total Quality memperluas jangkauannya dengan membuka kantor cabang baru di Jakarta dan Singapura, memperkuat kehadiran di Asia Tenggara.",
       image: "/images/timeline/2.jpg",
     },
     {
       year: "2007",
       title: "The 1st Annual National Empowerment Congress (ANEC)",
       description:
-        "Total Quality successfully held Indonesia's largest motivational congress, engaging hundreds of company directors and thousands of managers nationwide.",
+        "Pada tahun 2007, Total Quality mengadakan Kongres Nasional Kepemimpinan (ANEC) pertama yang menjadi acuan penting dalam membangun budaya organisasi yang kuat dan berkelanjutan.",
       image: "/images/timeline/3.jpg",
     },
     {
       year: "2008",
       title: "Breaking Records at the 2nd ANEC",
       description:
-        "The 2nd Annual National Empowerment Congress (ANEC) achieved remarkable milestones by breaking six MURI (Indonesian World Records Museum) records. The event gathered 486 Directors and 4,073 Managers, earning recognition as the largest motivational congress in Southeast Asia.",
+        "Pada tahun 2008, Total Quality mencatatkan rekor baru di Kongres Nasional Kepemimpinan (ANEC) kedua dengan memecahkan enam rekor MURI (Museum Rekor Indonesia). Acara ini mengumpulkan 486 Direktur dan 4.073 Manajer, mendapat pengakuan sebagai kongres motivasi terbesar di Asia Tenggara.",
       image: "/images/timeline/4.jpg",
     },
     {
       year: "2012",
       title: "Royal Recognition for Cultural Preservation",
       description:
-        "Johan Yan, President Director of Total Quality, received the honorary title 'Prince' from Pakubowono XIII of the Surakarta Sunanate in recognition of his significant contribution to preserving Indonesia's cultural heritage.",
+        "Pada tahun 2012, Johan Yan menerima penghargaan kerajaan dari Pakubowono XIII dari Kesultanan Surakarta atas kontribusinya dalam melestarikan warisan budaya Indonesia.",
       image: "/images/timeline/5.jpg",
     },
     {
       year: "2013",
       title: "Among Indonesia's 10 Most Influential Young Leaders",
       description:
-        "In 2013, Johan Yan was honored as one of Indonesia's 10 Most Influential Young Leaders in Culture by the United Nations-affiliated youth organization, JCI (Junior Chamber International).",
+        "Pada tahun 2013, Johan Yan dihormati sebagai salah satu dari 10 Pemimpin Muda Indonesia yang paling berpengaruh dalam bidang budaya oleh organisasi pemuda terkait PBB, JCI (Junior Chamber International).",
       image: "/images/timeline/6.jpg",
     },
   ];
@@ -66,7 +66,7 @@ export default function AboutPage() {
           setIsTimelineVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     const currentRef = timelineRef.current;
@@ -82,18 +82,19 @@ export default function AboutPage() {
     };
   }, []);
 
- return (
-    <div className="bg-white" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
-      
+  return (
+    <div
+      className="bg-white"
+      style={{ fontFamily: "Inter, system-ui, sans-serif" }}
+    >
       {/* Hero Section - Diperbarui agar selaras dengan GlobalBackground */}
       <section className="relative py-20 sm:py-24 lg:py-32 bg-[#15156b] text-white overflow-hidden">
-        
         {/* 1. Base Gradient Layer - Meniru kedalaman GlobalBackground */}
-        <div 
-          className="absolute inset-0 opacity-60" 
+        <div
+          className="absolute inset-0 opacity-60"
           style={{
             background: `radial-gradient(circle at 0% 0%, #0201FF 0%, transparent 40%), 
-                         radial-gradient(circle at 100% 100%, #0201FF 0%, transparent 40%)`
+                         radial-gradient(circle at 100% 100%, #0201FF 0%, transparent 40%)`,
           }}
         />
 
@@ -110,14 +111,23 @@ export default function AboutPage() {
 
         {/* 3. Soft Spotlights - Aksen dinamis khas GlobalBackground */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-[#0201FF]/20 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '8s' }} />
-          <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-[#0201FF]/15 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '10s' }} />
+          <div
+            className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-[#0201FF]/20 rounded-full blur-[120px] animate-pulse"
+            style={{ animationDuration: "8s" }}
+          />
+          <div
+            className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-[#0201FF]/15 rounded-full blur-[120px] animate-pulse"
+            style={{ animationDuration: "10s" }}
+          />
         </div>
 
         {/* 4. Noise Texture Overlay - Memberikan kesan premium matte */}
-        <div className="absolute inset-0 opacity-[0.02] pointer-events-none brightness-100 contrast-150" 
-             style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}>
-        </div>
+        <div
+          className="absolute inset-0 opacity-[0.02] pointer-events-none brightness-100 contrast-150"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        ></div>
 
         {/* Hero Content */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -149,22 +159,24 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div className="space-y-6">
               <p className="text-lg text-[#364153] leading-relaxed font-light">
-                Established in{" "}
+                Didirikan tahun{" "}
                 <span className="text-[#0201FF] font-normal">2005</span>, PT
-                Total Quality Indonesia has been a trusted partner for
-                organizational development across Southeast Asia. With over{" "}
+                Total Quality Indonesia telah menjadi mitra terpercaya untuk
+                pengembangan organisasi di seluruh Asia Tenggara. Dengan lebih
+                dari{" "}
                 <span className="text-[#0201FF] font-normal">
-                  406 partner organizations
+                  430 corporate partner
                 </span>{" "}
-                spanning multiple industry sectors, we specialize in human
-                resource development and management system implementation.
+                yang mencakup berbagai sektor industri, kami berspesialisasi
+                dalam pengembangan sumber daya manusia dan implementasi sistem
+                manajemen.
               </p>
               <p className="text-lg text-[#364153] leading-relaxed font-light">
-                Operating from our offices in{" "}
-                <span className="text-[#0201FF] font-normal">Jakarta</span> and{" "}
-                <span className="text-[#0201FF] font-normal">Surabaya</span>, we
-                deliver comprehensive solutions that drive sustainable growth
-                and organizational excellence.
+                Beroperasi melalui kantor kami di{" "}
+                <span className="text-[#0201FF] font-normal">Jakarta</span> dan{" "}
+                <span className="text-[#0201FF] font-normal">Surabaya</span>,
+                kami menghadirkan solusi komprehensif yang mendorong pertumbuhan
+                berkelanjutan dan keunggulan organisasi.
               </p>
             </div>
 
@@ -178,21 +190,20 @@ export default function AboutPage() {
                   Our Approach
                 </h3>
                 <p className="text-[#364153] leading-relaxed mb-6 font-light">
-                  Our{" "}
                   <span className="text-[#0201FF] font-normal">
                     Quality Empowerment System
                   </span>{" "}
-                  delivers professional training and continuous guidance over a
-                  4-month period, utilizing unique methodologies specifically
-                  developed to address your organization&apos;s needs in enhancing
-                  human resource quality and achieving organizational targets.
+                  kami memberikan pelatihan profesional dan bimbingan
+                  berkelanjutan selama periode 4 bulan, menggunakan metodologi
+                  unik yang dikembangkan khusus untuk menjawab kebutuhan
+                  organisasi Anda dalam meningkatkan kualitas SDM serta mencapai
+                  target perusahaan.
                 </p>
                 <p className="text-[#364153] leading-relaxed font-light">
-                  We focus on building a positive corporate culture and
-                  developing agents of change who serve as catalysts for
-                  positive transformation, ensuring your organization becomes
-                  more productive, effective, and capable of achieving its
-                  vision.
+                  Kami fokus membangun budaya organisasi yang positif dan
+                  mencetak Agents of Change sebagai katalis transformasi, guna
+                  memastikan organisasi Anda menjadi lebih produktif, efektif,
+                  dan mampu mewujudkan visi besarnya.
                 </p>
               </div>
 
@@ -220,7 +231,81 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Direktur Utama */}
+        {/* ========================================================================= */}
+        {/* sementara tanpa foto */}
+        {/* ========================================================================= */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Kartu Johan Yan */}
+            <div className="bg-white p-10 lg:p-14 shadow-lg border border-gray-200 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#0201FF]/5 rounded-full blur-2xl group-hover:bg-[#0201FF]/10 transition-colors duration-300"></div>
+              <div className="relative">
+                <div className="w-12 h-1 bg-[#0201FF] mb-8"></div>
+                <p
+                  className={`text-xl lg:text-2xl font-normal leading-8 mb-6 tracking-normal text-[#1a1a1a] ${newsreader.className}`}
+                >
+                  &quot;Selama lebih dari 20 tahun, kami telah bermitra dengan
+                  berbagai organisasi di seluruh Indonesia untuk menginspirasi
+                  individu, memperkuat budaya kerja, dan menggerakkan perubahan
+                  yang bermakna.&quot;
+                </p>
+                <p
+                  className={`text-xl lg:text-2xl font-normal leading-8 tracking-normal text-[#1a1a1a] ${newsreader.className}`}
+                >
+                  &quot;Total Quality Indonesia terus membangun lingkungan kerja
+                  di mana motivasi dan pertumbuhan berkembang beriringan.&quot;
+                </p>
+              </div>
+              <div className="mt-12 relative">
+                <h3 className="text-3xl font-light text-[#1a1a1a] mb-4 tracking-tight">
+                  Johan Yan
+                </h3>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#0201FF]">
+                  <span className="text-white font-light text-xs uppercase tracking-wide">
+                    Direktur Utama
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Kartu Yusuf Adi Pura */}
+            <div className="bg-white p-10 lg:p-14 shadow-lg border border-gray-200 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+              <div className="absolute top-0 left-0 w-32 h-32 bg-[#0201FF]/5 rounded-full blur-2xl group-hover:bg-[#0201FF]/10 transition-colors duration-300"></div>
+              <div className="relative">
+                <div className="w-12 h-1 bg-[#0201FF] mb-8"></div>
+                <p
+                  className={`text-xl lg:text-2xl font-normal leading-8 mb-6 tracking-normal text-[#1a1a1a] ${newsreader.className}`}
+                >
+                  &quot;Melalui inovasi strategis dan komitmen yang teguh, kami
+                  mentransformasi tantangan menjadi peluang untuk pertumbuhan
+                  berkelanjutan dan pencapaian ekselensi.&quot;
+                </p>
+                <p
+                  className={`text-xl lg:text-2xl font-normal leading-8 tracking-normal text-[#1a1a1a] ${newsreader.className}`}
+                >
+                  &quot;Bersama-sama, kita membangun organisasi tangguh yang
+                  siap menghadapi masa depan.&quot;
+                </p>
+              </div>
+              <div className="mt-12 relative">
+                <h3 className="text-3xl font-light text-[#1a1a1a] mb-4 tracking-tight">
+                  Yusuf Adi Pura
+                </h3>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#0201FF]">
+                  <span className="text-white font-light text-xs uppercase tracking-wide">
+                    Direktur
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* ========================================================================= */}
+
+        {/* ========================================================================= */}
+        {/* versi pake foto - nanti di uncomment */}
+        {/* ========================================================================= */}
+        {/*
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 shadow-lg overflow-hidden border border-gray-200">
             <div className="relative h-[400px] lg:h-[500px]">
@@ -231,7 +316,7 @@ export default function AboutPage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10">
                 <div className="space-y-3">
                   <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#0201FF]">
@@ -269,7 +354,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Direktur */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 shadow-lg overflow-hidden border border-gray-200">
             <div className="bg-white p-12 lg:p-16 flex items-center border-r border-gray-200">
@@ -299,7 +383,7 @@ export default function AboutPage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10">
                 <div className="space-y-3">
                   <div>
@@ -317,6 +401,8 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+        */}
+        {/* ========================================================================= */}
       </section>
 
       {/* Company Values Section */}
@@ -357,14 +443,14 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-light text-[#1a1a1a] mb-4 tracking-tight">
-                  Trustworthy
+                  Kepercayaan
                 </h3>
                 <p className="text-[#364153] leading-relaxed font-light">
-                  We believe trust is the cornerstone of Total Quality. Our
-                  relationships with stakeholders and the bond between
-                  organizations and employees must be built on mutual trust and
-                  unwavering commitment to maintaining that trust with the
-                  highest integrity.
+                  Kami membangun kepercayaan melalui integritas, transparansi,
+                  dan konsistensi dalam setiap interaksi. Kami berkomitmen untuk
+                  memenuhi janji kami kepada klien, mitra, dan rekan kerja,
+                  memastikan bahwa kepercayaan yang diberikan kepada kami selalu
+                  dihargai dan dijaga dengan baik.
                 </p>
               </div>
             </div>
@@ -389,14 +475,14 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-light text-[#1a1a1a] mb-4 tracking-tight">
-                  Contribution
+                  Kontribusi
                 </h3>
                 <p className="text-[#364153] leading-relaxed font-light">
-                  Guided by the principle &ldquo;it is better to give than to
-                  receive,&rdquo; we measure all performance, achievements, and
-                  recognition by the meaningful contributions made to the
-                  organization. Every action should add value and drive
-                  collective success.
+                  Berdasarkan prinsip &ldquo;lebih baik memberi daripada
+                  menerima,&rdquo; kami mengukur semua kinerja, pencapaian, dan
+                  pengakuan berdasarkan kontribusi bermakna yang telah diberikan
+                  kepada organisasi. Setiap tindakan harus menambah nilai dan
+                  mendorong kesuksesan kolektif.
                 </p>
               </div>
             </div>
@@ -424,10 +510,11 @@ export default function AboutPage() {
                   Partnership
                 </h3>
                 <p className="text-[#364153] leading-relaxed font-light">
-                  We view our employees as family and trusted colleagues who
-                  support, strengthen, and complement each other while
-                  maintaining professional excellence. Our clients are valued
-                  partners with whom we build enduring, long-term relationships.
+                  Kami percaya pada kekuatan kemitraan yang kuat dan saling
+                  menguntungkan. Kami berkomitmen untuk membangun hubungan
+                  jangka panjang dengan klien, mitra, dan komunitas kami,
+                  berdasarkan rasa saling percaya, kolaborasi, dan dukungan
+                  bersama untuk mencapai tujuan bersama.
                 </p>
               </div>
             </div>
@@ -543,7 +630,7 @@ export default function AboutPage() {
                   <button
                     onClick={() =>
                       setActiveYear(
-                        Math.min(timelineData.length - 1, activeYear + 1)
+                        Math.min(timelineData.length - 1, activeYear + 1),
                       )
                     }
                     disabled={activeYear === timelineData.length - 1}

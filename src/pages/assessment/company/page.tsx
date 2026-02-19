@@ -459,7 +459,7 @@ export default function CompanyAssessment() {
               Results
             </h1>
             <p className="text-lg text-[#364153] font-light">
-              Based on your assessment, here's your organization's health report
+              Based on your assessment, here&apos;s your organization&apos;s health report
             </p>
           </div>
 
@@ -494,7 +494,7 @@ export default function CompanyAssessment() {
                   CategoryScore
                 ][]
               )
-                .filter(([_, data]) => data.count > 0)
+                .filter(([, data]) => data.count > 0)
                 .map(([category, data]) => {
                   const percentage = ((data.average || 0) / 5) * 100;
                   return (
@@ -553,7 +553,7 @@ export default function CompanyAssessment() {
             </h3>
             <p className="text-lg font-light leading-relaxed opacity-90 mb-6 max-w-2xl mx-auto">
               Let Total Quality Indonesia help you develop a comprehensive
-              improvement strategy tailored to your organization's unique needs.
+              improvement strategy tailored to your organization&apos;s unique needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
