@@ -24,11 +24,11 @@ export const updateService = async (
   data: Partial<{
     title: string;
     description: string;
-    icon?: string;
-  }>
+    image?: string;
+  }>,
 ) => {
   const cleanData = Object.fromEntries(
-    Object.entries(data).filter(([_, v]) => v !== undefined && v !== null)
+    Object.entries(data).filter(([_, v]) => v !== undefined && v !== null),
   );
 
   return await prisma.service.update({

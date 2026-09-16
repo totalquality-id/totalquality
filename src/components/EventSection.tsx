@@ -13,11 +13,30 @@ interface Event {
   image?: string;
 }
 
+// Strip HTML tags dan decode HTML entities, kembalikan plain text
+const stripHtml = (html: string): string => {
+  // Decode common HTML entities
+  const decoded = html
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, " ");
+
+  // Strip semua tag HTML
+  return decoded.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+};
+
+const truncateText = (text: string, maxLength: number = 150): string => {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength).trimEnd() + "...";
+};
+
 export default function EventSection() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [showFullDescription, setShowFullDescription] = useState(false);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -33,11 +52,6 @@ export default function EventSection() {
     };
     fetchEvents();
   }, []);
-
-  useEffect(() => {
-    // Reset show full description when changing events
-    setShowFullDescription(false);
-  }, [currentIndex]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -64,12 +78,6 @@ export default function EventSection() {
 
   const currentEvent = events[currentIndex];
 
-  // Truncate description to approximately 150 characters
-  const truncateDescription = (text: string, maxLength: number = 150) => {
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength).trim() + "...";
-  };
-
   if (loading) {
     return (
       <section
@@ -95,6 +103,15 @@ export default function EventSection() {
       </section>
     );
   }
+
+  // Plain text preview untuk ditampilkan di section homepage
+  const descriptionPreview = currentEvent
+    ? truncateText(stripHtml(currentEvent.description))
+    : "";
+
+  const descriptionPlain = currentEvent
+    ? stripHtml(currentEvent.description)
+    : "";
 
   return (
     <section
@@ -160,23 +177,20 @@ export default function EventSection() {
             {currentEvent.title}
           </h2>
 
-          {/* Description with Read More */}
+          {/* Description — plain text preview saja, bukan HTML */}
           <div className="mb-6 sm:mb-8">
             <p className="text-base sm:text-lg lg:text-xl text-white/90 leading-tight font-light max-w-3xl">
-              {showFullDescription
-                ? currentEvent.description
-                : truncateDescription(currentEvent.description)}
+              {descriptionPreview}
             </p>
-            {currentEvent.description.length > 150 && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowFullDescription(!showFullDescription);
-                }}
-                className="mt-3 text-sm sm:text-base text-[#FACC01] font-light hover:text-[#ffd700] transition-colors duration-300 underline underline-offset-4"
+            {/* Tombol "Read more" jika konten lebih dari preview */}
+            {descriptionPlain.length > 150 && (
+              <a
+                href={`/events/${currentEvent.id}`}
+                onClick={(e) => e.stopPropagation()}
+                className="mt-3 inline-block text-sm sm:text-base text-[#FACC01] font-light hover:text-[#ffd700] transition-colors duration-300 underline underline-offset-4"
               >
-                {showFullDescription ? "Tampilkan lebih sedikit" : "Tampilkan lebih banyak"}
-              </button>
+                Read more
+              </a>
             )}
           </div>
 
@@ -201,7 +215,7 @@ export default function EventSection() {
         </div>
       </div>
 
-      {/* Event Counter/Indicator */}
+      {/* Event Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
         {events.map((_, index) => (
           <button
@@ -210,11 +224,11 @@ export default function EventSection() {
               e.stopPropagation();
               setCurrentIndex(index);
             }}
-            className={`transition-all duration-300 ${
+            className={`transition-all duration-300 rounded-full ${
               index === currentIndex
                 ? "w-8 h-2 bg-white"
                 : "w-2 h-2 bg-white/40 hover:bg-white/60"
-            } rounded-full`}
+            }`}
             aria-label={`Go to event ${index + 1}`}
           />
         ))}

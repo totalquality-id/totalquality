@@ -216,7 +216,7 @@ export default function ConsultationModal() {
                 Total Quality
               </p>
               <p className="text-xs text-gray-400">
-                Corporate Motivator &amp; HR Consultant
+                Totally Agent of Change
               </p>
             </div>
           </div>
@@ -234,7 +234,7 @@ export default function ConsultationModal() {
               </h2>
               <p className="text-sm text-gray-500 mb-7 leading-relaxed">
                 Bicara langsung dengan konsultan kami dan temukan program
-                pelatihan yang tepat — tanpa biaya, tanpa komitmen.
+                pelatihan yang tepat.
               </p>
 
               {/* Benefit list */}

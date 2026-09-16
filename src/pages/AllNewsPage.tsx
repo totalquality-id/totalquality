@@ -99,7 +99,7 @@ export default function AllNewsPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter leading-tight mb-6 mt-16">
-              Latest <span className="text-[#FACC01] font-normal">News</span>
+              Latest <span className="text-[#FACC01] font-normal">Articles</span>
             </h1>
             <p className="text-base sm:text-lg lg:text-xl font-light text-white/80 leading-tight max-w-3xl">
               Insights, updates, and stories from our journey of transforming
@@ -113,7 +113,7 @@ export default function AllNewsPage() {
       <section className="relative py-16 sm:py-20 lg:py-24">
         {loading && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
-            <p className="text-[#364153] font-light">Loading news...</p>
+            <p className="text-[#364153] font-light">Loading articles...</p>
           </div>
         )}
 
@@ -126,7 +126,7 @@ export default function AllNewsPage() {
         {!loading && !error && newsArticles.length === 0 && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
             <p className="text-[#364153] font-light">
-              No news available at the moment.
+              No article available at the moment.
             </p>
           </div>
         )}

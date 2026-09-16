@@ -4,8 +4,9 @@ import { Inter } from "next/font/google";
 import ConditionalLayout from "@/components/ConditionalLayout";
 
 export const metadata: Metadata = {
-  title: "Total Quality | THE BEST CORPORATE MOTIVATOR",
-  description: "Corporate Motivator & Human Resources Consultant",
+  title: "Total Quality | TOTALLY AGENT OF CHANGE",
+  description:
+    "Corporate Motivator, Business Consultant, Empowering Growth and Change, Inspiring Success, Driving Results, Transforming Businesses, Leadership Development, Team Building, Performance Improvement, Innovation and Strategy",
 };
 
 const inter = Inter({

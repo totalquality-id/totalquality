@@ -5,6 +5,7 @@ import {
   Twitter,
   MapPin,
   Mail,
+  Phone,
   // ArrowRight,
 } from "lucide-react";
 import Image from "next/image";
@@ -31,7 +32,7 @@ export default function Footer() {
       },
       {
         label: "LinkedIn",
-        href: "https://www.linkedin.com/company/pt-total-quality-indonesia/",
+        href: "https://www.linkedin.com/company/totalqualityindonesia/",
         Icon: Linkedin,
       },
       {
@@ -92,10 +93,22 @@ export default function Footer() {
                 </div>
                 <div className="text-sm text-white/80 font-light">
                   <p className="font-normal text-white mb-0.5">
-                    Surabaya, Indonesia
+                    Jl. Raya Jemursari No.85 B
                   </p>
-                  <p>Southeast Asia Region</p>
+                  <p>Surabaya, Indonesia</p>
                 </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/10 flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-4 h-4 text-white" />
+                </div>
+                <a
+                  // href="mailto:center@tq-official.com"
+                  className="text-sm text-white font-light transition-colors duration-300"
+                >
+                  +62 31 848 4690
+                </a>
               </div>
 
               <div className="flex items-center gap-3">
@@ -103,10 +116,10 @@ export default function Footer() {
                   <Mail className="w-4 h-4 text-white" />
                 </div>
                 <a
-                  href="mailto:info@tqpartner.com"
+                  href="mailto:info@tqpartner.cocenter@tq-official.comm"
                   className="text-sm text-white font-light hover:text-white/80 transition-colors duration-300"
                 >
-                  info@tqpartner.com
+                  center@tq-official.com
                 </a>
               </div>
             </div>

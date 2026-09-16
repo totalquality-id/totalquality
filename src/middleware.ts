@@ -7,10 +7,10 @@ export function middleware(request: NextRequest) {
 
   // List of allowed origins
   const allowedOrigins = [
-    "http://localhost:5173", // Admin panel development
-    "http://localhost:3000", // Next.js development
-    // Add production URLs here when deploying
-    // "https://your-admin-panel.com",
+    // "*",
+    // "http://localhost:3000",
+    "http://localhost:5173",
+    "https://admin.tq.tqpartner.my.id",
   ];
 
   // Check if origin is allowed
@@ -26,11 +26,11 @@ export function middleware(request: NextRequest) {
 
     response.headers.set(
       "Access-Control-Allow-Methods",
-      "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+      "GET, POST, PUT, PATCH, DELETE, OPTIONS",
     );
     response.headers.set(
       "Access-Control-Allow-Headers",
-      "Content-Type, Authorization, X-Requested-With"
+      "Content-Type, Authorization, X-Requested-With",
     );
     response.headers.set("Access-Control-Allow-Credentials", "true");
     response.headers.set("Access-Control-Max-Age", "86400"); // 24 hours
@@ -53,4 +53,3 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: "/api/:path*",
 };
-    

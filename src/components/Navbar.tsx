@@ -45,7 +45,7 @@ export default function Navbar() {
 
   const handleNavigation = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    sectionId: string
+    sectionId: string,
   ) => {
     e.preventDefault();
     setSidebarOpen(false);
@@ -96,13 +96,13 @@ export default function Navbar() {
           >
             <div className="flex items-center font-light gap-4 lg:gap-6">
               <div
-                className={`flex items-center gap-2 transition-colors duration-300 cursor-pointer ${
+                className={`flex items-center gap-2 transition-colors duration-300 ${
                   scrolled ? "hover:text-[#0201FF]" : "hover:text-white/80"
                 }`}
               >
                 <Phone className="w-4 h-4 transition-all duration-500" />
                 <span className="transition-all duration-500 hidden xl:inline">
-                  +62 31 848 4690/95
+                  +62 31 848 4690
                 </span>
               </div>
               <div
@@ -112,7 +112,7 @@ export default function Navbar() {
               >
                 <Mail className="w-4 h-4 transition-all duration-500" />
                 <span className="transition-all duration-500 hidden xl:inline">
-                  info@tqpartner.com
+                  center@tq-official.com
                 </span>
               </div>
             </div>
@@ -131,7 +131,7 @@ export default function Navbar() {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://www.linkedin.com/company/pt-total-quality-indonesia/"
+                href="https://www.linkedin.com/company/totalqualityindonesia/"
                 aria-label="LinkedIn"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -406,18 +406,20 @@ export default function Navbar() {
           <div className="border-t border-gray-200 p-6 space-y-4">
             <div className="space-y-3">
               <a
-                href="tel:+62318484690"
-                className="flex items-center gap-3 text-gray-600 hover:text-[#0201FF] transition-colors duration-300"
+                // href="tel:+62318484690"
+                className="flex items-center gap-3 text-gray-600 transition-colors duration-300"
               >
                 <Phone className="w-4 h-4" />
-                <span className="text-sm font-light">+62 31 848 4690/95</span>
+                <span className="text-sm font-light">+62 31 848 4690</span>
               </a>
               <a
-                href="mailto:info@tqpartner.com"
+                href="mailto:center@tq-official.com"
                 className="flex items-center gap-3 text-gray-600 hover:text-[#0201FF] transition-colors duration-300"
               >
                 <Mail className="w-4 h-4" />
-                <span className="text-sm font-light">info@tqpartner.com</span>
+                <span className="text-sm font-light">
+                  center@tq-official.com
+                </span>
               </a>
             </div>
 
@@ -432,7 +434,7 @@ export default function Navbar() {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://www.linkedin.com/company/pt-total-quality-indonesia/"
+                href="https://www.linkedin.com/company/totalqualityindonesia/"
                 aria-label="LinkedIn"
                 target="_blank"
                 rel="noopener noreferrer"

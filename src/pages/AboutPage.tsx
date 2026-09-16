@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-// import Image from "next/image";
+import Image from "next/image";
 import { Newsreader } from "next/font/google";
 
 const newsreader = Newsreader({
@@ -162,10 +162,9 @@ export default function AboutPage() {
                 Didirikan tahun{" "}
                 <span className="text-[#0201FF] font-normal">2005</span>, PT
                 Total Quality Indonesia telah menjadi mitra terpercaya untuk
-                pengembangan organisasi di seluruh Asia Tenggara. Dengan lebih
-                dari{" "}
+                pengembangan organisasi di seluruh Indonesia. Dengan lebih dari{" "}
                 <span className="text-[#0201FF] font-normal">
-                  430 corporate partner
+                  450 corporate partner
                 </span>{" "}
                 yang mencakup berbagai sektor industri, kami berspesialisasi
                 dalam pengembangan sumber daya manusia dan implementasi sistem
@@ -189,7 +188,7 @@ export default function AboutPage() {
                 <h3 className="text-2xl font-light text-[#1a1a1a] mb-6 tracking-tight">
                   Our Approach
                 </h3>
-                <p className="text-[#364153] leading-relaxed mb-6 font-light">
+                {/* <p className="text-[#364153] leading-relaxed mb-6 font-light">
                   <span className="text-[#0201FF] font-normal">
                     Quality Empowerment System
                   </span>{" "}
@@ -198,10 +197,10 @@ export default function AboutPage() {
                   unik yang dikembangkan khusus untuk menjawab kebutuhan
                   organisasi Anda dalam meningkatkan kualitas SDM serta mencapai
                   target perusahaan.
-                </p>
+                </p> */}
                 <p className="text-[#364153] leading-relaxed font-light">
                   Kami fokus membangun budaya organisasi yang positif dan
-                  mencetak Agents of Change sebagai katalis transformasi, guna
+                  mencetak Agent of Change sebagai katalis transformasi, guna
                   memastikan organisasi Anda menjadi lebih produktif, efektif,
                   dan mampu mewujudkan visi besarnya.
                 </p>
@@ -234,9 +233,8 @@ export default function AboutPage() {
         {/* ========================================================================= */}
         {/* sementara tanpa foto */}
         {/* ========================================================================= */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Kartu Johan Yan */}
             <div className="bg-white p-10 lg:p-14 shadow-lg border border-gray-200 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#0201FF]/5 rounded-full blur-2xl group-hover:bg-[#0201FF]/10 transition-colors duration-300"></div>
               <div className="relative">
@@ -268,7 +266,6 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Kartu Yusuf Adi Pura */}
             <div className="bg-white p-10 lg:p-14 shadow-lg border border-gray-200 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
               <div className="absolute top-0 left-0 w-32 h-32 bg-[#0201FF]/5 rounded-full blur-2xl group-hover:bg-[#0201FF]/10 transition-colors duration-300"></div>
               <div className="relative">
@@ -299,18 +296,18 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* ========================================================================= */}
 
         {/* ========================================================================= */}
         {/* versi pake foto - nanti di uncomment */}
         {/* ========================================================================= */}
-        {/*
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 shadow-lg overflow-hidden border border-gray-200">
             <div className="relative h-[400px] lg:h-[500px]">
               <Image
-                src="https://images.squarespace-cdn.com/content/v1/5521b031e4b06ebe90178744/1578614550199-VA0TPUX88IDO9OUKBO3J/YT_19_03.jpg?format=1000w"
+                src="/kk-about.jpg"
                 alt="CEO"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -377,7 +374,7 @@ export default function AboutPage() {
 
             <div className="relative h-[400px] lg:h-[500px]">
               <Image
-                src="/YSF.jpg"
+                src="/ysf-about.jpg"
                 alt="Director"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -401,7 +398,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-        */}
+
         {/* ========================================================================= */}
       </section>
 
@@ -443,7 +440,7 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-light text-[#1a1a1a] mb-4 tracking-tight">
-                  Kepercayaan
+                  Trustworthy
                 </h3>
                 <p className="text-[#364153] leading-relaxed font-light">
                   Kami membangun kepercayaan melalui integritas, transparansi,
@@ -475,7 +472,7 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-light text-[#1a1a1a] mb-4 tracking-tight">
-                  Kontribusi
+                  Contribution
                 </h3>
                 <p className="text-[#364153] leading-relaxed font-light">
                   Berdasarkan prinsip &ldquo;lebih baik memberi daripada

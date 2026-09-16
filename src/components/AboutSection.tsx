@@ -52,7 +52,7 @@ export default function AboutSection() {
   useEffect(() => {
     if (isVisible) {
       const duration = 2500;
-      const endValue = 430;
+      const endValue = 450;
       let startTime: number | null = null;
 
       const easeOutQuart = (t: number): number => {
@@ -155,7 +155,7 @@ export default function AboutSection() {
                 <span className="font-semibold tracking-normal">
                   transformasi
                 </span>
-                . Melayani lebih dari 430 perusahaan, kami bangga dapat
+                . Melayani lebih dari 450 perusahaan, kami bangga dapat
                 menciptakan perubahan nyata yang berdampak panjang melalui
                 penguatan motivasi dan budaya kerja.
               </p>

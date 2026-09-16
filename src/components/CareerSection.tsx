@@ -56,7 +56,7 @@ export default function CareerSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="https://img.freepik.com/free-photo/hr-representatives-positively-greeting-female-job-candidate_1163-4702.jpg?t=st=1763294266~exp=1763297866~hmac=7ab1936330ce265b8825e3783140cd959ebd4116b83f601539989b15564e13ce&w=2000"
+          src="/career-img.jpg"
           alt="Team collaboration"
           fill
           className="w-full h-full object-cover"

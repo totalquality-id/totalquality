@@ -106,7 +106,7 @@ export default function NewsDetailPage() {
       className="min-h-screen bg-white"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
-      {/* Hero Section — Image Only, no text overlay */}
+      {/* Hero Section */}
       <section className="relative w-full h-[500px] sm:h-[550px] lg:h-[500px] overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-black/40 to-transparent z-10 pointer-events-none" />
         {news.image ? (
@@ -125,14 +125,14 @@ export default function NewsDetailPage() {
         )}
       </section>
 
-      {/* Article Content Section — unchanged structure & styling */}
+      {/* Article Content Section */}
       <section className="relative py-16 sm:py-20 lg:py-24">
         <div className="absolute top-1/4 left-10 w-72 h-72 bg-[#2B5589]/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-10 w-64 h-64 bg-[#FACC01]/5 rounded-full blur-3xl" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="bg-white border border-gray-200 p-8 lg:p-12 space-y-12">
-            {/* Title — moved down from hero, styled to match page tone */}
+            {/* Title */}
             <div className="border-b border-gray-100 pb-10">
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-light tracking-tighter leading-tight text-[#1a1a1a]">
                 {news.title}
@@ -140,60 +140,139 @@ export default function NewsDetailPage() {
             </div>
 
             {/* Article Meta Info */}
-            <div className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-8">
-                {/* Published Date */}
+            <div className="grid sm:grid-cols-2 gap-8">
+              {/* Published Date */}
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 p-3 bg-[#0201FF]/5 rounded-lg h-fit">
+                  <Calendar className="w-6 h-6 text-[#0201FF]" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-sm font-light text-[#1a1a1a]">
+                    Published Date
+                  </h3>
+                  <p className="text-base text-[#364153] font-light">
+                    {formatDate(news.createdAt)}
+                  </p>
+                  <p className="text-sm text-[#364153]/70 font-light">
+                    {formatTime(news.createdAt)}
+                  </p>
+                </div>
+              </div>
+
+              {/* Author */}
+              {news.author && (
                 <div className="flex gap-4">
-                  <div className="flex-shrink-0 p-3 bg-[#0201FF]/5 rounded-lg h-fit">
-                    <Calendar className="w-6 h-6 text-[#0201FF]" />
+                  <div className="flex-shrink-0 p-3 bg-[#FACC01]/10 rounded-lg h-fit">
+                    <User className="w-6 h-6 text-[#FACC01]" />
                   </div>
                   <div className="space-y-1">
                     <h3 className="text-sm font-light text-[#1a1a1a]">
-                      Published Date
+                      Author
                     </h3>
                     <p className="text-base text-[#364153] font-light">
-                      {formatDate(news.createdAt)}
-                    </p>
-                    <p className="text-sm text-[#364153]/70 font-light">
-                      {formatTime(news.createdAt)}
+                      {news.author}
                     </p>
                   </div>
                 </div>
-
-                {/* Author */}
-                {news.author && (
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 p-3 bg-[#FACC01]/10 rounded-lg h-fit">
-                      <User className="w-6 h-6 text-[#FACC01]" />
-                    </div>
-                    <div className="space-y-1">
-                      <h3 className="text-sm font-light text-[#1a1a1a]">
-                        Author
-                      </h3>
-                      <p className="text-base text-[#364153] font-light">
-                        {news.author}
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
+              )}
             </div>
 
-            {/* Article Content */}
-            <div className="space-y-6">
-              <div className="prose prose-lg max-w-none">
-                <div className="text-base lg:text-lg text-[#364153] leading-relaxed font-light whitespace-pre-line">
-                  {news.content.split("\n\n").map((paragraph, index) => (
-                    <p key={index} className="mb-6">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            </div>
+            {/* Article Content — render HTML dari RichTextEditor */}
+            <div
+              className="news-content"
+              dangerouslySetInnerHTML={{ __html: news.content }}
+            />
           </div>
         </div>
       </section>
+
+      {/* Styles untuk render HTML dari RichTextEditor */}
+      <style>{`
+        .news-content {
+          color: #364153;
+          font-size: 1.0625rem;
+          line-height: 1.8;
+          font-weight: 300;
+        }
+        .news-content h2 {
+          font-size: 1.75rem;
+          font-weight: 300;
+          letter-spacing: -0.03em;
+          color: #1a1a1a;
+          margin: 2.5rem 0 1rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 1px solid #f1f1f1;
+        }
+        .news-content h3 {
+          font-size: 1.25rem;
+          font-weight: 400;
+          color: #1a1a1a;
+          margin: 2rem 0 0.75rem;
+        }
+        .news-content p {
+          margin: 0 0 1.25rem;
+        }
+        .news-content ul {
+          list-style: disc;
+          padding-left: 1.5rem;
+          margin: 1rem 0 1.5rem;
+        }
+        .news-content ol {
+          list-style: decimal;
+          padding-left: 1.5rem;
+          margin: 1rem 0 1.5rem;
+        }
+        .news-content li {
+          margin: 0.35rem 0;
+        }
+        .news-content blockquote {
+          border-left: 3px solid #0201FF;
+          margin: 1.75rem 0;
+          padding: 0.75rem 1.25rem;
+          background: #f8f9ff;
+          color: #475569;
+          border-radius: 0 0.375rem 0.375rem 0;
+          font-style: italic;
+        }
+        .news-content a {
+          color: #2B5589;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+        .news-content a:hover {
+          color: #1E3F69;
+        }
+        .news-content hr {
+          border: none;
+          border-top: 1px solid #e5e7eb;
+          margin: 2rem 0;
+        }
+        .news-content figure {
+          margin: 2rem auto;
+          text-align: center;
+        }
+        .news-content figure img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 0.5rem;
+          border: 1px solid #e5e7eb;
+          display: block;
+          margin: 0 auto;
+        }
+        .news-content figcaption {
+          font-size: 0.8125rem;
+          color: #94a3b8;
+          margin-top: 0.5rem;
+          font-style: italic;
+        }
+        .news-content strong {
+          font-weight: 600;
+          color: #1a1a1a;
+        }
+        .news-content em {
+          font-style: italic;
+        }
+      `}</style>
     </div>
   );
 }

@@ -17,6 +17,12 @@ const nextConfig: NextConfig = {
     ],
   },
 
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["localhost:5173", "admin.tq.tqpartner.com"],
+    },
+  },
+
   async headers() {
     return [
       {

@@ -14,6 +14,25 @@ interface News {
   createdAt: string;
 }
 
+// Strip HTML tags dan decode HTML entities, kembalikan plain text
+const stripHtml = (html: string): string => {
+  const decoded = html
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, " ");
+
+  return decoded.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+};
+
+const truncateContent = (html: string, maxLength: number = 100): string => {
+  const plain = stripHtml(html);
+  if (plain.length <= maxLength) return plain;
+  return plain.substring(0, maxLength).trimEnd() + "...";
+};
+
 export default function NewsSection() {
   const [newsArticles, setNewsArticles] = useState<News[]>([]);
   const [loading, setLoading] = useState(true);
@@ -45,11 +64,6 @@ export default function NewsSection() {
     });
   };
 
-  const truncateContent = (content: string, maxLength: number = 100) => {
-    if (content.length <= maxLength) return content;
-    return content.substring(0, maxLength).trim() + "...";
-  };
-
   const checkScrollability = () => {
     const container = scrollContainerRef.current;
     if (!container) return;
@@ -75,11 +89,7 @@ export default function NewsSection() {
         ? container.scrollLeft - scrollAmount
         : container.scrollLeft + scrollAmount;
 
-    container.scrollTo({
-      left: targetScroll,
-      behavior: "smooth",
-    });
-
+    container.scrollTo({ left: targetScroll, behavior: "smooth" });
     setTimeout(checkScrollability, 300);
   };
 
@@ -89,7 +99,7 @@ export default function NewsSection() {
       className="relative py-16 sm:py-20 lg:py-24 bg-white overflow-hidden"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
-      {/* Subtle Background Elements */}
+      {/* Background Elements */}
       <div className="absolute top-1/4 right-10 w-64 h-64 bg-[#FACC01]/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 left-10 w-72 h-72 bg-[#2B5589]/5 rounded-full blur-3xl" />
 
@@ -103,18 +113,16 @@ export default function NewsSection() {
       {/* Header with Navigation */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16">
         <div className="flex items-center justify-between gap-4">
-          {/* Left Side - Title and Link */}
           <div className="flex items-center gap-8">
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-light tracking-tighter text-[#1a1a1a] leading-tight">
-              Latest <span className="text-[#0201FF] font-normal">News</span>
+              Latest <span className="text-[#0201FF] font-normal">Article</span>
             </h2>
 
-            {/* View All News Link */}
             <Link
               href="/news"
               className="hidden lg:inline-flex text-center items-center gap-2 text-[#364153] hover:text-[#0201FF] transition-all duration-300 group"
             >
-              <span className="text-xl font-medium">View All News</span>
+              <span className="text-xl font-medium">View All Articles</span>
               <svg
                 className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
                 fill="none"
@@ -131,7 +139,7 @@ export default function NewsSection() {
             </Link>
           </div>
 
-          {/* Right Side - Navigation Buttons */}
+          {/* Navigation Buttons */}
           {!loading && newsArticles.length > 0 && (
             <div className="flex items-center gap-3">
               <button
@@ -183,17 +191,14 @@ export default function NewsSection() {
         </div>
       )}
 
-      {/* News Container - Horizontal Scroll */}
+      {/* News Cards */}
       {!loading && newsArticles.length > 0 && (
         <div className="relative z-10 w-full">
           <div
             ref={scrollContainerRef}
             onScroll={checkScrollability}
             className="overflow-x-auto scrollbar-hide scroll-smooth"
-            style={{
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-            }}
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex gap-6 lg:gap-8 pb-4 pr-[calc(1rem+6.75rem)] sm:pr-[calc(1.5rem+6.75rem)] lg:pr-[calc(2rem+6.75rem)]">
@@ -230,17 +235,14 @@ export default function NewsSection() {
                         </div>
                       )}
 
-                      {/* Multi-Layer Gradient Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/40 to-black/70" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-
-                      {/* Hover Overlay - Darker for better text visibility */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
 
                     {/* Content Container */}
                     <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-7 lg:p-8">
-                      {/* Default State - Date & Title */}
+                      {/* Default State */}
                       <div className="transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4">
                         <div className="flex items-center gap-2 mb-3">
                           <svg
@@ -273,9 +275,8 @@ export default function NewsSection() {
                         </h3>
                       </div>
 
-                      {/* Hover State - Full Details */}
+                      {/* Hover State */}
                       <div className="absolute bottom-6 sm:bottom-7 lg:bottom-8 left-6 sm:left-7 lg:left-8 right-6 sm:right-7 lg:right-8 opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                        {/* Date & Author */}
                         <div className="flex items-center gap-2 mb-4">
                           <svg
                             className="w-4 h-4 text-[#FACC01]"
@@ -303,17 +304,15 @@ export default function NewsSection() {
                           )}
                         </div>
 
-                        {/* Title */}
                         <h3 className="text-2xl sm:text-2xl lg:text-3xl font-normal tracking-tight text-white leading-tighter mb-4">
                           {article.title}
                         </h3>
 
-                        {/* Content Preview */}
+                        {/* Content preview — plain text, sudah strip HTML */}
                         <p className="text-sm sm:text-base text-white/90 leading-relaxed font-light mb-6 line-clamp-3">
                           {truncateContent(article.content)}
                         </p>
 
-                        {/* Read More Button */}
                         <a
                           href={`/news/${article.id}`}
                           className="inline-flex items-center gap-2 bg-[#0201FF] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#0000d1] transition-all duration-300 group/btn"
@@ -336,7 +335,6 @@ export default function NewsSection() {
                       </div>
                     </div>
 
-                    {/* Glow Effect on Hover */}
                     <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl bg-[#0201FF]/20 -z-10" />
                   </div>
                 ))}

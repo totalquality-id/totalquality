@@ -1,3 +1,5 @@
+// src\app\api\consultations\route.ts
+
 import { NextResponse } from "next/server";
 import prisma from "@/config/prismaConfig";
 
