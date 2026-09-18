@@ -16,6 +16,10 @@ import type { NextRequest } from "next/server";
 const DEFAULT_ORIGINS = [
   "http://localhost:5173",
   "https://admin.tq.tqpartner.my.id",
+  // Panel admin di Vercel. Dicantumkan langsung di kode, bukan hanya di env,
+  // supaya setiap deployment baru (production maupun preview) otomatis bisa
+  // dipakai panel tanpa perlu mengingat menyetel ADMIN_ORIGINS lebih dulu.
+  "https://totalquality-admin.vercel.app",
 ];
 
 const allowedOrigins = Array.from(

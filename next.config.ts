@@ -36,6 +36,7 @@ const nextConfig: NextConfig = {
       allowedOrigins: [
         "localhost:5173",
         "admin.tq.tqpartner.my.id",
+        "totalquality-admin.vercel.app",
         ...(process.env.ADMIN_ORIGINS ?? "")
           .split(",")
           .map((origin) => origin.trim().replace(/^https?:\/\//, ""))
