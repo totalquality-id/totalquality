@@ -33,6 +33,18 @@ export default function AllServicesPage() {
     fetchServices();
   }, []);
 
+  // Kartu service dirender setelah fetch selesai, jadi saat Next.js mencoba
+  // melompat ke #service-<id> elemennya belum ada. Lompat manual begitu
+  // datanya masuk supaya "Learn More" dari beranda mendarat di service yang benar.
+  useEffect(() => {
+    if (loading || services.length === 0) return;
+    const hash = window.location.hash;
+    if (!hash) return;
+
+    const target = document.querySelector(hash);
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [loading, services]);
+
   return (
     <div
       className="bg-white"
@@ -111,7 +123,10 @@ export default function AllServicesPage() {
               {services.map((service, index) => (
                 <article
                   key={service.id}
-                  className="group relative bg-white border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-500 overflow-hidden"
+                  // Target anchor for the "Learn More" button on the home page
+                  // service cards. scroll-mt clears the fixed navbar.
+                  id={`service-${service.id}`}
+                  className="group relative bg-white border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-500 overflow-hidden scroll-mt-32"
                 >
                   <div className="p-8 lg:p-10 space-y-6">
                     {/* Title & Description */}

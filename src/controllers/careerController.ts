@@ -1,10 +1,24 @@
 import * as careerService from "@/services/careerService";
 import { handleError, successResponse, ApiError } from "@/utils/apiResponse";
-import { requireAdmin } from "@/middleware/authMiddleware";
+import { requireAdmin, requireAuth } from "@/middleware/authMiddleware";
 
-export const getCareers = async () => {
+const CAREER_STATUSES = ["open", "closed"] as const;
+
+export const getCareers = async (req?: Request) => {
   try {
-    const careers = await careerService.getAllCareers();
+    // Website publik hanya boleh melihat lowongan yang masih dibuka. Panel
+    // admin perlu melihat yang closed juga agar bisa dibuka kembali.
+    let includeClosed = false;
+
+    if (req) {
+      const url = new URL(req.url);
+      if (url.searchParams.get("includeClosed") === "true") {
+        requireAdmin(req);
+        includeClosed = true;
+      }
+    }
+
+    const careers = await careerService.getAllCareers({ includeClosed });
     return successResponse(careers);
   } catch (error) {
     return handleError(error);
@@ -29,6 +43,8 @@ export const getCareer = async (id: number) => {
 
 export const createCareer = async (req: Request) => {
   try {
+    requireAdmin(req);
+
     const body = await req.json();
 
     if (
@@ -61,11 +77,36 @@ export const createCareer = async (req: Request) => {
       throw new ApiError(400, "Fields cannot be empty");
     }
 
+    // Field opsional: ada di schema Career dan dipakai tampilan publik,
+    // tapi sebelumnya tidak pernah ikut tersimpan.
+    for (const field of ["salary", "jobType", "experience"] as const) {
+      if (body[field] !== undefined && typeof body[field] !== "string") {
+        throw new ApiError(400, `${field} must be a string`);
+      }
+    }
+
+    if (
+      body.status !== undefined &&
+      !CAREER_STATUSES.includes(body.status)
+    ) {
+      throw new ApiError(400, 'status must be "open" or "closed"');
+    }
+
+    const optionalText = (value: unknown) => {
+      if (typeof value !== "string") return null;
+      const trimmed = value.trim();
+      return trimmed.length > 0 ? trimmed : null;
+    };
+
     const created = await careerService.createCareer({
       title: body.title.trim(),
       description: body.description.trim(),
       requirements: body.requirements.trim(),
       location: body.location.trim(),
+      salary: optionalText(body.salary),
+      jobType: optionalText(body.jobType),
+      experience: optionalText(body.experience),
+      status: body.status ?? "open",
     });
     return successResponse(created, 201);
   } catch (error) {
@@ -78,6 +119,8 @@ export const createCareer = async (req: Request) => {
 
 export const patchCareer = async (id: number, req: Request) => {
   try {
+    requireAdmin(req);
+
     if (!id || isNaN(id)) {
       throw new ApiError(400, "Invalid career ID");
     }
@@ -110,18 +153,48 @@ export const patchCareer = async (id: number, req: Request) => {
       throw new ApiError(400, "location must be a string");
     }
 
+    for (const field of ["salary", "jobType", "experience"] as const) {
+      if (
+        body[field] !== undefined &&
+        body[field] !== null &&
+        typeof body[field] !== "string"
+      ) {
+        throw new ApiError(400, `${field} must be a string`);
+      }
+    }
+
+    if (
+      body.status !== undefined &&
+      !CAREER_STATUSES.includes(body.status)
+    ) {
+      throw new ApiError(400, 'status must be "open" or "closed"');
+    }
+
     const updateData: Partial<{
       title: string;
       description: string;
       requirements: string;
       location: string;
+      salary: string | null;
+      jobType: string | null;
+      experience: string | null;
+      status: string;
     }> = {};
+    if (body.status !== undefined) updateData.status = body.status;
     if (body.title !== undefined) updateData.title = body.title.trim();
     if (body.description !== undefined)
       updateData.description = body.description.trim();
     if (body.requirements !== undefined)
       updateData.requirements = body.requirements.trim();
     if (body.location !== undefined) updateData.location = body.location.trim();
+
+    // String kosong diperlakukan sebagai "kosongkan field" agar admin bisa
+    // menghapus nilai yang sudah pernah diisi.
+    for (const field of ["salary", "jobType", "experience"] as const) {
+      if (body[field] === undefined) continue;
+      const value = typeof body[field] === "string" ? body[field].trim() : "";
+      updateData[field] = value.length > 0 ? value : null;
+    }
 
     const updated = await careerService.updateCareer(id, updateData);
     return successResponse(updated);
@@ -150,15 +223,16 @@ export const removeCareer = async (id: number, req: Request) => {
 
 export const applyCareer = async (id: number, req: Request) => {
   try {
+    // Identitas pelamar diambil dari token, bukan dari body. Sebelumnya
+    // body.userId dipercaya apa adanya sehingga siapa pun bisa melamar
+    // atas nama user lain.
+    const { userId } = requireAuth(req);
+
     if (!id || isNaN(id)) {
       throw new ApiError(400, "Invalid career ID");
     }
 
     const body = await req.json();
-
-    if (!body.userId || isNaN(body.userId)) {
-      throw new ApiError(400, "Valid userId is required");
-    }
 
     // ⭐ EXTRACT APPLICATION DATA
     const applicationData = {
@@ -169,7 +243,7 @@ export const applyCareer = async (id: number, req: Request) => {
 
     const result = await careerService.applyToCareer(
       id,
-      body.userId,
+      userId,
       applicationData
     );
 

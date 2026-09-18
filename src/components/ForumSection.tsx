@@ -124,7 +124,7 @@ export default function ForumSection() {
 
         {/* Main Grid */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Left Side - CEO Image & Company Info with News Card Style */}
+          {/* Left Side - CEO Image & Company Info with Article Card Style */}
           <div className="relative h-[680px]">
             {/* Card Container */}
             <div className="relative h-full rounded-2xl overflow-hidden shadow-lg">

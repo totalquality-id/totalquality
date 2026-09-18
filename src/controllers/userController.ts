@@ -1,5 +1,6 @@
 import * as userService from "@/services/userService";
 import { handleError, successResponse, ApiError } from "@/utils/apiResponse";
+import { requireAuth } from "@/middleware/authMiddleware";
 
 export const getUsers = async () => {
   try {
@@ -175,15 +176,10 @@ export const removeUser = async (id: number) => {
 
 export const getUserProfile = async (req: Request) => {
   try {
-    const authHeader = req.headers.get("Authorization");
-
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      throw new ApiError(401, "No token provided");
-    }
-
-    // You'll need to decode the token to get userId
-    // This is a simplified version - implement proper token verification
-    const userId = 1; // Replace with actual token decode logic
+    // Sebelumnya endpoint ini memakai `const userId = 1` dan hanya mengecek
+    // prefix "Bearer ", sehingga string apa pun mengembalikan profil user #1.
+    // Sekarang identitas diambil dari token yang sudah terverifikasi.
+    const { userId } = requireAuth(req);
 
     const user = await userService.getUserById(userId);
     if (!user) {

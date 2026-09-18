@@ -4,8 +4,11 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEngagementSummary } from "@/hooks/useEngagementSummary";
+import EngagementStats from "@/components/engagement/EngagementStats";
+import { truncateContent } from "@/utils/htmlText";
 
-interface News {
+interface Article {
   id: number;
   title: string;
   content: string;
@@ -14,45 +17,30 @@ interface News {
   createdAt: string;
 }
 
-// Strip HTML tags dan decode HTML entities, kembalikan plain text
-const stripHtml = (html: string): string => {
-  const decoded = html
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&nbsp;/g, " ");
+// stripHtml/truncateContent dipindah ke @/utils/htmlText agar dipakai bersama
+// dengan halaman /articles, yang sebelumnya memotong HTML mentah.
 
-  return decoded.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-};
-
-const truncateContent = (html: string, maxLength: number = 100): string => {
-  const plain = stripHtml(html);
-  if (plain.length <= maxLength) return plain;
-  return plain.substring(0, maxLength).trimEnd() + "...";
-};
-
-export default function NewsSection() {
-  const [newsArticles, setNewsArticles] = useState<News[]>([]);
+export default function ArticleSection() {
+  const [articles, setArticles] = useState<Article[]>([]);
+  const engagement = useEngagementSummary("article");
   const [loading, setLoading] = useState(true);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const fetchNews = async () => {
+    const fetchArticles = async () => {
       try {
-        const res = await fetch("/api/news");
+        const res = await fetch("/api/articles");
         const data = await res.json();
-        setNewsArticles(data);
+        setArticles(data);
       } catch (err) {
-        console.error("Failed to fetch news:", err);
+        console.error("Failed to fetch articles:", err);
       } finally {
         setLoading(false);
       }
     };
-    fetchNews();
+    fetchArticles();
   }, []);
 
   const formatDate = (dateString: string) => {
@@ -77,7 +65,7 @@ export default function NewsSection() {
     checkScrollability();
     window.addEventListener("resize", checkScrollability);
     return () => window.removeEventListener("resize", checkScrollability);
-  }, [newsArticles]);
+  }, [articles]);
 
   const scroll = (direction: "left" | "right") => {
     const container = scrollContainerRef.current;
@@ -95,7 +83,7 @@ export default function NewsSection() {
 
   return (
     <section
-      id="news"
+      id="article"
       className="relative py-16 sm:py-20 lg:py-24 bg-white overflow-hidden"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
@@ -119,7 +107,7 @@ export default function NewsSection() {
             </h2>
 
             <Link
-              href="/news"
+              href="/articles"
               className="hidden lg:inline-flex text-center items-center gap-2 text-[#364153] hover:text-[#0201FF] transition-all duration-300 group"
             >
               <span className="text-xl font-medium">View All Articles</span>
@@ -140,7 +128,7 @@ export default function NewsSection() {
           </div>
 
           {/* Navigation Buttons */}
-          {!loading && newsArticles.length > 0 && (
+          {!loading && articles.length > 0 && (
             <div className="flex items-center gap-3">
               <button
                 onClick={() => scroll("left")}
@@ -187,12 +175,12 @@ export default function NewsSection() {
       {/* Loading State */}
       {loading && (
         <div className="text-center py-12">
-          <p className="text-[#364153] font-light">Loading news...</p>
+          <p className="text-[#364153] font-light">Loading articles...</p>
         </div>
       )}
 
-      {/* News Cards */}
-      {!loading && newsArticles.length > 0 && (
+      {/* Article Cards */}
+      {!loading && articles.length > 0 && (
         <div className="relative z-10 w-full">
           <div
             ref={scrollContainerRef}
@@ -202,7 +190,7 @@ export default function NewsSection() {
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex gap-6 lg:gap-8 pb-4 pr-[calc(1rem+6.75rem)] sm:pr-[calc(1.5rem+6.75rem)] lg:pr-[calc(2rem+6.75rem)]">
-                {newsArticles.map((article) => (
+                {articles.map((article) => (
                   <div
                     key={article.id}
                     className="group relative flex-shrink-0 w-[300px] sm:w-[340px] lg:w-[380px] h-[480px] sm:h-[520px] lg:h-[560px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
@@ -243,7 +231,7 @@ export default function NewsSection() {
                     {/* Content Container */}
                     <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-7 lg:p-8">
                       {/* Default State */}
-                      <div className="transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4">
+                      <div className="transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4 group-focus-within:opacity-0 group-focus-within:translate-y-4">
                         <div className="flex items-center gap-2 mb-3">
                           <svg
                             className="w-4 h-4 text-[#FACC01]"
@@ -273,10 +261,15 @@ export default function NewsSection() {
                         <h3 className="text-2xl sm:text-3xl lg:text-3xl font-normal tracking-tight text-white leading-tight">
                           {article.title}
                         </h3>
+                        <EngagementStats
+                          likes={engagement[article.id]?.likes}
+                          comments={engagement[article.id]?.comments}
+                          className="mt-3"
+                        />
                       </div>
 
                       {/* Hover State */}
-                      <div className="absolute bottom-6 sm:bottom-7 lg:bottom-8 left-6 sm:left-7 lg:left-8 right-6 sm:right-7 lg:right-8 opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                      <div className="absolute bottom-6 sm:bottom-7 lg:bottom-8 left-6 sm:left-7 lg:left-8 right-6 sm:right-7 lg:right-8 opacity-0 translate-y-6 pointer-events-none transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto">
                         <div className="flex items-center gap-2 mb-4">
                           <svg
                             className="w-4 h-4 text-[#FACC01]"
@@ -309,16 +302,16 @@ export default function NewsSection() {
                         </h3>
 
                         {/* Content preview — plain text, sudah strip HTML */}
-                        <p className="text-sm sm:text-base text-white/90 leading-relaxed font-light mb-6 line-clamp-3">
+                        <p className="text-sm sm:text-base text-white/90 leading-relaxed font-light mb-4 line-clamp-3">
                           {truncateContent(article.content)}
                         </p>
 
                         <a
-                          href={`/news/${article.id}`}
-                          className="inline-flex items-center gap-2 bg-[#0201FF] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#0000d1] transition-all duration-300 group/btn"
+                          href={`/articles/${article.id}`}
+                          className="inline-flex items-center gap-2 text-sm sm:text-base text-white underline underline-offset-[6px] decoration-1 decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-sm transition-colors duration-300 group/btn"
                         >
                           <span>Read More</span>
-                          <svg
+                          {/* <svg
                             className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300"
                             fill="none"
                             stroke="currentColor"
@@ -330,7 +323,7 @@ export default function NewsSection() {
                               strokeWidth={2}
                               d="M17 8l4 4m0 0l-4 4m4-4H3"
                             />
-                          </svg>
+                          </svg> */}
                         </a>
                       </div>
                     </div>
@@ -345,10 +338,10 @@ export default function NewsSection() {
       )}
 
       {/* Empty State */}
-      {!loading && newsArticles.length === 0 && (
+      {!loading && articles.length === 0 && (
         <div className="text-center py-12">
           <p className="text-[#364153] font-light text-lg">
-            No news available at the moment. Check back soon!
+            No article available at the moment. Check back soon!
           </p>
         </div>
       )}

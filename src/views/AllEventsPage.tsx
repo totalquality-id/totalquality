@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import { Calendar, MapPin } from "lucide-react";
+import { truncateContent } from "@/utils/htmlText";
+import { useEngagementSummary } from "@/hooks/useEngagementSummary";
+import EngagementStats from "@/components/engagement/EngagementStats";
 import { useState, useEffect } from "react";
 
 interface Event {
@@ -15,6 +18,7 @@ interface Event {
 
 export default function AllEventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
+  const engagement = useEngagementSummary("event");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -101,7 +105,7 @@ export default function AllEventsPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter leading-tight mb-6 mt-16">
-              Latest <span className="text-[#FACC01] font-normal">News</span>
+              Latest <span className="text-[#FACC01] font-normal">Events</span>
             </h1>
             <p className="text-base sm:text-lg lg:text-xl font-light text-white/80 leading-tight max-w-3xl">
               Insights, updates, and stories from our journey of transforming
@@ -178,10 +182,17 @@ export default function AllEventsPage() {
                       {event.title}
                     </h3>
 
-                    {/* Description */}
+                    {/* Deskripsi berisi HTML dari editor, jadi harus di-strip
+                        agar tag tidak bocor ke kartu. */}
                     <p className="text-sm lg:text-base text-[#364153] leading-relaxed font-light">
-                      {event.description}
+                      {truncateContent(event.description, 220)}
                     </p>
+
+                    <EngagementStats
+                      tone="dark"
+                      likes={engagement[event.id]?.likes}
+                      comments={engagement[event.id]?.comments}
+                    />
 
                     {/* Event Details */}
                     <div className="space-y-3 pt-4 border-t border-gray-100">

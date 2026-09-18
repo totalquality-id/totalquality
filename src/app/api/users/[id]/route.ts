@@ -1,5 +1,6 @@
 import { getUser, updateUser, removeUser } from "@/controllers/userController";
 import { NextRequest } from "next/server";
+import { withAdmin, withAdminOrOwner } from "@/utils/authorizedRoute";
 
 export async function GET(
   req: NextRequest,
@@ -7,7 +8,7 @@ export async function GET(
 ) {
   const { id: idString } = await params;
   const id = parseInt(idString);
-  return getUser(id);
+  return withAdminOrOwner(req, id, () => getUser(id));
 }
 
 export async function PATCH(
@@ -16,7 +17,7 @@ export async function PATCH(
 ) {
   const { id: idString } = await params;
   const id = parseInt(idString);
-  return updateUser(id, req);
+  return withAdminOrOwner(req, id, () => updateUser(id, req));
 }
 
 export async function DELETE(
@@ -25,5 +26,5 @@ export async function DELETE(
 ) {
   const { id: idString } = await params;
   const id = parseInt(idString);
-  return removeUser(id);
+  return withAdmin(req, () => removeUser(id));
 }

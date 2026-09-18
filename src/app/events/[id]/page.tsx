@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Calendar, MapPin } from "lucide-react";
 import { useParams } from "next/navigation";
+import { sanitizeHtml } from "@/utils/sanitizeHtml";
+import LikeButton from "@/components/engagement/LikeButton";
+import CommentSection from "@/components/engagement/CommentSection";
 
 interface Event {
   id: number;
@@ -181,8 +184,15 @@ export default function EventDetailPage() {
             {/* Event Description — render HTML dari RichTextEditor */}
             <div
               className="event-content"
-              dangerouslySetInnerHTML={{ __html: event.description }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(event.description) }}
             />
+
+            {/* Interaksi pengunjung: suka & komentar, tanpa perlu login. */}
+            <div className="border-t border-gray-100 pt-8">
+              <LikeButton targetType="event" targetId={event.id} />
+            </div>
+
+            <CommentSection targetType="event" targetId={event.id} />
           </div>
         </div>
       </section>
@@ -272,6 +282,91 @@ export default function EventDetailPage() {
         }
         .event-content em {
           font-style: italic;
+        }
+
+        /* --- Elemen tambahan dari editor yang diperluas --- */
+        .event-content h4 {
+          font-size: 1.0625rem;
+          font-weight: 500;
+          color: #1a1a1a;
+          margin: 1.5rem 0 0.5rem;
+        }
+        .event-content u { text-decoration: underline; text-underline-offset: 2px; }
+        .event-content s,
+        .event-content strike { text-decoration: line-through; opacity: 0.75; }
+        .event-content mark {
+          padding: 0.05em 0.25em;
+          border-radius: 0.2em;
+          background: #fef3c7;
+          color: inherit;
+        }
+        .event-content sup,
+        .event-content sub { font-size: 0.7em; line-height: 0; }
+        .event-content sup { vertical-align: super; }
+        .event-content sub { vertical-align: sub; }
+        .event-content code {
+          background: #f1f5f9;
+          border: 1px solid #e2e8f0;
+          border-radius: 0.25rem;
+          padding: 0.1rem 0.35rem;
+          font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+          font-size: 0.875em;
+          color: #be123c;
+        }
+        .event-content pre {
+          background: #0f172a;
+          color: #e2e8f0;
+          border-radius: 0.5rem;
+          padding: 1rem 1.25rem;
+          overflow-x: auto;
+          margin: 1.75rem 0;
+          font-size: 0.875rem;
+          line-height: 1.6;
+        }
+        .event-content pre code {
+          background: none;
+          border: none;
+          color: inherit;
+          padding: 0;
+          font-size: inherit;
+        }
+        .event-content table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 1.75rem 0;
+          font-size: 0.9375rem;
+        }
+        .event-content th,
+        .event-content td {
+          border: 1px solid #e5e7eb;
+          padding: 0.6rem 0.85rem;
+          text-align: left;
+          vertical-align: top;
+        }
+        .event-content th {
+          background: #f8f9ff;
+          font-weight: 600;
+          color: #1a1a1a;
+        }
+        .event-content tbody tr:nth-child(even) { background: #fcfcfd; }
+        .event-content caption {
+          caption-side: bottom;
+          font-size: 0.8125rem;
+          color: #94a3b8;
+          padding-top: 0.5rem;
+          font-style: italic;
+        }
+        /* Perataan teks dari toolbar editor */
+        .event-content [style*="text-align: center"] { text-align: center; }
+        .event-content [style*="text-align: right"] { text-align: right; }
+        .event-content [style*="text-align: justify"] { text-align: justify; }
+        /* Indentasi dari tombol indent (execCommand memakai blockquote polos) */
+        .event-content blockquote:not([class]) { }
+
+        /* Responsif: tabel dan blok kode tidak boleh merusak layout di HP */
+        @media (max-width: 640px) {
+          .event-content table { display: block; overflow-x: auto; white-space: nowrap; }
+          .event-content pre { padding: 0.75rem 0.9rem; font-size: 0.8125rem; }
         }
       `}</style>
     </div>

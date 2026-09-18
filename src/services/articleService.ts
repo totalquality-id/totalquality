@@ -1,23 +1,23 @@
 import prisma from "@/config/prismaConfig";
 
-export const getAllNews = async () => {
-  return await prisma.news.findMany({ orderBy: { createdAt: "desc" } });
+export const getAllArticles = async () => {
+  return await prisma.article.findMany({ orderBy: { createdAt: "desc" } });
 };
 
-export const getNewsById = async (id: number) => {
-  return await prisma.news.findUnique({ where: { id } });
+export const getArticleById = async (id: number) => {
+  return await prisma.article.findUnique({ where: { id } });
 };
 
-export const createNews = async (data: {
+export const createArticle = async (data: {
   title: string;
   content: string;
   image?: string;
   author?: string;
 }) => {
-  return await prisma.news.create({ data });
+  return await prisma.article.create({ data });
 };
 
-export const updateNews = async (
+export const updateArticle = async (
   id: number,
   data: Partial<{
     title: string;
@@ -26,9 +26,9 @@ export const updateNews = async (
     author?: string;
   }>
 ) => {
-  return await prisma.news.update({ where: { id }, data });
+  return await prisma.article.update({ where: { id }, data });
 };
 
-export const deleteNews = async (id: number) => {
-  return await prisma.news.delete({ where: { id } });
+export const deleteArticle = async (id: number) => {
+  return await prisma.article.delete({ where: { id } });
 };

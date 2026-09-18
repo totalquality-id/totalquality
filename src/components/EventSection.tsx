@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Calendar, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
+import EngagementStats from "@/components/engagement/EngagementStats";
+import { useEngagementSummary } from "@/hooks/useEngagementSummary";
 
 interface Event {
   id: number;
@@ -35,6 +37,7 @@ const truncateText = (text: string, maxLength: number = 150): string => {
 
 export default function EventSection() {
   const [events, setEvents] = useState<Event[]>([]);
+  const engagement = useEngagementSummary("event");
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -211,6 +214,11 @@ export default function EventSection() {
                 </p>
               </div>
             )}
+
+            <EngagementStats
+              likes={engagement[currentEvent.id]?.likes}
+              comments={engagement[currentEvent.id]?.comments}
+            />
           </div>
         </div>
       </div>

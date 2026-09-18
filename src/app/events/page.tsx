@@ -1,4 +1,4 @@
-import AllEventsPage from "@/pages/AllEventsPage";
+import AllEventsPage from "@/views/AllEventsPage";
 
 export const metadata = {
   title: "Events | Total Quality Indonesia",

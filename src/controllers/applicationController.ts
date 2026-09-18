@@ -37,12 +37,32 @@ export const getApplicationById = async (id: number, req: Request) => {
       include: {
         career: true,
         user: {
+          // Profil selengkapnya untuk layar review HR. Password sengaja
+          // tidak pernah masuk select agar tidak bocor lewat API.
           select: {
             id: true,
             name: true,
             email: true,
             phone: true,
-            // Tambahkan field profile lain jika ada di schema UserProfile
+            address: true,
+            dateOfBirth: true,
+            age: true,
+            gender: true,
+            lastEducation: true,
+            institution: true,
+            major: true,
+            graduationYear: true,
+            gpa: true,
+            lastCompany: true,
+            lastPosition: true,
+            workStartDate: true,
+            workEndDate: true,
+            jobDescription: true,
+            reasonLeaving: true,
+            skills: true,
+            certifications: true,
+            portfolioUrl: true,
+            linkedinUrl: true,
           },
         },
       },
@@ -86,16 +106,23 @@ export const updateApplicationStatus = async (id: number, req: Request) => {
     const body = await req.json();
     const { status, notes } = body;
 
-    // Validasi status yang diperbolehkan
+    // Pipeline rekrutmen yang dipakai panel admin. "reviewed" dipertahankan
+    // untuk baris lama; sebelumnya "reviewing" dan "shortlisted" ditolak 400
+    // padahal keduanya sudah jadi pilihan di dropdown admin.
     const validStatuses = [
       "pending",
+      "reviewing",
       "reviewed",
+      "shortlisted",
       "interview",
       "accepted",
       "rejected",
     ];
     if (status && !validStatuses.includes(status)) {
-      throw new ApiError(400, "Invalid status");
+      throw new ApiError(
+        400,
+        `Invalid status. Allowed: ${validStatuses.join(", ")}`
+      );
     }
 
     const updated = await prisma.application.update({
@@ -103,10 +130,27 @@ export const updateApplicationStatus = async (id: number, req: Request) => {
       data: {
         status,
         notes,
+        // Catat kapan lamaran ditinjau agar admin tahu umur antrean.
+        ...(status && status !== "pending" ? { reviewedAt: new Date() } : {}),
       },
     });
 
     return successResponse(updated);
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+// DELETE: Hapus lamaran. Dipanggil panel admin, tapi endpoint-nya belum ada.
+export const removeApplication = async (id: number, req: Request) => {
+  try {
+    requireAdmin(req);
+
+    if (!id || isNaN(id)) throw new ApiError(400, "Invalid Application ID");
+
+    await prisma.application.delete({ where: { id } });
+
+    return new Response(null, { status: 204 });
   } catch (error) {
     return handleError(error);
   }

@@ -1,33 +1,33 @@
-import * as newsService from "@/services/newsService";
+import * as articleService from "@/services/articleService";
 import { handleError, successResponse, ApiError } from "@/utils/apiResponse";
 import { requireAdmin } from "@/middleware/authMiddleware";
 
-export const getNewsList = async () => {
+export const getArticleList = async () => {
   try {
-    const news = await newsService.getAllNews();
-    return successResponse(news);
+    const articles = await articleService.getAllArticles();
+    return successResponse(articles);
   } catch (error) {
     return handleError(error);
   }
 };
 
-export const getNews = async (id: number) => {
+export const getArticle = async (id: number) => {
   try {
     if (!id || isNaN(id)) {
-      throw new ApiError(400, "Invalid news ID");
+      throw new ApiError(400, "Invalid article ID");
     }
 
-    const news = await newsService.getNewsById(id);
-    if (!news) {
-      throw new ApiError(404, "News not found");
+    const article = await articleService.getArticleById(id);
+    if (!article) {
+      throw new ApiError(404, "Article not found");
     }
-    return successResponse(news);
+    return successResponse(article);
   } catch (error) {
     return handleError(error);
   }
 };
 
-export const createNews = async (req: Request) => {
+export const createArticle = async (req: Request) => {
   try {
     requireAdmin(req);
 
@@ -50,7 +50,7 @@ export const createNews = async (req: Request) => {
       throw new ApiError(400, "author must be a string");
     }
 
-    const created = await newsService.createNews({
+    const created = await articleService.createArticle({
       title: body.title.trim(),
       content: body.content.trim(),
       image: body.image,
@@ -65,12 +65,12 @@ export const createNews = async (req: Request) => {
   }
 };
 
-export const patchNews = async (id: number, req: Request) => {
+export const patchArticle = async (id: number, req: Request) => {
   try {
     requireAdmin(req);
 
     if (!id || isNaN(id)) {
-      throw new ApiError(400, "Invalid news ID");
+      throw new ApiError(400, "Invalid article ID");
     }
 
     const body = await req.json();
@@ -103,7 +103,7 @@ export const patchNews = async (id: number, req: Request) => {
     if (body.author !== undefined) updateData.author = body.author.trim();
     if (body.image !== undefined) updateData.image = body.image;
 
-    const updated = await newsService.updateNews(id, updateData);
+    const updated = await articleService.updateArticle(id, updateData);
     return successResponse(updated);
   } catch (error) {
     if (error instanceof SyntaxError) {
@@ -113,15 +113,15 @@ export const patchNews = async (id: number, req: Request) => {
   }
 };
 
-export const removeNews = async (id: number, req: Request) => {
+export const removeArticle = async (id: number, req: Request) => {
   try {
     requireAdmin(req);
 
     if (!id || isNaN(id)) {
-      throw new ApiError(400, "Invalid news ID");
+      throw new ApiError(400, "Invalid article ID");
     }
 
-    await newsService.deleteNews(id);
+    await articleService.deleteArticle(id);
     return new Response(null, { status: 204 });
   } catch (error) {
     return handleError(error);

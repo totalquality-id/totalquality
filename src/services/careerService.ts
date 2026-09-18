@@ -1,8 +1,9 @@
 import prisma from "@/config/prismaConfig";
 import { Prisma } from "@prisma/client";
 
-export const getAllCareers = async () => {
+export const getAllCareers = async (options?: { includeClosed?: boolean }) => {
   return await prisma.career.findMany({
+    where: options?.includeClosed ? undefined : { status: "open" },
     orderBy: { createdAt: "desc" },
     include: {
       _count: {
@@ -28,12 +29,20 @@ export const createCareer = async (data: {
   description: string;
   requirements: string;
   location: string;
+  salary?: string | null;
+  jobType?: string | null;
+  experience?: string | null;
+  status?: string;
 }) => {
   const cleanData: Prisma.CareerCreateInput = {
     title: data.title,
     description: data.description,
     requirements: data.requirements,
     location: data.location,
+    salary: data.salary ?? null,
+    jobType: data.jobType ?? null,
+    experience: data.experience ?? null,
+    status: data.status ?? "open",
   };
 
   return await prisma.career.create({ data: cleanData });
@@ -46,14 +55,17 @@ export const updateCareer = async (
     description: string;
     requirements: string;
     location: string;
+    salary: string | null;
+    jobType: string | null;
+    experience: string | null;
+    status: string;
   }>
 ) => {
-  const cleanData: Prisma.CareerUpdateInput = {
-    title: data.title,
-    description: data.description,
-    requirements: data.requirements,
-    location: data.location,
-  };
+  // Hanya kirim field yang benar-benar ada di payload. Sebelumnya field yang
+  // tidak dikirim ikut ter-set undefined sehingga kolom opsional selalu kosong.
+  const cleanData: Prisma.CareerUpdateInput = Object.fromEntries(
+    Object.entries(data).filter(([, value]) => value !== undefined)
+  );
 
   return await prisma.career.update({
     where: { id },

@@ -3,14 +3,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/middleware/authMiddleware";
 import { uploadImage, deleteImage } from "@/services/uploadService";
+import { ApiError } from "@/utils/apiResponse";
 
 /**
  * POST /api/upload
- * Upload gambar ke server. Digunakan oleh events, news, dan services.
+ * Upload gambar ke server. Digunakan oleh events, articles, dan services.
  *
  * Request: multipart/form-data
  *   - file: File (required) — gambar yang akan diupload
- *   - folder: string (optional) — subfolder tujuan, e.g. "events" | "news" | "services"
+ *   - folder: string (optional) — subfolder tujuan, e.g. "events" | "articles" | "services"
  *             Default: "general"
  *
  * Response: { url: string }
@@ -63,6 +64,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url }, { status: 201 });
   } catch (error) {
+    if (error instanceof ApiError) {
+      return NextResponse.json({ message: error.message }, { status: error.statusCode });
+    }
     console.error("Upload error:", error);
 
     if (error instanceof Error && error.message === "Unauthorized") {
@@ -99,6 +103,9 @@ export async function DELETE(req: NextRequest) {
 
     return new NextResponse(null, { status: 204 });
   } catch (error) {
+    if (error instanceof ApiError) {
+      return NextResponse.json({ message: error.message }, { status: error.statusCode });
+    }
     console.error("Delete image error:", error);
 
     if (error instanceof Error && error.message === "Unauthorized") {

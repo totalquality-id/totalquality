@@ -1,10 +1,10 @@
-import * as newsController from "@/controllers/newsController";
+import * as articleController from "@/controllers/articleController";
 import { NextRequest } from "next/server";
 
 export async function GET() {
-  return newsController.getNewsList();
+  return articleController.getArticleList();
 }
 
 export async function POST(req: NextRequest) {
-  return newsController.createNews(req);
+  return articleController.createArticle(req);
 }

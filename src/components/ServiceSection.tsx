@@ -197,14 +197,37 @@ export default function ServiceSection() {
                   {/* Content Container */}
                   <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-6 lg:p-6">
                     {/* Title - Show by default, hide on hover */}
-                    <h3 className="text-2xl sm:text-3xl lg:text-3xl font-normal tracking-tighter text-white leading-tighter mb-4 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4">
+                    <h3 className="text-2xl sm:text-3xl lg:text-3xl font-normal tracking-tighter text-white leading-tighter mb-4 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4 group-focus-within:opacity-0 group-focus-within:translate-y-4">
                       {service.title}
                     </h3>
 
-                    {/* Description - Hidden by default, show on hover */}
-                    <p className="text-sm sm:text-base text-white/90 leading-relaxed font-light absolute bottom-6 sm:bottom-8 lg:bottom-10 left-6 sm:left-6 lg:left-6 right-6 sm:right-8 lg:right-10 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                      {service.description}
-                    </p>
+                    {/* Description + CTA - Hidden by default, show on hover */}
+                    <div className="absolute bottom-6 sm:bottom-8 lg:bottom-10 left-6 sm:left-6 lg:left-6 right-6 sm:right-8 lg:right-10 opacity-0 translate-y-4 pointer-events-none transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto">
+                      <p className="text-sm sm:text-base text-white/90 leading-relaxed font-light mb-4">
+                        {service.description}
+                      </p>
+
+                      <Link
+                        href={`/services#service-${service.id}`}
+                        aria-label={`Learn more about ${service.title}`}
+                        className="inline-flex items-center gap-2 text-sm sm:text-base text-white underline underline-offset-[6px] decoration-1 decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-sm transition-colors duration-300 group/btn"
+                      >
+                        <span>Learn More</span>
+                        {/* <svg
+                          className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg> */}
+                      </Link>
+                    </div>
                   </div>
 
                   {/* Glow Effect on Hover */}

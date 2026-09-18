@@ -15,7 +15,10 @@ if (filenames.length !== 1 || args.some((arg) => arg.startsWith("--") && arg !==
 }
 nextEnv.loadEnvConfig(process.cwd());
 const prisma = new PrismaClient();
-const order = ["User", "Career", "Service", "Event", "News", "Forum", "Hero", "HeroContent", "Consultation", "Application", "AssessmentResult", "_UserCareers"];
+const order = ["User", "Career", "Service", "Event", "Article", "Forum", "Hero", "HeroContent", "Consultation", "Application", "AssessmentResult", "_UserCareers"];
+// Legacy MySQL dumps predate the News -> Article rename, so the dump still
+// carries the old table name. Map application model -> dump table name.
+const dumpTable = (name) => (name === "Article" ? "News" : name);
 const models = new Map(Prisma.dmmf.datamodel.models.map((model) => [model.name, model]));
 const quote = (name) => '"' + name.replaceAll('"', '""') + '"';
 const tableSql = (name) => `public.${quote(name)}`;
@@ -79,13 +82,13 @@ async function main() {
   const buffer = fs.readFileSync(filenames[0]);
   const sql = new TextDecoder("utf-8", { fatal: true }).decode(buffer);
   const dump = parseDump(sql);
-  const expectedNames = [...order, "_prisma_migrations"].sort();
+  const expectedNames = [...order.map(dumpTable), "_prisma_migrations"].sort();
   if (!isDeepStrictEqual([...dump.tables.keys()].sort(), expectedNames)) throw new Error("Daftar tabel dump berbeda dengan aplikasi.");
   const data = new Map();
   for (const table of order) {
     const fields = fieldsFor(table);
     const names = fields.map((field) => field.name).sort();
-    const rows = dump.tables.get(table).map((row) => {
+    const rows = dump.tables.get(dumpTable(table)).map((row) => {
       if (!isDeepStrictEqual(Object.keys(row).sort(), names)) throw new Error(`Kolom dump berbeda: ${table}.`);
       return Object.fromEntries(fields.map((field) => [field.name, convert(row[field.name], field)]));
     });

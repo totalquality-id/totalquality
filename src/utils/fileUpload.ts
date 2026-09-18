@@ -1,15 +1,14 @@
-import { writeFile } from "fs/promises";
-import { join } from "path";
 import { NextRequest } from "next/server";
+import { uploadImage } from "@/services/uploadService";
 
 export async function handleFileUpload(
   request: NextRequest,
   folder: string = "uploads"
 ): Promise<string> {
   const formData = await request.formData();
-  const file = formData.get("file") as File;
+  const file = formData.get("file");
 
-  if (!file) {
+  if (!(file instanceof File)) {
     throw new Error("No file uploaded");
   }
 
@@ -23,20 +22,6 @@ export async function handleFileUpload(
     throw new Error("File size must be less than 5MB");
   }
 
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-
-  // Create unique filename
-  const timestamp = Date.now();
-  const originalName = file.name.replace(/\s/g, "-");
-  const filename = `${timestamp}-${originalName}`;
-
-  // Save to public folder
-  const uploadDir = join(process.cwd(), "public", folder);
-  const filepath = join(uploadDir, filename);
-
-  await writeFile(filepath, buffer);
-
-  // Return public URL
-  return `/${folder}/${filename}`;
+  // Vercel's deployed filesystem is read-only; persist uploads in Cloudinary.
+  return uploadImage(file, folder);
 }

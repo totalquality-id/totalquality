@@ -2,6 +2,11 @@
 // src/app/api/hero-content/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/config/prismaConfig";
+import { withAdmin } from "@/utils/authorizedRoute";
+
+export async function POST(request: NextRequest) {
+  return withAdmin(request, () => createHeroContent(request));
+}
 
 export async function GET() {
   try {
@@ -19,7 +24,7 @@ export async function GET() {
   }
 }
 
-export async function POST(request: NextRequest) {
+async function createHeroContent(request: NextRequest) {
   try {
     const body = await request.json();
 

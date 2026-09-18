@@ -1,8 +1,6 @@
 import jwt from "jsonwebtoken";
 import { ApiError } from "@/utils/apiResponse";
-
-const JWT_SECRET =
-  process.env.JWT_SECRET || "your-secret-key-change-in-production";
+import { JWT_SECRET } from "@/config/authConfig";
 
 export interface AuthUser {
   userId: number;

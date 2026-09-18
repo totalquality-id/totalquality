@@ -23,10 +23,7 @@ export const getService = async (id: number) => {
       );
     return NextResponse.json(service, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { message: error instanceof Error ? error.message : "Unknown error" },
-      { status: 500 }
-    );
+    return handleError(error);
   }
 };
 
@@ -76,10 +73,9 @@ export const updateService = async (id: number, req: Request) => {
     const updated = await serviceService.updateService(id, body);
     return NextResponse.json(updated, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { message: error instanceof Error ? error.message : "Unknown error" },
-      { status: 500 }
-    );
+    // handleError mempertahankan status 401/403/404 dari ApiError & Prisma.
+    // Sebelumnya semua error dipaksa jadi 500 dan pesan internalnya dibocorkan.
+    return handleError(error);
   }
 };
 
@@ -93,10 +89,7 @@ export const removeService = async (id: number, req: Request) => {
       { status: 200 }
     );
   } catch (error) {
-    return NextResponse.json(
-      { message: error instanceof Error ? error.message : "Unknown error" },
-      { status: 500 }
-    );
+    return handleError(error);
   }
 };
 

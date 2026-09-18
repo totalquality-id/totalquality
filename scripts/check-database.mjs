@@ -14,7 +14,7 @@ async function main() {
       SELECT current_database() AS database, current_user AS role
     `;
     const models = [
-      "user", "hero", "heroContent", "service", "event", "news", "career",
+      "user", "hero", "heroContent", "service", "event", "article", "career",
       "application", "forum", "assessmentResult", "consultation",
     ];
     const counts = await prisma.$transaction(models.map((model) => prisma[model].count()));

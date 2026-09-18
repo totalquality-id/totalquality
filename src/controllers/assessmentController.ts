@@ -1,6 +1,7 @@
 // src/controllers/assessmentController.ts
 import * as assessmentService from "@/services/assessmentService";
 import { handleError, successResponse, ApiError } from "@/utils/apiResponse";
+import { requireAuth } from "@/middleware/authMiddleware";
 
 export const createAssessment = async (req: Request) => {
   try {
@@ -48,21 +49,9 @@ export const createAssessment = async (req: Request) => {
 
 export const getUserAssessments = async (req: Request) => {
   try {
-    const authHeader = req.headers.get("Authorization");
-    if (!authHeader?.startsWith("Bearer ")) {
-      throw new ApiError(401, "Authentication required");
-    }
+    const user = requireAuth(req);
 
-    const token = authHeader.substring(7);
-    const jwt = await import("jsonwebtoken");
-    const decoded = jwt.verify(
-      token,
-      process.env.JWT_SECRET || "your-secret-key"
-    ) as { userId: number };
-
-    const assessments = await assessmentService.getUserAssessments(
-      decoded.userId
-    );
+    const assessments = await assessmentService.getUserAssessments(user.userId);
     return successResponse(assessments);
   } catch (error) {
     return handleError(error);
@@ -81,6 +70,21 @@ export const getAssessment = async (id: number) => {
     }
 
     return successResponse(assessment);
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
+// DELETE: Hapus satu hasil assessment. Dipanggil panel admin, tapi
+// endpoint-nya belum pernah ada.
+export const removeAssessment = async (id: number) => {
+  try {
+    if (!id || isNaN(id)) {
+      throw new ApiError(400, "Invalid assessment ID");
+    }
+
+    await assessmentService.deleteAssessment(id);
+    return new Response(null, { status: 204 });
   } catch (error) {
     return handleError(error);
   }

@@ -1,4 +1,4 @@
-import AllQuotesPage from "@/pages/AllQuotesPage";
+import AllQuotesPage from "@/views/AllQuotesPage";
 
 export const metadata = {
   title: "Forum - Agent of Change | Total Quality Indonesia",

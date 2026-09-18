@@ -1,8 +1,19 @@
 import { NextResponse } from "next/server";
 import prisma from "@/config/prismaConfig";
+import { withAdmin } from "@/utils/authorizedRoute";
+
+type RouteContext = { params: Promise<{ id: string }> };
+
+export async function GET(request: Request, context: RouteContext) {
+  return withAdmin(request, () => getConsultation(request, context));
+}
+
+export async function DELETE(request: Request, context: RouteContext) {
+  return withAdmin(request, () => deleteConsultation(request, context));
+}
 
 // GET: Mengambil satu data konsultasi berdasarkan ID
-export async function GET(
+async function getConsultation(
   req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
@@ -36,7 +47,7 @@ export async function GET(
 }
 
 // DELETE: Menghapus data konsultasi berdasarkan ID
-export async function DELETE(
+async function deleteConsultation(
   req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {

@@ -13,6 +13,7 @@ interface Career {
   salary?: string;
   jobType?: string;
   experience?: string;
+  status?: string;
   createdAt: string;
   _count: {
     applications: number; // Menggunakan applications, bukan applicants
@@ -133,6 +134,28 @@ export default function AllCareersPage() {
                       <MapPin className="w-4 h-4 text-[#FACC01]" />
                       <span>{career.location}</span>
                     </div>
+
+                    {/* Tipe pekerjaan, pengalaman, dan gaji. Ketiganya sudah
+                        lama ada di database tapi belum pernah ditampilkan. */}
+                    {(career.jobType || career.experience || career.salary) && (
+                      <div className="flex flex-wrap gap-2">
+                        {career.jobType && (
+                          <span className="inline-block px-3 py-1 text-xs font-light rounded-full bg-[#0201FF]/5 text-[#0201FF] border border-[#0201FF]/10">
+                            {career.jobType}
+                          </span>
+                        )}
+                        {career.experience && (
+                          <span className="inline-block px-3 py-1 text-xs font-light rounded-full bg-gray-50 text-[#364153] border border-gray-200">
+                            {career.experience}
+                          </span>
+                        )}
+                        {career.salary && (
+                          <span className="inline-block px-3 py-1 text-xs font-light rounded-full bg-[#FACC01]/10 text-[#8a6d00] border border-[#FACC01]/20">
+                            {career.salary}
+                          </span>
+                        )}
+                      </div>
+                    )}
 
                     {/* Description */}
                     <p className="text-sm lg:text-base text-[#364153] leading-relaxed font-light">

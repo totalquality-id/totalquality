@@ -228,13 +228,13 @@ export default function Navbar() {
                 </li>
                 <li>
                   <a
-                    href="#news"
-                    onClick={(e) => handleNavigation(e, "#news")}
+                    href="#article"
+                    onClick={(e) => handleNavigation(e, "#article")}
                     className={`cursor-pointer transition-colors duration-300 relative group ${
                       scrolled ? "hover:text-[#0201FF]" : "hover:text-white/70"
                     }`}
                   >
-                    News
+                    Articles
                   </a>
                 </li>
                 <li>
@@ -365,11 +365,11 @@ export default function Navbar() {
               </li>
               <li>
                 <a
-                  href="#news"
-                  onClick={(e) => handleNavigation(e, "#news")}
+                  href="#article"
+                  onClick={(e) => handleNavigation(e, "#article")}
                   className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-[#0201FF] transition-all duration-300 font-light"
                 >
-                  News
+                  Articles
                 </a>
               </li>
               <li>

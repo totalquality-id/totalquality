@@ -1,28 +1,53 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+/**
+ * CORS untuk /api/*.
+ *
+ * Penting: CORS bukan mekanisme otorisasi. Ia hanya mengatur origin browser
+ * mana yang boleh membaca respons; curl/Postman tetap bisa memanggil API ini.
+ * Pengaman sebenarnya tetap JWT + requireAdmin di tiap controller.
+ *
+ * Daftar origin dibaca dari env ADMIN_ORIGINS (dipisah koma) supaya URL
+ * deployment panel admin yang baru bisa ditambahkan tanpa mengubah kode.
+ * Contoh:
+ *   ADMIN_ORIGINS="https://admin.tq.tqpartner.my.id,https://totalquality-admin.vercel.app"
+ */
+const DEFAULT_ORIGINS = [
+  "http://localhost:5173",
+  "https://admin.tq.tqpartner.my.id",
+];
+
+const allowedOrigins = Array.from(
+  new Set(
+    [
+      ...DEFAULT_ORIGINS,
+      ...(process.env.ADMIN_ORIGINS ?? "")
+        .split(",")
+        .map((origin) => origin.trim())
+        .filter(Boolean),
+    ]
+  )
+);
+
+function applyCorsHeaders(response: NextResponse, origin: string | null) {
+  // Vary: Origin wajib ada agar cache/CDN tidak menyajikan header CORS milik
+  // origin lain ke origin yang berbeda.
+  response.headers.set("Vary", "Origin");
+
+  if (!origin || !allowedOrigins.includes(origin)) return response;
+
+  response.headers.set("Access-Control-Allow-Origin", origin);
+  response.headers.set("Access-Control-Allow-Credentials", "true");
+  return response;
+}
+
 export function middleware(request: NextRequest) {
-  // Get the origin from the request
   const origin = request.headers.get("origin");
 
-  // List of allowed origins
-  const allowedOrigins = [
-    // "*",
-    // "http://localhost:3000",
-    "http://localhost:5173",
-    "https://admin.tq.tqpartner.my.id",
-  ];
-
-  // Check if origin is allowed
-  const isAllowedOrigin = origin && allowedOrigins.includes(origin);
-
-  // Handle preflight requests
+  // Preflight
   if (request.method === "OPTIONS") {
-    const response = new NextResponse(null, { status: 200 });
-
-    if (isAllowedOrigin) {
-      response.headers.set("Access-Control-Allow-Origin", origin);
-    }
+    const response = new NextResponse(null, { status: 204 });
 
     response.headers.set(
       "Access-Control-Allow-Methods",
@@ -32,24 +57,14 @@ export function middleware(request: NextRequest) {
       "Access-Control-Allow-Headers",
       "Content-Type, Authorization, X-Requested-With",
     );
-    response.headers.set("Access-Control-Allow-Credentials", "true");
-    response.headers.set("Access-Control-Max-Age", "86400"); // 24 hours
+    response.headers.set("Access-Control-Max-Age", "86400"); // 24 jam
 
-    return response;
+    return applyCorsHeaders(response, origin);
   }
 
-  // Handle actual requests
-  const response = NextResponse.next();
-
-  if (isAllowedOrigin) {
-    response.headers.set("Access-Control-Allow-Origin", origin);
-    response.headers.set("Access-Control-Allow-Credentials", "true");
-  }
-
-  return response;
+  return applyCorsHeaders(NextResponse.next(), origin);
 }
 
-// Specify which routes this middleware applies to
 export const config = {
   matcher: "/api/:path*",
 };

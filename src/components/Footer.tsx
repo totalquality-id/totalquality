@@ -16,7 +16,7 @@ export default function Footer() {
       { label: "About Us", href: "/about" },
       { label: "Our Services", href: "/services" },
       { label: "Events", href: "/events" },
-      { label: "News", href: "/news" },
+      { label: "Articles", href: "/articles" },
     ],
     resources: [
       { label: "Career", href: "/career" },
@@ -104,8 +104,8 @@ export default function Footer() {
                   <Phone className="w-4 h-4 text-white" />
                 </div>
                 <a
-                  // href="mailto:center@tq-official.com"
-                  className="text-sm text-white font-light transition-colors duration-300"
+                  href="tel:+62318484690"
+                  className="text-sm text-white font-light hover:text-white/80 transition-colors duration-300"
                 >
                   +62 31 848 4690
                 </a>
@@ -116,7 +116,7 @@ export default function Footer() {
                   <Mail className="w-4 h-4 text-white" />
                 </div>
                 <a
-                  href="mailto:info@tqpartner.cocenter@tq-official.comm"
+                  href="mailto:center@tq-official.com"
                   className="text-sm text-white font-light hover:text-white/80 transition-colors duration-300"
                 >
                   center@tq-official.com
@@ -206,7 +206,7 @@ export default function Footer() {
                 </button>
               </div>
               <p className="text-xs text-white/60 font-light">
-                Get the latest news and updates
+                Get the latest articles and updates
               </p>
             </div> */}
           </div>

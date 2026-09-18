@@ -3,7 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  binaryTargets = ["native", "windows", "debian-openssl-1.1.x"]
+  binaryTargets = ["native", "windows", "debian-openssl-1.1.x", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
@@ -85,7 +85,7 @@ model Event {
   createdAt   DateTime @default(now())
 }
 
-model News {
+model Article {
   id          Int      @id @default(autoincrement())
   title       String
   content     String   @db.Text
@@ -103,6 +103,7 @@ model Career {
   salary       String?
   jobType      String?
   experience   String?
+  status       String        @default("open") // "open" | "closed"
   
   applicants   User[]        @relation("UserCareers")
   applications Application[]
@@ -174,4 +175,40 @@ model Consultation {
   email     String
   phone     String
   createdAt DateTime @default(now())
+}
+
+/// Komentar pengunjung untuk Article dan Event.
+/// Satu tabel dipakai dua modul lewat pasangan (targetType, targetId) supaya
+/// logika moderasi, anti-spam, dan panel admin tidak perlu diduplikasi.
+model Comment {
+  id         Int       @id @default(autoincrement())
+  targetType String // "article" | "event"
+  targetId   Int
+  name       String
+  email      String? // tidak pernah ditampilkan publik; hanya untuk moderasi
+  content    String    @db.Text
+  /// "approved" tayang di website, "pending" menunggu review, "rejected" ditolak.
+  status     String    @default("pending")
+  /// Alasan komentar masuk antrean, ditampilkan ke admin.
+  flagReason String?
+  /// Hash bergaram dari IP. IP mentah adalah data pribadi dan tidak disimpan.
+  ipHash     String?
+  createdAt  DateTime  @default(now())
+  reviewedAt DateTime?
+
+  @@index([targetType, targetId, status])
+  @@index([status, createdAt])
+}
+
+/// Like tanpa login. Deduplikasi memakai visitorKey (UUID acak milik browser),
+/// bukan IP, supaya satu kantor di balik satu IP tidak dianggap satu orang.
+model Reaction {
+  id         Int      @id @default(autoincrement())
+  targetType String // "article" | "event"
+  targetId   Int
+  visitorKey String
+  createdAt  DateTime @default(now())
+
+  @@unique([targetType, targetId, visitorKey])
+  @@index([targetType, targetId])
 }

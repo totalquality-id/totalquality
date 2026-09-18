@@ -1,9 +1,7 @@
 import prisma from "@/config/prismaConfig";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-
-const JWT_SECRET = process.env.JWT_SECRET || "d9a64e6d3aee480fc5858d35a58f1d57f83bf475b7b844e32e25264d6f733d9f";
-const JWT_EXPIRES_IN = "7d";
+import { JWT_SECRET, JWT_EXPIRES_IN } from "@/config/authConfig";
 
 interface RegisterData {
   name: string;
@@ -18,8 +16,7 @@ interface LoginData {
 
 export const registerUser = async (data: RegisterData) => {
   try {
-    console.log("Checking existing user for:", data.email);
-    
+
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
       where: { email: data.email },
@@ -29,10 +26,8 @@ export const registerUser = async (data: RegisterData) => {
       throw new Error("Email already registered");
     }
 
-    console.log("Hashing password...");
     const hashedPassword = await bcrypt.hash(data.password, 10);
 
-    console.log("Creating user...");
     const user = await prisma.user.create({
       data: {
         name: data.name,
@@ -49,17 +44,12 @@ export const registerUser = async (data: RegisterData) => {
       },
     });
 
-    console.log("User created:", user.id);
-    console.log("Generating token...");
-    
     // Generate token
     const token = jwt.sign(
       { userId: user.id, email: user.email, role: user.role },
       JWT_SECRET,
       { expiresIn: JWT_EXPIRES_IN }
     );
-
-    console.log("Token generated successfully");
 
     return {
       user,
@@ -73,8 +63,7 @@ export const registerUser = async (data: RegisterData) => {
 
 export const loginUser = async (data: LoginData) => {
   try {
-    console.log("Finding user:", data.email);
-    
+
     // Find user
     const user = await prisma.user.findUnique({
       where: { email: data.email },
@@ -84,8 +73,6 @@ export const loginUser = async (data: LoginData) => {
       throw new Error("User not found");
     }
 
-    console.log("User found, verifying password...");
-    
     // Verify password
     const isPasswordValid = await bcrypt.compare(data.password, user.password);
 
@@ -93,16 +80,12 @@ export const loginUser = async (data: LoginData) => {
       throw new Error("Invalid credentials");
     }
 
-    console.log("Password valid, generating token...");
-    
     // Generate token
     const token = jwt.sign(
       { userId: user.id, email: user.email, role: user.role },
       JWT_SECRET,
       { expiresIn: JWT_EXPIRES_IN }
     );
-
-    console.log("Token generated successfully");
 
     return {
       user: {

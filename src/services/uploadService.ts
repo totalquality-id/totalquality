@@ -21,7 +21,7 @@ cloudinary.config({
  * Upload gambar ke Cloudinary.
  *
  * @param file   - File object dari FormData
- * @param folder - Subfolder Cloudinary (e.g. "events", "news", "services")
+ * @param folder - Subfolder Cloudinary (e.g. "events", "articles", "services")
  * @returns      URL publik gambar dari Cloudinary (https://res.cloudinary.com/...)
  */
 export async function uploadImage(file: File, folder: string): Promise<string> {

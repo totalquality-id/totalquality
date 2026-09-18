@@ -1,4 +1,4 @@
-import AllServicesPage from "@/pages/AllServicesPage";
+import AllServicesPage from "@/views/AllServicesPage";
 
 export const metadata = {
   title: "Our Services | Total Quality Indonesia",

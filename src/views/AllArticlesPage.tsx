@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { truncateContent } from "@/utils/htmlText";
+import EngagementStats from "@/components/engagement/EngagementStats";
+import { useEngagementSummary } from "@/hooks/useEngagementSummary";
 
-interface News {
+interface Article {
   id: number;
   title: string;
   content: string;
@@ -11,32 +14,33 @@ interface News {
   createdAt: string;
 }
 
-export default function AllNewsPage() {
-  const [newsArticles, setNewsArticles] = useState<News[]>([]);
+export default function AllArticlesPage() {
+  const [articles, setArticles] = useState<Article[]>([]);
+  const engagement = useEngagementSummary("article");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchNews = async () => {
+    const fetchArticles = async () => {
       try {
         setLoading(true);
-        const res = await fetch("/api/news");
+        const res = await fetch("/api/articles");
 
         if (!res.ok) {
-          throw new Error("Failed to fetch news");
+          throw new Error("Failed to fetch articles");
         }
 
         const data = await res.json();
-        setNewsArticles(data);
+        setArticles(data);
       } catch (err) {
-        console.error("Error fetching news:", err);
-        setError("Failed to load news. Please try again later.");
+        console.error("Error fetching articles:", err);
+        setError("Failed to load articles. Please try again later.");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchNews();
+    fetchArticles();
   }, []);
 
   const formatDate = (dateString: string) => {
@@ -109,7 +113,7 @@ export default function AllNewsPage() {
         </div>
       </section>
 
-      {/* News Grid Section */}
+      {/* Articles Grid Section */}
       <section className="relative py-16 sm:py-20 lg:py-24">
         {loading && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
@@ -123,7 +127,7 @@ export default function AllNewsPage() {
           </div>
         )}
 
-        {!loading && !error && newsArticles.length === 0 && (
+        {!loading && !error && articles.length === 0 && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
             <p className="text-[#364153] font-light">
               No article available at the moment.
@@ -131,10 +135,10 @@ export default function AllNewsPage() {
           </div>
         )}
 
-        {!loading && !error && newsArticles.length > 0 && (
+        {!loading && !error && articles.length > 0 && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {newsArticles.map((article) => (
+              {articles.map((article) => (
                 <article
                   key={article.id}
                   className="group relative bg-white border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-500 overflow-hidden"
@@ -170,22 +174,24 @@ export default function AllNewsPage() {
                       {article.title}
                     </h3>
 
-                    {/* Summary */}
+                    {/* Ringkasan — content berisi HTML dari RichTextEditor,
+                        jadi harus di-strip dulu. Sebelumnya substring() langsung
+                        atas HTML mentah membuat tag <h3>/<div> ikut tampil dan
+                        potongannya berhenti di tengah kata. */}
                     <p className="text-sm lg:text-base text-[#364153] leading-relaxed font-light">
-                      {article.content.substring(0, 150)}
-                      {article.content.length > 150 ? "..." : ""}
+                      {truncateContent(article.content, 220)}
                     </p>
 
-                    {/* Full Content Preview */}
-                    <p className="text-xs text-[#364153]/80 leading-relaxed font-light border-t border-gray-100 pt-4">
-                      {article.content.substring(150, 300)}
-                      {article.content.length > 300 ? "..." : ""}
-                    </p>
+                    <EngagementStats
+                      tone="dark"
+                      likes={engagement[article.id]?.likes}
+                      comments={engagement[article.id]?.comments}
+                    />
 
                     {/* CTA Link */}
                     <div className="pt-2">
                       <a
-                        href={`/news/${article.id}`}
+                        href={`/articles/${article.id}`}
                         className="inline-flex items-center gap-2 text-sm text-[#2B5589] font-light underline underline-offset-4 decoration-1 hover:text-[#1E3F69] group-hover:gap-3 transition-all duration-300"
                       >
                         <span>Read More</span>
@@ -215,7 +221,7 @@ export default function AllNewsPage() {
         )}
       </section>
 
-      {/* Newsletter Section */}
+      {/* Newsletter Section (disabled) */}
       {/* <section className="relative py-16 sm:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative p-12 lg:p-16 bg-[#2B5589] text-white overflow-hidden">
@@ -227,7 +233,7 @@ export default function AllNewsPage() {
                 Never Miss an Update
               </h2>
               <p className="text-base sm:text-lg lg:text-xl text-white/90 font-light leading-relaxed max-w-2xl mx-auto">
-                Subscribe to our newsletter and get the latest news, insights,
+                Subscribe to our newsletter and get the latest articles, insights,
                 and updates delivered directly to your inbox.
               </p>
               <div className="max-w-md mx-auto">

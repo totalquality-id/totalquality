@@ -1,4 +1,4 @@
-import AllCareersPage from "@/pages/AllCareersPage";
+import AllCareersPage from "@/views/AllCareersPage";
 
 export const metadata = {
   title: "Career | Total Quality Indonesia",

@@ -1,12 +1,21 @@
 import * as authService from "@/services/authService";
 import { handleError, ApiError } from "@/utils/apiResponse";
+import {
+  clearRateLimit,
+  enforceRateLimit,
+  getClientIp,
+} from "@/utils/rateLimit";
 
 export const register = async (req: Request) => {
   try {
-    console.log("Register endpoint hit");
+    const ip = getClientIp(req);
+    enforceRateLimit(`register:${ip}`, {
+      limit: 5,
+      windowMs: 60 * 60 * 1000,
+      message: "Terlalu banyak pendaftaran dari jaringan ini. Coba lagi nanti.",
+    });
 
     const body = await req.json();
-    console.log("Request body:", { ...body, password: "***" });
 
     if (!body.name || !body.email || !body.password) {
       throw new ApiError(400, "Name, email, and password are required");
@@ -45,11 +54,6 @@ export const register = async (req: Request) => {
       password: body.password,
     });
 
-    console.log("Registration successful:", {
-      userId: result.user.id,
-      hasToken: !!result.token,
-    });
-
     // Wrap result in successResponse format
     return Response.json(
       {
@@ -59,7 +63,6 @@ export const register = async (req: Request) => {
       { status: 201 }
     );
   } catch (error) {
-    console.error("Register error:", error);
     if (error instanceof SyntaxError) {
       return handleError(new ApiError(400, "Invalid JSON format"));
     }
@@ -75,10 +78,15 @@ export const register = async (req: Request) => {
 
 export const login = async (req: Request) => {
   try {
-    console.log("Login endpoint hit");
+    const ip = getClientIp(req);
+    // Kuota per IP menahan penyerang yang mencoba banyak akun sekaligus.
+    enforceRateLimit(`login:ip:${ip}`, {
+      limit: 20,
+      windowMs: 15 * 60 * 1000,
+      message: "Terlalu banyak percobaan login. Coba lagi dalam beberapa menit.",
+    });
 
     const body = await req.json();
-    console.log("Login attempt for:", body.email);
 
     if (!body.email || !body.password) {
       throw new ApiError(400, "Email and password are required");
@@ -92,16 +100,23 @@ export const login = async (req: Request) => {
       throw new ApiError(400, "Fields cannot be empty");
     }
 
+    const emailKey = `login:email:${body.email.trim().toLowerCase()}`;
+    // Kuota per email menahan penyerang yang menebak password satu akun
+    // tertentu dari banyak IP.
+    enforceRateLimit(emailKey, {
+      limit: 5,
+      windowMs: 15 * 60 * 1000,
+      message: "Terlalu banyak percobaan login untuk akun ini. Coba lagi nanti.",
+    });
+
     const result = await authService.loginUser({
       email: body.email.trim().toLowerCase(),
       password: body.password,
     });
 
-    console.log("Login successful:", {
-      userId: result.user.id,
-      role: result.user.role,
-      hasToken: !!result.token,
-    });
+    // Login berhasil: kosongkan kuota agar user sah tidak terkunci karena
+    // salah ketik sebelumnya.
+    clearRateLimit(emailKey);
 
     // Wrap result in successResponse format
     return Response.json(
@@ -112,7 +127,6 @@ export const login = async (req: Request) => {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Login error:", error);
     if (error instanceof SyntaxError) {
       return handleError(new ApiError(400, "Invalid JSON format"));
     }

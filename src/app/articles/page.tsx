@@ -1,4 +1,4 @@
-import AllNewsPage from "@/pages/AllNewsPage";
+import AllArticlesPage from "@/views/AllArticlesPage";
 
 export const metadata = {
   title: "Latest Articles | Total Quality Indonesia",
@@ -6,6 +6,6 @@ export const metadata = {
     "Stay updated with the latest insights, updates, and stories from our journey of transforming organizations across Southeast Asia.",
 };
 
-export default function News() {
-  return <AllNewsPage />;
+export default function Articles() {
+  return <AllArticlesPage />;
 }

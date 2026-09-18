@@ -5,8 +5,11 @@ import Image from "next/image";
 import { Calendar, User } from "lucide-react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { sanitizeHtml } from "@/utils/sanitizeHtml";
+import LikeButton from "@/components/engagement/LikeButton";
+import CommentSection from "@/components/engagement/CommentSection";
 
-interface News {
+interface Article {
   id: number;
   title: string;
   content: string;
@@ -15,14 +18,14 @@ interface News {
   createdAt: string;
 }
 
-export default function NewsDetailPage() {
+export default function ArticleDetailPage() {
   const params = useParams();
-  const [news, setNews] = useState<News | null>(null);
+  const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    const fetchNews = async () => {
+    const fetchArticle = async () => {
       try {
         if (!params?.id) {
           setError(true);
@@ -30,22 +33,22 @@ export default function NewsDetailPage() {
           return;
         }
 
-        const res = await fetch(`/api/news/${params.id}`);
+        const res = await fetch(`/api/articles/${params.id}`);
         if (!res.ok) {
           setError(true);
           return;
         }
         const data = await res.json();
-        setNews(data);
+        setArticle(data);
       } catch (err) {
-        console.error("Error fetching news:", err);
+        console.error("Error fetching article:", err);
         setError(true);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchNews();
+    fetchArticle();
   }, [params]);
 
   const formatDate = (dateString: string) => {
@@ -73,28 +76,28 @@ export default function NewsDetailPage() {
         className="min-h-screen bg-white flex items-center justify-center"
         style={{ fontFamily: "Inter, system-ui, sans-serif" }}
       >
-        <p className="text-[#364153] font-light text-lg">Loading news...</p>
+        <p className="text-[#364153] font-light text-lg">Loading article...</p>
       </div>
     );
   }
 
-  if (error || !news) {
+  if (error || !article) {
     return (
       <div
         className="min-h-screen bg-white flex items-center justify-center"
         style={{ fontFamily: "Inter, system-ui, sans-serif" }}
       >
         <div className="text-center space-y-6 px-4">
-          <h2 className="text-3xl font-light text-[#1a1a1a]">News Not Found</h2>
+          <h2 className="text-3xl font-light text-[#1a1a1a]">Article Not Found</h2>
           <p className="text-[#364153] font-light">
-            The news article you&apos;re looking for doesn&apos;t exist or has
+            The article you&apos;re looking for doesn&apos;t exist or has
             been removed.
           </p>
           <Link
-            href="/news"
+            href="/articles"
             className="inline-flex items-center gap-2 text-[#2B5589] font-light hover:text-[#1E3F69] transition-colors"
           >
-            <span>Back to News</span>
+            <span>Back to Articles</span>
           </Link>
         </div>
       </div>
@@ -109,10 +112,10 @@ export default function NewsDetailPage() {
       {/* Hero Section */}
       <section className="relative w-full h-[500px] sm:h-[550px] lg:h-[500px] overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-black/40 to-transparent z-10 pointer-events-none" />
-        {news.image ? (
+        {article.image ? (
           <Image
-            src={news.image}
-            alt={news.title}
+            src={article.image}
+            alt={article.title}
             fill
             className="object-cover"
             priority
@@ -135,7 +138,7 @@ export default function NewsDetailPage() {
             {/* Title */}
             <div className="border-b border-gray-100 pb-10">
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-light tracking-tighter leading-tight text-[#1a1a1a]">
-                {news.title}
+                {article.title}
               </h1>
             </div>
 
@@ -151,16 +154,16 @@ export default function NewsDetailPage() {
                     Published Date
                   </h3>
                   <p className="text-base text-[#364153] font-light">
-                    {formatDate(news.createdAt)}
+                    {formatDate(article.createdAt)}
                   </p>
                   <p className="text-sm text-[#364153]/70 font-light">
-                    {formatTime(news.createdAt)}
+                    {formatTime(article.createdAt)}
                   </p>
                 </div>
               </div>
 
               {/* Author */}
-              {news.author && (
+              {article.author && (
                 <div className="flex gap-4">
                   <div className="flex-shrink-0 p-3 bg-[#FACC01]/10 rounded-lg h-fit">
                     <User className="w-6 h-6 text-[#FACC01]" />
@@ -170,7 +173,7 @@ export default function NewsDetailPage() {
                       Author
                     </h3>
                     <p className="text-base text-[#364153] font-light">
-                      {news.author}
+                      {article.author}
                     </p>
                   </div>
                 </div>
@@ -179,22 +182,29 @@ export default function NewsDetailPage() {
 
             {/* Article Content — render HTML dari RichTextEditor */}
             <div
-              className="news-content"
-              dangerouslySetInnerHTML={{ __html: news.content }}
+              className="article-content"
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(article.content) }}
             />
+
+            {/* Interaksi pengunjung: suka & komentar, tanpa perlu login. */}
+            <div className="border-t border-gray-100 pt-8">
+              <LikeButton targetType="article" targetId={article.id} />
+            </div>
+
+            <CommentSection targetType="article" targetId={article.id} />
           </div>
         </div>
       </section>
 
       {/* Styles untuk render HTML dari RichTextEditor */}
       <style>{`
-        .news-content {
+        .article-content {
           color: #364153;
           font-size: 1.0625rem;
           line-height: 1.8;
           font-weight: 300;
         }
-        .news-content h2 {
+        .article-content h2 {
           font-size: 1.75rem;
           font-weight: 300;
           letter-spacing: -0.03em;
@@ -203,29 +213,29 @@ export default function NewsDetailPage() {
           padding-bottom: 0.5rem;
           border-bottom: 1px solid #f1f1f1;
         }
-        .news-content h3 {
+        .article-content h3 {
           font-size: 1.25rem;
           font-weight: 400;
           color: #1a1a1a;
           margin: 2rem 0 0.75rem;
         }
-        .news-content p {
+        .article-content p {
           margin: 0 0 1.25rem;
         }
-        .news-content ul {
+        .article-content ul {
           list-style: disc;
           padding-left: 1.5rem;
           margin: 1rem 0 1.5rem;
         }
-        .news-content ol {
+        .article-content ol {
           list-style: decimal;
           padding-left: 1.5rem;
           margin: 1rem 0 1.5rem;
         }
-        .news-content li {
+        .article-content li {
           margin: 0.35rem 0;
         }
-        .news-content blockquote {
+        .article-content blockquote {
           border-left: 3px solid #0201FF;
           margin: 1.75rem 0;
           padding: 0.75rem 1.25rem;
@@ -234,24 +244,24 @@ export default function NewsDetailPage() {
           border-radius: 0 0.375rem 0.375rem 0;
           font-style: italic;
         }
-        .news-content a {
+        .article-content a {
           color: #2B5589;
           text-decoration: underline;
           text-underline-offset: 3px;
         }
-        .news-content a:hover {
+        .article-content a:hover {
           color: #1E3F69;
         }
-        .news-content hr {
+        .article-content hr {
           border: none;
           border-top: 1px solid #e5e7eb;
           margin: 2rem 0;
         }
-        .news-content figure {
+        .article-content figure {
           margin: 2rem auto;
           text-align: center;
         }
-        .news-content figure img {
+        .article-content figure img {
           max-width: 100%;
           height: auto;
           border-radius: 0.5rem;
@@ -259,18 +269,103 @@ export default function NewsDetailPage() {
           display: block;
           margin: 0 auto;
         }
-        .news-content figcaption {
+        .article-content figcaption {
           font-size: 0.8125rem;
           color: #94a3b8;
           margin-top: 0.5rem;
           font-style: italic;
         }
-        .news-content strong {
+        .article-content strong {
           font-weight: 600;
           color: #1a1a1a;
         }
-        .news-content em {
+        .article-content em {
           font-style: italic;
+        }
+
+        /* --- Elemen tambahan dari editor yang diperluas --- */
+        .article-content h4 {
+          font-size: 1.0625rem;
+          font-weight: 500;
+          color: #1a1a1a;
+          margin: 1.5rem 0 0.5rem;
+        }
+        .article-content u { text-decoration: underline; text-underline-offset: 2px; }
+        .article-content s,
+        .article-content strike { text-decoration: line-through; opacity: 0.75; }
+        .article-content mark {
+          padding: 0.05em 0.25em;
+          border-radius: 0.2em;
+          background: #fef3c7;
+          color: inherit;
+        }
+        .article-content sup,
+        .article-content sub { font-size: 0.7em; line-height: 0; }
+        .article-content sup { vertical-align: super; }
+        .article-content sub { vertical-align: sub; }
+        .article-content code {
+          background: #f1f5f9;
+          border: 1px solid #e2e8f0;
+          border-radius: 0.25rem;
+          padding: 0.1rem 0.35rem;
+          font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+          font-size: 0.875em;
+          color: #be123c;
+        }
+        .article-content pre {
+          background: #0f172a;
+          color: #e2e8f0;
+          border-radius: 0.5rem;
+          padding: 1rem 1.25rem;
+          overflow-x: auto;
+          margin: 1.75rem 0;
+          font-size: 0.875rem;
+          line-height: 1.6;
+        }
+        .article-content pre code {
+          background: none;
+          border: none;
+          color: inherit;
+          padding: 0;
+          font-size: inherit;
+        }
+        .article-content table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 1.75rem 0;
+          font-size: 0.9375rem;
+        }
+        .article-content th,
+        .article-content td {
+          border: 1px solid #e5e7eb;
+          padding: 0.6rem 0.85rem;
+          text-align: left;
+          vertical-align: top;
+        }
+        .article-content th {
+          background: #f8f9ff;
+          font-weight: 600;
+          color: #1a1a1a;
+        }
+        .article-content tbody tr:nth-child(even) { background: #fcfcfd; }
+        .article-content caption {
+          caption-side: bottom;
+          font-size: 0.8125rem;
+          color: #94a3b8;
+          padding-top: 0.5rem;
+          font-style: italic;
+        }
+        /* Perataan teks dari toolbar editor */
+        .article-content [style*="text-align: center"] { text-align: center; }
+        .article-content [style*="text-align: right"] { text-align: right; }
+        .article-content [style*="text-align: justify"] { text-align: justify; }
+        /* Indentasi dari tombol indent (execCommand memakai blockquote polos) */
+        .article-content blockquote:not([class]) { }
+
+        /* Responsif: tabel dan blok kode tidak boleh merusak layout di HP */
+        @media (max-width: 640px) {
+          .article-content table { display: block; overflow-x: auto; white-space: nowrap; }
+          .article-content pre { padding: 0.75rem 0.9rem; font-size: 0.8125rem; }
         }
       `}</style>
     </div>

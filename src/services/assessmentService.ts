@@ -83,3 +83,7 @@ export const getAssessmentStats = async () => {
     recent: recentAssessments,
   };
 };
+
+export const deleteAssessment = async (id: number) => {
+  return await prisma.assessmentResult.delete({ where: { id } });
+};
